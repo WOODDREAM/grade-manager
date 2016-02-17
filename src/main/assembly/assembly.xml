@@ -1,0 +1,18 @@
+<assembly>
+    <id>assembly</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <!--
+    <includeBaseDirectory>false</includeBaseDirectory>
+    -->
+    <fileSets>
+        <fileSet>
+            <directory>target/rocketmq-console</directory>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include>**/**</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>

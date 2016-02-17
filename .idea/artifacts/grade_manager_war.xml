@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="grade-manager:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="manager-socketio.war">
+      <element id="artifact" artifact-name="grade-manager:war exploded" />
+    </root>
+  </artifact>
+</component>

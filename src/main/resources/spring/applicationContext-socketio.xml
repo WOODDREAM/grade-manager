@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="configuration" class="com.corundumstudio.socketio.Configuration">
+              <property name="hostname" value="${socketio.hostname}"/>
+              <property name="port" value="${socketio.port}"/>
+              <property name="pingTimeout" value="${socketio.pingTimeOut}"/>
+       </bean>
+       <bean id="ioServer" class="com.corundumstudio.socketio.SocketIOServer">
+              <constructor-arg ref="configuration"/>
+       </bean>
+</beans>
