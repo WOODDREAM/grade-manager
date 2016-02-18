@@ -19,6 +19,8 @@
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.2.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.2.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.6.10" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.37" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.3.0" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:1.2.3" />
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:3.0-alpha-1" />
