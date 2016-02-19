@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="grade-manager:war exploded">
-    <output-path>$PROJECT_DIR$/target/manager-socketio</output-path>
+    <output-path>$PROJECT_DIR$/target/grade-manager</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
