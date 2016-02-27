@@ -1,7 +1,7 @@
 package com.dfire.grade.manager.controller;
 
-import com.dfire.grade.manager.bean.SaBean;
-import com.dfire.grade.manager.mapper.SaMapper;
+import com.dfire.grade.manager.bean.Student;
+import com.dfire.grade.manager.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,19 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class Hello {
     @Autowired
-    private SaMapper saMapper;
+    private StudentMapper studentMapper;
 
     @RequestMapping("/hello")
     public String sayHello() {
         return "hello";
     }
 
-    @RequestMapping("/insert")
-    public void insertSa() {
-        SaBean saBean = new SaBean();
-        saBean.setName("11223344");
-        saBean.setId(1);
-        saMapper.insert(saBean);
-        return;
+    @RequestMapping("/student")
+    public String insertStudent() {
+        Student student = new Student();
+        student.setName("haha");
+        student.setEmail("haha@qq.com");
+        studentMapper.insertStudent(student);
+        return "hello";
     }
 }
