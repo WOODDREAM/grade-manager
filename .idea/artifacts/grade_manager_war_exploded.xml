@@ -43,7 +43,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="D:\workspace\grade-manager\target/MANIFEST.MF" />
+        <element id="file-copy" path="D:\job\grade-manager\target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="grade-manager/web/Web" />
     </root>
