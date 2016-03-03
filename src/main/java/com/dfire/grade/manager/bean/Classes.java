@@ -8,7 +8,7 @@ import java.util.Date;
  * Date:2016-03-03
  * description：
  */
-public class Class implements Serializable {
+public class Classes implements Serializable {
     private String classId;//主键
     private String name;//课程名称
     private String teacherId;//任课教师id
