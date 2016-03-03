@@ -1,13 +1,32 @@
 package com.dfire.grade.manager.bean;
 
+import com.mysql.jdbc.StringUtils;
+
+import java.util.Date;
+
 /**
  * User:huangtao
  * Date:2016-02-17
  * description：
  */
 public class Student {
-    private String name;
-    private String email;
+    private String studentId;//学生id
+    private String name;//姓名
+    private String email;//email
+    private String mobile;//手机
+    private String school;//学校
+    private String passWord;//登录密码
+    private float valid;//是否拉黑
+    private Date joinTime;//进入系统时间
+
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
 
     public String getName() {
         return name;
@@ -23,5 +42,47 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        if (!StringUtils.isEmptyOrWhitespaceOnly(passWord)) {
+            this.passWord = passWord;
+        }
+    }
+
+    public float getValid() {
+        return valid;
+    }
+
+    public void setValid(float valid) {
+        this.valid = valid;
+    }
+
+    public Date getJoinTime() {
+        return joinTime;
+    }
+
+    public void setJoinTime(Date joinTime) {
+        this.joinTime = joinTime;
     }
 }
