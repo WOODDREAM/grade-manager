@@ -9,6 +9,7 @@ import java.util.Date;
  * description：
  */
 public class Grade implements Serializable, Comparable<Grade> {
+    private String gradeId;
     private String studentId;//学生id
     private String classId;//课程id
     private String teacherId;//任课教师id
@@ -16,6 +17,14 @@ public class Grade implements Serializable, Comparable<Grade> {
     private String jobId;//作业id
     private int type;//成绩类型
     private Date createTime;//创建时间
+
+    public String getGradeId() {
+        return gradeId;
+    }
+
+    public void setGradeId(String gradeId) {
+        this.gradeId = gradeId;
+    }
 
     public String getStudentId() {
         return studentId;

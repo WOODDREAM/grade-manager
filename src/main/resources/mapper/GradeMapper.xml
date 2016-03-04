@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dfire.grade.manager.mapper.GradeMapper">
+    <resultMap id="gradeMapper" type="com.dfire.grade.manager.bean.Grade">
+        <id column="gra_id" property="gradeId" jdbcType="VARCHAR"/>
+        <result column="stu_id" property="studentId" jdbcType="VARCHAR"/>
+        <result column="cla_id" property="classId" jdbcType="VARCHAR"/>
+        <result column="tea_id" property="teacherId" jdbcType="VARCHAR"/>
+        <result column="grade" property="grade" jdbcType="DOUBLE"/>
+        <result column="job_id" property="jobId" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INT"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+    </resultMap>
+    <insert id="insertGrade" parameterType="com.dfire.grade.manager.bean">
+        INSERT INTO grade(gra_id,stu_id,cla_id,tea_id,grade,jod_id,type,create_time)
+        VALUES (
+        #{gradeId},
+        #{studentId},
+        #{classId},
+        #{teacherId},
+        #{grade},
+        #{jobId},
+        #{type},
+        #{createTime}
+        )
+    </insert>
+</mapper>

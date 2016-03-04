@@ -24,7 +24,7 @@
         #{valid}
         )
     </insert>
-    <select id="selectClassById" resultType="classesMap">
+    <select id="`" resultType="classesMap">
         SELECT * FROM class
         WHERE cla_id=#{classId}
     </select>
