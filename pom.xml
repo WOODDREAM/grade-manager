@@ -55,20 +55,35 @@
             <artifactId>spring-jdbc</artifactId>
             <version>${org.springframework}</version>
         </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.8.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.7</version>
+        </dependency>
         <!--<dependency>-->
-            <!--<groupId>commons-dbcp</groupId>-->
-            <!--<artifactId>commons-dbcp</artifactId>-->
-            <!--<version>20030825.184428</version>-->
+        <!--<groupId>org.apache.geronimo.plugins</groupId>-->
+        <!--<artifactId>aspectj</artifactId>-->
+        <!--<version>3.0.1</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>commons-codec</groupId>-->
-            <!--<artifactId>commons-codec</artifactId>-->
-            <!--<version>20041127.091804</version>-->
+        <!--<groupId>commons-dbcp</groupId>-->
+        <!--<artifactId>commons-dbcp</artifactId>-->
+        <!--<version>20030825.184428</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>commons-pool</groupId>-->
-            <!--<artifactId>commons-pool</artifactId>-->
-            <!--<version>20030825.183949</version>-->
+        <!--<groupId>commons-codec</groupId>-->
+        <!--<artifactId>commons-codec</artifactId>-->
+        <!--<version>20041127.091804</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>commons-pool</groupId>-->
+        <!--<artifactId>commons-pool</artifactId>-->
+        <!--<version>20030825.183949</version>-->
         <!--</dependency>-->
         <!-- AspectJ -->
         <dependency>
@@ -94,18 +109,13 @@
             <version>1.2.3</version>
         </dependency>
         <!--servlet-->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>3.0-alpha-1</version>
-            <scope>test</scope>
-        </dependency>
         <!--<dependency>-->
         <!--<groupId>javax.servlet</groupId>-->
-        <!--<artifactId>javax.servlet-api</artifactId>-->
-        <!--<version>4.0.0-b01</version>-->
+        <!--<artifactId>servlet-api</artifactId>-->
+        <!--<version>3.0-alpha-1</version>-->
         <!--<scope>test</scope>-->
         <!--</dependency>-->
+
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
@@ -140,6 +150,18 @@
             <version>${ch.qos.logback}</version>
         </dependency>
         <!--test-->
+        <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.1.0</version>
+        <scope>test</scope>
+    </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.geronimo.specs</groupId>-->
+            <!--<artifactId>geronimo-servlet_3.0_spec</artifactId>-->
+            <!--<version>1.0</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>

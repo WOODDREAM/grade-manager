@@ -2,20 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dfire.grade.manager.mapper.StudentMapper">
     <resultMap id="studentMap" type="com.dfire.grade.manager.bean.Student">
-        <id column="stu_name" property="name" jdbcType="VARCHAR"/>
+        <id column="stu_id" property="studentId" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="valid" property="valid" jdbcType="FLOAT"/>
+        <result column="joinTime" property="joinTime" jdbcType="DATE"/>
+        <result column="passWord" property="passWord" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="queryStudentById" resultMap="studentMap" parameterType="String">
-              select stu_name,email
+              select stu_id,stu_name,email,mobile,school,pass_word,join_time,valid
               from students
-              WHERE id=#{id}
+              WHERE id=#{studentId}
        </select>
 
     <insert id="insertStudent" parameterType="com.dfire.grade.manager.bean.Student">
-              INSERT INTO students (stu_name,email)
+              INSERT INTO student (stu_id,stu_name,email,mobile,pass_word,shcool,join_time,valid)
               VALUES (
+              #{studentId},
               #{name},
-              #{email}
+              #{email},
+              #{mobile},
+              #{passWord},
+              #{shcool},
+              #{passWord},
+              #{valid}
               )
        </insert>
+    <delete id="deleteStudentById" parameterType="String">
+        DELETE FROM student
+        WHERE stu_id=#{studentId}
+
+    </delete>
 </mapper>
