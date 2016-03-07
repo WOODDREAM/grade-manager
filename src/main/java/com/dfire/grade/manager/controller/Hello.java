@@ -31,6 +31,9 @@ public class Hello {
         Student student = new Student();
         student.setName("haha");
         student.setEmail("haha@qq.com");
+        student.setStudentId("111");
+        student.setEmail("12e23e2");
+        student.setMobile("1432425434");
         studentMapper.insertStudent(student);
         return "hello";
     }

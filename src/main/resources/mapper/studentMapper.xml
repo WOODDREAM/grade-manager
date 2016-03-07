@@ -18,14 +18,14 @@
        </select>
 
     <insert id="insertStudent" parameterType="com.dfire.grade.manager.bean.Student">
-              INSERT INTO student (stu_id,stu_name,email,mobile,pass_word,shcool,join_time,valid)
+              INSERT INTO student (stu_id,name,email,mobile,pass_word,school,join_time,valid)
               VALUES (
               #{studentId},
               #{name},
               #{email},
               #{mobile},
               #{passWord},
-              #{shcool},
+              #{school},
               #{passWord},
               #{valid}
               )
