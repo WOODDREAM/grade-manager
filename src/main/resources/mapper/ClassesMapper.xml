@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dfire.grade.manager.mapper.ClassesMapper">
-    <resultMap id="classesMap" type="com.dfire.grade.manager.bean.Classes">
+    <resultMap id="classesMapper" type="com.dfire.grade.manager.bean.Classes">
         <id column="cla_Id" property="classId" jdbcType="VARCHAR"/>
-        <result column="name" property="name" javaType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="tea_Id" property="teacherId" jdbcType="VARCHAR"/>
         <result column="period" property="period" jdbcType="DOUBLE"/>
         <result column="credit" property="credit" jdbcType="DOUBLE"/>
@@ -24,7 +24,7 @@
         #{valid}
         )
     </insert>
-    <select id="`" resultType="classesMap">
+    <select id="`" resultMap="classesMapper">
         SELECT * FROM class
         WHERE cla_id=#{classId}
     </select>

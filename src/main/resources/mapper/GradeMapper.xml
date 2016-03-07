@@ -8,10 +8,10 @@
         <result column="tea_id" property="teacherId" jdbcType="VARCHAR"/>
         <result column="grade" property="grade" jdbcType="DOUBLE"/>
         <result column="job_id" property="jobId" jdbcType="VARCHAR"/>
-        <result column="type" property="type" jdbcType="INT"/>
+        <result column="type" property="type" jdbcType="SMALLINT"/>
         <result column="create_time" property="createTime" jdbcType="DATE"/>
     </resultMap>
-    <insert id="insertGrade" parameterType="com.dfire.grade.manager.bean">
+    <insert id="insertGrade" parameterType="com.dfire.grade.manager.bean.Grade">
         INSERT INTO grade(gra_id,stu_id,cla_id,tea_id,grade,jod_id,type,create_time)
         VALUES (
         #{gradeId},

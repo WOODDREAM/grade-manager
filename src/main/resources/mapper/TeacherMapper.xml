@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
-    <resultMap id="teacherMapper" type="com.dfire.grade.manager.bean.Teacher">
-        <id column="tea_id" property="teacherId" jdbcType=""/>
-        <result column="name" property="name" javaType=""/>
-        <result column="mobile" property="mobile" jdbcType=""/>
-        <result column="email" property="email" javaType=""/>
-        <result column="pass_word" property="passWord" jdbcType=""/>
-        <result column="school" property="school" javaType=""/>
-        <result column="join_time" property="joinTime" jdbcType=""/>
-        <result column="valid" property="valid" javaType=""/>
+<mapper namespace="com.dfire.grade.manager.mapper.TeacherMapper">
+    <resultMap id=" teacherMapper" type="com.dfire.grade.manager.bean.Teacher">
+        <id column="tea_id" property="teacherId" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="pass_word" property="passWord" jdbcType="VARCHAR"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="join_time" property="joinTime" jdbcType="DATE"/>
+        <result column="valid" property="valid" jdbcType="FLOAT"/>
     </resultMap>
 </mapper>

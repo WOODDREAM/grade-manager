@@ -22,8 +22,14 @@ public class HelloTest extends BaseControllerTestHelper {
     }
 
     @Test
-    public void testHello() throws Exception {
+    public void insertStudent() throws Exception {
         mockMvc.perform(get("/student")).andExpect(status().is2xxSuccessful());
+    }
+
+
+    @Test
+    public void testHello() throws Exception {
+        mockMvc.perform(get("/hello")).andExpect(status().is2xxSuccessful());
     }
 
 }
