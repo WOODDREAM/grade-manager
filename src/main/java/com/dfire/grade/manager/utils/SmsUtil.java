@@ -2,12 +2,16 @@ package com.dfire.grade.manager.utils;
 
 import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.configuration.SMSConfiguration;
+import com.dfire.grade.manager.logger.LoggerFactory;
+import com.dfire.grade.manager.logger.LoggerMarker;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * User:huangtao
@@ -44,19 +48,24 @@ public class SmsUtil {
         if (200 == statusCode || Integer.getInteger(result) > 0) {
             return JsonResult.jsonSuccessMes(Contants.SMSMessage.SUCCESS_SEND);
         }
+        String message = null;
+        LoggerFactory.SMSFACTORY.error(LoggerMarker.SMS_SEND_CODE, result, "发送验证码出错！");
         postMethod.releaseConnection();
         if (result.equals("-1")) {
-            return JsonResult.newInstance2("0", Contants.SMSMessage.NO_SUCH_ACCOUNT);
+            message = Contants.SMSMessage.NO_SUCH_ACCOUNT;
         }
         if (result.equals("-3")) {
-            return JsonResult.newInstance2("0", Contants.SMSMessage.LESS_NUMBER);
+            message = Contants.SMSMessage.LESS_NUMBER;
         }
         if (result.equals("-11")) {
-            return JsonResult.newInstance2("0", Contants.SMSMessage.FORBID_USER);
+            message = Contants.SMSMessage.FORBID_USER;
         }
         if (result.equals("-6")) {
-            return JsonResult.newInstance2("0", Contants.SMSMessage.IP_FORBID);
+            message = Contants.SMSMessage.IP_FORBID;
         }
-        return JsonResult.newInstance2("0", Contants.Http.REQUEST_FAIL);
+        Map<String, Object> map = new HashMap<>();
+        map.put("result", result);
+        map.put("message", message);
+        return JsonResult.newInstance2("0", message);
     }
 }

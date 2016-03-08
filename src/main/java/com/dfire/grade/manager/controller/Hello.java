@@ -29,7 +29,7 @@ public class Hello {
 
     @RequestMapping("/hello")
     public String sayHello() {
-        redisUtil.getJedis();
+        redisUtil.stringSet();
         return "hello";
     }
 

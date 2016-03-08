@@ -1,5 +1,7 @@
 package com.dfire.grade.manager;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * User:huangtao
  * Date:2016-03-08
@@ -18,5 +20,11 @@ public class Contants {
 
     public static class Http {
         public static final String REQUEST_FAIL = "请求失败";
+    }
+
+    public static class RedisContent {
+        public static final String VERIFY_CODE_PREFIX = "verify:code*";
+        public static final int THIRTY_EXPIRE_TIME = 30;
+        public static final TimeUnit SECOND_UNIT = TimeUnit.SECONDS;
     }
 }
