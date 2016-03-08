@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dfire.grade.manager.mapper.StudentMapper">
-    <resultMap id="studentMap" type="com.dfire.grade.manager.bean.Student">
+    <resultMap id="studentMapper" type="com.dfire.grade.manager.bean.Student">
         <id column="stu_id" property="studentId" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
@@ -11,7 +11,7 @@
         <result column="joinTime" property="joinTime" jdbcType="DATE"/>
         <result column="passWord" property="passWord" jdbcType="VARCHAR"/>
     </resultMap>
-    <select id="queryStudentById" resultMap="studentMap" parameterType="String">
+    <select id="queryStudentById" resultMap="studentMapper" parameterType="String">
               select stu_id,stu_name,email,mobile,school,pass_word,join_time,valid
               from students
               WHERE id=#{studentId}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="smsConfiguration" class="com.dfire.grade.manager.configuration.SMSConfiguration">
+        <property name="smsGbkUrl" value="${smsGbkUrl}"/>
+        <property name="smsKey" value="${smsKey}"/>
+        <property name="smsUtf8Url" value="${smsutf8Url}"/>
+        <property name="uId" value="${smsUId}"/>
+        <property name="contentType" value="${smsContentType}"/>
+        <property name="encode" value="${smsenCode}"/>
+        <property name="action" value="${smsAction}"/>
+        <property name="smsGbkNUm" value="${smsGBKNum}"/>
+        <property name="smsUtf8Num" value="${smsUtfNum}"/>
+    </bean>
+    <bean class="com.dfire.grade.manager.utils.SmsUtil">
+        <property name="smsConfiguration" ref="smsConfiguration"/>
+    </bean>
+</beans>

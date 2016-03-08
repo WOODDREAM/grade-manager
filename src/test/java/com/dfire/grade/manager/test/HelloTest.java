@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -32,4 +33,8 @@ public class HelloTest extends BaseControllerTestHelper {
         mockMvc.perform(get("/hello")).andExpect(status().is2xxSuccessful());
     }
 
+    @Test
+    public void testSendSms() throws Exception {
+        mockMvc.perform(post("/sms").param("mobile", "15757115785"));
+    }
 }
