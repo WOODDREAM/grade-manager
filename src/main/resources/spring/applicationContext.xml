@@ -8,4 +8,5 @@
     <import resource="applicationContext-mybatis.xml"/>
     <import resource="applicationContext-redis.xml"/>
     <import resource="application-sms.xml"/>
+    <import resource="application-mail.xml"/>
 </beans>

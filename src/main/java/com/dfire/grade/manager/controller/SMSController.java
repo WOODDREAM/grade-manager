@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Random;
 
@@ -29,26 +28,38 @@ public class SMSController {
     private SmsUtil smsUtil;
     @Autowired
     private RedisUtil redisUtil;
+    private String CONTENT = "验证码： %s。此验证码用于设置你的帐户手机号码\n" + "验证码有效时间：%s分钟";
 
     @RequestMapping(value = "/send_code", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public JsonResult sendVerifyCode(@RequestParam(value = "mobile", required = true) String mobile) throws IOException {
         Random rand = new Random();
-        int code = rand.nextInt(9000) + 1000;
-        redisUtil.setValuePre(Contants.RedisContent.VERIFY_CODE_PREFIX + mobile, code,
-                Contants.RedisContent.THIRTY_EXPIRE_TIME, Contants.RedisContent.SECOND_UNIT);
-        String content = "验证码：" + code + "。此验证码用于设置你的帐户手机号码\n" + "验证码有效时间：30分钟";
-        return smsUtil.sendSMS(mobile, content);
+        String code = (String) redisUtil.getValue(Contants.RedisContent.VERIFY_CODE_PREFIX + mobile, String.class);
+        if (null == code) {
+            code = String.valueOf(rand.nextInt(9000) + 1000);
+            redisUtil.setValuePre(Contants.RedisContent.VERIFY_CODE_PREFIX + mobile, code,
+                    Contants.RedisContent.THIRTY_EXPIRE_TIME, Contants.RedisContent.SECOND_UNIT);
+        }
+        String message = String.format(CONTENT, code, Contants.RedisContent.THIRTY_EXPIRE_TIME);
+        return smsUtil.sendSMS(mobile, message);
     }
 
     @RequestMapping(value = "/verify", method = RequestMethod.POST)
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public JsonResult verifyCode(HttpServletRequest request,
-                                 @RequestParam(value = "mobile", required = true) String mobile,
-                                 @RequestParam(value = "code", required = true) String code) {
+    public JsonResult verifyCode(@RequestParam(value = "mobile", required = true) String mobile,
+                                 @RequestParam(value = "code", required = true) String code) throws IOException {
 
-
+        String cacheCode = (String) redisUtil.getValue(Contants.RedisContent.VERIFY_CODE_PREFIX + mobile, String.class);
+        if (null == code) {
+            return JsonResult.failedInstance("验证码不能为空");
+        }
+        if (null == cacheCode) {
+            return JsonResult.failedInstance("验证码过期");
+        }
+        if (!cacheCode.equals(code)) {
+            return JsonResult.failedInstance("错误的验证码");
+        }
         return null;
     }
 }

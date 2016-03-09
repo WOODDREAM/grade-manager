@@ -14,7 +14,7 @@
         <property name="smsGbkNUm" value="${smsGBKNum}"/>
         <property name="smsUtf8Num" value="${smsUtfNum}"/>
     </bean>
-    <bean class="com.dfire.grade.manager.utils.SmsUtil">
+    <bean id="smsUtil" class="com.dfire.grade.manager.utils.SmsUtil">
         <property name="smsConfiguration" ref="smsConfiguration"/>
     </bean>
 </beans>

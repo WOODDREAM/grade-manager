@@ -49,7 +49,7 @@ public class SmsUtil {
             return JsonResult.jsonSuccessMes(Contants.SMSMessage.SUCCESS_SEND);
         }
         String message = null;
-        LoggerFactory.SMSFACTORY.error(LoggerMarker.SMS_SEND_CODE, result, "发送验证码出错！");
+        LoggerFactory.SMSFACTORY.error(LoggerMarker.SMS_SEND_CODE, result, "发送信息出错！");
         postMethod.releaseConnection();
         if (result.equals("-1")) {
             message = Contants.SMSMessage.NO_SUCH_ACCOUNT;

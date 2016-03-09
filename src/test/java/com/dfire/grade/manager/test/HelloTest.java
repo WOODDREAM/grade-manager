@@ -37,4 +37,10 @@ public class HelloTest extends BaseControllerTestHelper {
     public void testSendSms() throws Exception {
         mockMvc.perform(post("/sms").param("mobile", "15757115785"));
     }
+
+    @Test
+    public void testSendMail() throws Exception {
+        mockMvc.perform(post("/mail"));
+    }
+
 }

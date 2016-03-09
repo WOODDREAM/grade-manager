@@ -8,6 +8,8 @@
     <import resource="applicationContext-mybatis.xml"/>
     <import resource="applicationContext-redis.xml"/>
     <import resource="applicationContext-socketio.xml"/>
+    <import resource="application-mail.xml"/>
+    <import resource="application-sms.xml"/>
     <context:component-scan base-package="com.dfire.grade.manager"/>
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <context:annotation-config/>

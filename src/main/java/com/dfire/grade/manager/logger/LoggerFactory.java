@@ -10,5 +10,5 @@ import org.slf4j.Logger;
  */
 public class LoggerFactory {
     public static final Logger SMSFACTORY = org.slf4j.LoggerFactory.getLogger("SMS");
-
+    public static final Logger MAILFACTORY = org.slf4j.LoggerFactory.getLogger("MAIl");
 }
