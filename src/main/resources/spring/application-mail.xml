@@ -3,15 +3,22 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!--<bean id="mailConfiguration" class="com.dfire.grade.manager.configuration.MailConfiguration">-->
+        <!--<property name="formHost" value="${mailQQHost}"/>-->
+        <!--<property name="from" value="${mailQQFrom}"/>-->
+        <!--<property name="mailAuth" value="${mailQQAuth}"/>-->
+        <!--<property name="mailPort" value="${mailQQPort}"/>-->
+        <!--<property name="mailSmptHost" value="${mailQQSmptHost}"/>-->
+        <!--<property name="mailSmptAuth" value="${mailQQSmptAuth}"/>-->
+        <!--<property name="mailCertificate" value="${mailQQCertificate}"/>-->
+    <!--</bean>-->
     <bean id="mailConfiguration" class="com.dfire.grade.manager.configuration.MailConfiguration">
-        <property name="formHost" value="${mailHost}"/>
-        <property name="from" value="${mailFrom}"/>
-        <property name="mailAuth" value="${mailAuth}"/>
-        <property name="mailPort" value="${mailPort}"/>
-        <property name="mailSmptHost" value="${mailSmptHost}"/>
-        <property name="mailSmptAuth" value="${mailSmptAuth}"/>
-        <property name="mailCertificate" value="${mailQQCertificate}"/>
-        <property name="mailImapToken" value="${mailImapToken}"/>
-        <property name="mailPop3Token" value="${mailPop3Token}"/>
+        <property name="formHost" value="${mail163SMTPHost}"/>
+        <property name="from" value="${mail163From}"/>
+        <property name="mailAuth" value="${mail163Auth}"/>
+        <property name="mailPort" value="${mail163Port}"/>
+        <property name="mailSmptHost" value="${mail163SmptHost}"/>
+        <property name="mailSmptAuth" value="${mail163SmptAuth}"/>
+        <property name="mailCertificate" value="${mail163Certificate}"/>
     </bean>
 </beans>

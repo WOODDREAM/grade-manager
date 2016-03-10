@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 /**
  * User:huangtao
@@ -54,8 +55,8 @@ public class Hello {
         smsUtil.sendSMS(mobile, "csadc");
     }
 
-    @RequestMapping(value = "/mail",method = RequestMethod.POST)
-    public void sendMail() throws MessagingException {
-        mailUtil.sendMail("来自远方的信息","请从客户端查看这条信息","huangtao@2dfire.com");
+    @RequestMapping(value = "/mail", method = RequestMethod.POST)
+    public void sendMail() throws MessagingException, UnsupportedEncodingException {
+        mailUtil.sendMail("殷茹梦的信息", "没事发个邮件给你O(∩_∩)O哈哈~", "F:\\学习资料\\半年计划\\Git\\Pro Git.pdf", "huangtao@2dfire.com");
     }
 }
