@@ -12,7 +12,7 @@
         <!--<property name="mailSmptAuth" value="${mailQQSmptAuth}"/>-->
         <!--<property name="mailCertificate" value="${mailQQCertificate}"/>-->
     <!--</bean>-->
-    <bean id="mailConfiguration" class="com.dfire.grade.manager.configuration.MailConfiguration">
+    <bean id="mailConfiguration" class="com.dfire.grade.manager.configInfo.MailConfiguration">
         <property name="formHost" value="${mail163SMTPHost}"/>
         <property name="from" value="${mail163From}"/>
         <property name="mailAuth" value="${mail163Auth}"/>

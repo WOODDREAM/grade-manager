@@ -1,6 +1,6 @@
 package com.dfire.grade.manager.utils;
 
-import com.dfire.grade.manager.configuration.MailConfiguration;
+import com.dfire.grade.manager.configInfo.MailConfiguration;
 import com.dfire.grade.manager.logger.LoggerFactory;
 import com.dfire.grade.manager.logger.LoggerMarker;
 import com.mysql.jdbc.StringUtils;

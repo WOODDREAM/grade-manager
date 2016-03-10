@@ -40,7 +40,7 @@ public class HelloTest extends BaseControllerTestHelper {
 
     @Test
     public void testSendMail() throws Exception {
-        mockMvc.perform(post("/mail"));
+        mockMvc.perform(get("/mail"));
     }
 
 }

@@ -1,7 +1,7 @@
 package com.dfire.grade.manager.utils;
 
 import com.dfire.grade.manager.Contants;
-import com.dfire.grade.manager.configuration.SMSConfiguration;
+import com.dfire.grade.manager.configInfo.SMSConfiguration;
 import com.dfire.grade.manager.logger.LoggerFactory;
 import com.dfire.grade.manager.logger.LoggerMarker;
 import com.dfire.grade.manager.vo.JsonResult;
@@ -45,7 +45,7 @@ public class SmsUtil {
         client.executeMethod(postMethod);
         int statusCode = postMethod.getStatusCode();
         String result = new String(postMethod.getResponseBodyAsString().getBytes("gbk"));
-        if (200 == statusCode || Integer.getInteger(result) > 0) {
+        if (200 == statusCode && Integer.parseInt(result) > 0) {
             return JsonResult.jsonSuccessMes(Contants.SMSMessage.SUCCESS_SEND);
         }
         String message = null;

@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="smsConfiguration" class="com.dfire.grade.manager.configuration.SMSConfiguration">
+    <bean id="smsConfiguration" class="com.dfire.grade.manager.configInfo.SMSConfiguration">
         <property name="smsGbkUrl" value="${smsGbkUrl}"/>
         <property name="smsKey" value="${smsKey}"/>
         <property name="smsUtf8Url" value="${smsutf8Url}"/>
