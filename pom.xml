@@ -56,19 +56,19 @@
             <version>${org.springframework}</version>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>commons-dbcp</groupId>-->
-            <!--<artifactId>commons-dbcp</artifactId>-->
-            <!--<version>20030825.184428</version>-->
+        <!--<groupId>commons-dbcp</groupId>-->
+        <!--<artifactId>commons-dbcp</artifactId>-->
+        <!--<version>20030825.184428</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>commons-codec</groupId>-->
-            <!--<artifactId>commons-codec</artifactId>-->
-            <!--<version>20041127.091804</version>-->
+        <!--<groupId>commons-codec</groupId>-->
+        <!--<artifactId>commons-codec</artifactId>-->
+        <!--<version>20041127.091804</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>commons-pool</groupId>-->
-            <!--<artifactId>commons-pool</artifactId>-->
-            <!--<version>20030825.183949</version>-->
+        <!--<groupId>commons-pool</groupId>-->
+        <!--<artifactId>commons-pool</artifactId>-->
+        <!--<version>20030825.183949</version>-->
         <!--</dependency>-->
         <!-- AspectJ -->
         <dependency>
@@ -138,6 +138,12 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${ch.qos.logback}</version>
+        </dependency>
+        <!--util-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.7</version>
         </dependency>
         <!--test-->
         <dependency>
@@ -218,7 +224,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <!--&lt;!&ndash;自动拷贝依赖jar包到target&ndash;&gt;-->
+            <!--自动拷贝依赖jar包到target-->
             <!--<plugin>-->
             <!--<groupId>org.apache.maven.plugins</groupId>-->
             <!--<artifactId>maven-dependency-plugin</artifactId>-->
