@@ -30,7 +30,7 @@ public class MailUtil {
      * @param body     内容
      * @param fileName 附件名称
      * @param address  收录地址
-     * @throws MessagingException 必须解决超时问题
+     * @throws MessagingException 必须解决超时问题,发送邮件返回消息特别慢导致无法第二次发送消息
      */
     public void sendMail(String subject, String body, String fileName, String... address) throws MessagingException, UnsupportedEncodingException {
         //需自定义annotation解决参数验证问题
