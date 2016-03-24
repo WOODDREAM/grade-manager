@@ -12,11 +12,10 @@ public class Classes implements Serializable {
     private String classId;//主键
     private String name;//课程名称
     private String teacherId;//任课教师id
-    private double period;//上课时间
+    private double period;//课程经历时长，单位星期
     private double credit;//学分
-    private Date term;//学期
-    private Date createTime;//课程开课时间
-    private float valid;//是否有效
+    private Date createTime;//课程创建时间
+    private boolean valid;//是否有效
 
     public String getClassId() {
         return classId;
@@ -42,28 +41,12 @@ public class Classes implements Serializable {
         this.teacherId = teacherId;
     }
 
-    public double getPeriod() {
-        return period;
-    }
-
-    public void setPeriod(double period) {
-        this.period = period;
-    }
-
     public double getCredit() {
         return credit;
     }
 
     public void setCredit(double credit) {
         this.credit = credit;
-    }
-
-    public Date getTerm() {
-        return term;
-    }
-
-    public void setTerm(Date term) {
-        this.term = term;
     }
 
     public Date getCreateTime() {
@@ -74,11 +57,20 @@ public class Classes implements Serializable {
         this.createTime = createTime;
     }
 
-    public float getValid() {
+    public boolean isValid() {
         return valid;
     }
 
-    public void setValid(float valid) {
+    public void setValid(boolean valid) {
         this.valid = valid;
     }
+
+    public double getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(double period) {
+        this.period = period;
+    }
+
 }

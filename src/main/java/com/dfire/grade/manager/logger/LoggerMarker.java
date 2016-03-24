@@ -11,4 +11,5 @@ import org.slf4j.MarkerFactory;
 public class LoggerMarker {
     public static Marker SMS_SEND_CODE = MarkerFactory.getMarker("send_verify_code_error");
     public static Marker MAIL_SEND = MarkerFactory.getMarker("send_mail");
+    public static Marker EXCEPTION = MarkerFactory.getMarker("system_error");
 }

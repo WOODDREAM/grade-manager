@@ -75,7 +75,7 @@
     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
-                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">redirect:/error.html</prop>
+                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">redirect:/error/500.jsp</prop>
             </props>
         </property>
     </bean>

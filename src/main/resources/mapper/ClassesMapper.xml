@@ -5,14 +5,15 @@
         <id column="cla_Id" property="classId" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="tea_Id" property="teacherId" jdbcType="VARCHAR"/>
-        <result column="period" property="period" jdbcType="DOUBLE"/>
+        <result column="period" property="period" jdbcType="VARCHAR"/>
         <result column="credit" property="credit" jdbcType="DOUBLE"/>
         <result column="term" property="term" jdbcType="DATE"/>
         <result column="create_time" property="createTime" jdbcType="DATE"/>
         <result column="valid" property="valid" jdbcType="FLOAT"/>
+        <result column="school_time" property="schoolTime" jdbcType="VARCHAR"/>
     </resultMap>
     <insert id="insertClasses" parameterType="com.dfire.grade.manager.bean.Classes">
-        INSERT INTO class (class_id,name,tea_id,period,credit,term,create_time,valid)
+        INSERT INTO class (class_id,name,tea_id,period,credit,term,create_time,valid,school_time)
         VALUES (
         #{classId},
         #{name},
@@ -21,7 +22,8 @@
         #{credit},
         #{term},
         #{createTime},
-        #{valid}
+        #{valid},
+        #{schoolTime}
         )
     </insert>
     <select id="`" resultMap="classesMapper">

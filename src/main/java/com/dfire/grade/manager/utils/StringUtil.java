@@ -7,19 +7,19 @@ import java.util.UUID;
  * Date:2016-03-23
  * description：用于字符串操作
  */
-public class SequenceUtil {
+public class StringUtil {
     /**
      * 生成32位随机字符串
      *
      * @return
      */
-    public String getSequence() {
+    public static String getSequence() {
         UUID uuid = UUID.randomUUID();
         return uuid.toString().trim().replace("-", "");
     }
 
     public static void main(String[] args) {
-        SequenceUtil sequenceUtil = new SequenceUtil();
+        StringUtil sequenceUtil = new StringUtil();
         System.out.print(sequenceUtil.getSequence());
     }
 }

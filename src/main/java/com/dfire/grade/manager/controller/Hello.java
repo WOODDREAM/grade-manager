@@ -34,7 +34,6 @@ public class Hello {
 
     @RequestMapping("/hello")
     public String sayHello() {
-        redisUtil.stringSet();
         return "hello";
     }
 

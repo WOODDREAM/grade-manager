@@ -22,13 +22,6 @@ public class RedisUtil {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    public void stringSet() {
-//        stringRedisTemplate.opsForList().set("1",0,"afserg");
-//        stringRedisTemplate.hasKey("1");
-//        stringRedisTemplate.opsForSet().add("1","sdf");
-//        stringRedisTemplate.opsForSet().intersect("qw", "qwd");
-        stringRedisTemplate.opsForSet().add("ad", "asf", "fdsf");
-    }
 
     /**
      * @param key
