@@ -1,6 +1,5 @@
 package com.dfire.grade.manager.utils;
 
-import org.apache.commons.httpclient.util.EncodingUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -12,33 +11,23 @@ import java.security.NoSuchAlgorithmException;
  * description：
  */
 public class MessageDigestUtil {
-    private String MD5Way = "MD5";
-
-    public byte[] getByteCode(String str) throws NoSuchAlgorithmException {
-        MessageDigest messageDigest = MessageDigest.getInstance(MD5Way);
-        messageDigest.update(str.getBytes());
-        return messageDigest.digest();
-    }
+    private static final String MD5Way = "MD5";
 
     /**
-     * @param str1
-     * @param str2
+     * MD5加密
+     *
+     * @param str 被加密字符串
      * @return
      * @throws NoSuchAlgorithmException
+     * @throws UnsupportedEncodingException
      */
-    public boolean Verify(String str1, String str2) throws NoSuchAlgorithmException {
-        byte[] nowBytes = getByteCode(str1);
-        return false;
-    }
-
-    public String getStrCode(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public static String getStrCode(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest messageDigest = MessageDigest.getInstance(MD5Way);
         messageDigest.update(str.getBytes());
-        byte[] byteArray = str.getBytes("UTF-8");
         byte[] md5Bytes = messageDigest.digest();
         StringBuffer buffer = new StringBuffer();
         for (int i = 0; i < md5Bytes.length; i++) {
-            int val = ((int) md5Bytes[i]) & oxff;
+            int val = ((int) md5Bytes[i]) & 0xff;
             if (val < 16) {
                 buffer.append("0");
             }
@@ -47,19 +36,10 @@ public class MessageDigestUtil {
         return buffer.toString().trim();
     }
 
-    public static void main(String[] args) throws NoSuchAlgorithmException {
+    public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigestUtil util = new MessageDigestUtil();
-        String str = "aefedrgtfrhyt6f";
-        byte[] strByte = str.getBytes();
-        byte[] myByte = util.getByteCode(str);
-        String nyStr = util.getStrCode(str);
-        System.out.println(nyStr);
-        for (int i = 0; i < myByte.length; i++) {
-            System.out.print(myByte[i]);
-        }
-        for (int i = 0; i < strByte.length; i++) {
-            System.out.print(strByte[i]);
-        }
-
+        String str = "42345345";
+        String sd = util.getStrCode(str);
+        System.out.println(sd);
     }
 }

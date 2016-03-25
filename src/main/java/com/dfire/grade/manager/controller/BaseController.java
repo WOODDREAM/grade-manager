@@ -22,7 +22,7 @@ public class BaseController {
         LoggerFactory.SYSTEM.error(ex.getMessage(), "系统异常");
         // 根据不同错误转向不同页面
         if (ex instanceof BusinessException) {
-            return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1001), Contants.Message.ERROR_SYETEM);
+            return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1001), Contants.Message.ERROR_SYSTEM);
         } else if (ex instanceof ParameterException) {
             return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1002), Contants.Message.ERROR_PARAM);
         } else {

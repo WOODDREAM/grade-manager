@@ -4,15 +4,14 @@ import com.dfire.grade.manager.bean.Classes;
 import com.dfire.grade.manager.service.IClassService;
 import com.dfire.grade.manager.utils.DateUtil;
 import com.dfire.grade.manager.utils.StringUtil;
-
-import javax.annotation.Resource;
+import org.springframework.stereotype.Service;
 
 /**
  * User:huangtao
  * Date:2016-03-24
  * description：
  */
-@Resource
+@Service
 public class ClassServiceImpl implements IClassService {
     @Override
     public void insertClass(String className, String teacherId, double period, double credit) throws Exception {

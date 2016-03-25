@@ -43,6 +43,12 @@ public class JsonResult implements Serializable {
         return jsonResult;
     }
 
+    public static JsonResult success() {
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setCode("1");
+        return jsonResult;
+    }
+
     public static JsonResult jsonSuccessMes(String message) {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCode("1");

@@ -2,16 +2,17 @@ package com.dfire.grade.manager.bean;
 
 /**
  * User:huangtao
- * Date:2016-03-24
+ * Date:2016-03-25
  * description：
  */
-public class UserInfoCache {
+public class SignBean {
     private String id;
     private String name;
     private String mobile;
     private String email;
-    private String school;
     private String passWord;
+    private String school;
+    private int sex;
 
     public String getId() {
         return id;
@@ -45,6 +46,14 @@ public class UserInfoCache {
         this.email = email;
     }
 
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+
     public String getSchool() {
         return school;
     }
@@ -53,11 +62,11 @@ public class UserInfoCache {
         this.school = school;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public int getSex() {
+        return sex;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setSex(int sex) {
+        this.sex = sex;
     }
 }

@@ -38,9 +38,9 @@ public class SMSController {
         if (null == code) {
             code = String.valueOf(rand.nextInt(9000) + 1000);
             redisUtil.setValuePre(Contants.RedisContent.VERIFY_CODE_PREFIX + mobile, code,
-                    Contants.RedisContent.THIRTY_EXPIRE_TIME, Contants.RedisContent.SECOND_UNIT);
+                    Contants.RedisContent.VERIFY_CODE_EXPIRE_TIME, Contants.RedisContent.SECOND_UNIT);
         }
-        String message = String.format(CONTENT, code, Contants.RedisContent.THIRTY_EXPIRE_TIME);
+        String message = String.format(CONTENT, code, Contants.RedisContent.VERIFY_CODE_EXPIRE_TIME);
         return smsUtil.sendSMS(mobile, message);
     }
 

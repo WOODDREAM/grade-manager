@@ -1,7 +1,5 @@
 package com.dfire.grade.manager.bean;
 
-import com.mysql.jdbc.StringUtils;
-
 import java.util.Date;
 
 /**
@@ -15,9 +13,9 @@ public class Student {
     private String email;//email
     private String mobile;//手机
     private String school;//学校
-    private String passWord;//登录密码
     private float valid;//是否拉黑
     private Date joinTime;//进入系统时间
+    private int sex;//性别
 
 
     public String getStudentId() {
@@ -60,15 +58,6 @@ public class Student {
         this.school = school;
     }
 
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        if (!StringUtils.isEmptyOrWhitespaceOnly(passWord)) {
-            this.passWord = passWord;
-        }
-    }
 
     public float getValid() {
         return valid;
@@ -84,5 +73,13 @@ public class Student {
 
     public void setJoinTime(Date joinTime) {
         this.joinTime = joinTime;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
     }
 }

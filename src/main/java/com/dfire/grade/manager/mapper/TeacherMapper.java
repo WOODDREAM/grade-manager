@@ -1,5 +1,7 @@
 package com.dfire.grade.manager.mapper;
 
+import com.dfire.grade.manager.bean.SignBean;
+import com.dfire.grade.manager.bean.Teacher;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,4 +11,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface TeacherMapper {
+    void insertTeacher(Teacher teacher);
+
+    Teacher selectById(String id);
+
+    SignBean selectByMobile(String mobile);
+
+    void modifyMobile(SignBean signBean);
+
 }

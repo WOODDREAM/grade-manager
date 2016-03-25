@@ -1,4 +1,4 @@
-package com.dfire.grade.manager.service.impl;
+package com.dfire.grade.manager.service;
 
 /**
  * User:huangtao

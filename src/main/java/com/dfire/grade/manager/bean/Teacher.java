@@ -18,7 +18,7 @@ public class Teacher implements Serializable {
     private String passWord;//登录密码
     private String school;//学校名称
     private Date joinTime;//加入系统时间
-    private float valid;//是否有效
+    private boolean valid;//是否有效
 
     public String getTeacherId() {
         return teacherId;
@@ -78,11 +78,11 @@ public class Teacher implements Serializable {
         this.joinTime = joinTime;
     }
 
-    public float getValid() {
+    public boolean isValid() {
         return valid;
     }
 
-    public void setValid(float valid) {
+    public void setValid(boolean valid) {
         this.valid = valid;
     }
 }

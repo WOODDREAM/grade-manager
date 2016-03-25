@@ -9,6 +9,52 @@
         <result column="pass_word" property="passWord" jdbcType="VARCHAR"/>
         <result column="school" property="school" jdbcType="VARCHAR"/>
         <result column="join_time" property="joinTime" jdbcType="DATE"/>
-        <result column="valid" property="valid" jdbcType="FLOAT"/>
+        <result column="valid" property="valid" jdbcType="BOOLEAN"/>
     </resultMap>
+    <resultMap id="signMapper" type="com.dfire.grade.manager.bean.SignBean">
+        <result column="tea_id" property="id" jdbcType="VARCHAR"/>
+        <result column="pass_word" property="passWord" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="selectById" parameterType="String" resultMap="teacherMapper">
+        SELECT tea_id,name,mobile,email,pass_word,school
+        FROM teacher
+        WHERE tea_id = #{id} AND valid='1'
+    </select>
+    <select id="selectByMobile" parameterType="String" resultMap="signMapper">
+        SELECT tea_id,name,mobile,email,pass_word,school
+        FROM teacher
+        WHERE mobile = #{mobile} AND valid='1'
+    </select>
+    <insert id="insertTeacher" parameterType="com.dfire.grade.manager.bean.Teacher">
+      INSERT INTO teacher(tea_id,name,mobile,email,pass_word,school,join_time,valid)
+      VALUES {
+      #{teacherId},
+      #{name},
+      #{mobile},
+      #{email},
+      #{passWord},
+      #{school},
+      #{joinTime},
+      #{valid}
+      }
+    </insert>
+    <update id="modifyPassword" parameterType="com.dfire.grade.manager.bean.SignBean">
+        UPDATE FROM teacher
+        SET pass_word=#{passWord}
+        WHERE tea_id=#{id}
+    </update>
+    <update id="modifyMobile" parameterMap="com.dfire.grade.manager.bean.SignBean">
+        UPDATE FROM teacher
+        SET mobile=#{mobile}
+        WHERE tea_id=#{id}
+    </update>
+    <update id="modifyEmail" parameterMap="com.dfire.grade.manager.bean.SignBean">
+        UPDATE FROM teacher
+        SET email=#{email}
+        WHERE tea_id=#{id}
+    </update>
 </mapper>
