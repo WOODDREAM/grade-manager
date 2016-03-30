@@ -16,6 +16,7 @@ public class Student {
     private float valid;//是否拉黑
     private Date joinTime;//进入系统时间
     private int sex;//性别
+    private String passWord;
 
 
     public String getStudentId() {
@@ -81,5 +82,13 @@ public class Student {
 
     public void setSex(int sex) {
         this.sex = sex;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 }

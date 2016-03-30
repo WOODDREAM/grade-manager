@@ -35,21 +35,21 @@ public interface StudentMapper {
     /**
      * 修改密码
      *
-     * @param map passWord studentId
+     * @param map passWord studentId(id,passWord)
      */
     void modifyPassword(Map<String, String> map);
 
     /**
      * 修改手机号
      *
-     * @param map mobile studentId
+     * @param map mobile studentId(id,mobile)
      */
     void modifyMobile(Map<String, String> map);
 
     /**
      * 修改email
      *
-     * @param map email studentId
+     * @param map email studentId(id,email)
      */
     void modifyEmail(Map<String, String> map);
 

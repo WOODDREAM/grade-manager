@@ -42,17 +42,17 @@
       #{valid}
       }
     </insert>
-    <update id="modifyPassword" parameterType="com.dfire.grade.manager.bean.SignBean">
+    <update id="modifyPassword" parameterType="Map">
         UPDATE FROM teacher
         SET pass_word=#{passWord}
         WHERE tea_id=#{id}
     </update>
-    <update id="modifyMobile" parameterMap="com.dfire.grade.manager.bean.SignBean">
+    <update id="modifyMobile" parameterMap="Map">
         UPDATE FROM teacher
         SET mobile=#{mobile}
         WHERE tea_id=#{id}
     </update>
-    <update id="modifyEmail" parameterMap="com.dfire.grade.manager.bean.SignBean">
+    <update id="modifyEmail" parameterMap="Map">
         UPDATE FROM teacher
         SET email=#{email}
         WHERE tea_id=#{id}

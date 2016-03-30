@@ -1,35 +1,42 @@
 package com.dfire.grade.manager.service.impl;
 
+import com.dfire.grade.manager.Contants;
+import com.dfire.grade.manager.bean.SignBean;
 import com.dfire.grade.manager.bean.Teacher;
-import com.dfire.grade.manager.bean.UserInfoCache;
 import com.dfire.grade.manager.mapper.TeacherMapper;
 import com.dfire.grade.manager.service.ITeacherService;
 import com.dfire.grade.manager.utils.DateUtil;
 import com.dfire.grade.manager.utils.MessageDigestUtil;
+import com.dfire.grade.manager.utils.RedisUtil;
 import com.dfire.grade.manager.utils.StringUtil;
+import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * User:huangtao
  * Date:2016-03-25
  * description：
  */
-@Service
+@Service("teacherService")
 public class TeacherService implements ITeacherService {
     @Resource
     private TeacherMapper teacherMapper;
+    @Resource
+    private RedisUtil redisUtil;
 
     @Override
-    public void insertTeacher(String name, String mobile, String email, String school, String passWord) throws Exception {
+    public JsonResult insertRole(String name, String school, String passWord, String mobile, String email) throws Exception {
         Assert.notNull(mobile, "手机号不能为空");
         Assert.notNull(name, "姓名不能为空");
         Assert.notNull(school, "学校不能为空");
         Assert.notNull(passWord, "密码不能为空");
-        UserInfoCache infoCache = teacherMapper.selectByMobile(mobile);
-        if (null == infoCache) {
+        SignBean signBean = teacherMapper.selectByMobile(mobile);
+        if (null == signBean) {
             Teacher teacher = new Teacher();
             teacher.setEmail(email);
             teacher.setJoinTime(DateUtil.getCurDate());
@@ -40,8 +47,57 @@ public class TeacherService implements ITeacherService {
             teacher.setTeacherId(StringUtil.getSequence());
             teacher.setValid(true);
             teacherMapper.insertTeacher(teacher);
-            infoCache = teacherMapper.selectByMobile(mobile);
+            signBean = teacherMapper.selectByMobile(mobile);
+            redisUtil.setValuePre(signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            return JsonResult.newInstance("1", Contants.Message.SUCCESS_REQUEST, signBean);
         }
+        return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1004), Contants.Message.ERROR_EXSITING_USER);
+    }
 
+    @Override
+    public JsonResult queryRoleById(String id) throws Exception {
+        Assert.hasLength(id, "teacherId不能为空");
+        Teacher teacher = teacherMapper.selectById(id);
+        return JsonResult.jsonSuccessData(teacher);
+    }
+
+    @Override
+    public JsonResult queryRoleByMobile(String mobile) throws Exception {
+        Assert.hasLength(mobile, "mobile不能为空");
+        SignBean signBean = teacherMapper.selectByMobile(mobile);
+        return JsonResult.jsonSuccessData(signBean);
+    }
+
+    @Override
+    public JsonResult modifyPassword(String id, String passWord) throws Exception {
+        Assert.hasLength(id, "teacherId不能为空");
+        Assert.hasLength(passWord, "passWord不能为空");
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        map.put("passWord", passWord);
+        teacherMapper.modifyPassword(map);
+        return JsonResult.jsonSuccessMes("修改成功");
+    }
+
+    @Override
+    public JsonResult modifyMobile(String id, String mobile) throws Exception {
+        Assert.hasLength(id, "teacherId不能为空");
+        Assert.hasLength(mobile, "mobile不能为空");
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        map.put("mobile", mobile);
+        teacherMapper.modifyMobile(map);
+        return JsonResult.jsonSuccessMes("修改成功");
+    }
+
+    @Override
+    public JsonResult modifyEmail(String id, String email) throws Exception {
+        Assert.hasLength(id, "teacherId不能为空");
+        Assert.hasLength(email, "email不能为空");
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        map.put("email", email);
+        teacherMapper.modifyEmail(map);
+        return JsonResult.jsonSuccessMes("修改成功");
     }
 }

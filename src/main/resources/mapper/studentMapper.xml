@@ -77,5 +77,4 @@
       AND st.stu_id=sc.stu_id
       AND valid='1'
     </select>
-    <select id="selectStudent"
 </mapper>

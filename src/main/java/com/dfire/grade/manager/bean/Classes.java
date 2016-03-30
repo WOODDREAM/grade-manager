@@ -16,6 +16,8 @@ public class Classes implements Serializable {
     private double credit;//学分
     private Date createTime;//课程创建时间
     private boolean valid;//是否有效
+    private int frequency;//上课频率
+    private String frequencyUnit;//频率单位
 
     public String getClassId() {
         return classId;
@@ -73,4 +75,19 @@ public class Classes implements Serializable {
         this.period = period;
     }
 
+    public int getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
+    }
+
+    public String getFrequencyUnit() {
+        return frequencyUnit;
+    }
+
+    public void setFrequencyUnit(String frequencyUnit) {
+        this.frequencyUnit = frequencyUnit;
+    }
 }

@@ -9,11 +9,12 @@
         <result column="credit" property="credit" jdbcType="DOUBLE"/>
         <result column="term" property="term" jdbcType="DATE"/>
         <result column="create_time" property="createTime" jdbcType="DATE"/>
-        <result column="valid" property="valid" jdbcType="FLOAT"/>
-        <result column="school_time" property="schoolTime" jdbcType="VARCHAR"/>
+        <result column="isvalid" property="valid" jdbcType="FLOAT"/>
+        <result column="frequency" property="frequency" jdbcType="SMALLINT"/>
+        <result column="fre_unit" property="frequencyUnit" jdbcType="VARCHAR"/>
     </resultMap>
     <insert id="insertClasses" parameterType="com.dfire.grade.manager.bean.Classes">
-        INSERT INTO class (class_id,name,tea_id,period,credit,term,create_time,valid,school_time)
+        INSERT INTO class (class_id,name,tea_id,period,credit,term,create_time,valid,frequency,fre_unit)
         VALUES (
         #{classId},
         #{name},
@@ -23,11 +24,13 @@
         #{term},
         #{createTime},
         #{valid},
-        #{schoolTime}
+        #{frequency},
+        #{frequencyUnit}
         )
     </insert>
-    <select id="`" resultMap="classesMapper">
+    <select id="selectClassById" resultMap="classesMapper" parameterMap="String">
         SELECT * FROM class
         WHERE cla_id=#{classId}
+        AND isvalid='1'
     </select>
 </mapper>
