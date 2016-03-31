@@ -7,7 +7,7 @@ import java.util.UUID;
  * Date:2016-03-23
  * description：用于字符串操作
  */
-public class StringUtil {
+public class SequenceUtil {
     /**
      * 生成32位随机字符串
      *
@@ -19,7 +19,7 @@ public class StringUtil {
     }
 
     public static void main(String[] args) {
-        StringUtil sequenceUtil = new StringUtil();
+        SequenceUtil sequenceUtil = new SequenceUtil();
         System.out.print(sequenceUtil.getSequence());
     }
 }

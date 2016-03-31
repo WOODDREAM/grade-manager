@@ -8,7 +8,7 @@ import com.dfire.grade.manager.service.IStudentService;
 import com.dfire.grade.manager.utils.DateUtil;
 import com.dfire.grade.manager.utils.MessageDigestUtil;
 import com.dfire.grade.manager.utils.RedisUtil;
-import com.dfire.grade.manager.utils.StringUtil;
+import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,7 @@ public class StudentService implements IStudentService {
     private RedisUtil redisUtil;
 
     @Override
-    public JsonResult insertRole(String name, String school, String passWord, String mobile, String email) throws Exception {
+    public JsonResult insertStudent(String name, String school, String passWord, String mobile, String email) throws Exception {
         Assert.hasLength(mobile, "手机号不能为空");
         Assert.hasLength(name, "姓名不能为空");
         Assert.hasLength(school, "学校不能为空");
@@ -46,7 +46,7 @@ public class StudentService implements IStudentService {
             student.setName(name);
             student.setPassWord(MessageDigestUtil.getStrCode(passWord));
             student.setSchool(school);
-            student.setStudentId(StringUtil.getSequence());
+            student.setStudentId(SequenceUtil.getSequence());
             studentMapper.insertStudent(student);
             signBean = studentMapper.selectStudentByMobile(mobile);
             redisUtil.setValuePre(signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);

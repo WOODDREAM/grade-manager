@@ -2,6 +2,7 @@ package com.dfire.grade.manager.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * User:huangtao
@@ -18,6 +19,7 @@ public class Classes implements Serializable {
     private boolean valid;//是否有效
     private int frequency;//上课频率
     private String frequencyUnit;//频率单位
+    private List<ClassDetail> classDetails;
 
     public String getClassId() {
         return classId;
@@ -89,5 +91,13 @@ public class Classes implements Serializable {
 
     public void setFrequencyUnit(String frequencyUnit) {
         this.frequencyUnit = frequencyUnit;
+    }
+
+    public List<ClassDetail> getClassDetails() {
+        return classDetails;
+    }
+
+    public void setClassDetails(List<ClassDetail> classDetails) {
+        this.classDetails = classDetails;
     }
 }

@@ -38,12 +38,20 @@ public class ClassDetail {
         this.createTime = createTime;
     }
 
-   
+
     public Date getTerm() {
         return term;
     }
 
     public void setTerm(Date term) {
         this.term = term;
+    }
+
+    public boolean isIsvalid() {
+        return isvalid;
+    }
+
+    public void setIsvalid(boolean isvalid) {
+        this.isvalid = isvalid;
     }
 }

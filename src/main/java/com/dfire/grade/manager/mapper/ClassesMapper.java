@@ -3,6 +3,8 @@ package com.dfire.grade.manager.mapper;
 import com.dfire.grade.manager.bean.Classes;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * User:huangtao
  * Date:2016-03-03
@@ -10,7 +12,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface ClassesMapper {
-    void insertClasses(Classes classes);
+    void addClassBatch(List<Classes> classes);
 
     Classes selectClassById(String classesId);
 }

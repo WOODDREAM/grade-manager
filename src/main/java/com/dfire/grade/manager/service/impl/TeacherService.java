@@ -8,7 +8,7 @@ import com.dfire.grade.manager.service.ITeacherService;
 import com.dfire.grade.manager.utils.DateUtil;
 import com.dfire.grade.manager.utils.MessageDigestUtil;
 import com.dfire.grade.manager.utils.RedisUtil;
-import com.dfire.grade.manager.utils.StringUtil;
+import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -30,7 +30,7 @@ public class TeacherService implements ITeacherService {
     private RedisUtil redisUtil;
 
     @Override
-    public JsonResult insertRole(String name, String school, String passWord, String mobile, String email) throws Exception {
+    public JsonResult insertTeacher(String name, String school, String passWord, String mobile, String email) throws Exception {
         Assert.notNull(mobile, "手机号不能为空");
         Assert.notNull(name, "姓名不能为空");
         Assert.notNull(school, "学校不能为空");
@@ -44,7 +44,7 @@ public class TeacherService implements ITeacherService {
             teacher.setName(name);
             teacher.setPassWord(MessageDigestUtil.getStrCode(passWord));
             teacher.setSchool(school);
-            teacher.setTeacherId(StringUtil.getSequence());
+            teacher.setTeacherId(SequenceUtil.getSequence());
             teacher.setValid(true);
             teacherMapper.insertTeacher(teacher);
             signBean = teacherMapper.selectByMobile(mobile);

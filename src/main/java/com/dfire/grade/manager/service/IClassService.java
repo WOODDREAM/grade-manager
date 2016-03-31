@@ -1,5 +1,9 @@
 package com.dfire.grade.manager.service;
 
+import com.dfire.grade.manager.vo.ClassIncludeSchoolTime;
+
+import java.util.List;
+
 /**
  * User:huangtao
  * Date:2016-03-23
@@ -7,5 +11,5 @@ package com.dfire.grade.manager.service;
  */
 public interface IClassService {
 
-    public void insertClass(String className, String teacherId, double period, double credit) throws Exception;
+    public void insertClass(List<ClassIncludeSchoolTime> schoolTimes) throws Exception;
 }

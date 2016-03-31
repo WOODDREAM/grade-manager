@@ -1,6 +1,6 @@
 package com.dfire.grade.manager.controller;
 
-import com.dfire.grade.manager.service.IRoleService;
+import com.dfire.grade.manager.service.IStudentService;
 import com.dfire.grade.manager.service.ITeacherService;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ public class UserController {
     @Resource
     private ITeacherService teacherService;
     @Resource
-    private IRoleService studentService;
+    private IStudentService studentService;
 
     /**
      * 用户注册

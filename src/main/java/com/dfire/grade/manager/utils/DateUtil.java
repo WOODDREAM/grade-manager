@@ -432,4 +432,10 @@ public class DateUtil {
         map.put("second", calendar.get(Calendar.SECOND) > 0 ? calendar.get(Calendar.SECOND) : 0);
         return map;
     }
+
+    public static void main(String[] args) throws ParseException {
+        Date date = new Date(1456977442899L);
+//        date.setTime(1459403182547L);
+        System.out.println(date.toString());
+    }
 }
