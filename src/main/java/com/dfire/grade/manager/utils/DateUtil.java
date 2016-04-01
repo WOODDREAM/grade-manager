@@ -14,6 +14,7 @@ import java.util.Map;
  * description：
  */
 public class DateUtil {
+    public static final String DEFAULT_YEAR_MOUTH = "yyyy-MM";
     /**
      * 缺省日期格式
      */
@@ -284,8 +285,8 @@ public class DateUtil {
     /**
      * 强制类型转换 从串到时间戳
      *
-     * @param strDate   源串
-     * @param format 遵循格式
+     * @param strDate 源串
+     * @param format  遵循格式
      * @return 取得的时间戳对象
      * @throws ParseException
      */
@@ -437,5 +438,6 @@ public class DateUtil {
         Date date = new Date(1456977442899L);
 //        date.setTime(1459403182547L);
         System.out.println(date.toString());
+        System.out.println(DateUtil.currentTime(DateUtil.DEFAULT_YEAR_MOUTH));
     }
 }

@@ -5,13 +5,14 @@ import java.util.Date;
 /**
  * User:huangtao
  * Date:2016-03-24
- * description：
+ * description：（每天每节作为一条信息存储）
  */
 public class ClassDetail {
     private String classDetailId;
-    private String schoolTime;//上课时间
+    private int weekDay;//周
+    private int part;//节
     private Date createTime;//课程开课时间
-    private boolean isvalid;//是否有效
+    private boolean isValid;//是否有效
     private Date term;//学期
 
     public String getClassDetailId() {
@@ -22,12 +23,20 @@ public class ClassDetail {
         this.classDetailId = classDetailId;
     }
 
-    public String getSchoolTime() {
-        return schoolTime;
+    public int getWeekDay() {
+        return weekDay;
     }
 
-    public void setSchoolTime(String schoolTime) {
-        this.schoolTime = schoolTime;
+    public void setWeekDay(int weekDay) {
+        this.weekDay = weekDay;
+    }
+
+    public int getPart() {
+        return part;
+    }
+
+    public void setPart(int part) {
+        this.part = part;
     }
 
     public Date getCreateTime() {
@@ -47,11 +56,11 @@ public class ClassDetail {
         this.term = term;
     }
 
-    public boolean isIsvalid() {
-        return isvalid;
+    public boolean isValid() {
+        return isValid;
     }
 
-    public void setIsvalid(boolean isvalid) {
-        this.isvalid = isvalid;
+    public void setValid(boolean isValid) {
+        this.isValid = isValid;
     }
 }

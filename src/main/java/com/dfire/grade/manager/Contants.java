@@ -37,7 +37,7 @@ public class Contants {
         public static final int ERROR_1002 = 1002;  //参数错误
         public static final int ERROR_1003 = 1003;  //请求失败
         public static final int ERROR_1004 = 1004;  //已存在用户
-        public static final int ERROR_1005 = 1005;
+        public static final int ERROR_1005 = 1005;  //不合法时间表
     }
 
     public class Message {
@@ -46,5 +46,6 @@ public class Contants {
         public static final String ERROR_REQUEST = "请求失败";
         public static final String SUCCESS_REQUEST = "请求成功";
         public static final String ERROR_EXSITING_USER = "以存在用户";
+        public static final String ERROR_ILLEGAL_SCHOOLTIME = "不合法时间表";
     }
 }

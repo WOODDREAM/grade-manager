@@ -15,4 +15,5 @@ public interface ClassesMapper {
     void addClassBatch(List<Classes> classes);
 
     Classes selectClassById(String classesId);
+
 }
