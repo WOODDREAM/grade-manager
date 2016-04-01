@@ -70,11 +70,25 @@
       AND st.stu_id=sc.stu_id
       AND valid='1'
     </select>
-    <select id="selectStudentUnderTeacher" resultMap="studentMapper" parameterMap="String">
+    <select id="selectStudentUnderTeacher" resultMap="studentMapper" parameterType="String">
       SELECT stu_id,name,email,school
       FROM student st,student_class sc
       WHERE sc.tea_id=#{teacherId}
       AND st.stu_id=sc.stu_id
       AND valid='1'
+    </select>
+    <select id="selectStudentByCondition" resultMap="studentMapper" parameterType="com.dfire.grade.manager.bean.Student">
+        SELECT stu_id,name,email,school
+        FORM  student st,student_class sc
+        <where>
+            sc.tea_id=#{teacherId}
+            AND st.stu_id=sc.stu_id
+            AND valid='1'
+            <if test=""
+        </where>
+        WHERE sc.tea_id=#{teacherId}
+        AND st.stu_id=sc.stu_id
+        AND valid='1'
+
     </select>
 </mapper>
