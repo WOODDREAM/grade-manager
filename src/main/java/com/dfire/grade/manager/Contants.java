@@ -45,7 +45,9 @@ public class Contants {
         public static final String ERROR_PARAM = "参数出错";
         public static final String ERROR_REQUEST = "请求失败";
         public static final String SUCCESS_REQUEST = "请求成功";
-        public static final String ERROR_EXSITING_USER = "以存在用户";
+        public static final String ERROR_EXSITING_USER = "已存在用户";
         public static final String ERROR_ILLEGAL_SCHOOLTIME = "不合法时间表";
+        public static final String ERROR_NO_USER_TYPE = "无此类型用户";
+        public static final String ERROR_NOT_FIND = "未找到此用户";
     }
 }

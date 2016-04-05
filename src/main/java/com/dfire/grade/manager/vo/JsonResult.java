@@ -11,6 +11,7 @@ public class JsonResult implements Serializable {
     private String code;
     private String message;
     private Object data;
+    private boolean success;
 
     public String getCode() {
         return code;
@@ -36,22 +37,33 @@ public class JsonResult implements Serializable {
         this.data = data;
     }
 
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
     public static JsonResult jsonSuccessData(Object o) {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setData(o);
         jsonResult.setCode("1");
+        jsonResult.setSuccess(true);
         return jsonResult;
     }
 
     public static JsonResult success() {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCode("1");
+        jsonResult.setSuccess(true);
         return jsonResult;
     }
 
     public static JsonResult jsonSuccessMes(String message) {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCode("1");
+        jsonResult.setSuccess(true);
         jsonResult.setMessage(message);
         return jsonResult;
     }
@@ -60,6 +72,7 @@ public class JsonResult implements Serializable {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCode(code);
         jsonResult.setData(o);
+        jsonResult.setSuccess(false);
         jsonResult.setMessage(message);
         return jsonResult;
     }
@@ -67,6 +80,7 @@ public class JsonResult implements Serializable {
     public static JsonResult newInstance2(String code, String message) {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCode(code);
+        jsonResult.setSuccess(false);
         jsonResult.setMessage(message);
         return jsonResult;
     }
@@ -74,6 +88,7 @@ public class JsonResult implements Serializable {
     public static JsonResult failedInstance(String message) {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCode("0");
+        jsonResult.setSuccess(false);
         jsonResult.setMessage(message);
         return jsonResult;
     }

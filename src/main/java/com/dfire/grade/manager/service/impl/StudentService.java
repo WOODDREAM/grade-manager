@@ -50,7 +50,7 @@ public class StudentService implements IStudentService {
             studentMapper.insertStudent(student);
             signBean = studentMapper.selectStudentByMobile(mobile);
             redisUtil.setValuePre(signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
-            return JsonResult.newInstance("1", Contants.Message.SUCCESS_REQUEST, signBean);
+            return JsonResult.jsonSuccessData(signBean);
         }
         return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1004), Contants.Message.ERROR_EXSITING_USER);
     }
@@ -60,7 +60,7 @@ public class StudentService implements IStudentService {
         Assert.hasLength(id, "id不能为空");
         Student student = studentMapper.queryStudentById(id);
         if (null == student)
-            return JsonResult.jsonSuccessData(null);
+            return JsonResult.failedInstance(Contants.Message.ERROR_NOT_FIND);
         return JsonResult.jsonSuccessData(student);
     }
 
@@ -69,13 +69,14 @@ public class StudentService implements IStudentService {
         Assert.hasLength(mobile, "手机号不能为空");
         SignBean signBean = studentMapper.selectStudentByMobile(mobile);
         if (null == signBean) {
-            return JsonResult.jsonSuccessData(null);
+            return JsonResult.failedInstance(Contants.Message.ERROR_NOT_FIND);
         }
         redisUtil.setValuePre(signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.SECOND_UNIT);
         return JsonResult.jsonSuccessData(signBean);
     }
 
     @Override
+//    @Transactional(rollbackFor = Exception.class)
     public JsonResult modifyPassword(String id, String passWord) throws Exception {
         Assert.hasLength(id, "studentId不可以为空");
         Assert.hasLength(passWord, "passWord不可以为空");

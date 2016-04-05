@@ -435,7 +435,7 @@ public class DateUtil {
     }
 
     public static void main(String[] args) throws ParseException {
-        Date date = new Date(1456977442899L);
+        Date date = new Date(1459496063194L);
 //        date.setTime(1459403182547L);
         System.out.println(date.toString());
         System.out.println(DateUtil.currentTime(DateUtil.DEFAULT_YEAR_MOUTH));

@@ -10,6 +10,8 @@ import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.ClassIncludeSchoolTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
@@ -19,12 +21,19 @@ import java.util.*;
  * Date:2016-03-24
  * description：
  */
-@Service
+@Service("classServiceImpl")
 public class ClassServiceImpl implements IClassService {
     @Autowired
     private ClassesMapper classesMapper;
 
+    /**
+     * 遇异常回滚，创建新事物
+     *
+     * @param schoolTimes
+     * @throws Exception
+     */
     @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void insertClass(List<ClassIncludeSchoolTime> schoolTimes) throws Exception {
         List<Classes> classesList = new ArrayList<>();
         for (ClassIncludeSchoolTime schoolTime : schoolTimes) {
