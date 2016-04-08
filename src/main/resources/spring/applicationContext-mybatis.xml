@@ -26,7 +26,7 @@
 
     <!-- scan for mappers and let them be autowired -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.dfire.grade.manager"/>
+        <property name="basePackage" value="com.dfire.grade.manager.mapper"/>
         <property name="sqlSessionTemplateBeanName" value="simpleSqlSessionTemplate"/>
     </bean>
 

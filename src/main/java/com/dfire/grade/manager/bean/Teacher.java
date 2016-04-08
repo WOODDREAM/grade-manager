@@ -19,6 +19,7 @@ public class Teacher implements Serializable {
     private String school;//学校名称
     private Date joinTime;//加入系统时间
     private boolean valid;//是否有效
+    private int sex;
 
     public String getTeacherId() {
         return teacherId;
@@ -84,5 +85,13 @@ public class Teacher implements Serializable {
 
     public void setValid(boolean valid) {
         this.valid = valid;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
     }
 }

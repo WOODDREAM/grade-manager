@@ -26,12 +26,12 @@
               WHERE id=#{studentId} AND valid='1'
     </select>
     <select id="selectStudentByMobile" resultMap="signMapper" parameterType="String">
-            select stu_id,stu_name,email,mobile,school,pass_word,sex
+            select stu_id,name,email,mobile,school,pass_word,sex
             from student
             WHERE mobile=#{mobile} AND valid='1'
     </select>
     <insert id="insertStudent" parameterType="com.dfire.grade.manager.bean.Student">
-              INSERT INTO student (stu_id,name,email,mobile,pass_word,school,join_time,valid)
+              INSERT INTO student (stu_id,name,email,mobile,pass_word,school,join_time,valid,sex)
               VALUES (
               #{studentId},
               #{name},
@@ -39,52 +39,53 @@
               #{mobile},
               #{passWord},
               #{school},
-              #{passWord},
-              #{valid}
+              #{joinTime},
+              #{valid},
+              #{sex}
               )
        </insert>
-    <update id="modifyPassword" parameterType="Map">
+    <update id="modifyPassword" parameterType="java.util.Map">
         UPDATE FROM student
         SET pass_word=#{passWord}
         WHERE stu_id=#{id} AND valid = '1'
     </update>
-    <update id="modifyMobile" parameterType="Map">
+    <update id="modifyMobile" parameterType="java.util.Map">
         UPDATE FROM student
         SET mobile=#{mobile}
         WHERE stu_id=#{id} AND valid = '1'
     </update>
-    <update id="modifyEmail" parameterType="Map">
+    <update id="modifyEmail" parameterType="java.util.Map">
         UPDATE FROM student
         SET email=#{email}
         WHERE stu_id=#{id} AND valid = '1'
     </update>
-    <delete id="deleteStudentById" parameterType="String">
+    <delete id="deleteStudentById" parameterType="java.lang.String">
         UPDATE FROM student
         SET valid='1'
         WHERE stu_id=#{id}
     </delete>
-    <select id="selectStudentsInClass" resultMap="studentMapper" parameterType="String">
+    <select id="selectStudentsInClass" resultMap="studentMapper" parameterType="java.lang.String">
       SELECT stu_id,name,email,school
       FROM student st,student_class sc
       WHERE sc.cla_id=#{classId}
       AND st.stu_id=sc.stu_id
       AND valid='1'
     </select>
-    <select id="selectStudentUnderTeacher" resultMap="studentMapper" parameterType="String">
+    <select id="selectStudentUnderTeacher" resultMap="studentMapper" parameterType="java.lang.String">
       SELECT stu_id,name,email,school
       FROM student st,student_class sc
       WHERE sc.tea_id=#{teacherId}
       AND st.stu_id=sc.stu_id
       AND valid='1'
     </select>
-    <select id="selectStudentByCondition" resultMap="studentMapper" parameterType="com.dfire.grade.manager.bean.Student">
+    <select id="selectStudentByCondition" resultMap="studentMapper"
+            parameterType="com.dfire.grade.manager.bean.Student">
         SELECT stu_id,name,email,school
-        FORM  student st,student_class sc
+        FORM student st,student_class sc
         <where>
             sc.tea_id=#{teacherId}
             AND st.stu_id=sc.stu_id
             AND valid='1'
-            <if test=""
         </where>
         WHERE sc.tea_id=#{teacherId}
         AND st.stu_id=sc.stu_id

@@ -31,7 +31,10 @@ public class ClassController {
         UserInfoCache userInfoCache = (UserInfoCache) redisUtil.getValue(request.getHeader("CID"), UserInfoCache.class);
         String teacherId = userInfoCache.getId();
         List<ClassIncludeSchoolTime> classIncludeSchoolTime = new ArrayList<>();
-        classService.insertClass();
+//        for(){
+//
+//        }
+//        classService.insertClass();
         return null;
     }
 }

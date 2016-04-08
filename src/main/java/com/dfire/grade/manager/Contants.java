@@ -26,7 +26,8 @@ public class Contants {
         public static final String VERIFY_CODE_PREFIX = "verify:code:";
         public static final int VERIFY_CODE_EXPIRE_TIME = 30;
         public static final int USERINFO_EXPIRE_TIME = 60;
-        public static final String USERINFO_PREFIX = "userinfo:";
+        public static final String USER_CACHE_BY_ID = "user:id:";
+        public static final String USER_CACHE_BY_MOBILE = "user:mobile:";
         public static final TimeUnit SECOND_UNIT = TimeUnit.SECONDS;
         public static final TimeUnit MINUTES_UNIT = TimeUnit.MINUTES;
         public static final TimeUnit HOURS_UNIT = TimeUnit.HOURS;
@@ -38,6 +39,7 @@ public class Contants {
         public static final int ERROR_1003 = 1003;  //请求失败
         public static final int ERROR_1004 = 1004;  //已存在用户
         public static final int ERROR_1005 = 1005;  //不合法时间表
+        public static final int ERROR_1006 = 1006;  //密码错误
     }
 
     public class Message {
@@ -49,5 +51,7 @@ public class Contants {
         public static final String ERROR_ILLEGAL_SCHOOLTIME = "不合法时间表";
         public static final String ERROR_NO_USER_TYPE = "无此类型用户";
         public static final String ERROR_NOT_FIND = "未找到此用户";
+        public static final String ERROR_PASS_WORD = "密码错误";
+        public static final String ERROR_PLEASE_SIGN_UP = "请注册！";
     }
 }

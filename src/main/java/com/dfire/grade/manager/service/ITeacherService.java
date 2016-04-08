@@ -9,7 +9,7 @@ import com.dfire.grade.manager.vo.JsonResult;
  */
 public interface ITeacherService {
 
-    JsonResult insertTeacher(String name, String school, String passWord, String mobile, String email) throws Exception;
+    JsonResult insertTeacher(String name, String school, String passWord, String mobile, String email, int sex) throws Exception;
 
     JsonResult queryRoleById(String id) throws Exception;
 

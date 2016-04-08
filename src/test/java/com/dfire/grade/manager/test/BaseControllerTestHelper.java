@@ -2,6 +2,7 @@ package com.dfire.grade.manager.test;
 
 
 import com.dfire.grade.manager.controller.Hello;
+import com.dfire.grade.manager.controller.UserController;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,5 +22,16 @@ import org.springframework.test.web.servlet.MockMvc;
 public class BaseControllerTestHelper extends AbstractTestNGSpringContextTests {
     protected MockMvc mockMvc;
     @Autowired
-    Hello hello;
+    public Hello hello;
+    @Autowired
+    public UserController userController;
+
+    public String name = "yrm";
+    public String email = "1556882728@qq.com";
+    public String mobile = "12345678902";
+    public String school = "浙工大";
+    public String passWord = "123456";
+    public Integer type2 = 2;
+    public Integer type1 = 1;
+    public Integer sex = 1;
 }

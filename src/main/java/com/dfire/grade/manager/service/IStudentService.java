@@ -8,7 +8,7 @@ import com.dfire.grade.manager.vo.JsonResult;
  * description：
  */
 public interface IStudentService {
-    JsonResult insertStudent(String name, String school, String passWord, String mobile, String email) throws Exception;
+    JsonResult insertStudent(String name, String school, String passWord, String mobile, String email, int sex) throws Exception;
 
     JsonResult queryRoleById(String id) throws Exception;
 

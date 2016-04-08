@@ -13,17 +13,22 @@
         <result column="frequency" property="frequency" jdbcType="SMALLINT"/>
         <result column="fre_unit" property="frequencyUnit" jdbcType="VARCHAR"/>
     </resultMap>
-    <resultMap id="classDetailMapper" type="com.dfire.grade.manager.bean.ClassDetail">
-        <id column="class_detail_id" property="classDetailId" jdbcType="VARCHAR"/>
-        <result column="week_day" property="weekDay" jdbcType="SMALLINT"/>
-        <result column="part" property="part" jdbcType="SMALLINT"/>
-        <result column="create_time" property="createTime" jdbcType="DATE"/>
-        <result column="isValid" property="isValid" jdbcType="BOOLEAN"/>
-        <result column="term" property="term" jdbcType="DATE"/>
+    <resultMap id="classDetailMapper" type="com.dfire.grade.manager.bean.ClassDetail" extends="classesMapper">
+        <collection property="classDetails">
+            <id column="class_detail_id" property="classDetailId" jdbcType="VARCHAR"/>
+            <result column="week_day" property="weekDay" jdbcType="SMALLINT"/>
+            <result column="part" property="part" jdbcType="SMALLINT"/>
+            <result column="create_time" property="createTime" jdbcType="DATE"/>
+            <result column="isValid" property="isValid" jdbcType="BOOLEAN"/>
+            <result column="term" property="term" jdbcType="DATE"/>
+        </collection>
     </resultMap>
 
     <sql id="selectColumn">
-        SELECT name,period,credit,frequency,fre_unit FROM class
+        SELECT cla_id,name,period,credit,frequency,fre_unit FROM class
+    </sql>
+    <sql id="selectClassDetailColumn">
+        SELECT class_detail_id,week_day,part,term FROM class_detail
     </sql>
     <insert id="addClassBatch" parameterType="List">
         INSERT INTO class (class_id,name,tea_id,period,credit,create_time,valid,frequency,fre_unit)

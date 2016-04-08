@@ -32,7 +32,7 @@ public class StudentService implements IStudentService {
     private RedisUtil redisUtil;
 
     @Override
-    public JsonResult insertStudent(String name, String school, String passWord, String mobile, String email) throws Exception {
+    public JsonResult insertStudent(String name, String school, String passWord, String mobile, String email, int sex) throws Exception {
         Assert.hasLength(mobile, "手机号不能为空");
         Assert.hasLength(name, "姓名不能为空");
         Assert.hasLength(school, "学校不能为空");
@@ -47,9 +47,11 @@ public class StudentService implements IStudentService {
             student.setPassWord(MessageDigestUtil.getStrCode(passWord));
             student.setSchool(school);
             student.setStudentId(SequenceUtil.getSequence());
+            student.setSex(sex);
+            student.setValid(true);
             studentMapper.insertStudent(student);
             signBean = studentMapper.selectStudentByMobile(mobile);
-            redisUtil.setValuePre(signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            redisUtil.setValuePre(Contants.RedisContent.USER_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
             return JsonResult.jsonSuccessData(signBean);
         }
         return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1004), Contants.Message.ERROR_EXSITING_USER);
@@ -58,7 +60,11 @@ public class StudentService implements IStudentService {
     @Override
     public JsonResult queryRoleById(String id) throws Exception {
         Assert.hasLength(id, "id不能为空");
-        Student student = studentMapper.queryStudentById(id);
+        Student student = (Student) redisUtil.getValue(Contants.RedisContent.USER_CACHE_BY_ID + id, Student.class);
+        if (null == student) {
+            student = studentMapper.queryStudentById(id);
+            redisUtil.setValuePre(Contants.RedisContent.USER_CACHE_BY_ID + student.getStudentId(), student, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+        }
         if (null == student)
             return JsonResult.failedInstance(Contants.Message.ERROR_NOT_FIND);
         return JsonResult.jsonSuccessData(student);
@@ -67,11 +73,11 @@ public class StudentService implements IStudentService {
     @Override
     public JsonResult queryRoleByMobile(String mobile) throws Exception {
         Assert.hasLength(mobile, "手机号不能为空");
-        SignBean signBean = studentMapper.selectStudentByMobile(mobile);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.USER_CACHE_BY_MOBILE + mobile, SignBean.class);
         if (null == signBean) {
-            return JsonResult.failedInstance(Contants.Message.ERROR_NOT_FIND);
+            signBean = studentMapper.selectStudentByMobile(mobile);
+            redisUtil.setValuePre(Contants.RedisContent.USER_CACHE_BY_MOBILE + mobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.SECOND_UNIT);
         }
-        redisUtil.setValuePre(signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.SECOND_UNIT);
         return JsonResult.jsonSuccessData(signBean);
     }
 

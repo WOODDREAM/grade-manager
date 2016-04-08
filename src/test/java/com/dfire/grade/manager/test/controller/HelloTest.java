@@ -1,6 +1,7 @@
-package com.dfire.grade.manager.test;
+package com.dfire.grade.manager.test.controller;
 
 
+import com.dfire.grade.manager.test.BaseControllerTestHelper;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 import org.testng.annotations.BeforeMethod;

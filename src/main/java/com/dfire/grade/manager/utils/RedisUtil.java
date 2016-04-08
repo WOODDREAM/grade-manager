@@ -30,9 +30,11 @@ public class RedisUtil {
      */
     public void setValuePre(String key, Object o, int time, TimeUnit unit) throws JsonProcessingException {
         try {
+//            byte[] bytes = key.getBytes("ISO8859-1");
+//            String str = new String(bytes,"utf-8");
             ObjectMapper objectMapper = new ObjectMapper();
             String jsonStr = objectMapper.writeValueAsString(o);
-            redisTemplate.opsForSet().add(key, jsonStr);
+            redisTemplate.opsForValue().set(key, jsonStr);
             redisTemplate.expire(key, time, unit);
         } catch (JsonProcessingException e) {
             throw e;
@@ -44,6 +46,9 @@ public class RedisUtil {
         T t = null;
         try {
             String value = (String) redisTemplate.opsForValue().get(key);
+            if (null == value) {
+                return null;
+            }
             ObjectMapper objectMapper = new ObjectMapper();
             t = objectMapper.readValue(value, obj);
         } catch (IOException e) {

@@ -27,5 +27,9 @@
     </bean>
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
         <property name="connectionFactory" ref="jedisConnectionFactory"/>
+        <!--如果不指定序列化会出现乱码-->
+        <property name="defaultSerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
     </bean>
 </beans>

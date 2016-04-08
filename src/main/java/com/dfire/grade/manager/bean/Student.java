@@ -13,7 +13,7 @@ public class Student {
     private String email;//email
     private String mobile;//手机
     private String school;//学校
-    private float valid;//是否拉黑
+    private boolean valid;//是否拉黑
     private Date joinTime;//进入系统时间
     private int sex;//性别
     private String passWord;
@@ -59,12 +59,11 @@ public class Student {
         this.school = school;
     }
 
-
-    public float getValid() {
+    public boolean isValid() {
         return valid;
     }
 
-    public void setValid(float valid) {
+    public void setValid(boolean valid) {
         this.valid = valid;
     }
 

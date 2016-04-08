@@ -30,7 +30,7 @@ public class TeacherService implements ITeacherService {
     private RedisUtil redisUtil;
 
     @Override
-    public JsonResult insertTeacher(String name, String school, String passWord, String mobile, String email) throws Exception {
+    public JsonResult insertTeacher(String name, String school, String passWord, String mobile, String email, int sex) throws Exception {
         Assert.notNull(mobile, "手机号不能为空");
         Assert.notNull(name, "姓名不能为空");
         Assert.notNull(school, "学校不能为空");
@@ -64,7 +64,12 @@ public class TeacherService implements ITeacherService {
     @Override
     public JsonResult queryRoleByMobile(String mobile) throws Exception {
         Assert.hasLength(mobile, "mobile不能为空");
-        SignBean signBean = teacherMapper.selectByMobile(mobile);
+
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.USER_CACHE_BY_MOBILE + mobile, SignBean.class);
+        if (null == signBean) {
+            signBean = teacherMapper.selectByMobile(mobile);
+            redisUtil.setValuePre(Contants.RedisContent.USER_CACHE_BY_MOBILE + mobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.SECOND_UNIT);
+        }
         return JsonResult.jsonSuccessData(signBean);
     }
 
