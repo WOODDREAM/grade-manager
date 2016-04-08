@@ -28,7 +28,7 @@ public class BaseControllerTestHelper extends AbstractTestNGSpringContextTests {
 
     public String name = "yrm";
     public String email = "1556882728@qq.com";
-    public String mobile = "12345678902";
+    public String mobile = "12345678903";
     public String school = "浙工大";
     public String passWord = "123456";
     public Integer type2 = 2;

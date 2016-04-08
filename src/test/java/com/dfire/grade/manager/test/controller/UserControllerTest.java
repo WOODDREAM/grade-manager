@@ -38,7 +38,6 @@ public class UserControllerTest extends BaseControllerTestHelper {
         mockMvc.perform(post("/user/sign_in").param("mobile", mobile).param("pass_word", passWord)
                 .param("type", String.valueOf(type1)))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(jsonPath("$.code", is("1")))
                 .andExpect(jsonPath("code").value("1"));
     }
 

@@ -38,7 +38,8 @@ public class ClassServiceImpl implements IClassService {
         List<Classes> classesList = new ArrayList<>();
         for (ClassIncludeSchoolTime schoolTime : schoolTimes) {
             Classes myClass = new Classes();
-            myClass.setClassId(SequenceUtil.getSequence());
+            String classId = SequenceUtil.getSequence();
+            myClass.setClassId(classId);
             myClass.setName(schoolTime.getName());
             myClass.setPeriod(schoolTime.getPeriod());
             myClass.setTeacherId(schoolTime.getTeacherId());
@@ -50,7 +51,6 @@ public class ClassServiceImpl implements IClassService {
             Iterator<Map.Entry<Integer, Integer>> it = schoolTimeSet.iterator();
             while (it.hasNext()) {
                 Map.Entry<Integer, Integer> classSch = it.next();
-                StringBuffer buffer = new StringBuffer();
                 Integer key = classSch.getKey();
                 Integer value = classSch.getValue();
                 //1到7表示星期,1到11表示节数
@@ -64,6 +64,7 @@ public class ClassServiceImpl implements IClassService {
                 classDetail.setTerm(DateUtil.getCurDate(DateUtil.DEFAULT_DATE_FORMAT));
                 classDetail.setPart(value);
                 classDetail.setWeekDay(key);
+                classDetail.setClassId(classId);
                 classDetails.add(classDetail);
             }
             if (!CollectionUtils.isEmpty(classDetails)) {

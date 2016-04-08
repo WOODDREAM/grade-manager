@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * User:huangtao
  * Date:2016-03-24
- * description：（每天每节作为一条信息存储）
+ * description：课程上课表（每天每节作为一条信息存储）
  */
 public class ClassDetail {
     private String classDetailId;
@@ -14,6 +14,7 @@ public class ClassDetail {
     private Date createTime;//课程开课时间
     private boolean isValid;//是否有效
     private Date term;//学期
+    private String classId;//对应的课程id
 
     public String getClassDetailId() {
         return classDetailId;
@@ -62,5 +63,13 @@ public class ClassDetail {
 
     public void setValid(boolean isValid) {
         this.isValid = isValid;
+    }
+
+    public String getClassId() {
+        return classId;
+    }
+
+    public void setClassId(String classId) {
+        this.classId = classId;
     }
 }

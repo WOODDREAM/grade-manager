@@ -30,20 +30,32 @@
     <sql id="selectClassDetailColumn">
         SELECT class_detail_id,week_day,part,term FROM class_detail
     </sql>
-    <insert id="addClassBatch" parameterType="List">
+    <insert id="addClass" parameterType="com.dfire.grade.manager.bean.Classes">
         INSERT INTO class (class_id,name,tea_id,period,credit,create_time,valid,frequency,fre_unit)
+        VALUES(
+            #{classId,jdbcType=VARCHAR},
+            #{name,jdbcType=VARCHAR},
+            #{teacherId,jdbcType=VARCHAR},
+            #{period,jdbcType=DOUBLE},
+            #{credit,jdbcType=DOUBLE},
+            #{createTime,jdbcType=DATE},
+            #{valid,jdbcType=TINYINT},
+            #{frequency,jdbcType=SMALLINT},
+            #{frequencyUnit,jdbcType=VARCHAR}
+            )
+    </insert>
+    <insert id="addClassDetailsBath" parameterType="java.util.List">
+        INSERT INTO class_detail (class_detail_id,week_day,part,class_id,create_time,isvalid,term)
         VALUES
         <foreach collection="list" item="class" separator=",">
             (
-            #{class.classId,jdbcType=VARCHAR},
-            #{class.name,jdbcType=VARCHAR},
-            #{class.teacherId,jdbcType=VARCHAR},
-            #{class.period,jdbcType=DOUBLE},
-            #{class.credit,jdbcType=DOUBLE},
-            #{class.createTime,jdbcType=DATE},
-            #{class.valid,jdbcType=TINYINT},
-            #{class.frequency,jdbcType=SMALLINT},
-            #{class.frequencyUnit,jdbcType=VARCHAR}
+            #{classDetail.classDetailId},
+            #{classDetail.weekDay},
+            #{classDetail.part},
+            #{classDetail.classId}
+            #{classDetail.createTime},
+            #{classDetail.isValid},
+            #{classDetail.term},
             )
         </foreach>
     </insert>
