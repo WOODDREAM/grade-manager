@@ -12,15 +12,15 @@
         <result column="type" property="type" jdbcType="SMALLINT"/>
         <result column="valid" property="valid" jdbcType="FLOAT"/>
     </resultMap>
-    <insert id="insertJob" parameterType="com.dfire.grade.manager.bean.Job">
-        INSERT INTO job(job_id,name,datail,tea_id,cla_id,answer,create_time,type,valid)
+    <insert id="createJob" parameterType="com.dfire.grade.manager.bean.Job">
+        INSERT INTO job(job_id,name,datail,tea_id,cla_id,is_need_answer,create_time,type,valid)
         VALUES (
         #{jobId},
         #{name},
         #{detail},
         #{teacherId},
         #{classId},
-        #{answer},
+        #{isAnswer},
         #{createTime},
         #{type},
         #{valid}

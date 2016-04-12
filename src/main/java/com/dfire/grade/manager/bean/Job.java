@@ -14,7 +14,7 @@ public class Job implements Serializable {
     private String detail;//作业详细信息
     private String teacherId;//教师id
     private String classId;//课程id
-    private String answer;//答案
+    private String isAnswer;//答案
     private Date createTime;//创建类型
     private int type;//作业类型
     private float valid;//是否有效
@@ -60,12 +60,12 @@ public class Job implements Serializable {
         this.classId = classId;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getIsAnswer() {
+        return isAnswer;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setIsAnswer(String isAnswer) {
+        this.isAnswer = isAnswer;
     }
 
     public Date getCreateTime() {
