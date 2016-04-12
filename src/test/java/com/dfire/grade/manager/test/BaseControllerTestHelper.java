@@ -1,6 +1,7 @@
 package com.dfire.grade.manager.test;
 
 
+import com.dfire.grade.manager.controller.ClassController;
 import com.dfire.grade.manager.controller.Hello;
 import com.dfire.grade.manager.controller.UserController;
 import org.junit.runner.RunWith;
@@ -25,6 +26,8 @@ public class BaseControllerTestHelper extends AbstractTestNGSpringContextTests {
     public Hello hello;
     @Autowired
     public UserController userController;
+    @Autowired
+    public ClassController classController;
 
     public String name = "yrm";
     public String email = "1556882728@qq.com";
@@ -34,4 +37,6 @@ public class BaseControllerTestHelper extends AbstractTestNGSpringContextTests {
     public Integer type2 = 2;
     public Integer type1 = 1;
     public Integer sex = 1;
+
+    public String uid = "365e3103885041bdbc341f232a1cd6d0";
 }

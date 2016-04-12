@@ -10,7 +10,6 @@ import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.ClassIncludeSchoolTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
@@ -33,9 +32,8 @@ public class ClassServiceImpl implements IClassService {
      * @throws Exception
      */
     @Override
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+    @Transactional(rollbackFor = Exception.class)
     public void insertClass(List<ClassIncludeSchoolTime> schoolTimes) throws Exception {
-        List<Classes> classesList = new ArrayList<>();
         for (ClassIncludeSchoolTime schoolTime : schoolTimes) {
             Classes myClass = new Classes();
             String classId = SequenceUtil.getSequence();
@@ -46,15 +44,17 @@ public class ClassServiceImpl implements IClassService {
             myClass.setCreateTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));
             myClass.setCredit(schoolTime.getCredit());
             myClass.setValid(true);
+            myClass.setFrequencyUnit(schoolTime.getFrequencyUnit());
+            myClass.setFrequency(schoolTime.getFrequency());
             List<ClassDetail> classDetails = new ArrayList<>();
-            Set<Map.Entry<Integer, Integer>> schoolTimeSet = schoolTime.getSchoolTimes().entrySet();
-            Iterator<Map.Entry<Integer, Integer>> it = schoolTimeSet.iterator();
+            Set<Map.Entry<String, Integer>> schoolTimeSet = schoolTime.getSchoolTimes().entrySet();
+            Iterator<Map.Entry<String, Integer>> it = schoolTimeSet.iterator();
             while (it.hasNext()) {
-                Map.Entry<Integer, Integer> classSch = it.next();
-                Integer key = classSch.getKey();
+                Map.Entry<String, Integer> classSch = it.next();
+                String key = classSch.getKey();
                 Integer value = classSch.getValue();
                 //1到7表示星期,1到11表示节数
-                if (key < 0 || key > 8 || value < 0 || value > 12) {
+                if (Integer.parseInt(key) < 0 || Integer.parseInt(key) > 8 || value < 0 || value > 12) {
                     throw new SchoolTimeException();
                 }
                 ClassDetail classDetail = new ClassDetail();
@@ -63,16 +63,15 @@ public class ClassServiceImpl implements IClassService {
                 classDetail.setValid(true);
                 classDetail.setTerm(DateUtil.getCurDate(DateUtil.DEFAULT_DATE_FORMAT));
                 classDetail.setPart(value);
-                classDetail.setWeekDay(key);
+                classDetail.setWeekDay(Integer.parseInt(key));
                 classDetail.setClassId(classId);
                 classDetails.add(classDetail);
             }
             if (!CollectionUtils.isEmpty(classDetails)) {
-                myClass.setClassDetails(classDetails);
+                classesMapper.addClassDetailsBath(classDetails);
             }
-            classesList.add(myClass);
+            classesMapper.addClass(myClass);
         }
-        classesMapper.addClassBatch(classesList);
     }
 
     @Override

@@ -26,8 +26,10 @@ public class Contants {
         public static final String VERIFY_CODE_PREFIX = "verify:code:";
         public static final int VERIFY_CODE_EXPIRE_TIME = 30;
         public static final int USERINFO_EXPIRE_TIME = 60;
-        public static final String USER_CACHE_BY_ID = "user:id:";
-        public static final String USER_CACHE_BY_MOBILE = "user:mobile:";
+        public static final String STUDENT_CACHE_BY_ID = "student:id:";
+        public static final String STUDENT_CACHE_BY_MOBILE = "student:mobile:";
+        public static final String TEACHER_CACHE_BY_ID = "teacher:id:";
+        public static final String TEACHER_CACHE_BY_MOBILE = "teacher:mobile:";
         public static final TimeUnit SECOND_UNIT = TimeUnit.SECONDS;
         public static final TimeUnit MINUTES_UNIT = TimeUnit.MINUTES;
         public static final TimeUnit HOURS_UNIT = TimeUnit.HOURS;

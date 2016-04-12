@@ -48,7 +48,7 @@ public class TeacherService implements ITeacherService {
             teacher.setValid(true);
             teacherMapper.insertTeacher(teacher);
             signBean = teacherMapper.selectByMobile(mobile);
-            redisUtil.setValuePre(signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
             return JsonResult.newInstance("1", Contants.Message.SUCCESS_REQUEST, signBean);
         }
         return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1004), Contants.Message.ERROR_EXSITING_USER);
@@ -65,10 +65,13 @@ public class TeacherService implements ITeacherService {
     public JsonResult queryRoleByMobile(String mobile) throws Exception {
         Assert.hasLength(mobile, "mobile不能为空");
 
-        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.USER_CACHE_BY_MOBILE + mobile, SignBean.class);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_MOBILE + mobile, SignBean.class);
         if (null == signBean) {
             signBean = teacherMapper.selectByMobile(mobile);
-            redisUtil.setValuePre(Contants.RedisContent.USER_CACHE_BY_MOBILE + mobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.SECOND_UNIT);
+            if (signBean != null) {
+                redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_MOBILE + mobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+                redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            }
         }
         return JsonResult.jsonSuccessData(signBean);
     }

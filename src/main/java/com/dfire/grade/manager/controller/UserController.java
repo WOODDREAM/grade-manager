@@ -52,7 +52,7 @@ public class UserController {
         return JsonResult.failedInstance(Contants.Message.ERROR_NO_USER_TYPE);
     }
 
-    @RequestMapping(value = "/sign_in", method = RequestMethod.POST)
+    @RequestMapping(value = "/sign_in", method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public JsonResult signIn(@RequestParam(value = "mobile", required = true) String mobile,

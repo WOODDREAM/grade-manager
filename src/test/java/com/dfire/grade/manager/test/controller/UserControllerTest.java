@@ -27,7 +27,7 @@ public class UserControllerTest extends BaseControllerTestHelper {
     public void testInsertUser() throws Exception {
         mockMvc.perform(post("/user/sign_up").param("name", name).param("email", email)
                 .param("school", school).param("mobile", mobile).param("pass_word", passWord)
-                .param("type", String.valueOf(type1)).param("sex", String.valueOf(sex))
+                .param("type", String.valueOf(type2)).param("sex", String.valueOf(sex))
                 .characterEncoding("utf-8"))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$.code", is("1")));
@@ -36,7 +36,7 @@ public class UserControllerTest extends BaseControllerTestHelper {
     @Test
     public void testSignIn() throws Exception {
         mockMvc.perform(post("/user/sign_in").param("mobile", mobile).param("pass_word", passWord)
-                .param("type", String.valueOf(type1)))
+                .param("type", String.valueOf(type2)))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("code").value("1"));
     }

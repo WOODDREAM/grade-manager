@@ -15,55 +15,42 @@
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <context:annotation-config/>
     <mvc:annotation-driven/>
-    <!-- 配置 velocity 视图模板类 -->
-    <!--<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">-->
-    <!--<property name="resourceLoaderPath">-->
-    <!--<value>WEB-INF/vm/</value>-->
-    <!--</property>-->
-    <!--<property name="velocityProperties">-->
-    <!--<props>-->
-    <!--<prop key="directive.foreach.counter.name">velocityCount</prop>-->
-    <!--<prop key="directive.foreach.counter.initial.value">1</prop>-->
-    <!--<prop key="input.encoding">utf-8</prop>-->
-    <!--<prop key="output.encoding">utf-8</prop>-->
-    <!--<prop key="velocimacro.library">macro.vm</prop>-->
-    <!--<prop key="velocimacro.library.autoreload">true</prop>-->
-    <!--</props>-->
-    <!--</property>-->
-    <!--</bean>-->
 
+    <!-- ContentNegotiatingViewResolver视图解析器,利用他就可以配置多种返回值 -->
     <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">-->
-
-    <!--<property name="viewResolvers">-->
-    <!--<list>-->
-    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
-    <!--<property name="suffix" value=".vm"/>-->
-    <!--<property name="cache" value="true"/>-->
-    <!--<property name="exposeRequestAttributes" value="true"/>-->
-    <!--<property name="exposeSessionAttributes" value="true"/>-->
-    <!--<property name="allowSessionOverride" value="true"/>-->
-    <!--<property name="exposeSpringMacroHelpers" value="true"/>-->
-    <!--<property name="contentType" value="text/html;charset=UTF-8"/>-->
-    <!--<property name="toolboxConfigLocation" value="/WEB-INF/velocity-toolbox.xml"/>-->
-    <!--<property name="requestContextAttribute" value="request"/>-->
-    <!--</bean>-->
-    <!--<bean id="JSPviewResolver"-->
-    <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-    <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
-    <!--<property name="prefix" value="/"/>-->
-    <!--<property name="suffix" value=".jsp"/>-->
-    <!--<property name="exposeContextBeansAsAttributes" value="true"/>-->
-    <!--</bean>-->
-    <!--</list>-->
-    <!--</property>-->
-    <!--<property name="defaultViews">-->
-    <!--<list>-->
-    <!--<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">-->
-    <!--<property name="prettyPrint" value="true"/>-->
-    <!--<property name="contentType" value="text/plain"/>-->
-    <!--</bean>-->
-    <!--</list>-->
-    <!--</property>-->
+        <!--&lt;!&ndash; 这里是否忽略掉accept header，默认就是false &ndash;&gt;-->
+        <!--<property name="viewResolvers">-->
+            <!--<list>-->
+                <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
+                    <!--<property name="suffix" value=".vm"/>-->
+                    <!--<property name="cache" value="true"/>-->
+                    <!--<property name="exposeRequestAttributes" value="true"/>-->
+                    <!--<property name="exposeSessionAttributes" value="true"/>-->
+                    <!--<property name="allowSessionOverride" value="true"/>-->
+                    <!--<property name="exposeSpringMacroHelpers" value="true"/>-->
+                    <!--<property name="contentType" value="text/html;charset=UTF-8"/>-->
+                    <!--<property name="toolboxConfigLocation" value="/WEB-INF/velocity-toolbox.xml"/>-->
+                    <!--<property name="requestContextAttribute" value="request"/>-->
+                <!--</bean>-->
+                <!--<bean id="JSPviewResolver"-->
+                      <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+                    <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
+                    <!--<property name="prefix" value="/"/>-->
+                    <!--<property name="suffix" value=".jsp"/>-->
+                    <!--<property name="exposeContextBeansAsAttributes" value="true"/>-->
+                <!--</bean>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; 默认使用MappingJacksonJsonView生成jsonview&ndash;&gt;-->
+        <!--<property name="defaultViews">-->
+            <!--<list>-->
+                <!--<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">-->
+                    <!--<property name="prettyPrint" value="true"/>-->
+                    <!--<property name="contentType" value="text/plain"/>-->
+                    <!--<property name="extractValueFromSingleKeyModel" value="true"/>-->
+                <!--</bean>-->
+            <!--</list>-->
+        <!--</property>-->
     <!--</bean>-->
     <bean id="JSPviewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">

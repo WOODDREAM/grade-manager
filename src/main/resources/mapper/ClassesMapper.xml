@@ -31,7 +31,7 @@
         SELECT class_detail_id,week_day,part,term FROM class_detail
     </sql>
     <insert id="addClass" parameterType="com.dfire.grade.manager.bean.Classes">
-        INSERT INTO class (class_id,name,tea_id,period,credit,create_time,valid,frequency,fre_unit)
+        INSERT INTO class (cla_id,name,tea_id,period,credit,create_time,isvalid,frequency,fre_unit)
         VALUES(
             #{classId,jdbcType=VARCHAR},
             #{name,jdbcType=VARCHAR},
@@ -47,15 +47,15 @@
     <insert id="addClassDetailsBath" parameterType="java.util.List">
         INSERT INTO class_detail (class_detail_id,week_day,part,class_id,create_time,isvalid,term)
         VALUES
-        <foreach collection="list" item="class" separator=",">
+        <foreach collection="list" item="classDetail" separator=",">
             (
             #{classDetail.classDetailId},
             #{classDetail.weekDay},
             #{classDetail.part},
-            #{classDetail.classId}
+            #{classDetail.classId},
             #{classDetail.createTime},
             #{classDetail.isValid},
-            #{classDetail.term},
+            #{classDetail.term}
             )
         </foreach>
     </insert>
