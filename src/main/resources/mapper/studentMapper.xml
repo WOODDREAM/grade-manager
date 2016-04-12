@@ -21,9 +21,9 @@
         <result column="sex" property="sex" jdbcType="SMALLINT"/>
     </resultMap>
     <select id="queryStudentById" resultMap="studentMapper" parameterType="String">
-              select stu_id,name,email,mobile,school,join_time,sex
-              from student
-              WHERE id=#{studentId} AND valid='1'
+        select stu_id,name,email,mobile,school,join_time,sex
+        from student
+        WHERE id=#{studentId} AND valid='1'
     </select>
     <select id="selectStudentByMobile" resultMap="signMapper" parameterType="String">
             select stu_id,name,email,mobile,school,pass_word,sex
@@ -82,14 +82,19 @@
             parameterType="com.dfire.grade.manager.bean.Student">
         SELECT stu_id,name,email,school
         FORM student st,student_class sc
+        FORM student st
+        LEFT JOIN student_class sc on st.stu_id=sc.stu_id
         <where>
             sc.tea_id=#{teacherId}
-            AND st.stu_id=sc.stu_id
             AND valid='1'
+            <if test="name != null">name LIKE '%#{name}%'</if>
+            <if test="mobile != null">mobile LIKE '%#{mobile}%'</if>
+            <if test="email != null">email LIKE '%#{email}%'</if>
+            <if test="school != null">school LIKE '%#{school}%'</if>
+            <if test="joinTime != null">join_time LIKE '%#{joinTime}%'</if>
+            <if test="sex != null">sex = #{sex}</if>
         </where>
         WHERE sc.tea_id=#{teacherId}
-        AND st.stu_id=sc.stu_id
         AND valid='1'
-
     </select>
 </mapper>

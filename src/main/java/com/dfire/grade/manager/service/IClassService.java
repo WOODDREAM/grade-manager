@@ -15,9 +15,9 @@ public interface IClassService {
 
     public void insertClass(List<ClassIncludeSchoolTime> schoolTimes) throws Exception;
 
-    public List<Classes> selectClassByTeacherId(String teacherId) throws Exception;
+    public List<Classes> selectAllClassByTeacherIdAndPage(String teacherId) throws Exception;
 
-    public List<Classes> selectClassByStudentID(String studentId) throws Exception;
+    public List<Classes> selectAllClassByStudentIDAndPage(String studentId) throws Exception;
 
     public Classes upDateClassByClassId(String classesId) throws Exception;
 

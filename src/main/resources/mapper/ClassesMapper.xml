@@ -70,5 +70,11 @@
         AND isvalid='1'
         ORDER BY createTime
     </select>
-
+    <delete id="deleteClassByID" parameterType="String">
+        update class_detail
+        where class
+        update class
+        set isValid = '0'
+        where cla_id = #{classId}
+    </delete>
 </mapper>

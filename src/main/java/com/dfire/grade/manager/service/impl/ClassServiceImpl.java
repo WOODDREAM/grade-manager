@@ -75,17 +75,18 @@ public class ClassServiceImpl implements IClassService {
     }
 
     @Override
-    public List<Classes> selectClassByTeacherId(String teacherId) throws Exception {
+    public List<Classes> selectAllClassByTeacherIdAndPage(String teacherId) throws Exception {
         return null;
     }
 
     @Override
-    public List<Classes> selectClassByStudentID(String studentId) throws Exception {
+    public List<Classes> selectAllClassByStudentIDAndPage(String studentId) throws Exception {
         return null;
     }
 
     @Override
     public Classes upDateClassByClassId(String classesId) throws Exception {
+        classesMapper.
         return null;
     }
 
