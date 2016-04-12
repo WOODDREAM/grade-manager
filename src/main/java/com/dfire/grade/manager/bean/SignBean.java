@@ -13,6 +13,7 @@ public class SignBean {
     private String passWord;
     private String school;
     private int sex;
+    private boolean isSign = false;
 
     public String getId() {
         return id;
@@ -68,5 +69,13 @@ public class SignBean {
 
     public void setSex(int sex) {
         this.sex = sex;
+    }
+
+    public boolean isSign() {
+        return isSign;
+    }
+
+    public void setSign(boolean isSign) {
+        this.isSign = isSign;
     }
 }

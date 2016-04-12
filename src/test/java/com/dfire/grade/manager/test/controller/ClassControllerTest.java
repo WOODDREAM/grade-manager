@@ -25,6 +25,7 @@ public class ClassControllerTest extends BaseControllerTestHelper {
     @BeforeMethod
     public void init() {
         StandaloneMockMvcBuilder standaloneMockMvcBuilder = MockMvcBuilders.standaloneSetup(classController);
+        standaloneMockMvcBuilder.addInterceptors(securityIntercept);
         this.mockMvc = standaloneMockMvcBuilder.build();
     }
 

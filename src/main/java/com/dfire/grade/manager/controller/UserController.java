@@ -5,6 +5,7 @@ import com.dfire.grade.manager.bean.SignBean;
 import com.dfire.grade.manager.service.IStudentService;
 import com.dfire.grade.manager.service.ITeacherService;
 import com.dfire.grade.manager.utils.MessageDigestUtil;
+import com.dfire.grade.manager.utils.RedisUtil;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,8 @@ public class UserController {
     private ITeacherService teacherService;
     @Autowired
     private IStudentService studentService;
+    @Autowired
+    private RedisUtil redisUtil;
 
     /**
      * 用户注册
@@ -52,7 +55,7 @@ public class UserController {
         return JsonResult.failedInstance(Contants.Message.ERROR_NO_USER_TYPE);
     }
 
-    @RequestMapping(value = "/sign_in", method = {RequestMethod.POST,RequestMethod.GET})
+    @RequestMapping(value = "/sign_in", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public JsonResult signIn(@RequestParam(value = "mobile", required = true) String mobile,
@@ -72,6 +75,9 @@ public class UserController {
             if (null != result.getData()) {
                 SignBean signBean = (SignBean) result.getData();
                 if (MessageDigestUtil.getStrCode(passWord).equals(signBean.getPassWord())) {
+                    signBean.setSign(true);
+                    redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_MOBILE + mobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+                    redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
                     return JsonResult.jsonSuccessData(signBean);
                 } else
                     return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1006), Contants.Message.ERROR_PASS_WORD);

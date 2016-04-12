@@ -15,42 +15,53 @@
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <context:annotation-config/>
     <mvc:annotation-driven/>
+    <mvc:interceptors>
+        <!--处理跨域访问-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/*"/>-->
+            <!--<bean class="com.dfire.grade.manager.intercepter.AccessIntercept"/>-->
+        <!--</mvc:interceptor>-->
+        <mvc:interceptor>
+            <mvc:mapping path="/class"/>
+            <bean class="com.dfire.grade.manager.intercepter.SecurityIntercept"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <!-- ContentNegotiatingViewResolver视图解析器,利用他就可以配置多种返回值 -->
     <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">-->
-        <!--&lt;!&ndash; 这里是否忽略掉accept header，默认就是false &ndash;&gt;-->
-        <!--<property name="viewResolvers">-->
-            <!--<list>-->
-                <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
-                    <!--<property name="suffix" value=".vm"/>-->
-                    <!--<property name="cache" value="true"/>-->
-                    <!--<property name="exposeRequestAttributes" value="true"/>-->
-                    <!--<property name="exposeSessionAttributes" value="true"/>-->
-                    <!--<property name="allowSessionOverride" value="true"/>-->
-                    <!--<property name="exposeSpringMacroHelpers" value="true"/>-->
-                    <!--<property name="contentType" value="text/html;charset=UTF-8"/>-->
-                    <!--<property name="toolboxConfigLocation" value="/WEB-INF/velocity-toolbox.xml"/>-->
-                    <!--<property name="requestContextAttribute" value="request"/>-->
-                <!--</bean>-->
-                <!--<bean id="JSPviewResolver"-->
-                      <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-                    <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
-                    <!--<property name="prefix" value="/"/>-->
-                    <!--<property name="suffix" value=".jsp"/>-->
-                    <!--<property name="exposeContextBeansAsAttributes" value="true"/>-->
-                <!--</bean>-->
-            <!--</list>-->
-        <!--</property>-->
-        <!--&lt;!&ndash; 默认使用MappingJacksonJsonView生成jsonview&ndash;&gt;-->
-        <!--<property name="defaultViews">-->
-            <!--<list>-->
-                <!--<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">-->
-                    <!--<property name="prettyPrint" value="true"/>-->
-                    <!--<property name="contentType" value="text/plain"/>-->
-                    <!--<property name="extractValueFromSingleKeyModel" value="true"/>-->
-                <!--</bean>-->
-            <!--</list>-->
-        <!--</property>-->
+    <!--&lt;!&ndash; 这里是否忽略掉accept header，默认就是false &ndash;&gt;-->
+    <!--<property name="viewResolvers">-->
+    <!--<list>-->
+    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
+    <!--<property name="suffix" value=".vm"/>-->
+    <!--<property name="cache" value="true"/>-->
+    <!--<property name="exposeRequestAttributes" value="true"/>-->
+    <!--<property name="exposeSessionAttributes" value="true"/>-->
+    <!--<property name="allowSessionOverride" value="true"/>-->
+    <!--<property name="exposeSpringMacroHelpers" value="true"/>-->
+    <!--<property name="contentType" value="text/html;charset=UTF-8"/>-->
+    <!--<property name="toolboxConfigLocation" value="/WEB-INF/velocity-toolbox.xml"/>-->
+    <!--<property name="requestContextAttribute" value="request"/>-->
+    <!--</bean>-->
+    <!--<bean id="JSPviewResolver"-->
+    <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+    <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
+    <!--<property name="prefix" value="/"/>-->
+    <!--<property name="suffix" value=".jsp"/>-->
+    <!--<property name="exposeContextBeansAsAttributes" value="true"/>-->
+    <!--</bean>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--&lt;!&ndash; 默认使用MappingJacksonJsonView生成jsonview&ndash;&gt;-->
+    <!--<property name="defaultViews">-->
+    <!--<list>-->
+    <!--<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">-->
+    <!--<property name="prettyPrint" value="true"/>-->
+    <!--<property name="contentType" value="text/plain"/>-->
+    <!--<property name="extractValueFromSingleKeyModel" value="true"/>-->
+    <!--</bean>-->
+    <!--</list>-->
+    <!--</property>-->
     <!--</bean>-->
     <bean id="JSPviewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -62,7 +73,8 @@
     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
-                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">redirect:/error/500.jsp</prop>
+                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">redirect:/error/500.jsp
+                </prop>
             </props>
         </property>
     </bean>

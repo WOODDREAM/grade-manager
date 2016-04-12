@@ -86,7 +86,7 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public Classes upDateClassByClassId(String classesId) throws Exception {
-        classesMapper.
+//        classesMapper.
         return null;
     }
 

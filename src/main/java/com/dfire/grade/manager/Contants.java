@@ -9,6 +9,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class Contants {
 
+    public static final String UID = "UID";
+
     public static class SMSMessage {
         public static final String NO_SUCH_ACCOUNT = "没有该用户账号";
         public static final String KEY_INCORRECT = "接口密钥不正确 ";
@@ -55,5 +57,6 @@ public class Contants {
         public static final String ERROR_NOT_FIND = "未找到此用户";
         public static final String ERROR_PASS_WORD = "密码错误";
         public static final String ERROR_PLEASE_SIGN_UP = "请注册！";
+        public static final String ERROR_PLEASE_SIGN_IN = "请登录！";
     }
 }
