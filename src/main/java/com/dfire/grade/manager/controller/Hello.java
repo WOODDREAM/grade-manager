@@ -38,7 +38,7 @@ public class Hello {
     }
 
     @RequestMapping("/student")
-    public String insertStudent() {
+    public String insertStudent() throws Exception {
         Student student = new Student();
         student.setName("haha");
         student.setEmail("haha@qq.com");

@@ -22,7 +22,7 @@
             <!--<bean class="com.dfire.grade.manager.intercepter.AccessIntercept"/>-->
         <!--</mvc:interceptor>-->
         <mvc:interceptor>
-            <mvc:mapping path="/class"/>
+            <mvc:mapping path="/class/*"/>
             <bean class="com.dfire.grade.manager.intercepter.SecurityIntercept"/>
         </mvc:interceptor>
     </mvc:interceptors>

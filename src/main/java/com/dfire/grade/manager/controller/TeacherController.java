@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * description：
  */
 @RequestMapping("/teacher")
-public class TeacherController {
+public class TeacherController extends BaseController{
 }

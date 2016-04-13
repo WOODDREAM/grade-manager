@@ -32,7 +32,7 @@ public class ClassServiceImpl implements IClassService {
      * @throws Exception
      */
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class )
     public void insertClass(List<ClassIncludeSchoolTime> schoolTimes) throws Exception {
         for (ClassIncludeSchoolTime schoolTime : schoolTimes) {
             Classes myClass = new Classes();

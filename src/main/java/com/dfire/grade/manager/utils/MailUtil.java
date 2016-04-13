@@ -13,6 +13,8 @@ import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -50,6 +52,14 @@ public class MailUtil {
                 return new PasswordAuthentication(mailConfiguration.getFrom(), mailConfiguration.getMailCertificate()); //发件人邮件用户名、密码
             }
         });
+        Map<String, Object> map = new HashMap<>();
+        map.put("subject", subject);
+        map.put("body", body);
+        map.put("fileName", fileName);
+        for (String string : address) {
+            map.put("address", string);
+        }
+        String str = SequenceUtil.mapToJson(map);
         try {
             // 创建默认的 MimeMessage 对象。
             MimeMessage mimeMessage = new MimeMessage(session);
@@ -85,9 +95,9 @@ public class MailUtil {
             mimeMessage.setContent(multipart, "utf-8");
             //发送消息
             Transport.send(mimeMessage);
-            LoggerFactory.MAILFACTORY.info(LoggerMarker.MAIL_SEND, "发送邮件成功！");
+            LoggerFactory.MAILFACTORY.info(LoggerMarker.MAIL_SEND, str, "发送邮件成功！");
         } catch (MessagingException e) {
-            LoggerFactory.MAILFACTORY.error(LoggerMarker.MAIL_SEND, "发送邮件失败！", e);
+            LoggerFactory.MAILFACTORY.error(LoggerMarker.MAIL_SEND, str, "发送邮件失败！", e);
             throw e;
         }
     }

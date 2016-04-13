@@ -22,13 +22,13 @@ import java.util.List;
  */
 @RequestMapping("/class")
 @RestController
-public class ClassController {
+public class ClassController extends BaseController {
     @Autowired
     private RedisUtil redisUtil;
     @Autowired
     private IClassService classService;
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public JsonResult createClass(HttpServletRequest request,

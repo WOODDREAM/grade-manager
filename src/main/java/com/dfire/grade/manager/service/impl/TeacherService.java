@@ -49,7 +49,7 @@ public class TeacherService implements ITeacherService {
             teacherMapper.insertTeacher(teacher);
             signBean = teacherMapper.selectByMobile(mobile);
             redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
-            return JsonResult.newInstance("1", Contants.Message.SUCCESS_REQUEST, signBean);
+            return JsonResult.jsonSuccessData(signBean);
         }
         return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1004), Contants.Message.ERROR_EXSITING_USER);
     }

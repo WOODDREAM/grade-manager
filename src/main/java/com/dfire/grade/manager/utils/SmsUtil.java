@@ -46,10 +46,11 @@ public class SmsUtil {
         int statusCode = postMethod.getStatusCode();
         String result = new String(postMethod.getResponseBodyAsString().getBytes("gbk"));
         if (200 == statusCode && Integer.parseInt(result) > 0) {
+            LoggerFactory.SMSFACTORY.info(LoggerMarker.SMS_SEND, content, "信息发送成功！");
             return JsonResult.jsonSuccessMes(Contants.SMSMessage.SUCCESS_SEND);
         }
+        LoggerFactory.SMSFACTORY.error(LoggerMarker.SMS_SEND, content + result, "发送信息出错！");
         String message = null;
-        LoggerFactory.SMSFACTORY.error(LoggerMarker.SMS_SEND_CODE, result, "发送信息出错！");
         postMethod.releaseConnection();
         if (result.equals("-1")) {
             message = Contants.SMSMessage.NO_SUCH_ACCOUNT;

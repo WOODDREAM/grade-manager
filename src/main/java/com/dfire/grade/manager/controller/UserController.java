@@ -2,14 +2,20 @@ package com.dfire.grade.manager.controller;
 
 import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.SignBean;
+import com.dfire.grade.manager.logger.LoggerFactory;
+import com.dfire.grade.manager.logger.LoggerMarker;
 import com.dfire.grade.manager.service.IStudentService;
 import com.dfire.grade.manager.service.ITeacherService;
 import com.dfire.grade.manager.utils.MessageDigestUtil;
 import com.dfire.grade.manager.utils.RedisUtil;
+import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * User:huangtao
@@ -18,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("user")
-public class UserController {
+public class UserController extends BaseController{
     @Autowired
     private ITeacherService teacherService;
     @Autowired
@@ -46,11 +52,20 @@ public class UserController {
                              @RequestParam(value = "pass_word", required = true) String passWord,
                              @RequestParam(value = "sex", required = true) Integer sex,
                              @RequestParam(value = "type", required = true) Integer type) throws Exception {
+        JsonResult result = null;
         if (type == 1) {
-            return studentService.insertStudent(name, school, passWord, mobile, email, sex);
+            result = studentService.insertStudent(name, school, passWord, mobile, email, sex);
         }
         if (type == 2) {
-            return teacherService.insertTeacher(name, school, email, mobile, passWord, sex);
+            result = teacherService.insertTeacher(name, school, passWord, mobile, email, sex);
+        }
+        if (result.isSuccess()) {
+            SignBean signBean = (SignBean) result.getData();
+            Map<String, Object> map = new HashMap<>();
+            map.put("signBean", signBean);
+            map.put("message", "用户注册成功！");
+            LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
+            return result;
         }
         return JsonResult.failedInstance(Contants.Message.ERROR_NO_USER_TYPE);
     }
@@ -74,13 +89,20 @@ public class UserController {
         if (result.isSuccess()) {
             if (null != result.getData()) {
                 SignBean signBean = (SignBean) result.getData();
+                Map<String, Object> map = new HashMap<>();
+                map.put("signBean", signBean);
                 if (MessageDigestUtil.getStrCode(passWord).equals(signBean.getPassWord())) {
                     signBean.setSign(true);
                     redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_MOBILE + mobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
                     redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+                    map.put("message", "用户登录成功！");
+                    LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
                     return JsonResult.jsonSuccessData(signBean);
-                } else
+                } else {
+                    map.put("message", "用户登录失败，密码错误！");
+                    LoggerFactory.USER_FACTORY.error(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
                     return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1006), Contants.Message.ERROR_PASS_WORD);
+                }
             }
             return JsonResult.jsonSuccessMes(Contants.Message.ERROR_PLEASE_SIGN_UP);
         } else {

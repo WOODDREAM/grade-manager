@@ -13,16 +13,16 @@ import java.util.Map;
  */
 @Service
 public interface TeacherMapper {
-    void insertTeacher(Teacher teacher);
+    void insertTeacher(Teacher teacher) throws Exception;
 
-    Teacher selectById(String id);
+    Teacher selectById(String id) throws Exception;
 
-    SignBean selectByMobile(String mobile);
+    SignBean selectByMobile(String mobile) throws Exception;
 
-    void modifyMobile(Map<String, String> map);
+    void modifyMobile(Map<String, String> map) throws Exception;
 
-    void modifyPassword(Map<String, String> map);
+    void modifyPassword(Map<String, String> map) throws Exception;
 
-    void modifyEmail(Map<String, String> map);
+    void modifyEmail(Map<String, String> map) throws Exception;
 
 }

@@ -34,12 +34,12 @@ public class BaseControllerTestHelper extends AbstractTestNGSpringContextTests {
 
     public String name = "yrm";
     public String email = "1556882728@qq.com";
-    public String mobile = "12345678903";
+    public String mobile = "12345678908";
     public String school = "浙工大";
     public String passWord = "123456";
     public Integer type2 = 2;
     public Integer type1 = 1;
     public Integer sex = 1;
 
-    public String uid = "365e3103885041bdbc341f232a1cd6d0";
+    public String uid = "dfa8b409440a4acb934c85ae17920e64";
 }

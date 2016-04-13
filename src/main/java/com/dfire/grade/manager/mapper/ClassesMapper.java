@@ -18,14 +18,14 @@ public interface ClassesMapper {
      *
      * @param classes
      */
-    void addClass(Classes classes);
+    void addClass(Classes classes) throws Exception;
 
     /**
      * 插入课程表详情
      *
      * @param classDetails
      */
-    void addClassDetailsBath(List<ClassDetail> classDetails);
+    void addClassDetailsBath(List<ClassDetail> classDetails) throws Exception;
 
     /**
      * 根据课程id查询课程
@@ -33,7 +33,7 @@ public interface ClassesMapper {
      * @param classesId
      * @return
      */
-    Classes selectClassById(String classesId);
+    Classes selectClassById(String classesId) throws Exception;
 
-    Classes selectClassByTeacherId(String teacherId);
+    Classes selectClassByTeacherId(String teacherId) throws Exception;
 }

@@ -10,5 +10,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface GradeMapper {
-    void insertGrade(Grade grade);
+    void insertGrade(Grade grade) throws Exception;
 }

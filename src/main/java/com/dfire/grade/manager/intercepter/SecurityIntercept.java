@@ -4,6 +4,7 @@ import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.SignBean;
 import com.dfire.grade.manager.utils.RedisUtil;
 import com.dfire.grade.manager.vo.JsonResult;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -24,9 +25,9 @@ public class SecurityIntercept implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse response, Object o) throws Exception {
-        SignBean signBean = (SignBean) redisUtil.getValue(httpServletRequest.getHeader(Contants.RedisContent.STUDENT_CACHE_BY_ID), SignBean.class);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.STUDENT_CACHE_BY_ID + httpServletRequest.getHeader(Contants.UID), SignBean.class);
         if (null == signBean) {
-            signBean = (SignBean) redisUtil.getValue(httpServletRequest.getHeader(Contants.RedisContent.TEACHER_CACHE_BY_ID), SignBean.class);
+            signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + httpServletRequest.getHeader(Contants.UID), SignBean.class);
         }
         if (null == signBean || !signBean.isSign()) {
             JsonResult jsonResult = new JsonResult();
@@ -35,6 +36,9 @@ public class SecurityIntercept implements HandlerInterceptor {
             response.setCharacterEncoding("UTF-8");
             response.addHeader("Content-Type", "application/json");
             response.containsHeader(String.valueOf(jsonResult));
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonStr = objectMapper.writeValueAsString(jsonResult);
+            response.getWriter().write(jsonStr);
             return false;
         }
         return true;

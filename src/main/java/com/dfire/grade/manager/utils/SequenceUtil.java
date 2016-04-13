@@ -1,5 +1,9 @@
 package com.dfire.grade.manager.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -16,6 +20,29 @@ public class SequenceUtil {
     public static String getSequence() {
         UUID uuid = UUID.randomUUID();
         return uuid.toString().trim().replace("-", "");
+    }
+
+
+    public static String mapToJson(Map<String, Object> o) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonStr = null;
+        try {
+            jsonStr = objectMapper.writeValueAsString(o);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return jsonStr;
+    }
+
+    public static String Object2Json(Object o) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonStr = null;
+        try {
+            jsonStr = objectMapper.writeValueAsString(o);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return jsonStr;
     }
 
     public static void main(String[] args) {

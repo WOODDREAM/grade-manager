@@ -20,7 +20,10 @@ public class BaseController {
      */
     @ExceptionHandler
     public JsonResult exp(Exception ex) {
-        LoggerFactory.SYSTEM.error(ex.getMessage(), "系统异常");
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("message", "系统异常");
+//        map.put("cause", ex.getMessage());
+        LoggerFactory.REQUEST.error(ex.getMessage(),ex.getCause());
         // 根据不同错误返回不同的错误信息
         if (ex instanceof BusinessException) {
             return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1001), Contants.Message.ERROR_SYSTEM);

@@ -1,40 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-       <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-              <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                     <level>DEBUG</level>
-              </filter>
-              <immediateFlush>false</immediateFlush>
-              <layout class="ch.qos.logback.classic.PatternLayout">
-                     <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %X
-                            %logger{32}.%M:%L - %msg%n
-                     </pattern>
-              </layout>
-       </appender>
+<!--
+scan:当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。
+scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
+debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。
+-->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <appender name="MAIl" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <immediateFlush>false</immediateFlush>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %X %logger{32}.%M:%L - %msg%n
+            </pattern>
+        </layout>
+    </appender>
 
-       <appender name="FILE"
-                 class="ch.qos.logback.core.rolling.RollingFileAppender">
-              <file>${user.home}/logs/consolelogs/rocketmq-console.log</file>
-              <append>true</append>
-              <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                     <fileNamePattern>${user.home}/logs/consolelogs/rocketmq-console-%d{yyyy-MM-dd}.%i.log
-                     </fileNamePattern>
-                     <timeBasedFileNamingAndTriggeringPolicy
-                             class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                            <maxFileSize>104857600</maxFileSize>
-                     </timeBasedFileNamingAndTriggeringPolicy>
-                     <MaxHistory>10</MaxHistory>
-              </rollingPolicy>
-              <encoder>
-                     <pattern>%d{yyyy-MM-dd HH:mm:ss,GMT+8} %-5p [%t] - %m%n
-                     </pattern>
-                     <charset class="java.nio.charset.Charset">UTF-8</charset>
-              </encoder>
-       </appender>
-
-       <root level="DEBUG">
-              <appender-ref ref="STDOUT" />
-              <appender-ref ref="FILE" />
-       </root>
+    <!--请求异常日志-->
+    <appender name="REQUEST" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/logs/log/request.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${user.home}/logs/back/request-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>104857600</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <MaxHistory>10</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %marker %-5level %C{0}.%M:%L - %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+    <!--邮件发送日志-->
+    <appender name="MAIl" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/logs/log/mail.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${user.home}/logs/back/mail-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>104857600</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <MaxHistory>10</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %marker %-5level %C{0}.%M:%L - %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+    <!--短信发送日志-->
+    <appender name="SMS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/logs/log/sms.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${user.home}/logs/back/sms-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>104857600</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <MaxHistory>10</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %marker %-5level %C{0}.%M:%L - %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+    <!--用户登录注册日志-->
+    <appender name="USER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/logs/log/user.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${user.home}/logs/back/user-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>104857600</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <MaxHistory>10</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %marker %-5level %C{0}.%M:%L - %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+    <logger name="MAIL" level="INFO" additivity="false">
+        <appender-ref ref="MAIl"/>
+    </logger>
+    <logger name="SMS" level="INFO" additivity="false">
+        <appender-ref ref="SMS"/>
+    </logger>
+    <logger name="USER" level="INFO" additivity="false">
+        <appender-ref ref="USER"/>
+    </logger>
+    <root level="ERROR">
+        <appender-ref ref="REQUEST"/>
+    </root>
 
 </configuration>
