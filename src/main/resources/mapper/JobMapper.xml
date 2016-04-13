@@ -26,4 +26,33 @@
         #{valid}
         )
     </insert>
+    <sql id="selectColumn">
+        SELECT job_id,name,datail,tea_id,cla_id,create_time,type,valid
+        FROM job
+    </sql>
+    <select id="selectJob" parameterType="java.util.Map">
+        <include refid="selectColumn"/>
+        <where>
+            <if test="teacherId !=null and teacherId !=''">AND tea_id = #{teacherId}</if>
+            <if test="classId !=null and classId=''">AND cla_id = #{classId}</if>
+            <if test="jobId !=null and jobId!=''">AND job_id = #{jobId}</if>
+            <if test="isAnswer !=null">AND is_need_answer = #{isAnswer}</if>
+        </where>
+        AND valid = 1
+    </select>
+    <update id="updateJod" parameterType="com.dfire.grade.manager.bean.Job">
+        UPDATE FROM job
+        SET
+        <if test="name !=null and name !=''">name = #{name}</if>
+        <if test="detail !=null and detail !=''">detail = #{detail}</if>
+        <if test="classId !=null and classId !=''">cla_id = #{classId}</if>
+        <if test="isAnswer !=null and (isAnswer == 1 || isAnswer == 2)">is_need_answer = #{isAnswer}</if>
+        <if test="type !=null and type !=''">type = #{type}</if>
+        <if test="name !=null and name !=''">name = #{name}</if>
+    </update>
+    <delete id="deleteJod" parameterType="String">
+        UPDATE FROM job
+        set valid = 0
+        WHERE job_id = #{jobId}
+    </delete>
 </mapper>

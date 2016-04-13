@@ -25,7 +25,7 @@ import java.util.Map;
  * description：
  */
 @Service("studentService")
-public class StudentService implements IStudentService {
+public class StudentServiceImpl implements IStudentService {
     @Resource
     private StudentMapper studentMapper;
     @Autowired

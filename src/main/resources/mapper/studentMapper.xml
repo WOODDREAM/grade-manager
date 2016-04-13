@@ -78,23 +78,19 @@
       AND st.stu_id=sc.stu_id
       AND valid='1'
     </select>
-    <select id="selectStudentByCondition" resultMap="studentMapper"
-            parameterType="com.dfire.grade.manager.bean.Student">
+    <select id="selectStudentByCondition" resultMap="studentMapper" parameterType="java.util.Map">
         SELECT stu_id,name,email,school
-        FORM student st,student_class sc
         FORM student st
         LEFT JOIN student_class sc on st.stu_id=sc.stu_id
         <where>
             sc.tea_id=#{teacherId}
             AND valid='1'
-            <if test="name != null">name LIKE '%#{name}%'</if>
-            <if test="mobile != null">mobile LIKE '%#{mobile}%'</if>
-            <if test="email != null">email LIKE '%#{email}%'</if>
-            <if test="school != null">school LIKE '%#{school}%'</if>
-            <if test="joinTime != null">join_time LIKE '%#{joinTime}%'</if>
-            <if test="sex != null">sex = #{sex}</if>
+            <if test="student.name != null and student.name!=''">AND name LIKE '%#{student.name}%'</if>
+            <if test="student.mobile != null and student.mobile!=''">AND mobile LIKE '%#{student.mobile}%'</if>
+            <if test="student.email != null and student.email !=''">AND email LIKE '%#{student.email}%'</if>
+            <if test="student.school != null and student.school !=''">AND school LIKE '%#{student.school}%'</if>
+            <if test="student.joinTime != null and student.joinTime!=''">AND join_time LIKE '%#{student.joinTime}%'</if>
+            <if test="student.sex != null and (student.sex==1 || student.sex == 2)">AND sex = #{student.sex}</if>
         </where>
-        WHERE sc.tea_id=#{teacherId}
-        AND valid='1'
     </select>
 </mapper>

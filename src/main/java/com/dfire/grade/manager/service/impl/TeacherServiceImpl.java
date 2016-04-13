@@ -23,7 +23,7 @@ import java.util.Map;
  * description：
  */
 @Service("teacherService")
-public class TeacherService implements ITeacherService {
+public class TeacherServiceImpl implements ITeacherService {
     @Resource
     private TeacherMapper teacherMapper;
     @Resource

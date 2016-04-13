@@ -3,6 +3,8 @@ package com.dfire.grade.manager.mapper;
 import com.dfire.grade.manager.bean.Job;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 /**
  * User:huangtao
  * Date:2016-03-04
@@ -10,5 +12,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface JobMapper {
-    void insertJob(Job job) throws Exception;
+    void createJob(Job job) throws Exception;
+
+    Job selectJob(Map<String, Object> map) throws Exception;
+
+    Job updateJod(Map<String, Object> map) throws Exception;
+
+    void deleteJod(String jobId) throws Exception;
 }

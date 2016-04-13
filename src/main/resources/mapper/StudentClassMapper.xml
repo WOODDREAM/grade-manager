@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dfire.grade.manager.mapper.StudentClassMapper">
+    <resultMap id="studentMapper" type="com.dfire.grade.manager.bean.StudentClass">
+        <id column="stu_cla_id" property="stuClasId" jdbcType="VARCHAR"/>
+        <result column="cla_id" property="classId" jdbcType="VARCHAR"/>
+        <result column="stu_id" property="studentId" jdbcType="VARCHAR"/>
+        <result column="tea_id" property="teacherId" jdbcType="VARCHAR"/>
+        <result column="valid" property="valid" jdbcType="SMALLINT"/>
+    </resultMap>
+    <insert id="create" parameterType="com.dfire.grade.manager.bean.StudentClass">
+        INSERT INTO student_class (stu_cla_id,cla_id ,stu_Id,tea_id,valid,create_time)
+        VALUES {
+        #{stuClasId},
+        #{classId},
+        #{studentId},
+        #{teacherId},
+        #{valid},
+        #{createTime}
+        }
+    </insert>
+    <sql id="selectColumn">
+        SELECT stu_cla_id,cla_id ,stu_Id,tea_id,create_time
+        FROM student_class
+    </sql>
+    <select id="selectRelationship" parameterType="com.dfire.grade.manager.bean.StudentClass">
+        <include refid="selectColumn"/>
+        <where>
+            valid = 1;
+            <if test="classId != null and classId !=''">AND cla_id = #{classId}</if>
+            <if test="studentId != null and studentId != ''">AND stu_id = #{studentId}</if>
+            <if test="teacherId != null and teacherId != ''">AND tea_id = #{teacherId}</if>
+            <if test="createTime !=null and createTime != ''">AND create_time = #{createTime}</if>
+        </where>
+    </select>
+    <delete id="deleteById" parameterType="com.dfire.grade.manager.bean.StudentClass">
+        UPDATE FROM student_class
+        SET valid = 0
+        <where>
+            valid = 1;
+            <if test="classId != null and classId !=''">AND cla_id = #{classId}</if>
+            <if test="studentId != null and studentId != ''">AND stu_id = #{studentId}</if>
+            <if test="teacherId != null and teacherId != ''">AND tea_id = #{teacherId}</if>
+            <if test="createTime !=null and createTime != ''">AND create_time = #{createTime}</if>
+        </where>
+    </delete>
+</mapper>
