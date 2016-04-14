@@ -3,7 +3,6 @@ package com.dfire.grade.manager.service;
 import com.dfire.grade.manager.bean.Classes;
 import com.dfire.grade.manager.vo.ClassIncludeSchoolTime;
 
-import javax.swing.plaf.PanelUI;
 import java.util.List;
 
 /**
@@ -23,4 +22,7 @@ public interface IClassService {
 
     public void deleteClassByClassId(String classesId) throws Exception;
 
+    public Classes selectClassById(String classId) throws Exception;
+
+    public Classes selectClassIncludeDetailById(String classId) throws Exception;
 }

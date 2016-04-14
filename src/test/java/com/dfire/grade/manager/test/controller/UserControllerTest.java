@@ -36,7 +36,7 @@ public class UserControllerTest extends BaseControllerTestHelper {
     @Test
     public void testSignIn() throws Exception {
         mockMvc.perform(post("/user/sign_in").param("mobile", mobile).param("pass_word", passWord)
-                .param("type", String.valueOf(type2)))
+                .param("type", String.valueOf(type1)))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("code").value("1"));
     }

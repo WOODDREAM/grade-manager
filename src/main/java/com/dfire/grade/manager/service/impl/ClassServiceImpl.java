@@ -1,16 +1,19 @@
 package com.dfire.grade.manager.service.impl;
 
+import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.ClassDetail;
 import com.dfire.grade.manager.bean.Classes;
 import com.dfire.grade.manager.exception.SchoolTimeException;
 import com.dfire.grade.manager.mapper.ClassesMapper;
 import com.dfire.grade.manager.service.IClassService;
 import com.dfire.grade.manager.utils.DateUtil;
+import com.dfire.grade.manager.utils.RedisUtil;
 import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.ClassIncludeSchoolTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
@@ -24,6 +27,8 @@ import java.util.*;
 public class ClassServiceImpl implements IClassService {
     @Autowired
     private ClassesMapper classesMapper;
+    @Autowired
+    private RedisUtil redisUtil;
 
     /**
      * 遇异常回滚，创建新事物
@@ -32,7 +37,7 @@ public class ClassServiceImpl implements IClassService {
      * @throws Exception
      */
     @Override
-    @Transactional(rollbackFor = Exception.class )
+    @Transactional(rollbackFor = Exception.class)
     public void insertClass(List<ClassIncludeSchoolTime> schoolTimes) throws Exception {
         for (ClassIncludeSchoolTime schoolTime : schoolTimes) {
             Classes myClass = new Classes();
@@ -71,6 +76,8 @@ public class ClassServiceImpl implements IClassService {
                 classesMapper.addClassDetailsBath(classDetails);
             }
             classesMapper.addClass(myClass);
+            myClass.setClassDetails(classDetails);
+            redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, myClass, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
         }
     }
 
@@ -95,5 +102,29 @@ public class ClassServiceImpl implements IClassService {
 
     }
 
+    @Override
+    public Classes selectClassById(String classId) throws Exception {
+        Assert.hasLength(classId, "classId不能为空！");
+        Classes classes = (Classes) redisUtil.getValue(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, Classes.class);
+        if (null == classes) {
+            classes = classesMapper.selectClassById(classId);
+            if (null != classes) {
+                redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, classes, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            }
+        }
+        return classes;
+    }
 
+    @Override
+    public Classes selectClassIncludeDetailById(String classId) throws Exception {
+        Assert.hasLength(classId, "classId不能为空！");
+        Classes classes = (Classes) redisUtil.getValue(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, Classes.class);
+        if (null == classes) {
+            classes = classesMapper.selectClassIncludeDetailById(classId);
+            if (null != classes) {
+                redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, classes, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            }
+        }
+        return classes;
+    }
 }

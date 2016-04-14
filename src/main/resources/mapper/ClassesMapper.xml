@@ -7,28 +7,32 @@
         <result column="tea_Id" property="teacherId" jdbcType="VARCHAR"/>
         <result column="period" property="period" jdbcType="VARCHAR"/>
         <result column="credit" property="credit" jdbcType="DOUBLE"/>
-        <result column="term" property="term" jdbcType="DATE"/>
         <result column="create_time" property="createTime" jdbcType="DATE"/>
         <result column="isValid" property="valid" jdbcType="BOOLEAN"/>
         <result column="frequency" property="frequency" jdbcType="SMALLINT"/>
         <result column="fre_unit" property="frequencyUnit" jdbcType="VARCHAR"/>
+        <association property="classDetails" column="class_id" javaType="java.util.List" resultMap="classDetailMapper"/>
     </resultMap>
-    <resultMap id="classDetailMapper" type="com.dfire.grade.manager.bean.ClassDetail" extends="classesMapper">
-        <collection property="classDetails">
+    <resultMap id="classDetailMapper" type="com.dfire.grade.manager.bean.ClassDetail">
             <id column="class_detail_id" property="classDetailId" jdbcType="VARCHAR"/>
+            <result column="class_id" property="classId" jdbcType="VARCHAR"/>
             <result column="week_day" property="weekDay" jdbcType="SMALLINT"/>
             <result column="part" property="part" jdbcType="SMALLINT"/>
             <result column="create_time" property="createTime" jdbcType="DATE"/>
             <result column="isValid" property="isValid" jdbcType="BOOLEAN"/>
             <result column="term" property="term" jdbcType="DATE"/>
-        </collection>
     </resultMap>
 
     <sql id="selectColumn">
-        SELECT cla_id,name,period,credit,frequency,fre_unit FROM class
+        SELECT cla_id,name,tea_Id,period,credit,frequency,fre_unit FROM class
     </sql>
     <sql id="selectClassDetailColumn">
         SELECT class_detail_id,week_day,part,term FROM class_detail
+    </sql>
+    <sql id="selectBothColumn">
+        SELECT cla_id,name,tea_Id,period,credit,frequency,fre_unit,class_detail_id,class_id,week_day,part,term
+        FROM class,class_detail
+        WHERE class.cla_id = class_detail.class_id
     </sql>
     <insert id="addClass" parameterType="com.dfire.grade.manager.bean.Classes">
         INSERT INTO class (cla_id,name,tea_id,period,credit,create_time,isvalid,frequency,fre_unit)
@@ -77,4 +81,8 @@
         set isValid = '0'
         where cla_id = #{classId}
     </delete>
+    <select id="selectClassIncludeDetailById" parameterType="String" resultMap="classesMapper">
+        <include refid="selectBothColumn"/>
+        AND class.cla_id = #{classId}
+    </select>
 </mapper>

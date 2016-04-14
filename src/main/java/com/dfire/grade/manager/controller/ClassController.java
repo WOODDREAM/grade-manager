@@ -1,6 +1,7 @@
 package com.dfire.grade.manager.controller;
 
 import com.dfire.grade.manager.Contants;
+import com.dfire.grade.manager.bean.Classes;
 import com.dfire.grade.manager.bean.SignBean;
 import com.dfire.grade.manager.service.IClassService;
 import com.dfire.grade.manager.utils.RedisUtil;
@@ -50,5 +51,18 @@ public class ClassController extends BaseController {
         }
         classService.insertClass(classIncludeSchoolTimes);
         return null;
+    }
+
+    @RequestMapping(value = "/detail", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public JsonResult getClassIncludeDetail(@RequestParam(value = "class_id", required = true) String classId) throws Exception {
+        Classes classes = classService.selectClassIncludeDetailById(classId);
+        if (null != classes) {
+            return JsonResult.jsonSuccessData(classes);
+        } else {
+            return JsonResult.failedInstance("未找到此课程");
+        }
+
     }
 }

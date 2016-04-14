@@ -8,7 +8,7 @@ import java.util.Date;
  * description：
  */
 public class StudentClass {
-    private String stuClasId;
+    private String relationshipId;
     private String classId;
     private String studentId;
     private String teacherId;
@@ -47,12 +47,12 @@ public class StudentClass {
         this.valid = valid;
     }
 
-    public String getStuClasId() {
-        return stuClasId;
+    public String getRelationshipId() {
+        return relationshipId;
     }
 
-    public void setStuClasId(String stuClasId) {
-        this.stuClasId = stuClasId;
+    public void setRelationshipId(String relationshipId) {
+        this.relationshipId = relationshipId;
     }
 
     public Date getCreateTime() {

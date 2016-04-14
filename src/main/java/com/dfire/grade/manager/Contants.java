@@ -20,10 +20,6 @@ public class Contants {
         public static final String SUCCESS_SEND = "发送成功";
     }
 
-    public static class Http {
-        public static final String REQUEST_FAIL = "请求失败";
-    }
-
     public static class RedisContent {
         public static final String VERIFY_CODE_PREFIX = "verify:code:";
         public static final int VERIFY_CODE_EXPIRE_TIME = 30;
@@ -35,6 +31,9 @@ public class Contants {
         public static final TimeUnit SECOND_UNIT = TimeUnit.SECONDS;
         public static final TimeUnit MINUTES_UNIT = TimeUnit.MINUTES;
         public static final TimeUnit HOURS_UNIT = TimeUnit.HOURS;
+        public static final String CLASS_CACHE_BY_ID= "class:id:";
+        public static final int CLASS_CACHE_EXPIRE_TIME = 15;
+
     }
 
     public class ErrorCode {

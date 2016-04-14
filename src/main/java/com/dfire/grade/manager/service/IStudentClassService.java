@@ -1,6 +1,7 @@
 package com.dfire.grade.manager.service;
 
 import com.dfire.grade.manager.bean.StudentClass;
+import com.dfire.grade.manager.vo.JsonResult;
 
 import java.util.List;
 
@@ -9,8 +10,8 @@ import java.util.List;
  * Date:2016-04-13
  * description：
  */
-public interface StudentClassService {
-    void createRelationship(StudentClass studentClass) throws Exception;
+public interface IStudentClassService {
+    JsonResult createRelationship(String studentId,String classesId,String teacherId) throws Exception;
 
     List<StudentClass> selectRelationship(StudentClass studentClass) throws Exception;
 

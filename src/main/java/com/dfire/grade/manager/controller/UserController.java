@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("user")
-public class UserController extends BaseController{
+public class UserController extends BaseController {
     @Autowired
     private ITeacherService teacherService;
     @Autowired
@@ -93,8 +93,17 @@ public class UserController extends BaseController{
                 map.put("signBean", signBean);
                 if (MessageDigestUtil.getStrCode(passWord).equals(signBean.getPassWord())) {
                     signBean.setSign(true);
-                    redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_MOBILE + mobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
-                    redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+                    String keyMobile = null;
+                    String keyId = null;
+                    if (type == 1) {
+                        keyId = Contants.RedisContent.STUDENT_CACHE_BY_ID + signBean.getId();
+                        keyMobile = Contants.RedisContent.STUDENT_CACHE_BY_MOBILE + mobile;
+                    } else {
+                        keyMobile = Contants.RedisContent.TEACHER_CACHE_BY_MOBILE + mobile;
+                        keyId = Contants.RedisContent.TEACHER_CACHE_BY_ID + signBean.getId();
+                    }
+                    redisUtil.setValuePre(keyId, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+                    redisUtil.setValuePre(keyMobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
                     map.put("message", "用户登录成功！");
                     LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
                     return JsonResult.jsonSuccessData(signBean);

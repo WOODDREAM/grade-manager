@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 /**
  * User:huangtao
@@ -49,11 +49,21 @@ public class ClassControllerTest extends BaseControllerTestHelper {
         String jsonStr = JSON.toJSONString(classFormList);
         mockMvc.perform(post("/class/create")
 //                .header("class_list", jsonStr)
-                .header("UID", uid)
+                .header("UID", teacherUid)
                 .content(jsonStr)
                 .contentType("application/json")
                 .accept("application/json; charset=UTF-8")
                 .characterEncoding("UTF-8"))
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(jsonPath("code").value("1"));
+    }
+
+    @Test
+    public void testGetDetail() throws Exception {
+        mockMvc.perform(post("/class/detail").param("class_id", classId)
+                .header("UID", studentUid)
+                .contentType("application/json")
+                .accept("application/json; charset=UTF-8")
+                .characterEncoding("UTF-8"))
+                .andExpect(jsonPath("code").value("1"));
     }
 }

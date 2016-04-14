@@ -35,5 +35,21 @@ public interface ClassesMapper {
      */
     Classes selectClassById(String classesId) throws Exception;
 
+    /**
+     * 根据 teacherId 查询教师的课程
+     *
+     * @param teacherId
+     * @return
+     * @throws Exception
+     */
     Classes selectClassByTeacherId(String teacherId) throws Exception;
+
+    /**
+     * 查询课程包括课程详情
+     *
+     * @param classId
+     * @return
+     * @throws Exception
+     */
+    Classes selectClassIncludeDetailById(String classId) throws Exception;
 }
