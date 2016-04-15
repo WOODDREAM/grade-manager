@@ -37,6 +37,10 @@ public class StudentClassImpl implements IStudentClassService {
         studentClass.setTeacherId(teacherId);
         studentClass.setStudentId(studentId);
         studentClass.setValid(true);
+        StudentClass studentClasses = studentClassMapper.selectById(studentClass);
+        if (null != studentClasses) {
+            return JsonResult.failedInstance(Contants.Message.ERROR_JOIN_CLASS_ALREADY);
+        }
         studentClassMapper.create(studentClass);
         return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_REQUEST);
     }

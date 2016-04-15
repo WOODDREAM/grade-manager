@@ -37,11 +37,11 @@ public class StudentClassController extends BaseController {
         String studentId = signBean.getId();
         Classes classes = classService.selectClassById(classId);
         String teacherId = classes.getTeacherId();
-        JsonResult result = studentClassService.createRelationship(studentId, teacherId, classId);
+        JsonResult result = studentClassService.createRelationship(studentId, classId, teacherId);
         if (null != result && result.isSuccess()) {
             return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_REQUEST);
         } else {
-            return JsonResult.failedInstance(Contants.Message.ERROR_REQUEST);
+            return result;
         }
     }
 }

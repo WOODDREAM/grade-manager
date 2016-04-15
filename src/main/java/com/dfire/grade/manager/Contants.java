@@ -31,7 +31,10 @@ public class Contants {
         public static final TimeUnit SECOND_UNIT = TimeUnit.SECONDS;
         public static final TimeUnit MINUTES_UNIT = TimeUnit.MINUTES;
         public static final TimeUnit HOURS_UNIT = TimeUnit.HOURS;
-        public static final String CLASS_CACHE_BY_ID= "class:id:";
+        public static final String CLASS_CACHE_BY_ID = "class:id:";
+        public static final String TEACHER_CLASS_CACHE_BY_ID = "class:teacher:id";
+        public static final String STUDENT_CLASS_CACHE_BY_ID = "class:student:id";
+        //        public static final String
         public static final int CLASS_CACHE_EXPIRE_TIME = 15;
 
     }
@@ -57,5 +60,6 @@ public class Contants {
         public static final String ERROR_PASS_WORD = "密码错误";
         public static final String ERROR_PLEASE_SIGN_UP = "请注册！";
         public static final String ERROR_PLEASE_SIGN_IN = "请登录！";
+        public static final String ERROR_JOIN_CLASS_ALREADY = "已经加入课程";
     }
 }

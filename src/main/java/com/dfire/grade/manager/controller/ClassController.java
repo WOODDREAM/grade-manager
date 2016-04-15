@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,7 +51,7 @@ public class ClassController extends BaseController {
 
         }
         classService.insertClass(classIncludeSchoolTimes);
-        return null;
+        return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_REQUEST);
     }
 
     @RequestMapping(value = "/detail", method = {RequestMethod.POST, RequestMethod.GET})
@@ -65,15 +66,59 @@ public class ClassController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "/class", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/teacher", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public JsonResult getClass(@RequestParam(value = "class_id", required = true) String classId) throws Exception {
-        Classes classes = classService.selectClassById(classId);
+    public JsonResult getTeacherClass(HttpServletRequest request,
+                                      @RequestParam(value = "start_time", required = false) Date startTime,
+                                      @RequestParam(value = "end_time", required = false) Date endTime,
+                                      @RequestParam(value = "index", required = true) Integer index,
+                                      @RequestParam(value = "page_size", required = true) Integer pageSize) throws Exception {
+        if (null == index) {
+            index = 0;
+        }
+        if (null == pageSize) {
+            pageSize = 10;
+        }
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + request.getHeader("UID"), SignBean.class);
+        String teacherId = signBean.getId();
+        List<Classes> classes = classService.selectAllClassByTeacherIdAndPage(teacherId, index, pageSize, startTime, endTime);
         if (null != classes) {
             return JsonResult.jsonSuccessData(classes);
         } else {
             return JsonResult.failedInstance("未找到此课程");
         }
+    }
+
+    @RequestMapping(value = "/student", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public JsonResult getStudentClass(HttpServletRequest request,
+                                      @RequestParam(value = "start_time", required = false) Date startTime,
+                                      @RequestParam(value = "end_time", required = false) Date endTime,
+                                      @RequestParam(value = "index", required = true) Integer index,
+                                      @RequestParam(value = "page_size", required = true) Integer pageSize) throws Exception {
+        if (null == index) {
+            index = 0;
+        }
+        if (null == pageSize) {
+            pageSize = 10;
+        }
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.STUDENT_CACHE_BY_ID + request.getHeader("UID"), SignBean.class);
+        String student = signBean.getId();
+        List<Classes> classes = classService.selectAllClassByStudentIDAndPage(student, index, pageSize, startTime, endTime);
+        if (null != classes) {
+            return JsonResult.jsonSuccessData(classes);
+        } else {
+            return JsonResult.failedInstance("未找到此课程");
+        }
+    }
+
+    @RequestMapping(value = "/delete", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public JsonResult deleteClass(@RequestParam(value = "class_id", required = false) String classId) throws Exception {
+        classService.deleteClassByClassId(classId);
+        return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_REQUEST);
     }
 }

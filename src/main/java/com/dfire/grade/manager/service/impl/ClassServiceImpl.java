@@ -3,6 +3,7 @@ package com.dfire.grade.manager.service.impl;
 import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.ClassDetail;
 import com.dfire.grade.manager.bean.Classes;
+import com.dfire.grade.manager.bean.Page;
 import com.dfire.grade.manager.exception.SchoolTimeException;
 import com.dfire.grade.manager.mapper.ClassesMapper;
 import com.dfire.grade.manager.service.IClassService;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -82,13 +84,92 @@ public class ClassServiceImpl implements IClassService {
     }
 
     @Override
-    public List<Classes> selectAllClassByTeacherIdAndPage(String teacherId) throws Exception {
-        return null;
+    public List<Classes> selectAllClassByTeacherIdAndPage(String teacherId, int index, int pageSize, Date startTime, Date endTime) throws Exception {
+        Assert.hasLength(teacherId, "teacherId不能为空！");
+        //最低一次取10条记录
+        if (0 == pageSize) {
+            pageSize = 10;
+        }
+        Calendar cla = Calendar.getInstance();
+        int year = cla.get(Calendar.YEAR);
+        int month = cla.get(Calendar.MONTH);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (null == startTime) {
+            if (month <= 7) {
+                startTime = sdf.parse(String.valueOf(year) + "-01-01 00:00:00");
+            } else {
+                startTime = sdf.parse(String.valueOf(year) + "-07-01 00:00:00");
+            }
+        }
+        if (null == endTime) {
+            if (month <= 7) {
+                endTime = sdf.parse(String.valueOf(year) + "-07-01 00:00:00");
+            } else {
+                endTime = sdf.parse(String.valueOf(year) + "-13-01 00:00:00");
+            }
+        }
+        List<Classes> classesList = (List<Classes>) redisUtil.getValue(Contants.RedisContent.TEACHER_CLASS_CACHE_BY_ID + teacherId, List.class);
+        if (null == classesList) {
+            Page page = new Page();
+            page.setId(teacherId);
+            page.setStartIndex(index);
+            page.setPageSize(pageSize);
+            page.setStartTime(startTime);
+            page.setEndTime(endTime);
+            classesList = classesMapper.selectClassByTeacherId(page);
+        }
+        return classesList;
     }
 
     @Override
-    public List<Classes> selectAllClassByStudentIDAndPage(String studentId) throws Exception {
-        return null;
+    public List<Classes> selectAllClassByStudentIDAndPage(String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception {
+        Assert.hasLength(studentId, "studentId不能为空！");
+        //最低一次取10条记录
+        if (0 == pageSize) {
+            pageSize = 10;
+        }
+        Calendar cla = Calendar.getInstance();
+        int year = cla.get(Calendar.YEAR);
+        int month = cla.get(Calendar.MONTH);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (null == startTime) {
+            if (month <= 7) {
+                startTime = sdf.parse(String.valueOf(year) + "-01-01 00:00:00");
+            } else {
+                startTime = sdf.parse(String.valueOf(year) + "-07-01 00:00:00");
+            }
+        }
+        if (null == endTime) {
+            if (month <= 7) {
+                endTime = sdf.parse(String.valueOf(year) + "-07-01 00:00:00");
+            } else {
+                endTime = sdf.parse(String.valueOf(year) + "-13-01 00:00:00");
+            }
+        }
+        List<Classes> classesList = (List<Classes>) redisUtil.getValue(Contants.RedisContent.STUDENT_CLASS_CACHE_BY_ID + studentId, List.class);
+        if (null == classesList) {
+            Page page = new Page();
+            page.setId(studentId);
+            page.setStartIndex(index);
+            page.setPageSize(pageSize);
+            page.setStartTime(startTime);
+            page.setEndTime(endTime);
+            classesList = classesMapper.selectClassByStudentId(page);
+        }
+        return classesList;
+    }
+
+    @Override
+    public Classes selectClassById(String classId) throws Exception {
+        Assert.hasLength(classId, "classId不能为空！");
+        Classes classes = (Classes) redisUtil.getValue(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, Classes.class);
+        if (null == classes) {
+            classes = classesMapper.selectClassById(classId);
+            if (null != classes) {
+                redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, classes, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            }
+        }
+        return classes;
     }
 
     @Override
@@ -99,8 +180,8 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public void deleteClassByClassId(String classesId) throws Exception {
-        redisUtil.del(Contants.RedisContent.CLASS_CACHE_BY_ID + classesId);
-        classesMapper.deleteClassByID(classesId);
+//        redisUtil.del(Contants.RedisContent.CLASS_CACHE_BY_ID + classesId);
+//        classesMapper.deleteClassByID(classesId);
     }
 
     @Override

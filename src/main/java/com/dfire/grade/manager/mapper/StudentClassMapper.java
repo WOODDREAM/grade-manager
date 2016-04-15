@@ -36,4 +36,13 @@ public interface StudentClassMapper {
      * @throws Exception
      */
     void deleteById(StudentClass studentClass) throws Exception;
+
+    /**
+     * 根据stuId和clasId查课程
+     *
+     * @param studentClass
+     * @return
+     * @throws Exception
+     */
+    StudentClass selectById(StudentClass studentClass) throws Exception;
 }

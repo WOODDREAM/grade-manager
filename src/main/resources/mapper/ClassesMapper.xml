@@ -68,13 +68,42 @@
         WHERE cla_id=#{classId}
         AND isvalid='1'
     </select>
-    <select id="selectClassByTeacherId" resultMap="classesMapper" parameterType="String">
-        <include refid="selectColumn"/>
-        WHERE teacher_id=#{teacherId}
-        AND isvalid='1'
-        ORDER BY createTime
+    <select id="selectClassByTeacherId" resultMap="classesMapper" parameterType="com.dfire.grade.manager.bean.Page">
+        <include refid="selectBothColumn"/>
+        AND tea_id=#{id}
+        AND class.isvalid='1'
+        AND class.create_time &gt; #{startTime}
+        AND class.create_time &lt; #{endTime}
+        ORDER BY class.create_time
+        -- LIMIT #{startIndex},#{pageSize}
+
     </select>
+    <select id="selectClassByStudentId" resultMap="classesMapper" parameterType="com.dfire.grade.manager.bean.Page">
+        <include refid="selectBothColumn"/>
+        AND cla_id IN (
+        SELECT cla_id FROM student_class WHERE stu_id = #{id}
+        AND create_time &gt; #{startTime}
+        AND create_time &lt; #{endTime}
+        AND valid = '1'
+        )
+        ORDER BY class.create_time
+        -- LIMIT #{startIndex},#{pageSize}
+    </select>
+    <select id="selectClassIncludeDetailById" parameterType="String" resultMap="classesMapper">
+        <include refid="selectBothColumn"/>
+        AND class.cla_id = #{classId}
+    </select>
+    <!--不能用-->
     <delete id="deleteClassByID" parameterType="String">
+        UPDATE job
+        set valid ='0'
+        where class_id = #{classId}
+        UPDATE grade
+        set valid ='0'
+        where cla_id = #{classId}
+        UPDATE student_class
+        set valid ='0'
+        where cla_id = #{classId}
         update class_detail
         set isvalid = '0'
         where class_id = #{classId}
@@ -82,8 +111,5 @@
         set isValid = '0'
         where cla_id = #{classId}
     </delete>
-    <select id="selectClassIncludeDetailById" parameterType="String" resultMap="classesMapper">
-        <include refid="selectBothColumn"/>
-        AND class.cla_id = #{classId}
-    </select>
+
 </mapper>

@@ -68,8 +68,18 @@ public class ClassControllerTest extends BaseControllerTestHelper {
     }
 
     @Test
-    public void testGetClass() throws Exception {
-        mockMvc.perform(post("/class/class").param("class_id", classId)
+    public void testGetTeacherClass() throws Exception {
+        mockMvc.perform(post("/class/teacher").param("index", "0").param("page_size", "6")
+                .header("UID", teacherUid)
+                .contentType("application/json")
+                .accept("application/json; charset=UTF-8")
+                .characterEncoding("UTF-8"))
+                .andExpect(jsonPath("code").value("1"));
+    }
+
+    @Test
+    public void testGetStudentClass() throws Exception {
+        mockMvc.perform(post("/class/student").param("index", "0").param("page_size", "6")
                 .header("UID", studentUid)
                 .contentType("application/json")
                 .accept("application/json; charset=UTF-8")

@@ -24,10 +24,11 @@
         SELECT stu_cla_id,cla_id ,stu_Id,tea_id,create_time
         FROM student_class
     </sql>
-    <select id="selectRelationship" parameterType="com.dfire.grade.manager.bean.StudentClass" resultMap="relationshipMapper">
+    <select id="selectRelationship" parameterType="com.dfire.grade.manager.bean.StudentClass"
+            resultMap="relationshipMapper">
         <include refid="selectColumn"/>
         <where>
-            valid = 1;
+            valid = 1
             <if test="classId != null and classId !=''">AND cla_id = #{classId}</if>
             <if test="studentId != null and studentId != ''">AND stu_id = #{studentId}</if>
             <if test="teacherId != null and teacherId != ''">AND tea_id = #{teacherId}</if>
@@ -38,11 +39,19 @@
         UPDATE FROM student_class
         SET valid = 0
         <where>
-            valid = 1;
+            valid = 1
             <if test="classId != null and classId !=''">AND cla_id = #{classId}</if>
             <if test="studentId != null and studentId != ''">AND stu_id = #{studentId}</if>
             <if test="teacherId != null and teacherId != ''">AND tea_id = #{teacherId}</if>
             <if test="createTime !=null and createTime != ''">AND create_time = #{createTime}</if>
         </where>
     </delete>
+    <select id="selectById" parameterType="com.dfire.grade.manager.bean.StudentClass" resultMap="relationshipMapper">
+        <include refid="selectColumn"/>
+        <where>
+            valid = 1
+            <if test="classId != null and classId !=''">AND cla_id = #{classId}</if>
+            <if test="studentId != null and studentId != ''">AND stu_id = #{studentId}</if>
+        </where>
+    </select>
 </mapper>

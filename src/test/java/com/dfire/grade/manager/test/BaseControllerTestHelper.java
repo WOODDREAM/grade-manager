@@ -46,5 +46,5 @@ public class BaseControllerTestHelper extends AbstractTestNGSpringContextTests {
 
     public String teacherUid = "dfa8b409440a4acb934c85ae17920e64";
     public String studentUid = "01feac0caf8c42a7a2afd156cc5244fa";
-    public String classId = "6a719522f3734cc48fd078f4c097c3ba";
+    public String classId = "35b96584f9784cb2bb7c9034ebbeabcb";
 }
