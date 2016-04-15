@@ -22,7 +22,11 @@ public interface IClassService {
 
     public void deleteClassByClassId(String classesId) throws Exception;
 
-    public Classes selectClassById(String classId) throws Exception;
-
+    /**
+     * 查询课程详情
+     * @param classId
+     * @return
+     * @throws Exception
+     */
     public Classes selectClassIncludeDetailById(String classId) throws Exception;
 }

@@ -99,20 +99,8 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public void deleteClassByClassId(String classesId) throws Exception {
-
-    }
-
-    @Override
-    public Classes selectClassById(String classId) throws Exception {
-        Assert.hasLength(classId, "classId不能为空！");
-        Classes classes = (Classes) redisUtil.getValue(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, Classes.class);
-        if (null == classes) {
-            classes = classesMapper.selectClassById(classId);
-            if (null != classes) {
-                redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, classes, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
-            }
-        }
-        return classes;
+        redisUtil.del(Contants.RedisContent.CLASS_CACHE_BY_ID + classesId);
+        classesMapper.deleteClassByID(classesId);
     }
 
     @Override

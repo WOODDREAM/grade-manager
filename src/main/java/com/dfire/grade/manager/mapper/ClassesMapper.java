@@ -52,4 +52,6 @@ public interface ClassesMapper {
      * @throws Exception
      */
     Classes selectClassIncludeDetailById(String classId) throws Exception;
+
+    void deleteClassByID(String classId) throws Exception;
 }

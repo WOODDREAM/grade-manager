@@ -63,6 +63,17 @@ public class ClassController extends BaseController {
         } else {
             return JsonResult.failedInstance("未找到此课程");
         }
+    }
 
+    @RequestMapping(value = "/class", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public JsonResult getClass(@RequestParam(value = "class_id", required = true) String classId) throws Exception {
+        Classes classes = classService.selectClassById(classId);
+        if (null != classes) {
+            return JsonResult.jsonSuccessData(classes);
+        } else {
+            return JsonResult.failedInstance("未找到此课程");
+        }
     }
 }

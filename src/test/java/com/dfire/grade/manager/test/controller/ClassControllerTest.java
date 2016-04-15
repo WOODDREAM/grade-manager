@@ -66,4 +66,14 @@ public class ClassControllerTest extends BaseControllerTestHelper {
                 .characterEncoding("UTF-8"))
                 .andExpect(jsonPath("code").value("1"));
     }
+
+    @Test
+    public void testGetClass() throws Exception {
+        mockMvc.perform(post("/class/class").param("class_id", classId)
+                .header("UID", studentUid)
+                .contentType("application/json")
+                .accept("application/json; charset=UTF-8")
+                .characterEncoding("UTF-8"))
+                .andExpect(jsonPath("code").value("1"));
+    }
 }
