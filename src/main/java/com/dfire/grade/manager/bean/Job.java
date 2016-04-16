@@ -14,10 +14,10 @@ public class Job implements Serializable {
     private String detail;//作业详细信息
     private String teacherId;//教师id
     private String classId;//课程id
-    private String isAnswer;//答案
+    private boolean isAnswer;//答案
     private Date createTime;//创建类型
     private int type;//作业类型
-    private float valid;//是否有效
+    private boolean valid;//是否有效
 
 
     public String getJobId() {
@@ -60,11 +60,11 @@ public class Job implements Serializable {
         this.classId = classId;
     }
 
-    public String getIsAnswer() {
+    public boolean isAnswer() {
         return isAnswer;
     }
 
-    public void setIsAnswer(String isAnswer) {
+    public void setAnswer(boolean isAnswer) {
         this.isAnswer = isAnswer;
     }
 
@@ -84,11 +84,11 @@ public class Job implements Serializable {
         this.type = type;
     }
 
-    public float getValid() {
+    public boolean isValid() {
         return valid;
     }
 
-    public void setValid(float valid) {
+    public void setValid(boolean valid) {
         this.valid = valid;
     }
 }

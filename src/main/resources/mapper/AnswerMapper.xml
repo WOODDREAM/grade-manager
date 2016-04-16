@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dfire.grade.manager.mapper.AnswerMapper">
+    <resultMap id="answerMapper" type="com.dfire.grade.manager.bean.Answer">
+        <id column="ans_id" property="answerId" jdbcType="VARCHAR"/>
+        <result column="stu_id" property="studentId" jdbcType="VARCHAR"/>
+        <result column="job_id" property="jobId" jdbcType="VARCHAR"/>
+        <result column="answer" property="answer" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+    </resultMap>
+    <insert id="createAnswer" parameterType="com.dfire.grade.manager.bean.Answer">
+        INSERT INTO answer(ans_id,stu_id,job_id,answer,create_time)
+        VALUES (
+        #{answerId},
+        #{studentId},
+        #{jobId},
+        #{answer},
+        #{createTime},
+        #{valid}
+        )
+    </insert>
+    <sql id="selectColumn">
+        SELECT ans_id,stu_id,job_id,answer
+        FROM answer
+    </sql>
+    <select id="selectAnswerByCondition" parameterType="com.dfire.grade.manager.bean.Answer">
+        <include refid="selectColumn"/>
+        <where>
+            valid ='1'
+            <if test="answerId != null and answerId != ''"> AND answer_id = #{answerId}</if>
+            <if test="studentId != null and studentId != ''">AND stu_id = #{studentId}</if>
+            <if test="jobId != null and jobId != ''">AND job_id = #{jobId}</if>
+        </where>
+    </select>
+</mapper>

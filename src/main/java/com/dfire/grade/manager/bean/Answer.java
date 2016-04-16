@@ -1,5 +1,7 @@
 package com.dfire.grade.manager.bean;
 
+import java.util.Date;
+
 /**
  * User:huangtao
  * Date:2016-04-12
@@ -10,6 +12,8 @@ public class Answer {
     private String studentId;
     private String jobId;
     private String answer;
+    private Date createTime;
+    private boolean valid;
 
     public String getAnswerId() {
         return answerId;
@@ -41,5 +45,21 @@ public class Answer {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 }
