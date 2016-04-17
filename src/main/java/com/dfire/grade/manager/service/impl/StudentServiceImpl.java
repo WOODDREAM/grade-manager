@@ -12,7 +12,6 @@ import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -33,10 +32,10 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public JsonResult insertStudent(String name, String school, String passWord, String mobile, String email, int sex) throws Exception {
-        Assert.hasLength(mobile, "手机号不能为空");
-        Assert.hasLength(name, "姓名不能为空");
-        Assert.hasLength(school, "学校不能为空");
-        Assert.hasLength(passWord, "密码不能为空");
+        SequenceUtil.isBlank(mobile, "手机号不能为空");
+        SequenceUtil.isBlank(name, "姓名不能为空");
+        SequenceUtil.isBlank(school, "学校不能为空");
+        SequenceUtil.isBlank(passWord, "密码不能为空");
         SignBean signBean = studentMapper.selectStudentByMobile(mobile);
         if (null == signBean) {
             Student student = new Student();
@@ -59,20 +58,21 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public JsonResult queryRoleById(String id) throws Exception {
-        Assert.hasLength(id, "id不能为空");
+        SequenceUtil.isBlank(id, "studentId不能为空");
         Student student = (Student) redisUtil.getValue(Contants.RedisContent.STUDENT_CLASS_CACHE_BY_ID + id, Student.class);
         if (null == student) {
             student = studentMapper.queryStudentById(id);
             redisUtil.setValuePre(Contants.RedisContent.STUDENT_CLASS_CACHE_BY_ID + student.getStudentId(), student, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
         }
-        if (null == student)
+        if (null == student){
             return JsonResult.failedInstance(Contants.Message.ERROR_NOT_FIND);
+        }
         return JsonResult.jsonSuccessData(student);
     }
 
     @Override
     public JsonResult queryRoleByMobile(String mobile) throws Exception {
-        Assert.hasLength(mobile, "手机号不能为空");
+        SequenceUtil.isBlank(mobile, "手机号不能为空");
         SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.STUDENT_SIGN_CACHE_BY_MOBILE + mobile, SignBean.class);
         if (null == signBean) {
             signBean = studentMapper.selectStudentByMobile(mobile);
@@ -88,8 +88,8 @@ public class StudentServiceImpl implements IStudentService {
     @Override
 //    @Transactional(rollbackFor = Exception.class)
     public JsonResult modifyPassword(String id, String passWord) throws Exception {
-        Assert.hasLength(id, "studentId不可以为空");
-        Assert.hasLength(passWord, "passWord不可以为空");
+        SequenceUtil.isBlank(id, "studentId不可以为空");
+        SequenceUtil.isBlank(passWord, "passWord不可以为空");
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
         map.put("passWord", passWord);
@@ -99,8 +99,8 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public JsonResult modifyMobile(String id, String mobile) throws Exception {
-        Assert.hasLength(id, "studentId不可以为空");
-        Assert.hasLength(mobile, "mobile不可以为空");
+        SequenceUtil.isBlank(id, "studentId不可以为空");
+        SequenceUtil.isBlank(mobile, "mobile不可以为空");
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
         map.put("mobile", mobile);
@@ -110,8 +110,8 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public JsonResult modifyEmail(String id, String email) throws Exception {
-        Assert.hasLength(id, "studentId不可以为空");
-        Assert.hasLength(email, "email不可以为空");
+        SequenceUtil.isBlank(id, "studentId不可以为空");
+        SequenceUtil.isBlank(email, "email不可以为空");
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
         map.put("email", email);
@@ -121,14 +121,14 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public JsonResult selectStudentsInClass(String classId) throws Exception {
-        Assert.hasLength(classId, "classId不能为空");
+        SequenceUtil.isBlank(classId, "classId不能为空");
         List<Student> students = studentMapper.selectStudentsInClass(classId);
         return JsonResult.jsonSuccessData(students);
     }
 
     @Override
     public JsonResult selectStudentUnderTeacher(String teacherId) throws Exception {
-        Assert.hasLength(teacherId, "teacherId不能为空");
+        SequenceUtil.isBlank(teacherId, "teacherId不能为空");
         List<Student> students = studentMapper.selectStudentUnderTeacher(teacherId);
         return JsonResult.jsonSuccessData(students);
     }

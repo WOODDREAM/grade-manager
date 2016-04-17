@@ -15,7 +15,6 @@ import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import java.text.SimpleDateFormat;
@@ -87,7 +86,7 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public JsonResult selectAllClassByTeacherIdAndPage(String teacherId, int index, int pageSize, Date startTime, Date endTime) throws Exception {
-        Assert.hasLength(teacherId, "teacherId不能为空！");
+        SequenceUtil.isBlank(teacherId, "teacherId不能为空！");
         //最低一次取10条记录
         if (0 == pageSize) {
             pageSize = 10;
@@ -125,7 +124,7 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public JsonResult selectAllClassByStudentIDAndPage(String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception {
-        Assert.hasLength(studentId, "studentId不能为空！");
+        SequenceUtil.isBlank(studentId, "studentId不能为空！");
         //最低一次取10条记录
         if (0 == pageSize) {
             pageSize = 10;
@@ -163,7 +162,7 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public JsonResult selectClassById(String classId) throws Exception {
-        Assert.hasLength(classId, "classId不能为空！");
+        SequenceUtil.isBlank(classId, "classId不能为空！");
         Classes classes = (Classes) redisUtil.getValue(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, Classes.class);
         if (null == classes) {
             classes = classesMapper.selectClassById(classId);
@@ -189,7 +188,7 @@ public class ClassServiceImpl implements IClassService {
 
     @Override
     public JsonResult selectClassIncludeDetailById(String classId) throws Exception {
-        Assert.hasLength(classId, "classId不能为空！");
+        SequenceUtil.isBlank(classId, "classId不能为空！");
         Classes classes = (Classes) redisUtil.getValue(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, Classes.class);
         if (null == classes) {
             classes = classesMapper.selectClassIncludeDetailById(classId);

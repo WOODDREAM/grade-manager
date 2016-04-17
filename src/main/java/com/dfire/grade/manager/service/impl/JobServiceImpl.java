@@ -2,6 +2,7 @@ package com.dfire.grade.manager.service.impl;
 
 import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.Job;
+import com.dfire.grade.manager.exception.ParameterException;
 import com.dfire.grade.manager.mapper.JobMapper;
 import com.dfire.grade.manager.service.IClassService;
 import com.dfire.grade.manager.service.IJobService;
@@ -37,9 +38,9 @@ public class JobServiceImpl implements IJobService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public JsonResult createJob(String teacherId, String classId, String name, String detail, int type, boolean isAnswer, String jobId) throws Exception {
-        Assert.hasLength(classId, "classId不能为空");
-        Assert.hasLength(teacherId, "teacherId不能为空");
-        Assert.hasLength(name, "jobName不能为空");
+        SequenceUtil.isBlank(classId, "classId不能为空");
+        SequenceUtil.isBlank(teacherId, "teacherId不能为空");
+        SequenceUtil.isBlank(name, "jobName不能为空");
         //1平时作业 2期中作业 3期末作业
         if (type == 1 || type == 2 || type == 3) {
             JsonResult classResult = classService.selectClassById(classId);
@@ -89,7 +90,11 @@ public class JobServiceImpl implements IJobService {
 
     @Override
     public JsonResult selectJob(Map<String, Object> map) throws Exception {
-        Assert.isTrue(!CollectionUtils.isEmpty(map), "查找参数不能为空");
+        try {
+            Assert.isTrue(!CollectionUtils.isEmpty(map));
+        } catch (Exception e) {
+            throw new ParameterException("查找参数不能为空");
+        }
         Map<String, Object> paramMap = new HashMap<>();
         if (map.containsKey("jobId")) {
             paramMap.put("jobId", map.get("jobId"));

@@ -45,22 +45,22 @@
               )
        </insert>
     <update id="modifyPassword" parameterType="java.util.Map">
-        UPDATE FROM student
+        UPDATE student
         SET pass_word=#{passWord}
         WHERE stu_id=#{id} AND valid = '1'
     </update>
     <update id="modifyMobile" parameterType="java.util.Map">
-        UPDATE FROM student
+        UPDATE student
         SET mobile=#{mobile}
         WHERE stu_id=#{id} AND valid = '1'
     </update>
     <update id="modifyEmail" parameterType="java.util.Map">
-        UPDATE FROM student
+        UPDATE student
         SET email=#{email}
         WHERE stu_id=#{id} AND valid = '1'
     </update>
     <delete id="deleteStudentById" parameterType="java.lang.String">
-        UPDATE FROM student
+        UPDATE student
         SET valid='1'
         WHERE stu_id=#{id}
     </delete>

@@ -10,7 +10,6 @@ import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -27,9 +26,9 @@ public class StudentClassServiceImpl implements IStudentClassService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public JsonResult createRelationship(String studentId, String classesId, String teacherId) throws Exception {
-        Assert.hasLength(studentId, "studentId不能为空");
-        Assert.hasLength(teacherId, "teacherId不能为空");
-        Assert.hasLength(classesId, "classId不能为空");
+        SequenceUtil.isBlank(studentId, "studentId不能为空");
+        SequenceUtil.isBlank(teacherId, "teacherId不能为空");
+        SequenceUtil.isBlank(classesId, "classId不能为空");
         StudentClass studentClass = new StudentClass();
         studentClass.setClassId(classesId);
         studentClass.setCreateTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));

@@ -11,8 +11,12 @@
         <result column="type" property="type" jdbcType="SMALLINT"/>
         <result column="create_time" property="createTime" jdbcType="DATE"/>
     </resultMap>
+    <sql id="selectColumn">
+        SELECT gra_id,stu_id,cla_id,tea_id,grade,job_id,type
+        FROM grade
+    </sql>
     <insert id="insertGrade" parameterType="com.dfire.grade.manager.bean.Grade">
-        INSERT INTO grade(gra_id,stu_id,cla_id,tea_id,grade,jod_id,type,create_time)
+        INSERT INTO grade(gra_id,stu_id,cla_id,tea_id,grade,job_id,type,create_time,valid)
         VALUES (
         #{gradeId},
         #{studentId},
@@ -21,7 +25,13 @@
         #{grade},
         #{jobId},
         #{type},
-        #{createTime}
+        #{createTime},
+        #{valid}
         )
     </insert>
+    <select id="selectGradeById" parameterType="String" resultMap="gradeMapper">
+        <include refid="selectColumn"/>
+        WHERE gra_id = #{gradeId}
+        AND valid = '1'
+    </select>
 </mapper>

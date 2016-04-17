@@ -40,6 +40,7 @@ public class Contants {
         public static final int CLASS_CACHE_EXPIRE_TIME = 15;
 
         public static final String ANSWER_CACHE_BY_ID = "answer:id:";
+        public static final String GRADE_CACHE_BY_ID = "grade:id";
 
     }
 

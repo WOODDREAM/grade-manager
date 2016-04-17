@@ -18,11 +18,18 @@
     <mvc:interceptors>
         <!--处理跨域访问-->
         <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/*"/>-->
-            <!--<bean class="com.dfire.grade.manager.intercepter.AccessIntercept"/>-->
+        <!--<mvc:mapping path="/*"/>-->
+        <!--<bean class="com.dfire.grade.manager.intercepter.AccessIntercept"/>-->
         <!--</mvc:interceptor>-->
         <mvc:interceptor>
             <mvc:mapping path="/class/*"/>
+            <mvc:mapping path="/grade/*"/>
+            <mvc:mapping path="/answer/*"/>
+            <mvc:mapping path="/job/*"/>
+            <mvc:mapping path="/student/*"/>
+            <mvc:mapping path="teacher/*"/>
+            <mvc:mapping path="/sms/*"/>
+            <mvc:mapping path="/email/*"/>
             <bean class="com.dfire.grade.manager.intercepter.SecurityIntercept"/>
         </mvc:interceptor>
     </mvc:interceptors>

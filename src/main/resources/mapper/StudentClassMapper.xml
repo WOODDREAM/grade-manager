@@ -36,7 +36,7 @@
         </where>
     </select>
     <delete id="deleteById" parameterType="com.dfire.grade.manager.bean.StudentClass">
-        UPDATE FROM student_class
+        UPDATE student_class
         SET valid = 0
         <where>
             valid = 1

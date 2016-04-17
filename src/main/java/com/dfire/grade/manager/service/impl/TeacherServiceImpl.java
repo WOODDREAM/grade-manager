@@ -11,7 +11,6 @@ import com.dfire.grade.manager.utils.RedisUtil;
 import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -31,10 +30,10 @@ public class TeacherServiceImpl implements ITeacherService {
 
     @Override
     public JsonResult insertTeacher(String name, String school, String passWord, String mobile, String email, int sex) throws Exception {
-        Assert.notNull(mobile, "手机号不能为空");
-        Assert.notNull(name, "姓名不能为空");
-        Assert.notNull(school, "学校不能为空");
-        Assert.notNull(passWord, "密码不能为空");
+        SequenceUtil.isBlank(mobile, "手机号不能为空");
+        SequenceUtil.isBlank(name, "姓名不能为空");
+        SequenceUtil.isBlank(school, "学校不能为空");
+        SequenceUtil.isBlank(passWord, "密码不能为空");
         SignBean signBean = teacherMapper.selectByMobile(mobile);
         if (null == signBean) {
             Teacher teacher = new Teacher();
@@ -56,7 +55,7 @@ public class TeacherServiceImpl implements ITeacherService {
 
     @Override
     public JsonResult queryRoleById(String id) throws Exception {
-        Assert.hasLength(id, "teacherId不能为空");
+        SequenceUtil.isBlank(id, "teacherId不能为空");
         Teacher teacher = (Teacher) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + id, Teacher.class);
         if (null == teacher) {
             teacher = teacherMapper.selectById(id);
@@ -70,8 +69,7 @@ public class TeacherServiceImpl implements ITeacherService {
 
     @Override
     public JsonResult queryRoleByMobile(String mobile) throws Exception {
-        Assert.hasLength(mobile, "mobile不能为空");
-
+        SequenceUtil.isBlank(mobile, "mobile不能为空");
         SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + mobile, SignBean.class);
         if (null == signBean) {
             signBean = teacherMapper.selectByMobile(mobile);
@@ -85,34 +83,47 @@ public class TeacherServiceImpl implements ITeacherService {
 
     @Override
     public JsonResult modifyPassword(String id, String passWord) throws Exception {
-        Assert.hasLength(id, "teacherId不能为空");
-        Assert.hasLength(passWord, "passWord不能为空");
+        SequenceUtil.isBlank(id, "teacherId不能为空");
+        SequenceUtil.isBlank(passWord, "passWord不能为空");
+        String pasStr = MessageDigestUtil.getStrCode(passWord);
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
-        map.put("passWord", passWord);
+        map.put("passWord", pasStr);
         teacherMapper.modifyPassword(map);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + id, SignBean.class);
+        signBean.setPassWord(passWord);
+        redisUtil.setValuePre(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + signBean.getMobile(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+        redisUtil.setValuePre(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
         return JsonResult.jsonSuccessMes("修改成功");
     }
 
     @Override
     public JsonResult modifyMobile(String id, String mobile) throws Exception {
-        Assert.hasLength(id, "teacherId不能为空");
-        Assert.hasLength(mobile, "mobile不能为空");
+        SequenceUtil.isBlank(id, "teacherId不能为空");
+        SequenceUtil.isBlank(mobile, "mobile不能为空");
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
         map.put("mobile", mobile);
         teacherMapper.modifyMobile(map);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + id, SignBean.class);
+        signBean.setMobile(mobile);
+        redisUtil.setValuePre(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + mobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+        redisUtil.setValuePre(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
         return JsonResult.jsonSuccessMes("修改成功");
     }
 
     @Override
     public JsonResult modifyEmail(String id, String email) throws Exception {
-        Assert.hasLength(id, "teacherId不能为空");
-        Assert.hasLength(email, "email不能为空");
+        SequenceUtil.isBlank(id, "teacherId不能为空");
+        SequenceUtil.isBlank(email, "email不能为空");
         Map<String, String> map = new HashMap<>();
         map.put("id", id);
         map.put("email", email);
         teacherMapper.modifyEmail(map);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + id, SignBean.class);
+        signBean.setEmail(email);
+        redisUtil.setValuePre(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + signBean.getMobile(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+        redisUtil.setValuePre(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
         return JsonResult.jsonSuccessMes("修改成功");
     }
 }

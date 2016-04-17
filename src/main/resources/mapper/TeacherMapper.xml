@@ -44,17 +44,17 @@
       )
     </insert>
     <update id="modifyPassword" parameterType="java.util.Map">
-        UPDATE FROM teacher
+        UPDATE  teacher
         SET pass_word=#{passWord}
         WHERE tea_id=#{id}
     </update>
     <update id="modifyMobile" parameterType="java.util.Map">
-        UPDATE FROM teacher
+        UPDATE  teacher
         SET mobile=#{mobile}
         WHERE tea_id=#{id}
     </update>
     <update id="modifyEmail" parameterType="java.util.Map">
-        UPDATE FROM teacher
+        UPDATE  teacher
         SET email=#{email}
         WHERE tea_id=#{id}
     </update>

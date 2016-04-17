@@ -1,5 +1,6 @@
 package com.dfire.grade.manager.utils;
 
+import com.dfire.grade.manager.exception.ParameterException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -44,6 +45,17 @@ public class SequenceUtil {
             e.printStackTrace();
         }
         return jsonStr;
+    }
+
+    public static boolean isBlank(String str, String message) throws ParameterException {
+        if (null != str) {
+            if (!str.isEmpty()) {
+                if (!str.trim().isEmpty()) {
+                    return true;
+                }
+            }
+        }
+        throw new ParameterException(message);
     }
 
     public static void main(String[] args) {

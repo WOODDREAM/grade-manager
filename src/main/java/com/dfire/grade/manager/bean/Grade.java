@@ -17,6 +17,7 @@ public class Grade implements Serializable, Comparable<Grade> {
     private String jobId;//作业id
     private int type;//成绩类型
     private Date createTime;//创建时间
+    private boolean valid;
 
     public String getGradeId() {
         return gradeId;
@@ -80,6 +81,14 @@ public class Grade implements Serializable, Comparable<Grade> {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 
     /**

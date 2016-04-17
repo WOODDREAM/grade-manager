@@ -6,4 +6,7 @@ package com.dfire.grade.manager.exception;
  * description：
  */
 public class ParameterException extends Exception {
+    public ParameterException(String m) {
+        super(m);
+    }
 }

@@ -3,6 +3,7 @@ package com.dfire.grade.manager.service.impl;
 import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.Answer;
 import com.dfire.grade.manager.bean.Job;
+import com.dfire.grade.manager.exception.ParameterException;
 import com.dfire.grade.manager.mapper.AnswerMapper;
 import com.dfire.grade.manager.service.IAnswerService;
 import com.dfire.grade.manager.service.IJobService;
@@ -40,9 +41,9 @@ public class AnswerServiceImpl implements IAnswerService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public JsonResult createAnswer(String studentId, String jobId, String answer) throws Exception {
-        Assert.hasLength(studentId, "studentId不能为空");
-        Assert.hasLength(jobId, "jobId不能为空");
-        Assert.hasLength(answer, "answer不能为空");
+        SequenceUtil.isBlank(studentId, "studentId不能为空");
+        SequenceUtil.isBlank(jobId, "jobId不能为空");
+        SequenceUtil.isBlank(answer, "answer不能为空");
         JsonResult result = studentService.queryRoleById(studentId);
         if (result.isSuccess()) {
             if (null != result.getData()) {
@@ -73,7 +74,11 @@ public class AnswerServiceImpl implements IAnswerService {
 
     @Override
     public JsonResult selectAnswerByCondition(Answer answer) throws Exception {
-        Assert.notNull(answer, "answer对象不能为空！");
+        try {
+            Assert.notNull(answer);
+        }catch (Exception e){
+            throw new ParameterException("answer对象不能为空");
+        }
         List<Answer> answers = answerMapper.selectAnswerByCondition(answer);
         return JsonResult.jsonSuccessData(answers);
     }

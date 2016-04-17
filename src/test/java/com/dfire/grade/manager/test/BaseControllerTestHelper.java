@@ -35,6 +35,8 @@ public class BaseControllerTestHelper extends AbstractTestNGSpringContextTests {
     public AnswerController answerController;
     @Autowired
     public JobController jobController;
+    @Autowired
+    public GradeController gradeController;
 
     public String name = "yrm";
     public String email = "1556882728@qq.com";
@@ -50,4 +52,5 @@ public class BaseControllerTestHelper extends AbstractTestNGSpringContextTests {
     public String classId = "35b96584f9784cb2bb7c9034ebbeabcb";
     public String jobId = "aab7200efb6d49679b8e461532708a62";
     public String answerId = "acb2672184e34d41a905e8ba91d9af64";
+    public String gradeId = "936bfa9669854b6b81f2a031e16e44f5";
 }
