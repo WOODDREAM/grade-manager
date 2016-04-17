@@ -11,6 +11,7 @@ import com.dfire.grade.manager.utils.DateUtil;
 import com.dfire.grade.manager.utils.RedisUtil;
 import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.ClassIncludeSchoolTime;
+import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +41,7 @@ public class ClassServiceImpl implements IClassService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void insertClass(List<ClassIncludeSchoolTime> schoolTimes) throws Exception {
+    public JsonResult insertClass(List<ClassIncludeSchoolTime> schoolTimes) throws Exception {
         for (ClassIncludeSchoolTime schoolTime : schoolTimes) {
             Classes myClass = new Classes();
             String classId = SequenceUtil.getSequence();
@@ -81,10 +82,11 @@ public class ClassServiceImpl implements IClassService {
             myClass.setClassDetails(classDetails);
             redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, myClass, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
         }
+        return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_REQUEST);
     }
 
     @Override
-    public List<Classes> selectAllClassByTeacherIdAndPage(String teacherId, int index, int pageSize, Date startTime, Date endTime) throws Exception {
+    public JsonResult selectAllClassByTeacherIdAndPage(String teacherId, int index, int pageSize, Date startTime, Date endTime) throws Exception {
         Assert.hasLength(teacherId, "teacherId不能为空！");
         //最低一次取10条记录
         if (0 == pageSize) {
@@ -118,11 +120,11 @@ public class ClassServiceImpl implements IClassService {
             page.setEndTime(endTime);
             classesList = classesMapper.selectClassByTeacherId(page);
         }
-        return classesList;
+        return JsonResult.jsonSuccessData(classesList);
     }
 
     @Override
-    public List<Classes> selectAllClassByStudentIDAndPage(String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception {
+    public JsonResult selectAllClassByStudentIDAndPage(String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception {
         Assert.hasLength(studentId, "studentId不能为空！");
         //最低一次取10条记录
         if (0 == pageSize) {
@@ -156,11 +158,11 @@ public class ClassServiceImpl implements IClassService {
             page.setEndTime(endTime);
             classesList = classesMapper.selectClassByStudentId(page);
         }
-        return classesList;
+        return JsonResult.jsonSuccessData(classesList);
     }
 
     @Override
-    public Classes selectClassById(String classId) throws Exception {
+    public JsonResult selectClassById(String classId) throws Exception {
         Assert.hasLength(classId, "classId不能为空！");
         Classes classes = (Classes) redisUtil.getValue(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, Classes.class);
         if (null == classes) {
@@ -169,23 +171,24 @@ public class ClassServiceImpl implements IClassService {
                 redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, classes, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
             }
         }
-        return classes;
+        return JsonResult.jsonSuccessData(classes);
     }
 
     @Override
-    public Classes upDateClassByClassId(String classesId) throws Exception {
+    public JsonResult upDateClassByClassId(String classesId) throws Exception {
 //        classesMapper.
         return null;
     }
 
     @Override
-    public void deleteClassByClassId(String classesId) throws Exception {
+    public JsonResult deleteClassByClassId(String classesId) throws Exception {
 //        redisUtil.del(Contants.RedisContent.CLASS_CACHE_BY_ID + classesId);
 //        classesMapper.deleteClassByID(classesId);
+        return null;
     }
 
     @Override
-    public Classes selectClassIncludeDetailById(String classId) throws Exception {
+    public JsonResult selectClassIncludeDetailById(String classId) throws Exception {
         Assert.hasLength(classId, "classId不能为空！");
         Classes classes = (Classes) redisUtil.getValue(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, Classes.class);
         if (null == classes) {
@@ -194,6 +197,6 @@ public class ClassServiceImpl implements IClassService {
                 redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, classes, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
             }
         }
-        return classes;
+        return JsonResult.jsonSuccessData(classes);
     }
 }

@@ -1,6 +1,7 @@
 package com.dfire.grade.manager.mapper;
 
 import com.dfire.grade.manager.bean.Answer;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * Date:2016-04-16
  * description：
  */
+@Service
 public interface AnswerMapper {
     void createAnswer(Answer answer) throws Exception;
 

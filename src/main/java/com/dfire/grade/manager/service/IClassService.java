@@ -1,7 +1,7 @@
 package com.dfire.grade.manager.service;
 
-import com.dfire.grade.manager.bean.Classes;
 import com.dfire.grade.manager.vo.ClassIncludeSchoolTime;
+import com.dfire.grade.manager.vo.JsonResult;
 
 import java.util.Date;
 import java.util.List;
@@ -13,11 +13,11 @@ import java.util.List;
  */
 public interface IClassService {
 
-    public void insertClass(List<ClassIncludeSchoolTime> schoolTimes) throws Exception;
+    public JsonResult insertClass(List<ClassIncludeSchoolTime> schoolTimes) throws Exception;
 
-    public List<Classes> selectAllClassByTeacherIdAndPage(String teacherId, int index, int pageSize, Date startTime, Date endTime) throws Exception;
+    public JsonResult selectAllClassByTeacherIdAndPage(String teacherId, int index, int pageSize, Date startTime, Date endTime) throws Exception;
 
-    public List<Classes> selectAllClassByStudentIDAndPage(String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception;
+    public JsonResult selectAllClassByStudentIDAndPage(String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception;
 
     /**
      * 查询课程详情
@@ -26,7 +26,7 @@ public interface IClassService {
      * @return
      * @throws Exception
      */
-    public Classes selectClassIncludeDetailById(String classId) throws Exception;
+    public JsonResult selectClassIncludeDetailById(String classId) throws Exception;
 
     /**
      * 根据id差课程，不包括详情
@@ -35,9 +35,9 @@ public interface IClassService {
      * @return
      * @throws Exception
      */
-    public Classes selectClassById(String classId) throws Exception;
+    public JsonResult selectClassById(String classId) throws Exception;
 
-    public Classes upDateClassByClassId(String classesId) throws Exception;
+    public JsonResult upDateClassByClassId(String classesId) throws Exception;
 
     /**
      * 不能用
@@ -45,7 +45,7 @@ public interface IClassService {
      * @param classesId
      * @throws Exception
      */
-    public void deleteClassByClassId(String classesId) throws Exception;
+    public JsonResult deleteClassByClassId(String classesId) throws Exception;
 
 
 }

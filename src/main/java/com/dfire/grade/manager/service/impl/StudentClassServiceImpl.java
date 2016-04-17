@@ -20,7 +20,7 @@ import java.util.List;
  * description：
  */
 @Service("studentClassImpl")
-public class StudentClassImpl implements IStudentClassService {
+public class StudentClassServiceImpl implements IStudentClassService {
     @Autowired
     private StudentClassMapper studentClassMapper;
 

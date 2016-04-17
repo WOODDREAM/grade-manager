@@ -1,7 +1,6 @@
 package com.dfire.grade.manager.controller;
 
 import com.dfire.grade.manager.Contants;
-import com.dfire.grade.manager.bean.Classes;
 import com.dfire.grade.manager.bean.SignBean;
 import com.dfire.grade.manager.service.IClassService;
 import com.dfire.grade.manager.utils.RedisUtil;
@@ -35,7 +34,7 @@ public class ClassController extends BaseController {
     @ResponseStatus(HttpStatus.OK)
     public JsonResult createClass(HttpServletRequest request,
                                   @RequestBody(required = false) List<ClassForm> classFormList) throws Exception {
-        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + request.getHeader("UID"), SignBean.class);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + request.getHeader("UID"), SignBean.class);
         String teacherId = signBean.getId();
         List<ClassIncludeSchoolTime> classIncludeSchoolTimes = new ArrayList<>();
         for (ClassForm classForm : classFormList) {
@@ -50,19 +49,18 @@ public class ClassController extends BaseController {
             classIncludeSchoolTimes.add(classIncludeSchoolTime);
 
         }
-        classService.insertClass(classIncludeSchoolTimes);
-        return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_REQUEST);
+        return classService.insertClass(classIncludeSchoolTimes);
     }
 
     @RequestMapping(value = "/detail", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public JsonResult getClassIncludeDetail(@RequestParam(value = "class_id", required = true) String classId) throws Exception {
-        Classes classes = classService.selectClassIncludeDetailById(classId);
-        if (null != classes) {
-            return JsonResult.jsonSuccessData(classes);
+        JsonResult classes = classService.selectClassIncludeDetailById(classId);
+        if (classes.isSuccess() && null != classes.getData()) {
+            return classes;
         } else {
-            return JsonResult.failedInstance("未找到此课程");
+            return JsonResult.failedInstance(Contants.Message.ERROR_NO_CLASS);
         }
     }
 
@@ -80,13 +78,13 @@ public class ClassController extends BaseController {
         if (null == pageSize) {
             pageSize = 10;
         }
-        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + request.getHeader("UID"), SignBean.class);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + request.getHeader("UID"), SignBean.class);
         String teacherId = signBean.getId();
-        List<Classes> classes = classService.selectAllClassByTeacherIdAndPage(teacherId, index, pageSize, startTime, endTime);
-        if (null != classes) {
-            return JsonResult.jsonSuccessData(classes);
+        JsonResult classes = classService.selectAllClassByTeacherIdAndPage(teacherId, index, pageSize, startTime, endTime);
+        if (classes.isSuccess() && null != classes.getData()) {
+            return classes;
         } else {
-            return JsonResult.failedInstance("未找到此课程");
+            return JsonResult.failedInstance(Contants.Message.ERROR_NO_CLASS);
         }
     }
 
@@ -104,13 +102,13 @@ public class ClassController extends BaseController {
         if (null == pageSize) {
             pageSize = 10;
         }
-        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.STUDENT_CACHE_BY_ID + request.getHeader("UID"), SignBean.class);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.STUDENT_SIGN_CACHE_BY_ID + request.getHeader("UID"), SignBean.class);
         String student = signBean.getId();
-        List<Classes> classes = classService.selectAllClassByStudentIDAndPage(student, index, pageSize, startTime, endTime);
-        if (null != classes) {
-            return JsonResult.jsonSuccessData(classes);
+        JsonResult classes = classService.selectAllClassByStudentIDAndPage(student, index, pageSize, startTime, endTime);
+        if (classes.isSuccess() && null != classes.getData()) {
+            return classes;
         } else {
-            return JsonResult.failedInstance("未找到此课程");
+            return JsonResult.failedInstance(Contants.Message.ERROR_NO_CLASS);
         }
     }
 

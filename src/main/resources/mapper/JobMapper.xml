@@ -13,7 +13,7 @@
         <result column="valid" property="valid" jdbcType="FLOAT"/>
     </resultMap>
     <insert id="createJob" parameterType="com.dfire.grade.manager.bean.Job">
-        INSERT INTO job(job_id,name,datail,tea_id,cla_id,is_need_answer,create_time,type,valid)
+        INSERT INTO job(job_id,name,detail,tea_id,cla_id,is_need_answer,create_time,type,valid)
         VALUES (
         #{jobId},
         #{name},
@@ -27,27 +27,28 @@
         )
     </insert>
     <sql id="selectColumn">
-        SELECT job_id,name,datail,tea_id,cla_id,create_time,type,valid
+        SELECT job_id,name,detail,tea_id,cla_id,create_time,type,valid
         FROM job
     </sql>
-    <select id="selectJob" parameterType="java.util.Map">
+    <select id="selectJob" parameterType="java.util.Map" resultMap="jobMapper">
         <include refid="selectColumn"/>
         <where>
             valid = 1
-            <if test="teacherId !=null and teacherId !=''">AND tea_id = #{teacherId}</if>
-            <if test="classId !=null and classId=''">AND cla_id = #{classId}</if>
-            <if test="jobId !=null and jobId!=''">AND job_id = #{jobId}</if>
+            <if test="teacherId !=null">AND tea_id = #{teacherId}</if>
+            <if test="classId !=null">AND cla_id = #{classId}</if>
+            <if test="jobId !=null">AND job_id = #{jobId}</if>
             <if test="isAnswer !=null">AND is_need_answer = #{isAnswer}</if>
         </where>
     </select>
     <update id="updateJod" parameterType="com.dfire.grade.manager.bean.Job">
-        UPDATE FROM job
+        UPDATE job
         SET
-        <if test="name !=null and name !=''">name = #{name}</if>
-        <if test="detail !=null and detail !=''">detail = #{detail}</if>
-        <if test="classId !=null and classId !=''">cla_id = #{classId}</if>
-        <if test="isAnswer !=null and (isAnswer == 1 || isAnswer == 0)">is_need_answer = #{isAnswer}</if>
-        <if test="type !=null and type !=''">type = #{type}</if>
+        <if test="name !=null">name = #{name}</if>
+        <if test="detail !=null">,detail = #{detail}</if>
+        <if test="classId !=null">,cla_id = #{classId}</if>
+        <if test="isAnswer !=null and (isAnswer == 1 || isAnswer == 0)">,is_need_answer = #{isAnswer}</if>
+        <if test="type !=null">,type = #{type}</if>
+        WHERE job_id = #{jobId}
     </update>
     <delete id="deleteJod" parameterType="String">
         UPDATE FROM job

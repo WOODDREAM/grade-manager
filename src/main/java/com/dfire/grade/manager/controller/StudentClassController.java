@@ -33,15 +33,20 @@ public class StudentClassController extends BaseController {
     @ResponseStatus(HttpStatus.OK)
     public JsonResult joinClass(HttpServletRequest request,
                                 @RequestParam(value = "class_id", required = true) String classId) throws Exception {
-        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.STUDENT_CACHE_BY_ID + request.getHeader(Contants.UID), SignBean.class);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.STUDENT_SIGN_CACHE_BY_ID + request.getHeader(Contants.UID), SignBean.class);
         String studentId = signBean.getId();
-        Classes classes = classService.selectClassById(classId);
-        String teacherId = classes.getTeacherId();
-        JsonResult result = studentClassService.createRelationship(studentId, classId, teacherId);
-        if (null != result && result.isSuccess()) {
-            return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_REQUEST);
+        JsonResult result = classService.selectClassById(classId);
+        if (result.isSuccess() && null != result.getData()) {
+            Classes classes = (Classes) result.getData();
+            String teacherId = classes.getTeacherId();
+            JsonResult rs = studentClassService.createRelationship(studentId, classId, teacherId);
+            if (null != rs && rs.isSuccess()) {
+                return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_REQUEST);
+            } else {
+                return rs;
+            }
         } else {
-            return result;
+            return JsonResult.failedInstance(Contants.Message.ERROR_NO_CLASS);
         }
     }
 }

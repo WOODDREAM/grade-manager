@@ -17,7 +17,7 @@ public interface JobMapper {
 
     List<Job> selectJob(Map<String, Object> map) throws Exception;
 
-    Job updateJod(Job job) throws Exception;
+    void updateJod(Job job) throws Exception;
 
     void deleteJod(String jobId) throws Exception;
 }

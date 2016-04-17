@@ -23,7 +23,7 @@
     <select id="queryStudentById" resultMap="studentMapper" parameterType="String">
         select stu_id,name,email,mobile,school,join_time,sex
         from student
-        WHERE id=#{studentId} AND valid='1'
+        WHERE stu_id=#{studentId} AND valid='1'
     </select>
     <select id="selectStudentByMobile" resultMap="signMapper" parameterType="String">
             select stu_id,name,email,mobile,school,pass_word,sex

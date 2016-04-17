@@ -23,11 +23,13 @@ public class Contants {
     public static class RedisContent {
         public static final String VERIFY_CODE_PREFIX = "verify:code:";
         public static final int VERIFY_CODE_EXPIRE_TIME = 30;
-        public static final int USERINFO_EXPIRE_TIME = 60;
-        public static final String STUDENT_CACHE_BY_ID = "student:id:";
-        public static final String STUDENT_CACHE_BY_MOBILE = "student:mobile:";
+        public static final int USERINFO_EXPIRE_TIME = 30;
+        public static final String STUDENT_SIGN_CACHE_BY_ID = "student:sign:id:";
+        //        public static final String STUDENT_CACHE_BY_ID = "student:id:";
+        public static final String STUDENT_SIGN_CACHE_BY_MOBILE = "student:sign:mobile:";
         public static final String TEACHER_CACHE_BY_ID = "teacher:id:";
-        public static final String TEACHER_CACHE_BY_MOBILE = "teacher:mobile:";
+        public static final String TEACHER_SIGN_CACHE_BY_ID = "teacher:sign:id:";
+        public static final String TEACHER_SIGN_CACHE_BY_MOBILE = "teacher:sign:mobile:";
         public static final TimeUnit SECOND_UNIT = TimeUnit.SECONDS;
         public static final TimeUnit MINUTES_UNIT = TimeUnit.MINUTES;
         public static final TimeUnit HOURS_UNIT = TimeUnit.HOURS;
@@ -36,6 +38,8 @@ public class Contants {
         public static final String STUDENT_CLASS_CACHE_BY_ID = "class:student:id";
         //        public static final String
         public static final int CLASS_CACHE_EXPIRE_TIME = 15;
+
+        public static final String ANSWER_CACHE_BY_ID = "answer:id:";
 
     }
 
@@ -46,6 +50,7 @@ public class Contants {
         public static final int ERROR_1004 = 1004;  //已存在用户
         public static final int ERROR_1005 = 1005;  //不合法时间表
         public static final int ERROR_1006 = 1006;  //密码错误
+        public static final int ERROR_1007 = 1007;  //找到为空
     }
 
     public class Message {
@@ -56,10 +61,17 @@ public class Contants {
         public static final String ERROR_EXSITING_USER = "已存在用户";
         public static final String ERROR_ILLEGAL_SCHOOLTIME = "不合法时间表";
         public static final String ERROR_NO_USER_TYPE = "无此类型用户";
+        public static final String ERROR_NO_CLASS_TYPE = "无此类型作业";
         public static final String ERROR_NOT_FIND = "未找到此用户";
         public static final String ERROR_PASS_WORD = "密码错误";
         public static final String ERROR_PLEASE_SIGN_UP = "请注册！";
         public static final String ERROR_PLEASE_SIGN_IN = "请登录！";
         public static final String ERROR_JOIN_CLASS_ALREADY = "已经加入课程";
+        public static final String ERROR_NO_STUDENT = "没有找到此学生";
+        public static final String ERROR_NO_TEACHER = "没有找到此教师";
+        public static final String ERROR_NO_JOB = "没有找到此作业";
+        public static final String NO_ANSWER = "没有作答";
+        public static final String ERROR_NO_CLASS = "没有找到此课程";
+        public static final String NOT_FIND_JOB = "没有找到作业";
     }
 }

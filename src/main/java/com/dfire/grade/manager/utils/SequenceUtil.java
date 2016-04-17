@@ -18,6 +18,7 @@ public class SequenceUtil {
      * @return
      */
     public static String getSequence() {
+
         UUID uuid = UUID.randomUUID();
         return uuid.toString().trim().replace("-", "");
     }

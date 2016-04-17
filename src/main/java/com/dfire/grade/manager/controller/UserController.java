@@ -96,11 +96,11 @@ public class UserController extends BaseController {
                     String keyMobile = null;
                     String keyId = null;
                     if (type == 1) {
-                        keyId = Contants.RedisContent.STUDENT_CACHE_BY_ID + signBean.getId();
-                        keyMobile = Contants.RedisContent.STUDENT_CACHE_BY_MOBILE + mobile;
+                        keyId = Contants.RedisContent.STUDENT_SIGN_CACHE_BY_ID + signBean.getId();
+                        keyMobile = Contants.RedisContent.STUDENT_SIGN_CACHE_BY_MOBILE + mobile;
                     } else {
-                        keyMobile = Contants.RedisContent.TEACHER_CACHE_BY_MOBILE + mobile;
-                        keyId = Contants.RedisContent.TEACHER_CACHE_BY_ID + signBean.getId();
+                        keyMobile = Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + mobile;
+                        keyId = Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + signBean.getId();
                     }
                     redisUtil.setValuePre(keyId, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
                     redisUtil.setValuePre(keyMobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);

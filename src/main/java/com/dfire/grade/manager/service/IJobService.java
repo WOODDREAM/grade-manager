@@ -1,8 +1,7 @@
 package com.dfire.grade.manager.service;
 
-import com.dfire.grade.manager.bean.Job;
+import com.dfire.grade.manager.vo.JsonResult;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,11 +10,9 @@ import java.util.Map;
  * description：
  */
 public interface IJobService {
-    void createJob(String teacherId, String classId, String name, String detail, int type, boolean isAnswer) throws Exception;
+    JsonResult createJob(String teacherId, String classId, String name, String detail, int type, boolean isAnswer, String jobId) throws Exception;
 
-    List<Job> selectJob(Map<String, Object> map) throws Exception;
+    JsonResult selectJob(Map<String, Object> map) throws Exception;
 
-    Job updateJod(Job job) throws Exception;
-
-    void deleteJod(String jobId) throws Exception;
+    JsonResult deleteJod(String jobId) throws Exception;
 }
