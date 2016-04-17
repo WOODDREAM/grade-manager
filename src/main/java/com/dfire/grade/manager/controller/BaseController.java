@@ -29,7 +29,7 @@ public class BaseController {
             return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1001), Contants.Message.ERROR_SYSTEM);
         }
         if (ex instanceof ParameterException) {
-            return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1002), Contants.Message.ERROR_PARAM);
+            return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1002), ex.getMessage());
         }
         if (ex instanceof SchoolTimeException) {
             return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1005), Contants.Message.ERROR_ILLEGAL_SCHOOLTIME);
