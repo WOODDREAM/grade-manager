@@ -1,21 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dfire.grade.manager.mapper.StudentMapper">
-    <resultMap id="studentMap" type="com.dfire.grade.manager.bean.Student">
-        <id column="stu_name" property="name" jdbcType="VARCHAR"/>
+    <resultMap id="studentMapper" type="com.dfire.grade.manager.bean.Student">
+        <id column="stu_id" property="studentId" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="valid" property="valid" jdbcType="DOUBLE"/>
+        <result column="join_time" property="joinTime" jdbcType="DATE"/>
+        <result column="sex" property="sex" jdbcType="SMALLINT"/>
     </resultMap>
-    <select id="queryStudentById" resultMap="studentMap" parameterType="String">
-              select stu_name,email
-              from students
-              WHERE id=#{id}
-       </select>
-
+    <resultMap id="signMapper" type="com.dfire.grade.manager.bean.SignBean">
+        <result column="stu_id" property="id" jdbcType="VARCHAR"/>
+        <result column="pass_word" property="passWord" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="SMALLINT"/>
+    </resultMap>
+    <select id="queryStudentById" resultMap="studentMapper" parameterType="String">
+        select stu_id,name,email,mobile,school,join_time,sex
+        from student
+        WHERE stu_id=#{studentId} AND valid='1'
+    </select>
+    <select id="selectStudentByMobile" resultMap="signMapper" parameterType="String">
+            select stu_id,name,email,mobile,school,pass_word,sex
+            from student
+            WHERE mobile=#{mobile} AND valid='1'
+    </select>
     <insert id="insertStudent" parameterType="com.dfire.grade.manager.bean.Student">
-              INSERT INTO students (stu_name,email)
+              INSERT INTO student (stu_id,name,email,mobile,pass_word,school,join_time,valid,sex)
               VALUES (
+              #{studentId},
               #{name},
-              #{email}
+              #{email},
+              #{mobile},
+              #{passWord},
+              #{school},
+              #{joinTime},
+              #{valid},
+              #{sex}
               )
        </insert>
+    <update id="modifyPassword" parameterType="java.util.Map">
+        UPDATE student
+        SET pass_word=#{passWord}
+        WHERE stu_id=#{id} AND valid = '1'
+    </update>
+    <update id="modifyMobile" parameterType="java.util.Map">
+        UPDATE student
+        SET mobile=#{mobile}
+        WHERE stu_id=#{id} AND valid = '1'
+    </update>
+    <update id="modifyEmail" parameterType="java.util.Map">
+        UPDATE student
+        SET email=#{email}
+        WHERE stu_id=#{id} AND valid = '1'
+    </update>
+    <delete id="deleteStudentById" parameterType="java.lang.String">
+        UPDATE student
+        SET valid='1'
+        WHERE stu_id=#{id}
+    </delete>
+    <select id="selectStudentsInClass" resultMap="studentMapper" parameterType="java.lang.String">
+      SELECT stu_id,name,email,school
+      FROM student st,student_class sc
+      WHERE sc.cla_id=#{classId}
+      AND st.stu_id=sc.stu_id
+      AND valid='1'
+    </select>
+    <select id="selectStudentUnderTeacher" resultMap="studentMapper" parameterType="java.lang.String">
+      SELECT stu_id,name,email,school
+      FROM student st,student_class sc
+      WHERE sc.tea_id=#{teacherId}
+      AND st.stu_id=sc.stu_id
+      AND valid='1'
+    </select>
+    <select id="selectStudentByCondition" resultMap="studentMapper" parameterType="java.util.Map">
+        SELECT stu_id,name,email,school
+        FORM student st
+        LEFT JOIN student_class sc on st.stu_id=sc.stu_id
+        <where>
+            sc.tea_id=#{teacherId}
+            AND valid='1'
+            <if test="student.name != null and student.name!=''">AND name LIKE '%#{student.name}%'</if>
+            <if test="student.mobile != null and student.mobile!=''">AND mobile LIKE '%#{student.mobile}%'</if>
+            <if test="student.email != null and student.email !=''">AND email LIKE '%#{student.email}%'</if>
+            <if test="student.school != null and student.school !=''">AND school LIKE '%#{student.school}%'</if>
+            <if test="student.joinTime != null and student.joinTime!=''">AND join_time LIKE '%#{student.joinTime}%'</if>
+            <if test="student.sex != null and (student.sex==1 || student.sex == 2)">AND sex = #{student.sex}</if>
+        </where>
+    </select>
 </mapper>
