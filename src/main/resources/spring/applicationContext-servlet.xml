@@ -16,7 +16,8 @@
     <import resource="application-mail.xml"/>
     <import resource="application-sms.xml"/>
     <context:component-scan base-package="com.dfire.grade.manager"/>
-
+    <!--restful风格让web.xml的welcome起作用-->
+    <mvc:default-servlet-handler/>
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <context:annotation-config/>
     <mvc:annotation-driven/>
@@ -38,7 +39,28 @@
             <bean class="com.dfire.grade.manager.intercepter.SecurityIntercept"/>
         </mvc:interceptor>
     </mvc:interceptors>
-
+    <!--配置资源文件映射-->
+    <mvc:resources mapping="/assets/**" location="/assets"/>
+    <mvc:resources mapping="/css/**" location="/css"/>
+    <mvc:resources mapping="/fonts/**" location="/fonts"/>
+    <mvc:resources mapping="/images/**" location="/images"/>
+    <mvc:resources mapping="/img/**" location="/img"/>
+    <mvc:resources mapping="/js/**" location="/js"/>
+    <!--<bean id="loginMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
+    <!--<property name="mappings">-->
+    <!--<props>-->
+    <!--<prop key="/login.do">userController</prop>-->
+    <!--</props>-->
+    <!--</property>-->
+    <!--</bean>-->
+    <!--<bean id="userController" class="com.dfire.grade.manager.controller.UserController">-->
+    <!--<property name="failView">-->
+    <!--<value>login</value>-->
+    <!--</property>-->
+    <!--<property name="successView">-->
+    <!--<value>index</value>-->
+    <!--</property>-->
+    <!--</bean>-->
     <!-- ContentNegotiatingViewResolver视图解析器,利用他就可以配置多种返回值 -->
     <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">-->
     <!--&lt;!&ndash; 这里是否忽略掉accept header，默认就是false &ndash;&gt;-->
@@ -58,7 +80,7 @@
     <!--<bean id="JSPviewResolver"-->
     <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
     <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
-    <!--<property name="prefix" value="/"/>-->
+    <!--<property name="prefix" value="/jsp"/>-->
     <!--<property name="suffix" value=".jsp"/>-->
     <!--<property name="exposeContextBeansAsAttributes" value="true"/>-->
     <!--</bean>-->
@@ -85,9 +107,11 @@
     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
-                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">redirect:/error/500.jsp
-                </prop>
+                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">errors/500</prop>
+                <prop key="java.lang.Exception">errors/500</prop>
             </props>
         </property>
+        <property name="defaultErrorView" value="errors/500"></property>
+        <property name="defaultStatusCode" value="500"></property>
     </bean>
 </beans>

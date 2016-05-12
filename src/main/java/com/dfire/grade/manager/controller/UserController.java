@@ -12,8 +12,14 @@ import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +28,7 @@ import java.util.Map;
  * Date:2016-03-25
  * description：
  */
-@RestController
+@Controller
 @RequestMapping("user")
 public class UserController extends BaseController {
     @Autowired
@@ -31,6 +37,25 @@ public class UserController extends BaseController {
     private IStudentService studentService;
     @Autowired
     private RedisUtil redisUtil;
+
+    private String successView;
+    private String failView;
+
+    public String getSuccessView() {
+        return successView;
+    }
+
+    public void setSuccessView(String successView) {
+        this.successView = successView;
+    }
+
+    public String getFailView() {
+        return failView;
+    }
+
+    public void setFailView(String failView) {
+        this.failView = failView;
+    }
 
     /**
      * 用户注册
@@ -43,15 +68,22 @@ public class UserController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/sign_up", method = RequestMethod.POST)
-    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public JsonResult signUp(@RequestParam(value = "name", required = true) String name,
-                             @RequestParam(value = "mobile", required = true) String mobile,
-                             @RequestParam(value = "email", required = false, defaultValue = "") String email,
-                             @RequestParam(value = "school", required = true) String school,
-                             @RequestParam(value = "pass_word", required = true) String passWord,
-                             @RequestParam(value = "sex", required = true) Integer sex,
-                             @RequestParam(value = "type", required = true) Integer type) throws Exception {
+    public String signUp(Model model,
+//            @RequestParam(value = "name", required = true)
+                         String name,
+//                             @RequestParam(value = "mobile", required = true)
+                         String mobile,
+//                             @RequestParam(value = "email", required = false, defaultValue = "")
+                         String email,
+//                             @RequestParam(value = "school", required = true)
+                         String school,
+//                             @RequestParam(value = "pass_word", required = true)
+                         String passWord,
+//                             @RequestParam(value = "sex", required = true)
+                         Integer sex,
+//                             @RequestParam(value = "type", required = true)
+                         Integer type) throws Exception {
         JsonResult result = null;
         if (type == 1) {
             result = studentService.insertStudent(name, school, passWord, mobile, email, sex);
@@ -65,57 +97,72 @@ public class UserController extends BaseController {
             map.put("signBean", signBean);
             map.put("message", "用户注册成功！");
             LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
-            return result;
+            return "login";
         }
-        return JsonResult.failedInstance(Contants.Message.ERROR_NO_USER_TYPE);
+        return "signup";
+//        return JsonResult.failedInstance(Contants.Message.ERROR_NO_USER_TYPE);
     }
 
-    @RequestMapping(value = "/sign_in", method = {RequestMethod.POST, RequestMethod.GET})
-    @ResponseBody
+    @RequestMapping(value = "/login", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
-    public JsonResult signIn(@RequestParam(value = "mobile", required = true) String mobile,
-                             @RequestParam(value = "pass_word", required = true) String passWord,
-                             @RequestParam(value = "type", required = true) Integer type) throws Exception {
-        JsonResult result = null;
-        if (type == 1) {
-            result = studentService.queryRoleByMobile(mobile);
-        } else {
-            if (type == 2) {
-                result = teacherService.queryRoleByMobile(mobile);
+    public String signIn(HttpServletRequest request, HttpServletResponse response,
+                         Model model,
+//                         @RequestParam(value = "mobile", required = true)
+                         String mobile,
+//                         @RequestParam(value = "pass_word", required = true)
+                         String passWord,
+//                         @RequestParam(value = "type", required = true)
+                         Integer type) throws Exception {
+        if (null != mobile && null != passWord && null != null) {
+
+            JsonResult result = null;
+            if (type == 1) {
+                result = studentService.queryRoleByMobile(mobile);
             } else {
-                return JsonResult.failedInstance(Contants.Message.ERROR_NO_USER_TYPE);
-            }
-        }
-        if (result.isSuccess()) {
-            if (null != result.getData()) {
-                SignBean signBean = (SignBean) result.getData();
-                Map<String, Object> map = new HashMap<>();
-                map.put("signBean", signBean);
-                if (MessageDigestUtil.getStrCode(passWord).equals(signBean.getPassWord())) {
-                    signBean.setSign(true);
-                    String keyMobile = null;
-                    String keyId = null;
-                    if (type == 1) {
-                        keyId = Contants.RedisContent.STUDENT_SIGN_CACHE_BY_ID + signBean.getId();
-                        keyMobile = Contants.RedisContent.STUDENT_SIGN_CACHE_BY_MOBILE + mobile;
-                    } else {
-                        keyMobile = Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + mobile;
-                        keyId = Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + signBean.getId();
-                    }
-                    redisUtil.setValuePre(keyId, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
-                    redisUtil.setValuePre(keyMobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
-                    map.put("message", "用户登录成功！");
-                    LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
-                    return JsonResult.jsonSuccessData(signBean);
+                if (type == 2) {
+                    result = teacherService.queryRoleByMobile(mobile);
                 } else {
-                    map.put("message", "用户登录失败，密码错误！");
-                    LoggerFactory.USER_FACTORY.error(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
-                    return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1006), Contants.Message.ERROR_PASS_WORD);
+                    model.addAttribute("message", "不存在此类型！");
+//                return JsonResult.failedInstance(Contants.Message.ERROR_NO_USER_TYPE);
                 }
             }
-            return JsonResult.jsonSuccessMes(Contants.Message.ERROR_PLEASE_SIGN_UP);
-        } else {
-            return JsonResult.failedInstance(Contants.Message.ERROR_REQUEST);
+            if (result.isSuccess()) {
+                if (null != result.getData()) {
+                    SignBean signBean = (SignBean) result.getData();
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("signBean", signBean);
+                    if (MessageDigestUtil.getStrCode(passWord).equals(signBean.getPassWord())) {
+                        signBean.setSign(true);
+                        String keyMobile = null;
+                        String keyId = null;
+                        if (type == 1) {
+                            keyId = Contants.RedisContent.STUDENT_SIGN_CACHE_BY_ID + signBean.getId();
+                            keyMobile = Contants.RedisContent.STUDENT_SIGN_CACHE_BY_MOBILE + mobile;
+                        } else {
+                            keyMobile = Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + mobile;
+                            keyId = Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + signBean.getId();
+                        }
+                        redisUtil.setValuePre(keyId, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+                        redisUtil.setValuePre(keyMobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+                        map.put("message", "用户登录成功！");
+                        request.getSession().setAttribute(Contants.USER_KEY, signBean);
+                        LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
+
+                        return "index";
+//                    return JsonResult.jsonSuccessData(signBean);
+                    } else {
+                        map.put("message", "用户登录失败，密码错误！");
+                        LoggerFactory.USER_FACTORY.error(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
+                        model.addAttribute("message", "密码错误！");
+//                    return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1006), Contants.Message.ERROR_PASS_WORD);
+                    }
+                }
+//            return JsonResult.jsonSuccessMes(Contants.Message.ERROR_PLEASE_SIGN_UP);
+            } else {
+                model.addAttribute("message", "请求失败！");
+//            return JsonResult.failedInstance(Contants.Message.ERROR_REQUEST);
+            }
         }
+        return "login";
     }
 }

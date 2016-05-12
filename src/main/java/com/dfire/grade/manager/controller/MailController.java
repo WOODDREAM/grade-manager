@@ -2,9 +2,9 @@ package com.dfire.grade.manager.controller;
 
 import com.dfire.grade.manager.utils.MailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
@@ -14,7 +14,7 @@ import java.io.UnsupportedEncodingException;
  * Date:2016-04-17
  * description：
  */
-@RestController
+@Controller
 @RequestMapping("/email")
 public class MailController extends BaseController {
     @Autowired

@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class Contants {
 
     public static final String UID = "UID";
-
+    public final static String USER_KEY = "user";
     public static class SMSMessage {
         public static final String NO_SUCH_ACCOUNT = "没有该用户账号";
         public static final String KEY_INCORRECT = "接口密钥不正确 ";
@@ -23,7 +23,7 @@ public class Contants {
     public static class RedisContent {
         public static final String VERIFY_CODE_PREFIX = "verify:code:";
         public static final int VERIFY_CODE_EXPIRE_TIME = 30;
-        public static final int USERINFO_EXPIRE_TIME = 30;
+        public static final int USERINFO_EXPIRE_TIME = 24*60*60;
         public static final String STUDENT_SIGN_CACHE_BY_ID = "student:sign:id:";
         //        public static final String STUDENT_CACHE_BY_ID = "student:id:";
         public static final String STUDENT_SIGN_CACHE_BY_MOBILE = "student:sign:mobile:";

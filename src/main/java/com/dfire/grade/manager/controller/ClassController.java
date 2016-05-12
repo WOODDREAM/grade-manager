@@ -9,6 +9,7 @@ import com.dfire.grade.manager.vo.JsonResult;
 import com.dfire.grade.manager.vo.form.ClassForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,7 @@ import java.util.List;
  * description：
  */
 @RequestMapping("/class")
-@RestController
+@Controller
 public class ClassController extends BaseController {
     @Autowired
     private RedisUtil redisUtil;
@@ -30,7 +31,6 @@ public class ClassController extends BaseController {
     private IClassService classService;
 
     @RequestMapping(value = "/create", method = {RequestMethod.POST, RequestMethod.GET})
-    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public JsonResult createClass(HttpServletRequest request,
                                   @RequestBody(required = false) List<ClassForm> classFormList) throws Exception {
@@ -53,7 +53,6 @@ public class ClassController extends BaseController {
     }
 
     @RequestMapping(value = "/detail", method = {RequestMethod.POST, RequestMethod.GET})
-    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public JsonResult getClassIncludeDetail(@RequestParam(value = "class_id", required = true) String classId) throws Exception {
         JsonResult classes = classService.selectClassIncludeDetailById(classId);
@@ -65,7 +64,6 @@ public class ClassController extends BaseController {
     }
 
     @RequestMapping(value = "/teacher", method = {RequestMethod.POST, RequestMethod.GET})
-    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public JsonResult getTeacherClass(HttpServletRequest request,
                                       @RequestParam(value = "start_time", required = false) Date startTime,
@@ -89,7 +87,6 @@ public class ClassController extends BaseController {
     }
 
     @RequestMapping(value = "/student", method = {RequestMethod.POST, RequestMethod.GET})
-    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public JsonResult getStudentClass(HttpServletRequest request,
                                       @RequestParam(value = "start_time", required = false) Date startTime,
@@ -113,7 +110,6 @@ public class ClassController extends BaseController {
     }
 
     @RequestMapping(value = "/delete", method = {RequestMethod.POST, RequestMethod.GET})
-    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public JsonResult deleteClass(@RequestParam(value = "class_id", required = false) String classId) throws Exception {
         classService.deleteClassByClassId(classId);

@@ -18,10 +18,10 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
 
     <!--请求异常日志-->
     <appender name="REQUEST" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${user.home}/logs/log/request.log</file>
+        <file>/opt/logs/log/request.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${user.home}/logs/back/request-%d{yyyy-MM-dd}.%i.log
+            <fileNamePattern>/opt/logs/back/request-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>104857600</maxFileSize>
@@ -69,10 +69,10 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
     </appender>
     <!--用户登录注册日志-->
     <appender name="USER" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${user.home}/logs/log/user.log</file>
+        <file>/opt/logs/log/user.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${user.home}/logs/back/user-%d{yyyy-MM-dd}.%i.log
+            <fileNamePattern>/opt/logs/back/user-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>104857600</maxFileSize>

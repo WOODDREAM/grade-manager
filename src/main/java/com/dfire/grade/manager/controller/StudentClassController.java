@@ -9,6 +9,7 @@ import com.dfire.grade.manager.utils.RedisUtil;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * description：
  */
 @RequestMapping("/stu_cla")
-@RestController
+@Controller
 public class StudentClassController extends BaseController {
     @Autowired
     private IStudentClassService studentClassService;
@@ -29,7 +30,6 @@ public class StudentClassController extends BaseController {
     private RedisUtil redisUtil;
 
     @RequestMapping(value = "/join", method = RequestMethod.POST)
-    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public JsonResult joinClass(HttpServletRequest request,
                                 @RequestParam(value = "class_id", required = true) String classId) throws Exception {
