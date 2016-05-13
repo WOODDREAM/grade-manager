@@ -29,6 +29,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--icons-css-->
     <link href="/css/font-awesome.css" rel="stylesheet">
     <link rel="shortcut icon" href="/images/favicon.ico">
+    <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/assets/gritter/css/jquery.gritter.css"/>
     <!--Google Fonts-->
     <link href='http://fonts.useso.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.useso.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
@@ -41,15 +43,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h1>Login</h1>
         </div>
         <div class="login-block">
-            <form id="login_form" action="/login.do" method="post">
-                <input type="text" id="loginMobile" name="mobile" placeholder="Mobile">
-                <input type="password" id="loginPassWord" name="password" class="lock" placeholder="Password">
+            <form id="login_form" action="/user/login" method="post">
+                <input type="text" id="loginMobile" name="mobile" placeholder="Mobile" required="">
+                <input type="password" id="loginPassWord" name="passWord" class="lock" placeholder="Password"
+                       required="">
+
                 <div class="forgot-top-grids">
                     <div class="forgot-grid">
                         <ul>
                             <li>
                                 <input type="checkbox" id="loginTeacher" name="type" value="1">
-                                <label for="loginTeacher"><span></span>TEACHER?</label>
+                                <label for="loginTeacher"><span></span>教师</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="loginStudent" name="type" value="2">
+                                <label for="loginStudent"><span></span>学生</label>
                             </li>
                         </ul>
                     </div>
@@ -58,7 +66,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <input type="submit" name="Sign In" value="Login" id="loginIn">
+                <%--<input type="submit" name="Sign In" value="Login" id="login">--%>
+                <button type="button" class="btn btn-info btn-lg btn-block" id="login">登录</button>
                 <h3>没有账号?<a href="signup.html"> 注册</a></h3>
             </form>
         </div>
@@ -70,17 +79,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <p>Copyright &copy; 2016.Company name All rights reserved.
     </p>
 </div>
+<script type="text/javascript" src="/assets/gritter/js/jquery.gritter.js"></script>
+<script src="/js/grade.js"></script>
 <!--COPY rights end here-->
-
-<!--scrolling js-->
-<script src="/js/grade.js"/>
-<script src="/js/jquery.nicescroll.js"></script>
-<script src="/js/scripts.js"></script>
-<!--<script src="js/grade.js"/>-->
-<!--//scrolling js-->
-<script src="/js/bootstrap.js"></script>
-
-<!-- mother grid end here-->
 </body>
 </html>
 

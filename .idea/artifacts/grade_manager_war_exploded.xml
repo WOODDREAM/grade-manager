@@ -7,6 +7,8 @@
           <element id="module-output" name="grade-manager" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: javax.servlet.jsp.jstl:jstl:1.2" />
+          <element id="library" level="project" name="Maven: org.tuckey:urlrewritefilter:4.0.4" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.2.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.2.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.2.2.RELEASE" />

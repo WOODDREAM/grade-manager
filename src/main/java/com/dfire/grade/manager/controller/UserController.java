@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,24 +37,8 @@ public class UserController extends BaseController {
     @Autowired
     private RedisUtil redisUtil;
 
-    private String successView;
-    private String failView;
-
-    public String getSuccessView() {
-        return successView;
-    }
-
-    public void setSuccessView(String successView) {
-        this.successView = successView;
-    }
-
-    public String getFailView() {
-        return failView;
-    }
-
-    public void setFailView(String failView) {
-        this.failView = failView;
-    }
+//    private final String METHOD_GET = "get";
+    private final String METHOD_POST = "POST";
 
     /**
      * 用户注册
@@ -69,21 +52,7 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/sign_up", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public String signUp(Model model,
-//            @RequestParam(value = "name", required = true)
-                         String name,
-//                             @RequestParam(value = "mobile", required = true)
-                         String mobile,
-//                             @RequestParam(value = "email", required = false, defaultValue = "")
-                         String email,
-//                             @RequestParam(value = "school", required = true)
-                         String school,
-//                             @RequestParam(value = "pass_word", required = true)
-                         String passWord,
-//                             @RequestParam(value = "sex", required = true)
-                         Integer sex,
-//                             @RequestParam(value = "type", required = true)
-                         Integer type) throws Exception {
+    public String signUp(Model model, String name, String mobile, String email, String school, String passWord, Integer sex, Integer type) throws Exception {
         JsonResult result = null;
         if (type == 1) {
             result = studentService.insertStudent(name, school, passWord, mobile, email, sex);
@@ -100,21 +69,13 @@ public class UserController extends BaseController {
             return "login";
         }
         return "signup";
-//        return JsonResult.failedInstance(Contants.Message.ERROR_NO_USER_TYPE);
     }
 
     @RequestMapping(value = "/login", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
-    public String signIn(HttpServletRequest request, HttpServletResponse response,
-                         Model model,
-//                         @RequestParam(value = "mobile", required = true)
-                         String mobile,
-//                         @RequestParam(value = "pass_word", required = true)
-                         String passWord,
-//                         @RequestParam(value = "type", required = true)
-                         Integer type) throws Exception {
-        if (null != mobile && null != passWord && null != null) {
+    public String signIn(HttpServletRequest request, Model model, String mobile, String passWord, Integer type) throws Exception {
 
+        if (request.getMethod().equals(METHOD_POST)) {
             JsonResult result = null;
             if (type == 1) {
                 result = studentService.queryRoleByMobile(mobile);
@@ -123,7 +84,6 @@ public class UserController extends BaseController {
                     result = teacherService.queryRoleByMobile(mobile);
                 } else {
                     model.addAttribute("message", "不存在此类型！");
-//                return JsonResult.failedInstance(Contants.Message.ERROR_NO_USER_TYPE);
                 }
             }
             if (result.isSuccess()) {
@@ -149,18 +109,14 @@ public class UserController extends BaseController {
                         LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
 
                         return "index";
-//                    return JsonResult.jsonSuccessData(signBean);
                     } else {
                         map.put("message", "用户登录失败，密码错误！");
                         LoggerFactory.USER_FACTORY.error(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
                         model.addAttribute("message", "密码错误！");
-//                    return JsonResult.newInstance2(String.valueOf(Contants.ErrorCode.ERROR_1006), Contants.Message.ERROR_PASS_WORD);
                     }
                 }
-//            return JsonResult.jsonSuccessMes(Contants.Message.ERROR_PLEASE_SIGN_UP);
             } else {
                 model.addAttribute("message", "请求失败！");
-//            return JsonResult.failedInstance(Contants.Message.ERROR_REQUEST);
             }
         }
         return "login";
