@@ -27,7 +27,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="/js/jquery-2.1.1.min.js"></script>
     <!--icons-css-->
     <link href="/css/font-awesome.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/assets/gritter/css/jquery.gritter.css"/>
+    <link rel="shortcut icon" href="/images/favicon.ico">
     <!--Google Fonts-->
     <link href='http://fonts.useso.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.useso.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
@@ -41,28 +43,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h1>Sign Up</h1>
         </div>
         <div class="signup-block">
-            <form>
-                <input type="text" name="email" placeholder="Name" required="">
-                <input type="text" name="mobile" placeholder="Mobile" required="">
-                <input type="text" name="email" placeholder="Email" required="">
-                <input type="password" name="password" class="lock" placeholder="Password">
+            <form id="signupForm" action="/user/signup" method="post">
+                <input type="text" name="name" id="signName" placeholder="Name" autofocus>
+                <input type="text" name="mobile" id="signupMobile" class="lock" placeholder="Mobile">
+                <input type="text" name="email" id="signEmail" class="lock" placeholder="Email">
+                <input type="text" name="school" id="signSchool" class="lock" placeholder="School">
+                <input type="password" name="passWord" id="signPassword" class="lock" placeholder="Password">
+                <input type="password" name="signConfirmPassword" id="signConfirmPassword" class="lock"
+                       placeholder="Confirm password">
 
-                <div class="forgot-top-grids">
-                    <div class="forgot-grid">
+                <div class="row">
+                    <div class="forgot-grid col-lg-4">
                         <ul>
                             <li>
-                                <input type="checkbox" id="brand1" value="">
-                                <label for="brand1"><span></span>同意本系统条约</label>
+                                <input type="checkbox" id="signBoy" name="sex" value="1">
+                                <label for="signBoy"><span></span>男</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="signGirl" name="sex" value="2">
+                                <label for="signGirl"><span></span>女</label>
                             </li>
                         </ul>
                     </div>
-
-                    <div class="clearfix"></div>
+                    <div class="forgot-grid col-lg-4">
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="loginTeacher" name="type" value="2">
+                                <label for="loginTeacher"><span></span>教师</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="loginStudent" name="type" value="1">
+                                <label for="loginStudent"><span></span>学生</label>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <input type="submit" name="Sign In" value="Sign up">
+                <div class="row">
+                    <div class="forgot-grid col-lg-4">
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="agree" value="">
+                                <label for="agree"><span></span>同意本系统条约</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-info btn-lg btn-block" id="btn-signup">注册</button>
             </form>
             <div class="sign-down">
-                <h4>已经有账号? <a href="login.html"> 直接登录</a></h4>
+                <input type="hidden" id="message" value=${message}>
+                <h4>已经有账号? <a href="#" id="a-login"> 直接登录</a></h4>
             </div>
         </div>
     </div>
@@ -76,8 +106,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--scrolling js-->
 <script src="/js/jquery.nicescroll.js"></script>
 <script src="/js/scripts.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
 <!--//scrolling js-->
 <script src="/js/bootstrap.js"></script>
+<script type="text/javascript" src="/assets/gritter/js/jquery.gritter.js"></script>
+<script src="/js/grade.js"></script>
 <!-- mother grid end here-->
 </body>
 </html>

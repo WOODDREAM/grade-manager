@@ -29,7 +29,7 @@
             <mvc:mapping path="/job/*"/>
             <mvc:mapping path="/student/*"/>
             <mvc:mapping path="teacher/*"/>
-            <mvc:mapping path="/sms/*"/>
+            <!--<mvc:mapping path="/sms/*"/>-->
             <mvc:mapping path="/email/*"/>
             <bean class="com.dfire.grade.manager.intercepter.SecurityIntercept"/>
         </mvc:interceptor>

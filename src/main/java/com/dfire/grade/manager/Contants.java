@@ -11,6 +11,7 @@ public class Contants {
 
     public static final String UID = "UID";
     public final static String USER_KEY = "user";
+
     public static class SMSMessage {
         public static final String NO_SUCH_ACCOUNT = "没有该用户账号";
         public static final String KEY_INCORRECT = "接口密钥不正确 ";
@@ -23,7 +24,7 @@ public class Contants {
     public static class RedisContent {
         public static final String VERIFY_CODE_PREFIX = "verify:code:";
         public static final int VERIFY_CODE_EXPIRE_TIME = 30;
-        public static final int USERINFO_EXPIRE_TIME = 24*60*60;
+        public static final int USERINFO_EXPIRE_TIME = 24 * 60 * 60;
         public static final String STUDENT_SIGN_CACHE_BY_ID = "student:sign:id:";
         //        public static final String STUDENT_CACHE_BY_ID = "student:id:";
         public static final String STUDENT_SIGN_CACHE_BY_MOBILE = "student:sign:mobile:";
@@ -59,7 +60,7 @@ public class Contants {
         public static final String ERROR_PARAM = "参数出错";
         public static final String ERROR_REQUEST = "请求失败";
         public static final String SUCCESS_REQUEST = "请求成功";
-        public static final String ERROR_EXSITING_USER = "已存在用户";
+        public static final String ERROR_EXSITING_USER = "此号码已经被注册";
         public static final String ERROR_ILLEGAL_SCHOOLTIME = "不合法时间表";
         public static final String ERROR_NO_USER_TYPE = "无此类型用户";
         public static final String ERROR_NO_CLASS_TYPE = "无此类型作业";
@@ -74,5 +75,9 @@ public class Contants {
         public static final String NO_ANSWER = "没有作答";
         public static final String ERROR_NO_CLASS = "没有找到此课程";
         public static final String NOT_FIND_JOB = "没有找到作业";
+    }
+
+    public class Http {
+        public static final String METHOD_POST = "POST";
     }
 }

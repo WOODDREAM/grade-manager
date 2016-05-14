@@ -44,7 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="login-block">
             <form id="login_form" action="/user/login" method="post">
-                <input type="text" id="loginMobile" name="mobile" placeholder="Mobile" required="">
+                <input type="text" id="loginMobile" name="mobile" placeholder="Mobile" required="" autofocus>
                 <input type="password" id="loginPassWord" name="passWord" class="lock" placeholder="Password"
                        required="">
 
@@ -52,23 +52,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="forgot-grid">
                         <ul>
                             <li>
-                                <input type="checkbox" id="loginTeacher" name="type" value="1">
+                                <input type="checkbox" id="loginTeacher" name="type" value="2">
                                 <label for="loginTeacher"><span></span>教师</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="loginStudent" name="type" value="2">
+                                <input type="checkbox" id="loginStudent" name="type" value="1">
                                 <label for="loginStudent"><span></span>学生</label>
                             </li>
                         </ul>
                     </div>
                     <div class="forgot">
-                        <a href="#">忘记密码?</a>
+                        <a href="#" id="a-forgetPassword">忘记密码?</a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <%--<input type="submit" name="Sign In" value="Login" id="login">--%>
                 <button type="button" class="btn btn-info btn-lg btn-block" id="login">登录</button>
-                <h3>没有账号?<a href="signup.html"> 注册</a></h3>
+                <h3>没有账号?<a href="#" id="a-signup"> 注册</a></h3>
+                <input type="hidden" id="message" value=${message}>
             </form>
         </div>
     </div>

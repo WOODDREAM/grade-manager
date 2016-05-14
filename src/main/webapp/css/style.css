@@ -3589,12 +3589,12 @@ table.sliders tr td {
 /*ck editor*/
 
 /*.cke_top, .cke_bottom {*/
-    /*background: #F5F5F5 !important;*/
-    /*background: -moz-linear-gradient(center top, #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;*/
-    /*background: -webkit-linear-gradient(center top, #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;*/
-    /*background: -o-linear-gradient(center top, #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;*/
-    /*box-shadow: none;*/
-    /*padding: 6px 8px 2px;*/
+/*background: #F5F5F5 !important;*/
+/*background: -moz-linear-gradient(center top, #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;*/
+/*background: -webkit-linear-gradient(center top, #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;*/
+/*background: -o-linear-gradient(center top, #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;*/
+/*box-shadow: none;*/
+/*padding: 6px 8px 2px;*/
 /*}*/
 
 .cke_top {
@@ -3987,4 +3987,10 @@ span.customSelect.changed {
 
 .customSelectInner {
     background: url(../img/customSelect-arrow.gif) no-repeat center right;
+}
+
+.copyrights {
+    padding: 1.5em 1em;
+    text-align: center;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.15);
 }
