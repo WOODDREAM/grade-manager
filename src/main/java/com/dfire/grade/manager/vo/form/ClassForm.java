@@ -8,7 +8,9 @@ import java.util.Map;
  * Date:2016-04-05
  * description：
  */
-public class ClassForm implements Serializable{
+public class ClassForm implements Serializable {
+
+    private static final long serialVersionUID = -4002101529128613338L;
     private String Name;
     private double period;
     private double credit;

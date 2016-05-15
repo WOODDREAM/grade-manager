@@ -58,6 +58,20 @@ public class SequenceUtil {
         throw new ParameterException(message);
     }
 
+    public static boolean isOrBlank(String[][] str) throws ParameterException {
+        String message = "参数为空！";
+        if (null != str) {
+            for (int i = 0; i < str.length; i++) {
+                if (!str[i][0].isEmpty()) {
+                    return true;
+                }
+                message = str[i][1];
+                break;
+            }
+        }
+        throw new ParameterException(message);
+    }
+
     public static void main(String[] args) {
         SequenceUtil sequenceUtil = new SequenceUtil();
         System.out.print(sequenceUtil.getSequence());

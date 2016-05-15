@@ -10,7 +10,9 @@ import java.util.concurrent.TimeUnit;
 public class Contants {
 
     public static final String UID = "UID";
-    public final static String USER_KEY = "user";
+    public final static String TEACHER_KEY = "teacher";//教师session
+    public final static String STUDENT_KEY = "student";//学生session
+    public final static String USER_KEY = "user_sign";
 
     public static class SMSMessage {
         public static final String NO_SUCH_ACCOUNT = "没有该用户账号";
@@ -73,8 +75,9 @@ public class Contants {
         public static final String ERROR_NO_TEACHER = "没有找到此教师";
         public static final String ERROR_NO_JOB = "没有找到此作业";
         public static final String NO_ANSWER = "没有作答";
-        public static final String ERROR_NO_CLASS = "没有找到此课程";
+        public static final String ERROR_NO_CLASS = "没有找到课程";
         public static final String NOT_FIND_JOB = "没有找到作业";
+        public static final String NOT_PERMISSION = "没有权限，请切换身份登陆";
     }
 
     public class Http {

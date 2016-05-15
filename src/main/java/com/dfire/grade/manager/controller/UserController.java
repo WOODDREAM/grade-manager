@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,7 +72,7 @@ public class UserController extends BaseController {
                 map.put("signBean", signBean);
                 map.put("message", "用户注册成功！");
                 LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
-                return "index";
+                return "login";
             }
             model.addAttribute("message", result.getMessage());
         }
@@ -102,19 +103,22 @@ public class UserController extends BaseController {
                         signBean.setSign(true);
                         String keyMobile = null;
                         String keyId = null;
+                        String key = Contants.STUDENT_KEY;
                         if (type == 1) {
                             keyId = Contants.RedisContent.STUDENT_SIGN_CACHE_BY_ID + signBean.getId();
                             keyMobile = Contants.RedisContent.STUDENT_SIGN_CACHE_BY_MOBILE + mobile;
                         } else {
+                            key = Contants.TEACHER_KEY;
                             keyMobile = Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + mobile;
                             keyId = Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + signBean.getId();
                         }
                         redisUtil.setValuePre(keyId, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
                         redisUtil.setValuePre(keyMobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
                         map.put("message", "用户登录成功！");
+                        request.getSession().setAttribute(key, signBean);
                         request.getSession().setAttribute(Contants.USER_KEY, signBean);
                         LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
-
+                        model.addAttribute("type", type);
                         return "index";
                     } else {
                         map.put("message", "用户登录失败，密码错误！");
@@ -154,9 +158,11 @@ public class UserController extends BaseController {
         redisUtil.del(Contants.RedisContent.VERIFY_CODE_PREFIX + mobile);
         JsonResult result = null;
         int type = 2;
+        String key = Contants.STUDENT_KEY;
         result = studentService.queryRoleByMobile(mobile);
         if (null == result || !result.isSuccess() || null == result.getData()) {
             type = 1;
+            key = Contants.TEACHER_KEY;
             result = teacherService.queryRoleByMobile(mobile);
         }
         if (result.isSuccess()) {
@@ -176,12 +182,30 @@ public class UserController extends BaseController {
                 redisUtil.setValuePre(keyId, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
                 redisUtil.setValuePre(keyMobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
                 map.put("message", "用户登录成功！");
-                request.getSession().setAttribute(Contants.USER_KEY, signBean);
+                request.getSession().setAttribute(key, signBean);
                 LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
                 return "index";
             }
         }
         model.addAttribute("message", "请求失败！");
         return "forgetPassWord";
+    }
+
+    @RequestMapping(value = "/main", method = { RequestMethod.POST})
+    @ResponseStatus(HttpStatus.OK)
+    public String forMainContainer(HttpServletRequest request, Model model) throws Exception {
+
+        return "main";
+    }
+
+    @RequestMapping("/login_out")
+    @ResponseStatus(HttpStatus.OK)
+    public String loginOut(HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession(false);
+        if (null != session) {
+            session.removeAttribute(Contants.STUDENT_KEY);
+            session.removeAttribute(Contants.TEACHER_KEY);
+        }
+        return "login";
     }
 }

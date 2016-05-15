@@ -1,5 +1,7 @@
 package com.dfire.grade.manager.utils;
 
+import com.dfire.grade.manager.logger.LoggerFactory;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -432,6 +434,46 @@ public class DateUtil {
         map.put("minute", calendar.get(Calendar.MINUTE) > 0 ? calendar.get(Calendar.MINUTE) : 0);
         map.put("second", calendar.get(Calendar.SECOND) > 0 ? calendar.get(Calendar.SECOND) : 0);
         return map;
+    }
+
+    public static Date getFirstHalfYear() {
+        Date startTime = null;
+        try {
+            Calendar cla = Calendar.getInstance();
+            int year = cla.get(Calendar.YEAR);
+            int month = cla.get(Calendar.MONTH);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            if (null == startTime) {
+                if (month <= 7) {
+                    startTime = sdf.parse(String.valueOf(year) + "-01-01 00:00:00");
+                } else {
+                    startTime = sdf.parse(String.valueOf(year) + "-07-01 00:00:00");
+                }
+            }
+        } catch (Exception ex) {
+            LoggerFactory.REQUEST.error(ex.getMessage(), ex.getCause());
+        }
+        return startTime;
+    }
+
+    public static Date getSecondHalfYear() {
+        Date endTime = null;
+        try {
+            Calendar cla = Calendar.getInstance();
+            int year = cla.get(Calendar.YEAR);
+            int month = cla.get(Calendar.MONTH);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            if (null == endTime) {
+                if (month <= 7) {
+                    endTime = sdf.parse(String.valueOf(year) + "-01-01 00:00:00");
+                } else {
+                    endTime = sdf.parse(String.valueOf(year) + "-07-01 00:00:00");
+                }
+            }
+        } catch (Exception ex) {
+            LoggerFactory.REQUEST.error(ex.getMessage(), ex.getCause());
+        }
+        return endTime;
     }
 
     public static void main(String[] args) throws ParseException {

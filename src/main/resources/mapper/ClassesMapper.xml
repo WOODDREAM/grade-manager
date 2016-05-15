@@ -72,22 +72,21 @@
         <include refid="selectBothColumn"/>
         AND tea_id=#{id}
         AND class.isvalid='1'
-        AND class.create_time &gt; #{startTime}
-        AND class.create_time &lt; #{endTime}
-        ORDER BY class.create_time
-        -- LIMIT #{startIndex},#{pageSize}
-
+        <if test="startTime != null">AND class.create_time &gt; #{startTime}</if>
+        <if test="endTime != null">AND class.create_time &lt; #{endTime}</if>
+        ORDER BY class.create_time DESC
+        LIMIT #{startIndex},#{pageSize}
     </select>
     <select id="selectClassByStudentId" resultMap="classesMapper" parameterType="com.dfire.grade.manager.bean.Page">
         <include refid="selectBothColumn"/>
         AND cla_id IN (
         SELECT cla_id FROM student_class WHERE stu_id = #{id}
-        AND create_time &gt; #{startTime}
-        AND create_time &lt; #{endTime}
+        <if test="startTime != null">AND class.create_time &gt; #{startTime}</if>
+        <if test="endTime != null">AND class.create_time &lt; #{endTime}</if>
         AND valid = '1'
         )
-        ORDER BY class.create_time
-        -- LIMIT #{startIndex},#{pageSize}
+        ORDER BY class.create_time DESC
+        LIMIT #{startIndex},#{pageSize}
     </select>
     <select id="selectClassIncludeDetailById" parameterType="String" resultMap="classesMapper">
         <include refid="selectBothColumn"/>

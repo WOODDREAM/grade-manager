@@ -10,6 +10,7 @@ com\dfire\grade\manager\annotation\MyFieldTime.class
 com\dfire\grade\manager\intercepter\SecurityIntercept.class
 com\dfire\grade\manager\service\IClassService.class
 com\dfire\grade\manager\exception\SchoolTimeException.class
+com\dfire\grade\manager\vo\form\GradeForm.class
 com\dfire\grade\manager\configInfo\MailConfiguration.class
 com\dfire\grade\manager\bean\Answer.class
 com\dfire\grade\manager\controller\StudentClassController.class
@@ -42,10 +43,12 @@ com\dfire\grade\manager\service\redis\RedisService.class
 com\dfire\grade\manager\service\impl\AnswerServiceImpl.class
 com\dfire\grade\manager\Contants$Message.class
 com\dfire\grade\manager\service\impl\JobServiceImpl.class
+com\dfire\grade\manager\vo\ClassVo.class
 com\dfire\grade\manager\utils\MailUtil.class
 com\dfire\grade\manager\service\impl\StudentClassServiceImpl.class
 com\dfire\grade\manager\service\IStudentService.class
 com\dfire\grade\manager\controller\SMSController.class
+com\dfire\grade\manager\Contants$Http.class
 com\dfire\grade\manager\bean\Page.class
 com\dfire\grade\manager\utils\MessageDigestUtil.class
 com\dfire\grade\manager\intercepter\filter\CrossFilter.class
@@ -62,10 +65,12 @@ com\dfire\grade\manager\vo\form\ClassForm.class
 com\dfire\grade\manager\logger\LoggerMarker.class
 com\dfire\grade\manager\bean\Job.class
 com\dfire\grade\manager\Contants.class
+com\dfire\grade\manager\vo\ClassDetailVo.class
 com\dfire\grade\manager\exception\BusinessException.class
 com\dfire\grade\manager\utils\SmsUtil.class
 com\dfire\grade\manager\utils\DateUtil.class
 com\dfire\grade\manager\configInfo\SMSConfiguration.class
+com\dfire\grade\manager\vo\ClassInDetailVo.class
 com\dfire\grade\manager\controller\GradeController.class
 com\dfire\grade\manager\controller\ClassController.class
 com\dfire\grade\manager\controller\JobController.class

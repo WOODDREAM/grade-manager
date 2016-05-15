@@ -1,5 +1,6 @@
 package com.dfire.grade.manager.vo;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -7,7 +8,9 @@ import java.util.Map;
  * Date:2016-03-31
  * description：
  */
-public class ClassIncludeSchoolTime {
+public class ClassIncludeSchoolTime implements Serializable {
+
+    private static final long serialVersionUID = 3187124056377637751L;
     private String teacherId;
     private String Name;
     private double period;

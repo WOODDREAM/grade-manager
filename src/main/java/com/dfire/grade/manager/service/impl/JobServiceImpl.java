@@ -41,8 +41,8 @@ public class JobServiceImpl implements IJobService {
         SequenceUtil.isBlank(classId, "classId不能为空");
         SequenceUtil.isBlank(teacherId, "teacherId不能为空");
         SequenceUtil.isBlank(name, "jobName不能为空");
-        //1平时作业 2期中作业 3期末作业
-        if (type == 1 || type == 2 || type == 3) {
+        //1作业 2考试
+        if (type == 1 || type == 2) {
             JsonResult classResult = classService.selectClassById(classId);
             if (classResult.isSuccess() && null != classResult.getData()) {
                 JsonResult teacherResult = teacherService.queryRoleById(teacherId);

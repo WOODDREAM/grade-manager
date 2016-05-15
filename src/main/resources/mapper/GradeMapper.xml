@@ -34,4 +34,22 @@
         WHERE gra_id = #{gradeId}
         AND valid = '1'
     </select>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO grade(gra_id,stu_id,cla_id,tea_id,grade,job_id,type,create_time,valid)
+        VALUES
+        <foreach collection="list" item="grade" separator=",">
+            (
+            #{gradeId},
+            #{studentId},
+            #{classId},
+            #{teacherId},
+            #{grade},
+            #{jobId},
+            #{type},
+            #{createTime},
+            #{valid}
+            )
+        </foreach>
+    </insert>
 </mapper>

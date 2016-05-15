@@ -1,19 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/pom.xml" line="41" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="84d455d6-ec88-497c-b960-739feb6481f0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/forgetPassWord.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassDetailVo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassInDetailVo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/form/GradeForm.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_geronimo_bundles_jstl_1_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/js/asider.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/class/class_detail.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/class/class_list.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/job/create.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/class/create_class.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/email/detail.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/job/detail.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/email/list.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/job/list.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/main.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/email/write.jsp" />
+      <change type="DELETED" beforePath="D:\job\grade-manager\.idea\libraries\Maven__org_springframework_spring_2_0_8.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/grade-manager-sources.jar" afterPath="$PROJECT_DIR$/target/grade-manager-sources.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/ClassController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/ClassController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/form/ClassForm.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/form/ClassForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassIncludeSchoolTime.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassIncludeSchoolTime.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/ClassServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/ClassServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/ClassesMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ClassesMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/Contants.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/Contants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/SMSController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/SMSController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/utils/DateUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/utils/DateUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/GradeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/GradeController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/mapper/GradeMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/mapper/GradeMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/GradeMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/GradeMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/GradeServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/GradeServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IGradeService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IGradeService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/JobController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/JobController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/JobServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/JobServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/JsonResult.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/JsonResult.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/intercepter/SecurityIntercept.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/intercepter/SecurityIntercept.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/utils/SequenceUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/utils/SequenceUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring/applicationContext-servlet.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring/applicationContext-servlet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/js/grade.js" afterPath="$PROJECT_DIR$/src/main/webapp/js/grade.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/jsp/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/jsp/signup.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/signup.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/css/style.css" afterPath="$PROJECT_DIR$/src/main/webapp/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/spring/applicationContext-servlet.xml" afterPath="$PROJECT_DIR$/target/classes/spring/applicationContext-servlet.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grade-manager.iml" afterPath="$PROJECT_DIR$/grade-manager.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/grade_manager_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/grade_manager_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/jsp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="96646e44-7261-436d-9bc5-09471fa305ee" name="Failed commit: Default" comment="连通redis和数据库" />
@@ -57,61 +89,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java">
+      <file leaf-file-name="JobController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/JobController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.32" vertical-offset="647" max-vertical-offset="3910">
-              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+            <state vertical-scroll-proportion="-5.76" vertical-offset="1098" max-vertical-offset="2323">
+              <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ITeacherService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/ITeacherService.java">
+      <file leaf-file-name="IJobService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IJobService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.2" vertical-offset="73" max-vertical-offset="690">
-              <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+            <state vertical-scroll-proportion="-11.04" vertical-offset="0" max-vertical-offset="506">
+              <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TeacherServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/TeacherServiceImpl.java">
+      <file leaf-file-name="JobServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/JobServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.72" vertical-offset="256" max-vertical-offset="2783">
-              <caret line="52" column="113" selection-start-line="52" selection-start-column="113" selection-end-line="52" selection-end-column="113" />
+            <state vertical-scroll-proportion="-29.76" vertical-offset="1372" max-vertical-offset="2507">
+              <caret line="110" column="14" selection-start-line="110" selection-start-column="14" selection-end-line="110" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signup.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/signup.jsp">
+      <file leaf-file-name="Job.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/bean/Job.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1287794" vertical-offset="1495" max-vertical-offset="2921">
-              <caret line="70" column="66" selection-start-line="70" selection-start-column="66" selection-end-line="70" selection-end-column="66" />
+            <state vertical-scroll-proportion="-15.64" vertical-offset="0" max-vertical-offset="1449">
+              <caret line="18" column="20" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="grade.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/grade.js">
+      <file leaf-file-name="ClassController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/ClassController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.16" vertical-offset="621" max-vertical-offset="6187">
-              <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
+            <state vertical-scroll-proportion="-6.48" vertical-offset="344" max-vertical-offset="3289">
+              <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/login.jsp">
+      <file leaf-file-name="IClassService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IClassService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.0877192" vertical-offset="947" max-vertical-offset="2185">
-              <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+            <state vertical-scroll-proportion="-12.64" vertical-offset="29" max-vertical-offset="1219">
+              <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/ClassServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-19.08" vertical-offset="2260" max-vertical-offset="4945">
+              <caret line="137" column="17" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassVo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassVo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.6" vertical-offset="254" max-vertical-offset="1702">
+              <caret line="31" column="26" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.087719" vertical-offset="6900" max-vertical-offset="10925">
+              <caret line="325" column="49" selection-start-line="325" selection-start-column="43" selection-end-line="325" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="asider.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/asider.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.0310345" vertical-offset="253" max-vertical-offset="2484">
+              <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -123,64 +195,64 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/StudentClassMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/bean/Grade.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/mapper/GradeMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IGradeService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/exception/ParameterException.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/dfire/grade/manager/test/controller/UserControllerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/utils/SequenceUtil.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/dfire/grade/manager/test/controller/GradeControllerTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/dfire/grade/manager/test/BaseControllerTestHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/GradeMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/ClassServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/JobServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/StudentClassServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/TeacherServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/StudentServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/AnswerServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/GradeServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/filter/pre.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
-        <option value="$PROJECT_DIR$/src/main/filter/dev.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/BaseController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/LoginAction.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/AnswerController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/ClassController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/GradeController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/Hello.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/JobController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/MailController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/StudentClassController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/WeixinAck.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/urlrewrite.tld" />
-        <option value="$PROJECT_DIR$/src/main/webapp/index.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/hello.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/500.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/404.html" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/errors/500.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/errors/404.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/assets/gritter/js/jquery.gritter.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/signup.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/login.jsp" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-servlet.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/css/style.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/SMSController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/forgetPassWord.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/grade.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/signup.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-servlet.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/class_list.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/creat_class.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/class/class_detail.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/utils/DateUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/utils/SequenceUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/GradeMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/mapper/GradeMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IGradeService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/form/ClassForm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassDetailVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassIncludeSchoolTime.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassInDetailVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/JsonResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/form/GradeForm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/intercepter/SecurityIntercept.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/GradeServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/GradeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/ClassServiceImpl.java" />
+        <option value="$PROJECT_DIR$/target/grade-manager/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/Contants.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/class.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/job/detail.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/JobServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/ClassController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/ClassesMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/class/class_list.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/main.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/email/list.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/email/write.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/email/detail.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/job/create.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/class/create_class.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/JobController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/job/list.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/asider.js" />
       </list>
     </option>
   </component>
@@ -339,7 +411,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -506,6 +577,122 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="job" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="email" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="class" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -532,7 +719,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spring" />
+              <option name="myItemId" value="mapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -559,6 +746,100 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="form" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -640,6 +921,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bean" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="filter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -664,6 +975,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -714,10 +1026,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\job\grade-manager\src\main\webapp" />
       <recent name="D:\job\grade-manager\src\main\webapp\jsp" />
+      <recent name="D:\job\grade-manager\src\main\webapp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\job\grade-manager\src\main\webapp\jsp\class" />
       <recent name="D:\job\grade-manager\src\main\webapp" />
       <recent name="D:\job\grade-manager\src\main\webapp\WEB-INF" />
       <recent name="D:\job\grade-manager\src\main\resources\mapper" />
@@ -727,106 +1040,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Unnamed">
-    <configuration default="false" name="login.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 6.0.321" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8888/jsp/login.jsp" />
-      <deployment>
-        <artifact name="grade-manager:war">
-          <settings>
-            <option name="CONTEXT_PATH" value="/" />
-          </settings>
-        </artifact>
-      </deployment>
-      <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="login_jsp_grade-manager_4" />
-      </server-settings>
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="Tomcat Catalina" enabled="true" />
-      <predefined_log_file id="Tomcat Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method>
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="grade-manager:war" />
-        </option>
-      </method>
-    </configuration>
-    <configuration default="false" name="login.jsp (1)" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 6.0.321" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8888/jsp/login.jsp" />
-      <deployment>
-        <artifact name="grade-manager:war">
-          <settings>
-            <option name="CONTEXT_PATH" value="/" />
-          </settings>
-        </artifact>
-      </deployment>
-      <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="login_jsp_(1)_grade-manager_4" />
-      </server-settings>
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="Tomcat Catalina" enabled="true" />
-      <predefined_log_file id="Tomcat Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method>
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="grade-manager:war" />
-        </option>
-      </method>
-    </configuration>
-    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="grade-manager" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="TARGET" value="" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method />
-    </configuration>
     <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -847,6 +1060,26 @@
           </MavenRunnerParameters>
         </option>
       </MavenSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="grade-manager" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
@@ -896,6 +1129,14 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
     <configuration default="true" type="Specs2RunConfiguration" factoryName="Specs2">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <extension name="scalaCoverage" />
@@ -910,14 +1151,6 @@
       <setting name="testKind" value="Class" />
       <setting name="showProgressMessages" value="true" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
       <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -1386,18 +1619,10 @@
         </option>
       </method>
     </configuration>
-    <list size="4">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Remote.Unnamed" />
       <item index="1" class="java.lang.String" itemvalue="Tomcat Server.Unnamed" />
-      <item index="2" class="java.lang.String" itemvalue="Tomcat Server.login.jsp" />
-      <item index="3" class="java.lang.String" itemvalue="Tomcat Server.login.jsp (1)" />
     </list>
-    <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Tomcat Server.login.jsp (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Tomcat Server.login.jsp" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SliceManager">
@@ -1472,7 +1697,10 @@
       <workItem from="1463104397498" duration="17902000" />
       <workItem from="1463129251474" duration="10511000" />
       <workItem from="1463185085192" duration="19207000" />
-      <workItem from="1463207491371" duration="4008000" />
+      <workItem from="1463207491371" duration="8822000" />
+      <workItem from="1463216589617" duration="5827000" />
+      <workItem from="1463269408259" duration="9255000" />
+      <workItem from="1463278725899" duration="26928000" />
     </task>
     <task id="LOCAL-00001" summary="去掉redis多余配置">
       <created>1456832826438</created>
@@ -1708,11 +1936,17 @@
       <option name="project" value="LOCAL" />
       <updated>1463146165475</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="完成用户的登录和注册">
+      <created>1463211526001</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1463211526001</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="448356000" />
+    <option name="totallyTimeSpent" value="495180000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1738,49 +1972,49 @@
     <frame x="-9" y="-9" width="1938" height="1168" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27620968" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296371" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973261" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32862905" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42540324" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296371" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32862905" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33366936" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22085561" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296371" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973261" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32862905" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22085561" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31451613" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296371" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32762095" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4828629" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296371" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33366936" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22085561" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973261" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32762095" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27620968" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973261" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32862905" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950193" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1801,8 +2035,8 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3344749" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22085561" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973261" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32994652" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32994652" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -1821,8 +2055,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="去掉redis多余配置" />
-    <MESSAGE value="进一步实现dao层" />
     <MESSAGE value="连通redis和数据库" />
     <MESSAGE value="短信发送功能开通" />
     <MESSAGE value="增加redis存储功能" />
@@ -1846,28 +2078,42 @@
     <MESSAGE value="所有表的基础增和查完成" />
     <MESSAGE value="页面" />
     <MESSAGE value="登录成功" />
-    <option name="LAST_COMMIT_MESSAGE" value="登录成功" />
+    <MESSAGE value="完成用户的登录和注册" />
+    <MESSAGE value="没有进步啊啊啊" />
+    <option name="LAST_COMMIT_MESSAGE" value="没有进步啊啊啊" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java</url>
-          <line>56</line>
-          <properties />
-          <option name="timeStamp" value="241" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/TeacherServiceImpl.java</url>
           <line>32</line>
           <properties />
           <option name="timeStamp" value="243" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/BaseController.java</url>
+          <line>20</line>
+          <properties />
+          <option name="timeStamp" value="247" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/ClassServiceImpl.java</url>
+          <line>90</line>
+          <properties />
+          <option name="timeStamp" value="253" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/ClassServiceImpl.java</url>
+          <line>109</line>
+          <properties />
+          <option name="timeStamp" value="254" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="244" />
+      <option name="time" value="259" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1888,396 +2134,759 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/errors/500.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/utils/SequenceUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.245614" vertical-offset="474" max-vertical-offset="1380">
-          <caret line="46" column="70" selection-start-line="46" selection-start-column="70" selection-end-line="46" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/500.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.1929827" vertical-offset="152" max-vertical-offset="1058">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/404.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2030905" vertical-offset="0" max-vertical-offset="1012">
-          <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46268657" vertical-offset="417" max-vertical-offset="11270">
-          <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
+        <state vertical-scroll-proportion="-13.44" vertical-offset="929" max-vertical-offset="1840">
+          <caret line="60" column="35" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.2/commons-logging-1.2-sources.jar!/org/apache/commons/logging/impl/Jdk14Logger.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/GradeMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.88" vertical-offset="3972" max-vertical-offset="5198">
-          <caret line="221" column="0" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.2.RELEASE/spring-webmvc-4.2.2.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.52" vertical-offset="679" max-vertical-offset="3519">
-          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.2.RELEASE/spring-webmvc-4.2.2.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0" vertical-offset="7628" max-vertical-offset="12305">
-          <caret line="464" column="27" selection-start-line="464" selection-start-column="27" selection-end-line="464" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.2.RELEASE/spring-webmvc-4.2.2.RELEASE.jar!/org/springframework/web/servlet/mvc/method/AbstractHandlerMethodAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.34" vertical-offset="366" max-vertical-offset="897">
-          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.2.RELEASE/spring-web-4.2.2.RELEASE-sources.jar!/org/springframework/web/filter/OncePerRequestFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11940298" vertical-offset="1866" max-vertical-offset="4646">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.2.RELEASE/spring-webmvc-4.2.2.RELEASE.jar!/org/springframework/web/servlet/FrameworkServlet.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13" vertical-offset="8669" max-vertical-offset="11684">
-          <caret line="457" column="25" selection-start-line="457" selection-start-column="25" selection-end-line="457" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.2.RELEASE/spring-webmvc-4.2.2.RELEASE.jar!/org/springframework/web/servlet/DispatcherServlet.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11111111" vertical-offset="7076" max-vertical-offset="15893">
-          <caret line="376" column="19" selection-start-line="376" selection-start-column="19" selection-end-line="376" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/servlet-api/3.0-alpha-1/servlet-api-3.0-alpha-1.jar!/javax/servlet/http/HttpServletRequest.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.42" vertical-offset="277" max-vertical-offset="1587">
-          <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/ga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67675674" vertical-offset="570" max-vertical-offset="1495">
-          <caret line="52" column="112" selection-start-line="52" selection-start-column="112" selection-end-line="52" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/common-scripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.48" vertical-offset="2111" max-vertical-offset="3036">
-          <caret line="126" column="1" selection-start-line="126" selection-start-column="1" selection-end-line="126" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="414">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.2.RELEASE/spring-web-4.2.2.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.36" vertical-offset="4188" max-vertical-offset="5888">
-          <caret line="220" column="0" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/bean/SignBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.035126235" vertical-offset="400" max-vertical-offset="1311">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5569155" vertical-offset="396" max-vertical-offset="1380">
+          <caret line="37" column="27" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="27" />
           <folding>
-            <element signature="e#425#426#0" expanded="false" />
-            <element signature="e#453#454#0" expanded="false" />
+            <marker date="1463277021278" expanded="true" signature="-1:-1" placeholder="SELECT gra_i..grade..." />
+            <marker date="1463277021278" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1463277021278" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/jquery.validate.min.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassDetailVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="950">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34221748" vertical-offset="42620" max-vertical-offset="110423">
-          <caret line="1867" column="22" selection-start-line="1867" selection-start-column="22" selection-end-line="1867" selection-end-column="22" />
+        <state vertical-scroll-proportion="-11.68" vertical-offset="283" max-vertical-offset="1265">
+          <caret line="25" column="50" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5/aria.rnc">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassInDetailVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3326226" vertical-offset="5737" max-vertical-offset="28612">
-          <caret line="263" column="18" selection-start-line="263" selection-start-column="18" selection-end-line="263" selection-end-column="18" />
+        <state vertical-scroll-proportion="-24.84" vertical-offset="0" max-vertical-offset="943">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/JsonResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.2" vertical-offset="0" max-vertical-offset="2001">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5/applications.rnc">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IGradeService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.84" vertical-offset="1128" max-vertical-offset="10281">
-          <caret line="63" column="18" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
+        <state vertical-scroll-proportion="-15.64" vertical-offset="0" max-vertical-offset="575">
+          <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/GradeServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.2" vertical-offset="1012" max-vertical-offset="3312">
+          <caret line="54" column="33" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/mapper/GradeMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.12" vertical-offset="0" max-vertical-offset="552">
+          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/index.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/form/GradeForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="26.824562" vertical-offset="1621" max-vertical-offset="10534">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5911873" vertical-offset="115" max-vertical-offset="1426">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#1780#1781#0" expanded="true" />
+            <element signature="e#1812#1813#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.2.2.RELEASE/spring-core-4.2.2.RELEASE.jar!/org/springframework/cglib/beans/BeanCopier.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassIncludeSchoolTime.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.084337" vertical-offset="2195" max-vertical-offset="4025">
-          <caret line="128" column="60" selection-start-line="128" selection-start-column="60" selection-end-line="128" selection-end-column="60" />
+        <state vertical-scroll-proportion="-9.2" vertical-offset="0" max-vertical-offset="1265">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.2.2.RELEASE/spring-core-4.2.2.RELEASE.jar!/org/springframework/cglib/core/ReflectUtils.class">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.2.RELEASE/spring-web-4.2.2.RELEASE-sources.jar!/org/springframework/web/bind/annotation/ExceptionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.46" vertical-offset="8256" max-vertical-offset="10212">
-          <caret line="421" column="26" selection-start-line="421" selection-start-column="26" selection-end-line="421" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5/web-forms.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.84" vertical-offset="3014" max-vertical-offset="14030">
-          <caret line="145" column="22" selection-start-line="145" selection-start-column="22" selection-end-line="145" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.84" vertical-offset="16653" max-vertical-offset="21574">
-          <caret line="738" column="17" selection-start-line="738" selection-start-column="17" selection-end-line="738" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/BaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3535109" vertical-offset="314" max-vertical-offset="943">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/applicationContext-socketio.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.06" vertical-offset="0" max-vertical-offset="437">
-          <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/application-sms.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.76" vertical-offset="0" max-vertical-offset="575">
-          <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/filter/dev.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.08" vertical-offset="401" max-vertical-offset="1656">
-          <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/StudentServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.4" vertical-offset="1004" max-vertical-offset="2875">
-          <caret line="84" column="47" selection-start-line="84" selection-start-column="47" selection-end-line="84" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IStudentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3432836" vertical-offset="0" max-vertical-offset="938">
-          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.6212953" vertical-offset="1849" max-vertical-offset="2760">
+          <caret line="123" column="18" selection-start-line="123" selection-start-column="18" selection-end-line="123" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/intercepter/SecurityIntercept.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.44" vertical-offset="338" max-vertical-offset="1288">
-          <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+        <state vertical-scroll-proportion="-12.88" vertical-offset="506" max-vertical-offset="1656">
+          <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/bootstrap.css">
+    <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/jsp/jstl/jstl/1.2/jstl-1.2.jar!/META-INF/c.tld">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.110245" vertical-offset="144363" max-vertical-offset="151455">
-          <caret line="6320" column="0" selection-start-line="6320" selection-start-column="0" selection-end-line="6320" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="13294">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/utils/SmsUtil.java">
+    <entry file="uml://MAVEN/com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MAVEN</ID>
+          <OriginalElement>com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT</OriginalElement>
+          <nodes>
+            <node x="181.0" y="516.0">org.codehaus.jackson:jackson-mapper-asl:jar:1.9.13</node>
+            <node x="181.0" y="301.0">org.springframework:spring-context:jar:4.2.2.RELEASE</node>
+            <node x="291.0" y="1419.0">org.testng:testng:jar:6.9.8/com.beust:jcommander:jar:1.48</node>
+            <node x="181.0" y="1290.0">ch.qos.logback:logback-classic:jar:1.1.3</node>
+            <node x="394.0" y="516.0">org.codehaus.jackson:jackson-mapper-asl:jar:1.9.13/org.codehaus.jackson:jackson-core-asl:jar:1.9.13</node>
+            <node x="353.0" y="989.0">com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-handler:jar:4.0.25.Final</node>
+            <node x="353.0" y="860.0">com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-buffer:jar:4.0.25.Final</node>
+            <node x="317.0" y="1505.0">com.jayway.jsonpath:json-path:jar:2.0.0/net.minidev:json-smart:jar:2.1.1</node>
+            <node x="181.0" y="774.0">redis.clients:jedis:jar:2.7.3</node>
+            <node x="461.0" y="1505.0">com.jayway.jsonpath:json-path:jar:2.0.0/net.minidev:json-smart:jar:2.1.1/net.minidev:asm:jar:1.0.2</node>
+            <node x="181.0" y="258.0">org.springframework:spring-context-support:jar:4.2.2.RELEASE</node>
+            <node x="330.0" y="344.0">org.springframework:spring-jdbc:jar:4.2.2.RELEASE/org.springframework:spring-tx:jar:4.2.2.RELEASE</node>
+            <node x="353.0" y="1118.0">com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-transport-native-epoll:jar:4.0.25.Final</node>
+            <node x="181.0" y="1677.0">com.sun.mail:javax.mail:jar:1.5.2</node>
+            <node x="181.0" y="559.0">mysql:mysql-connector-java:jar:5.1.1</node>
+            <node x="181.0" y="817.0">org.springframework.data:spring-data-redis:jar:1.5.0.RELEASE</node>
+            <node x="181.0" y="43.0">org.tuckey:urlrewritefilter:jar:4.0.4</node>
+            <node x="0.0" y="0.0">com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT</node>
+            <node x="181.0" y="645.0">org.mybatis:mybatis-spring:jar:1.2.3</node>
+            <node x="181.0" y="430.0">org.aspectj:aspectjweaver:jar:1.8.7</node>
+            <node x="278.0" y="774.0">redis.clients:jedis:jar:2.7.3/org.apache.commons:commons-pool2:jar:2.3</node>
+            <node x="181.0" y="473.0">com.fasterxml.jackson.core:jackson-core:jar:2.6.3</node>
+            <node x="181.0" y="731.0">javax.servlet:servlet-api:jar:3.0-alpha-1</node>
+            <node x="361.0" y="86.0">org.springframework:spring-webmvc:jar:4.2.2.RELEASE/org.springframework:spring-beans:jar:4.2.2.RELEASE</node>
+            <node x="181.0" y="86.0">org.springframework:spring-webmvc:jar:4.2.2.RELEASE</node>
+            <node x="181.0" y="1591.0">commons-logging:commons-logging:jar:1.2</node>
+            <node x="181.0" y="1333.0">org.springframework:spring-test:jar:4.2.2.RELEASE</node>
+            <node x="353.0" y="903.0">com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-common:jar:4.0.25.Final</node>
+            <node x="181.0" y="1247.0">ch.qos.logback:logback-core:jar:1.1.3</node>
+            <node x="181.0" y="1204.0">org.slf4j:slf4j-api:jar:1.7.12</node>
+            <node x="554.0" y="1505.0">com.jayway.jsonpath:json-path:jar:2.0.0/net.minidev:json-smart:jar:2.1.1/net.minidev:asm:jar:1.0.2/asm:asm:jar:3.3.1</node>
+            <node x="353.0" y="1075.0">com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-codec:jar:4.0.25.Final</node>
+            <node x="548.0" y="1161.0">com.corundumstudio.socketio:netty-socketio:jar:1.7.7/com.fasterxml.jackson.core:jackson-databind:jar:2.4.3/com.fasterxml.jackson.core:jackson-annotations:jar:2.4.0</node>
+            <node x="361.0" y="215.0">org.springframework:spring-webmvc:jar:4.2.2.RELEASE/org.springframework:spring-web:jar:4.2.2.RELEASE</node>
+            <node x="361.0" y="172.0">org.springframework:spring-webmvc:jar:4.2.2.RELEASE/org.springframework:spring-expression:jar:4.2.2.RELEASE</node>
+            <node x="361.0" y="129.0">org.springframework:spring-webmvc:jar:4.2.2.RELEASE/org.springframework:spring-core:jar:4.2.2.RELEASE</node>
+            <node x="353.0" y="946.0">com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-transport:jar:4.0.25.Final</node>
+            <node x="181.0" y="387.0">org.aspectj:aspectjrt:jar:1.6.10</node>
+            <node x="181.0" y="688.0">com.alibaba:fastjson:jar:1.2.7</node>
+            <node x="181.0" y="602.0">org.mybatis:mybatis:jar:3.3.0</node>
+            <node x="291.0" y="1376.0">org.testng:testng:jar:6.9.8/org.beanshell:bsh:jar:2.0b4</node>
+            <node x="353.0" y="1032.0">com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-codec-http:jar:4.0.25.Final</node>
+            <node x="181.0" y="1376.0">org.testng:testng:jar:6.9.8</node>
+            <node x="278.0" y="1462.0">junit:junit:jar:4.12/org.hamcrest:hamcrest-core:jar:1.3</node>
+            <node x="353.0" y="1161.0">com.corundumstudio.socketio:netty-socketio:jar:1.7.7/com.fasterxml.jackson.core:jackson-databind:jar:2.4.3</node>
+            <node x="181.0" y="344.0">org.springframework:spring-jdbc:jar:4.2.2.RELEASE</node>
+            <node x="500.0" y="301.0">org.springframework:spring-context:jar:4.2.2.RELEASE/org.springframework:spring-aop:jar:4.2.2.RELEASE/aopalliance:aopalliance:jar:1.0</node>
+            <node x="181.0" y="0.0">javax.servlet.jsp.jstl:jstl:jar:1.2</node>
+            <node x="181.0" y="1505.0">com.jayway.jsonpath:json-path:jar:2.0.0</node>
+            <node x="181.0" y="1634.0">commons-codec:commons-codec:jar:20041127.091804</node>
+            <node x="355.0" y="301.0">org.springframework:spring-context:jar:4.2.2.RELEASE/org.springframework:spring-aop:jar:4.2.2.RELEASE</node>
+            <node x="181.0" y="1548.0">commons-httpclient:commons-httpclient:jar:3.1</node>
+            <node x="181.0" y="860.0">com.corundumstudio.socketio:netty-socketio:jar:1.7.7</node>
+            <node x="320.0" y="1677.0">com.sun.mail:javax.mail:jar:1.5.2/javax.activation:activation:jar:1.1</node>
+            <node x="181.0" y="1462.0">junit:junit:jar:4.12</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.springframework:spring-test:jar:4.2.2.RELEASE">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="1349.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.aspectj:aspectjrt:jar:1.6.10">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="403.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.testng:testng:jar:6.9.8">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="1392.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.mybatis:mybatis:jar:3.3.0">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="618.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="redis.clients:jedis:jar:2.7.3">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="790.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="ch.qos.logback:logback-classic:jar:1.1.3">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="1306.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="org.springframework:spring-context:jar:4.2.2.RELEASE" target="org.springframework:spring-context:jar:4.2.2.RELEASE/org.springframework:spring-aop:jar:4.2.2.RELEASE">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.corundumstudio.socketio:netty-socketio:jar:1.7.7" target="com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-codec-http:jar:4.0.25.Final">
+              <point x="0.0" y="0.0" />
+              <point x="252.0" y="1048.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="commons-httpclient:commons-httpclient:jar:3.1">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="1564.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.jayway.jsonpath:json-path:jar:2.0.0/net.minidev:json-smart:jar:2.1.1" target="com.jayway.jsonpath:json-path:jar:2.0.0/net.minidev:json-smart:jar:2.1.1/net.minidev:asm:jar:1.0.2">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.corundumstudio.socketio:netty-socketio:jar:1.7.7" target="com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-buffer:jar:4.0.25.Final">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="org.testng:testng:jar:6.9.8" target="org.testng:testng:jar:6.9.8/com.beust:jcommander:jar:1.48">
+              <point x="0.0" y="0.0" />
+              <point x="221.0" y="1435.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="javax.servlet.jsp.jstl:jstl:jar:1.2">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="org.springframework:spring-webmvc:jar:4.2.2.RELEASE" target="org.springframework:spring-webmvc:jar:4.2.2.RELEASE/org.springframework:spring-web:jar:4.2.2.RELEASE">
+              <point x="0.0" y="0.0" />
+              <point x="256.0" y="231.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.mybatis:mybatis-spring:jar:1.2.3">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="661.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="redis.clients:jedis:jar:2.7.3" target="redis.clients:jedis:jar:2.7.3/org.apache.commons:commons-pool2:jar:2.3">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.jayway.jsonpath:json-path:jar:2.0.0" target="com.jayway.jsonpath:json-path:jar:2.0.0/net.minidev:json-smart:jar:2.1.1">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="mysql:mysql-connector-java:jar:5.1.1">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="575.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="org.springframework:spring-jdbc:jar:4.2.2.RELEASE" target="org.springframework:spring-jdbc:jar:4.2.2.RELEASE/org.springframework:spring-tx:jar:4.2.2.RELEASE">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="org.testng:testng:jar:6.9.8" target="org.testng:testng:jar:6.9.8/org.beanshell:bsh:jar:2.0b4">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="junit:junit:jar:4.12">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="1478.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="org.springframework:spring-webmvc:jar:4.2.2.RELEASE" target="org.springframework:spring-webmvc:jar:4.2.2.RELEASE/org.springframework:spring-beans:jar:4.2.2.RELEASE">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.corundumstudio.socketio:netty-socketio:jar:1.7.7" target="com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-codec:jar:4.0.25.Final">
+              <point x="0.0" y="0.0" />
+              <point x="252.0" y="1091.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.corundumstudio.socketio:netty-socketio:jar:1.7.7" target="com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-handler:jar:4.0.25.Final">
+              <point x="0.0" y="0.0" />
+              <point x="252.0" y="1005.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.codehaus.jackson:jackson-mapper-asl:jar:1.9.13">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="532.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.springframework:spring-context-support:jar:4.2.2.RELEASE">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="274.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="com.jayway.jsonpath:json-path:jar:2.0.0">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="1521.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.sun.mail:javax.mail:jar:1.5.2" target="com.sun.mail:javax.mail:jar:1.5.2/javax.activation:activation:jar:1.1">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="com.fasterxml.jackson.core:jackson-core:jar:2.6.3">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="489.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.corundumstudio.socketio:netty-socketio:jar:1.7.7" target="com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-common:jar:4.0.25.Final">
+              <point x="0.0" y="0.0" />
+              <point x="252.0" y="919.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="org.springframework:spring-webmvc:jar:4.2.2.RELEASE" target="org.springframework:spring-webmvc:jar:4.2.2.RELEASE/org.springframework:spring-core:jar:4.2.2.RELEASE">
+              <point x="0.0" y="0.0" />
+              <point x="256.0" y="145.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.aspectj:aspectjweaver:jar:1.8.7">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="446.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="com.alibaba:fastjson:jar:1.2.7">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="704.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="com.corundumstudio.socketio:netty-socketio:jar:1.7.7">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="876.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.springframework:spring-context:jar:4.2.2.RELEASE">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="317.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.jayway.jsonpath:json-path:jar:2.0.0/net.minidev:json-smart:jar:2.1.1/net.minidev:asm:jar:1.0.2" target="com.jayway.jsonpath:json-path:jar:2.0.0/net.minidev:json-smart:jar:2.1.1/net.minidev:asm:jar:1.0.2/asm:asm:jar:3.3.1">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.springframework:spring-jdbc:jar:4.2.2.RELEASE">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="360.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="javax.servlet:servlet-api:jar:3.0-alpha-1">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="747.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="junit:junit:jar:4.12" target="junit:junit:jar:4.12/org.hamcrest:hamcrest-core:jar:1.3">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.tuckey:urlrewritefilter:jar:4.0.4">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="59.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.springframework.data:spring-data-redis:jar:1.5.0.RELEASE">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="833.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="org.codehaus.jackson:jackson-mapper-asl:jar:1.9.13" target="org.codehaus.jackson:jackson-mapper-asl:jar:1.9.13/org.codehaus.jackson:jackson-core-asl:jar:1.9.13">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="commons-logging:commons-logging:jar:1.2">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="1607.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="org.springframework:spring-webmvc:jar:4.2.2.RELEASE" target="org.springframework:spring-webmvc:jar:4.2.2.RELEASE/org.springframework:spring-expression:jar:4.2.2.RELEASE">
+              <point x="0.0" y="0.0" />
+              <point x="256.0" y="188.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.slf4j:slf4j-api:jar:1.7.12">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="1220.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="org.springframework:spring-webmvc:jar:4.2.2.RELEASE">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="102.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="com.sun.mail:javax.mail:jar:1.5.2">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="1693.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="org.springframework:spring-context:jar:4.2.2.RELEASE/org.springframework:spring-aop:jar:4.2.2.RELEASE" target="org.springframework:spring-context:jar:4.2.2.RELEASE/org.springframework:spring-aop:jar:4.2.2.RELEASE/aopalliance:aopalliance:jar:1.0">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.corundumstudio.socketio:netty-socketio:jar:1.7.7" target="com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-transport-native-epoll:jar:4.0.25.Final">
+              <point x="0.0" y="0.0" />
+              <point x="252.0" y="1134.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.corundumstudio.socketio:netty-socketio:jar:1.7.7" target="com.corundumstudio.socketio:netty-socketio:jar:1.7.7/io.netty:netty-transport:jar:4.0.25.Final">
+              <point x="0.0" y="0.0" />
+              <point x="252.0" y="962.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="commons-codec:commons-codec:jar:20041127.091804">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="1650.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.corundumstudio.socketio:netty-socketio:jar:1.7.7/com.fasterxml.jackson.core:jackson-databind:jar:2.4.3" target="com.corundumstudio.socketio:netty-socketio:jar:1.7.7/com.fasterxml.jackson.core:jackson-databind:jar:2.4.3/com.fasterxml.jackson.core:jackson-annotations:jar:2.4.0">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT" target="ch.qos.logback:logback-core:jar:1.1.3">
+              <point x="0.0" y="0.0" />
+              <point x="75.5" y="1263.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="com.corundumstudio.socketio:netty-socketio:jar:1.7.7" target="com.corundumstudio.socketio:netty-socketio:jar:1.7.7/com.fasterxml.jackson.core:jackson-databind:jar:2.4.3">
+              <point x="0.0" y="0.0" />
+              <point x="252.0" y="1177.5" />
+              <point x="0.0" y="0.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.8173410404624276" x="148.63507779349368" y="785.6350777934937" />
+          <SelectedNodes>
+            <node>com.zjut.edu.grade.manager:grade-maneger:1.0-SNAPSHOT</node>
+          </SelectedNodes>
+          <Categories />
+          <VISIBILITY>All</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.68" vertical-offset="584" max-vertical-offset="1495">
-          <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+        <state vertical-scroll-proportion="-8.28" vertical-offset="644" max-vertical-offset="11385">
+          <caret line="37" column="48" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/images/favicon.ico">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/JsonResult.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5/structural.rnc">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26972282" vertical-offset="0" max-vertical-offset="1955">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35345775" vertical-offset="414" max-vertical-offset="2093">
-          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/shoppy/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.32" vertical-offset="34606" max-vertical-offset="106812">
-          <caret line="1518" column="0" selection-start-line="1518" selection-start-column="0" selection-end-line="1522" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-27.8" vertical-offset="91098" max-vertical-offset="92023">
-          <caret line="3991" column="0" selection-start-line="3991" selection-start-column="0" selection-end-line="3991" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0877192" vertical-offset="947" max-vertical-offset="2185">
-          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets/gritter/js/jquery.gritter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8964365" vertical-offset="966" max-vertical-offset="9545">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-          <folding>
-            <marker date="1463135348206" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1463135348206" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/grade.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.16" vertical-offset="621" max-vertical-offset="6187">
-          <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/SMSController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75479746" vertical-offset="557" max-vertical-offset="1495">
-          <caret line="69" column="9" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/ITeacherService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.2" vertical-offset="73" max-vertical-offset="690">
-          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/forgetPassWord.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.736842" vertical-offset="744" max-vertical-offset="1610">
-          <caret line="54" column="11" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.32" vertical-offset="647" max-vertical-offset="3910">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.34248078" vertical-offset="1344" max-vertical-offset="3243">
+          <caret line="72" column="16" selection-start-line="72" selection-start-column="16" selection-end-line="72" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/Contants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5982437" vertical-offset="1111" max-vertical-offset="2047">
-          <caret line="72" column="64" selection-start-line="72" selection-start-column="64" selection-end-line="72" selection-end-column="64" />
+        <state vertical-scroll-proportion="-29.24" vertical-offset="1178" max-vertical-offset="2116">
+          <caret line="83" column="46" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/TeacherServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/form/ClassForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.72" vertical-offset="256" max-vertical-offset="2783">
-          <caret line="52" column="113" selection-start-line="52" selection-start-column="113" selection-end-line="52" selection-end-column="113" />
+        <state vertical-scroll-proportion="-15.64" vertical-offset="0" max-vertical-offset="1127">
+          <caret line="18" column="44" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/applicationContext-servlet.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/GradeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42497137" vertical-offset="641" max-vertical-offset="1541">
-          <caret line="44" column="59" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
+        <state vertical-scroll-proportion="-31.28" vertical-offset="414" max-vertical-offset="1564">
+          <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/signup.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/AnswerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1287794" vertical-offset="1495" max-vertical-offset="2921">
-          <caret line="70" column="66" selection-start-line="70" selection-start-column="66" selection-end-line="70" selection-end-column="66" />
+        <state vertical-scroll-proportion="8.76" vertical-offset="472" max-vertical-offset="1403">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.28" vertical-offset="18139" max-vertical-offset="92023">
+          <caret line="802" column="0" selection-start-line="802" selection-start-column="0" selection-end-line="802" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMCore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.84" vertical-offset="16814" max-vertical-offset="25300">
+          <caret line="745" column="18" selection-start-line="745" selection-start-column="18" selection-end-line="745" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.96" vertical-offset="1155" max-vertical-offset="2093">
+          <caret line="73" column="60" selection-start-line="73" selection-start-column="60" selection-end-line="73" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/bean/SignBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1716418" vertical-offset="0" max-vertical-offset="1265">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/mapper/ClassesMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.08" vertical-offset="561" max-vertical-offset="1725">
+          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.76" vertical-offset="18" max-vertical-offset="943">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ClassesMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-25.4" vertical-offset="1343" max-vertical-offset="2737">
+          <caret line="86" column="9" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
+          <folding>
+            <marker date="1463300117794" expanded="true" signature="-1:-1" placeholder="SELECT cla_i..class..." />
+            <marker date="1463300117794" expanded="true" signature="-1:-1" placeholder="SELECT class..class_detail..." />
+            <marker date="1463300117794" expanded="true" signature="-1:-1" placeholder="SELECT cla_i..class..." />
+            <marker date="1463300117794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1463300117794" expanded="true" signature="-1:-1" placeholder="UPDATE job s..." />
+            <marker date="1463300117794" expanded="true" signature="-1:-1" placeholder="UPDATE grade..." />
+            <marker date="1463300117794" expanded="true" signature="-1:-1" placeholder="UPDATE stude..." />
+            <marker date="1463300117794" expanded="true" signature="-1:-1" placeholder="update class..." />
+            <marker date="1463300117794" expanded="true" signature="-1:-1" placeholder="update class..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.2.2.RELEASE/spring-core-4.2.2.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.04" vertical-offset="1803" max-vertical-offset="3381">
+          <caret line="101" column="18" selection-start-line="101" selection-start-column="18" selection-end-line="101" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.4259458" vertical-offset="0" max-vertical-offset="4439">
+          <caret line="202" column="53" selection-start-line="202" selection-start-column="53" selection-end-line="202" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/main.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.719298" vertical-offset="0" max-vertical-offset="1150">
+          <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.5438595" vertical-offset="112" max-vertical-offset="2185">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="32" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/email/list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="963">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/email/write.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="936">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/bootstrap-switch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34221748" vertical-offset="4348" max-vertical-offset="5773">
+          <caret line="209" column="6" selection-start-line="209" selection-start-column="6" selection-end-line="209" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/class/class_list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1265">
+          <caret line="0" column="36" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/job/detail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.406181" vertical-offset="0" max-vertical-offset="906">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/email/detail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.406181" vertical-offset="0" max-vertical-offset="906">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/class/create_class.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.4561405" vertical-offset="474" max-vertical-offset="1380">
+          <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.2.2.RELEASE/spring-core-4.2.2.RELEASE.jar!/org/springframework/util/StringUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.42" vertical-offset="47" max-vertical-offset="15847">
+          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+          <folding>
+            <element signature="e#999#1000#0" expanded="true" />
+            <element signature="e#1051#1052#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IClassService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.64" vertical-offset="29" max-vertical-offset="1219">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/ClassServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.08" vertical-offset="2260" max-vertical-offset="4945">
+          <caret line="137" column="17" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/vo/ClassVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.6" vertical-offset="254" max-vertical-offset="1702">
+          <caret line="31" column="26" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IJobService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.04" vertical-offset="0" max-vertical-offset="506">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/JobServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-29.76" vertical-offset="1372" max-vertical-offset="2507">
+          <caret line="110" column="14" selection-start-line="110" selection-start-column="14" selection-end-line="110" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/bean/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.64" vertical-offset="0" max-vertical-offset="1449">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/job/list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9807107" vertical-offset="0" max-vertical-offset="1495">
+          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/job/create.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.0526314" vertical-offset="345" max-vertical-offset="1449">
+          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/JobController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.76" vertical-offset="1098" max-vertical-offset="2323">
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/ClassController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.48" vertical-offset="344" max-vertical-offset="3289">
+          <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.087719" vertical-offset="6900" max-vertical-offset="10925">
+          <caret line="325" column="49" selection-start-line="325" selection-start-column="43" selection-end-line="325" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/asider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0310345" vertical-offset="253" max-vertical-offset="2484">
+          <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
           <folding />
         </state>
       </provider>

@@ -4,20 +4,20 @@ import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.ClassDetail;
 import com.dfire.grade.manager.bean.Classes;
 import com.dfire.grade.manager.bean.Page;
+import com.dfire.grade.manager.bean.Teacher;
 import com.dfire.grade.manager.exception.SchoolTimeException;
 import com.dfire.grade.manager.mapper.ClassesMapper;
+import com.dfire.grade.manager.mapper.TeacherMapper;
 import com.dfire.grade.manager.service.IClassService;
 import com.dfire.grade.manager.utils.DateUtil;
 import com.dfire.grade.manager.utils.RedisUtil;
 import com.dfire.grade.manager.utils.SequenceUtil;
-import com.dfire.grade.manager.vo.ClassIncludeSchoolTime;
-import com.dfire.grade.manager.vo.JsonResult;
+import com.dfire.grade.manager.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -29,6 +29,8 @@ import java.util.*;
 public class ClassServiceImpl implements IClassService {
     @Autowired
     private ClassesMapper classesMapper;
+    @Autowired
+    private TeacherMapper teacherMapper;
     @Autowired
     private RedisUtil redisUtil;
 
@@ -91,23 +93,11 @@ public class ClassServiceImpl implements IClassService {
         if (0 == pageSize) {
             pageSize = 10;
         }
-        Calendar cla = Calendar.getInstance();
-        int year = cla.get(Calendar.YEAR);
-        int month = cla.get(Calendar.MONTH);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         if (null == startTime) {
-            if (month <= 7) {
-                startTime = sdf.parse(String.valueOf(year) + "-01-01 00:00:00");
-            } else {
-                startTime = sdf.parse(String.valueOf(year) + "-07-01 00:00:00");
-            }
+            startTime = DateUtil.getFirstHalfYear();
         }
         if (null == endTime) {
-            if (month <= 7) {
-                endTime = sdf.parse(String.valueOf(year) + "-07-01 00:00:00");
-            } else {
-                endTime = sdf.parse(String.valueOf(year) + "-13-01 00:00:00");
-            }
+            endTime = DateUtil.getSecondHalfYear();
         }
         List<Classes> classesList = (List<Classes>) redisUtil.getValue(Contants.RedisContent.TEACHER_CLASS_CACHE_BY_ID + teacherId, List.class);
         if (null == classesList) {
@@ -129,23 +119,11 @@ public class ClassServiceImpl implements IClassService {
         if (0 == pageSize) {
             pageSize = 10;
         }
-        Calendar cla = Calendar.getInstance();
-        int year = cla.get(Calendar.YEAR);
-        int month = cla.get(Calendar.MONTH);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         if (null == startTime) {
-            if (month <= 7) {
-                startTime = sdf.parse(String.valueOf(year) + "-01-01 00:00:00");
-            } else {
-                startTime = sdf.parse(String.valueOf(year) + "-07-01 00:00:00");
-            }
+            startTime = DateUtil.getFirstHalfYear();
         }
         if (null == endTime) {
-            if (month <= 7) {
-                endTime = sdf.parse(String.valueOf(year) + "-07-01 00:00:00");
-            } else {
-                endTime = sdf.parse(String.valueOf(year) + "-13-01 00:00:00");
-            }
+            endTime = DateUtil.getSecondHalfYear();
         }
         List<Classes> classesList = (List<Classes>) redisUtil.getValue(Contants.RedisContent.STUDENT_CLASS_CACHE_BY_ID + studentId, List.class);
         if (null == classesList) {
@@ -157,7 +135,13 @@ public class ClassServiceImpl implements IClassService {
             page.setEndTime(endTime);
             classesList = classesMapper.selectClassByStudentId(page);
         }
-        return JsonResult.jsonSuccessData(classesList);
+        List<ClassVo> classVos = new ArrayList<>();
+        for (Classes classes : classesList) {
+            ClassVo classVo = new ClassVo();
+            copyClass(classes, classVo);
+            classVos.add(classVo);
+        }
+        return JsonResult.jsonSuccessData(classVos);
     }
 
     @Override
@@ -170,6 +154,8 @@ public class ClassServiceImpl implements IClassService {
                 redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, classes, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
             }
         }
+        ClassVo classVo = new ClassVo();
+        copyClass(classes, classVo);
         return JsonResult.jsonSuccessData(classes);
     }
 
@@ -196,6 +182,46 @@ public class ClassServiceImpl implements IClassService {
                 redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, classes, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
             }
         }
+        ClassInDetailVo classVo = new ClassInDetailVo();
+        copyClassInDetail(classes, classVo);
         return JsonResult.jsonSuccessData(classes);
+    }
+
+    private void copyClass(Classes classes, ClassVo classVo) throws Exception {
+        classVo.setClassId(classes.getClassId());
+        classVo.setCreateTime(classes.getCreateTime());
+        classVo.setCredit(classes.getCredit());
+        classVo.setName(classes.getName());
+        classVo.setPeriod(classes.getPeriod());
+        String teacherId = classes.getTeacherId();
+        Teacher teacher = (Teacher) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + teacherId, Teacher.class);
+        if (null == teacher) {
+            teacher = teacherMapper.selectById(teacherId);
+        }
+        classVo.setTeacherName(teacher.getName());
+    }
+
+    private void copyClassInDetail(Classes classes, ClassInDetailVo classVo) throws Exception {
+        classVo.setClassId(classes.getClassId());
+        classVo.setCreateTime(classes.getCreateTime());
+        classVo.setCredit(classes.getCredit());
+        classVo.setName(classes.getName());
+        classVo.setPeriod(classes.getPeriod());
+        String teacherId = classes.getTeacherId();
+        Teacher teacher = (Teacher) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + teacherId, Teacher.class);
+        if (null == teacher) {
+            teacher = teacherMapper.selectById(teacherId);
+        }
+        classVo.setTeacherName(teacher.getName());
+        if (!CollectionUtils.isEmpty(classes.getClassDetails())) {
+            List<ClassDetail> classDetails = classes.getClassDetails();
+            for (ClassDetail classDetail : classDetails) {
+                ClassDetailVo classDetailVo = new ClassDetailVo();
+                classDetailVo.setClassDetailId(classDetail.getClassDetailId());
+                classDetailVo.setClassId(classDetail.getClassId());
+                classDetailVo.setPart(classDetail.getPart());
+                classDetailVo.setWeekDay(classDetail.getWeekDay());
+            }
+        }
     }
 }
