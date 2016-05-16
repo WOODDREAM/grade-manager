@@ -48,23 +48,22 @@ public class ClassServiceImpl implements IClassService {
             String classId = SequenceUtil.getSequence();
             myClass.setClassId(classId);
             myClass.setName(schoolTime.getName());
-            myClass.setPeriod(schoolTime.getPeriod());
+            myClass.setPeriod(schoolTime.getFrequency() * schoolTime.getPeriod());
             myClass.setTeacherId(schoolTime.getTeacherId());
             myClass.setCreateTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));
             myClass.setCredit(schoolTime.getCredit());
             myClass.setValid(true);
             myClass.setFrequencyUnit(schoolTime.getFrequencyUnit());
             myClass.setFrequency(schoolTime.getFrequency());
+            myClass.setStartTime(schoolTime.getStartTime());
+            myClass.setEndTime(schoolTime.getEndTime());
             List<ClassDetail> classDetails = new ArrayList<>();
-            Set<Map.Entry<String, Integer>> schoolTimeSet = schoolTime.getSchoolTimes().entrySet();
-            Iterator<Map.Entry<String, Integer>> it = schoolTimeSet.iterator();
-            while (it.hasNext()) {
-                Map.Entry<String, Integer> classSch = it.next();
-                String key = classSch.getKey();
-                Integer value = classSch.getValue();
+            for (Schedule schedule : schoolTime.getSchoolTimes()) {
+                Integer key = schedule.getWeekDay();
+                Integer value = schedule.getPart();
                 //1到7表示星期,1到11表示节数
-                if (Integer.parseInt(key) < 0 || Integer.parseInt(key) > 8 || value < 0 || value > 12) {
-                    throw new SchoolTimeException();
+                if (key < 0 || key > 8 || value < 0 || value > 13) {
+                    throw new SchoolTimeException("星期或者节数超出范围！");
                 }
                 ClassDetail classDetail = new ClassDetail();
                 classDetail.setClassDetailId(SequenceUtil.getSequence());
@@ -72,7 +71,7 @@ public class ClassServiceImpl implements IClassService {
                 classDetail.setValid(true);
                 classDetail.setTerm(DateUtil.getCurDate(DateUtil.DEFAULT_DATE_FORMAT));
                 classDetail.setPart(value);
-                classDetail.setWeekDay(Integer.parseInt(key));
+                classDetail.setWeekDay(key);
                 classDetail.setClassId(classId);
                 classDetails.add(classDetail);
             }
@@ -108,8 +107,17 @@ public class ClassServiceImpl implements IClassService {
             page.setStartTime(startTime);
             page.setEndTime(endTime);
             classesList = classesMapper.selectClassByTeacherId(page);
+            if(!CollectionUtils.isEmpty(classesList)){
+                redisUtil.setValuePre(Contants.RedisContent.TEACHER_CLASS_CACHE_BY_ID + teacherId, classesList, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME,Contants.RedisContent.MINUTES_UNIT);
+            }
         }
-        return JsonResult.jsonSuccessData(classesList);
+        List<ClassVo> classVos = new ArrayList<>();
+        for (Classes classes : classesList) {
+            ClassVo classVo = new ClassVo();
+            copyClass(classes, classVo);
+            classVos.add(classVo);
+        }
+        return JsonResult.jsonSuccessData(classVos);
     }
 
     @Override
@@ -134,6 +142,9 @@ public class ClassServiceImpl implements IClassService {
             page.setStartTime(startTime);
             page.setEndTime(endTime);
             classesList = classesMapper.selectClassByStudentId(page);
+            if(!CollectionUtils.isEmpty(classesList)){
+                redisUtil.setValuePre(Contants.RedisContent.STUDENT_CLASS_CACHE_BY_ID + studentId, classesList, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME,Contants.RedisContent.MINUTES_UNIT);
+            }
         }
         List<ClassVo> classVos = new ArrayList<>();
         for (Classes classes : classesList) {
@@ -193,6 +204,8 @@ public class ClassServiceImpl implements IClassService {
         classVo.setCredit(classes.getCredit());
         classVo.setName(classes.getName());
         classVo.setPeriod(classes.getPeriod());
+        classVo.setStartTime(classes.getStartTime());
+        classVo.setEndTime(classes.getEndTime());
         String teacherId = classes.getTeacherId();
         Teacher teacher = (Teacher) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + teacherId, Teacher.class);
         if (null == teacher) {
@@ -208,6 +221,8 @@ public class ClassServiceImpl implements IClassService {
         classVo.setName(classes.getName());
         classVo.setPeriod(classes.getPeriod());
         String teacherId = classes.getTeacherId();
+        classVo.setStartTime(classes.getStartTime());
+        classVo.setEndTime(classes.getEndTime());
         Teacher teacher = (Teacher) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + teacherId, Teacher.class);
         if (null == teacher) {
             teacher = teacherMapper.selectById(teacherId);

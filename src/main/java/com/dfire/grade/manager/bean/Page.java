@@ -1,5 +1,7 @@
 package com.dfire.grade.manager.bean;
 
+import com.dfire.grade.manager.utils.DateUtil;
+
 import java.util.Date;
 
 /**
@@ -11,8 +13,8 @@ public class Page {
     private int startIndex;
     private int pageSize;
     private String id;
-    private Date startTime;
-    private Date endTime;
+    private String startTime;
+    private String endTime;
 
     public int getStartIndex() {
         return startIndex;
@@ -38,19 +40,21 @@ public class Page {
         this.id = id;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
     public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+        String date= DateUtil.toString(startTime,DateUtil.DEFAULT_DATE_FORMAT);
+        this.startTime = date;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
     public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+        String date= DateUtil.toString(endTime,DateUtil.DEFAULT_DATE_FORMAT);
+        this.endTime = date;
     }
 }

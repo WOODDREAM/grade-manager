@@ -21,12 +21,19 @@
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/bootstrap-reset.css" rel="stylesheet">
-    <!--external css-->
+    <!--icons-css-->
+    <%--<link href="/css/font-awesome.css" rel="stylesheet">--%>
     <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/assets/gritter/css/jquery.gritter.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap-datepicker/css/datepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap-colorpicker/css/colorpicker.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap-daterangepicker/daterangepicker.css"/>
+
+    <!--external css-->
     <link href="/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
           media="screen"/>
-    <link rel="stylesheet" type="text/css" href="/assets/gritter/css/jquery.gritter.css"/>
-    <link rel="/stylesheet" href="c/ss/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="/css/owl.carousel.css" type="text/css">
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/style-responsive.css" rel="stylesheet"/>
@@ -296,7 +303,7 @@
             <ul class="sidebar-menu">
                 <li class="active" id="li-main">
                     <a class="" href="#" id="a-main">
-                        <i class="icon-dashboard" ></i>
+                        <i class="icon-dashboard"></i>
                         <span>综合信息页</span>
                     </a>
                 </li>
@@ -338,13 +345,13 @@
                 </li>
                 <li class="sub-menu" id="li-person-info">
                     <a href="#" class="" id="a-person-info">
-                        <i class="icon-user" ></i>
+                        <i class="icon-user"></i>
                         <span>个人信息</span>
                     </a>
                 </li>
                 <li id="li-comment">
                     <a class="" href="#" id="a-comment">
-                        <i class="icon-comment" ></i>
+                        <i class="icon-comment"></i>
                         <span>课堂聊天</span>
                     </a>
                 </li>

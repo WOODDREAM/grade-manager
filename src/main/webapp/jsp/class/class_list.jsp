@@ -5,17 +5,19 @@
     <header class="panel-heading">
         我的课程
     </header>
-    <table class="table table-striped table-advance table-hover">
+    <table class="table table-striped table-advance table-hover" id="cla_table">
         <thead>
         <tr>
             <th><i class="icon-bullhorn"></i> ID</th>
+            <th><i class="icon-tags"></i> 名称</th>
+            <th><i class="icon-bookmark"></i> 学时</th>
             <th><i class="icon-bookmark"></i> 学分</th>
-            <th class="hidden-phone"><i class="icon-question-sign"></i> 学时</th>
-            <th><i class="icon-bookmark"></i> 学分</th>
-            <th><i class="icon-bookmark"></i> 创建时间</th>
             <th><i class="icon-bookmark"></i> 每周节数</th>
-            <th><i class=" icon-edit"></i>编辑</th>
-            <th></th>
+            <th><i class=" icon-time"></i> 创建时间</th>
+            <th><i class="  icon-edit-sign"></i>编辑</th>
+            <c:if test="${roleType ==2}">
+                <th><i class=" icon-edit"></i>创建作业</th>
+            </c:if>
         </tr>
         </thead>
 
@@ -26,14 +28,18 @@
                 <td>${item.name}</td>
                 <td>${item.period}</td>
                 <td>${item.credit}</td>
-                <td>${item.createTime}</td>
                 <td>${item.frequency}</td>
-                <td><span class="label label-info label-mini">${item.classId}</span></td>
+                <td>${item.createTime}</td>
                 <td>
-                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                    <button class="btn btn-success btn-xs" name="find_btn" onclick="findClass(this)"><i class=" icon-zoom-out"></i></button>
+                    <button class="btn btn-primary btn-xs" name="update_btn" onclick="updateClass(this)"><i class="icon-pencil"></i></button>
+                    <button class="btn btn-danger btn-xs" name="delete_btn" onclick="deleteClass(this)"><i class="icon-trash "></i></button>
                 </td>
+                <c:if test="${roleType ==2}">
+                    <td>
+                        <button class="btn btn-success btn-xs"><i class="  icon-edit-sign"></i></button>
+                    </td>
+                </c:if>
             </tr>
         </c:forEach>
         </tbody>

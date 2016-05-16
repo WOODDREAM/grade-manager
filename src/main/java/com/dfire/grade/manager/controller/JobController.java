@@ -5,6 +5,7 @@ import com.dfire.grade.manager.bean.SignBean;
 import com.dfire.grade.manager.service.IJobService;
 import com.dfire.grade.manager.service.IStudentService;
 import com.dfire.grade.manager.service.ITeacherService;
+import com.dfire.grade.manager.utils.DateUtil;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,17 +43,19 @@ public class JobController extends BaseController {
     @ResponseStatus(HttpStatus.OK)
     public String createJob(HttpServletRequest request, Model model,
                             @RequestParam(value = "jobId", required = false, defaultValue = "") String jobId,
-                            @RequestParam(value = "name", required = true) String name,
-                            @RequestParam(value = "classId", required = true) String classId,
-                            @RequestParam(value = "isNeedAnswer", required = true) Boolean isAnswer,
-                            @RequestParam(value = "type", required = true) Integer type,
-                            @RequestParam(value = "detail", required = false, defaultValue = "") String detail) throws Exception {
+                            @RequestParam(value = "name", required = false) String name,
+                            @RequestParam(value = "classId", required = false) String classId,
+                            @RequestParam(value = "isNeedAnswer", required = false) Boolean isAnswer,
+                            @RequestParam(value = "type", required = false) Integer type,
+                            @RequestParam(value = "endTime", required = false) String endTime,
+                            @RequestParam(value = "detail", required = true, defaultValue = "") String detail) throws Exception {
         if (request.getMethod().equals(Contants.Http.METHOD_POST)) {
             SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
             String teacherId = signBean.getId();
             JsonResult teaRe = teacherService.queryRoleById(teacherId);
             if (teaRe.isSuccess() && null != teaRe.getData()) {
-                JsonResult jobResult = jobService.createJob(teacherId, classId, name, detail, type, isAnswer, jobId);
+                Date date = DateUtil.parseDate(endTime, DateUtil.DEFAULT_MOUTH_DAY_YEAR);
+                JsonResult jobResult = jobService.createJob(teacherId, classId, name, detail, type, isAnswer, jobId, date);
                 if (jobResult.isSuccess()) {
                     model.addAttribute("jobDetail", jobResult.getData());
                     return "job/detail";

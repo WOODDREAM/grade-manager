@@ -59,10 +59,10 @@ public class StudentServiceImpl implements IStudentService {
     @Override
     public JsonResult queryRoleById(String id) throws Exception {
         SequenceUtil.isBlank(id, "studentId不能为空");
-        Student student = (Student) redisUtil.getValue(Contants.RedisContent.STUDENT_CLASS_CACHE_BY_ID + id, Student.class);
+        Student student = (Student) redisUtil.getValue(Contants.RedisContent.STUDENT_CACHE_BY_ID + id, Student.class);
         if (null == student) {
             student = studentMapper.queryStudentById(id);
-            redisUtil.setValuePre(Contants.RedisContent.STUDENT_CLASS_CACHE_BY_ID + student.getStudentId(), student, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            redisUtil.setValuePre(Contants.RedisContent.STUDENT_CACHE_BY_ID + student.getStudentId(), student, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
         }
         if (null == student){
             return JsonResult.failedInstance(Contants.Message.ERROR_NOT_FIND);

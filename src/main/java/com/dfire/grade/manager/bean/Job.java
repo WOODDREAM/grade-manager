@@ -1,6 +1,5 @@
 package com.dfire.grade.manager.bean;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +7,8 @@ import java.util.Date;
  * Date:2016-03-03
  * description：
  */
-public class Job implements Serializable {
+public class Job{
+
     private String jobId;//作业id
     private String name;//作业名称
     private String detail;//作业详细信息
@@ -18,6 +18,7 @@ public class Job implements Serializable {
     private Date createTime;//创建类型
     private int type;//作业类型
     private boolean valid;//是否有效
+    private Date endTime;
 
 
     public String getJobId() {
@@ -90,5 +91,13 @@ public class Job implements Serializable {
 
     public void setValid(boolean valid) {
         this.valid = valid;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 }

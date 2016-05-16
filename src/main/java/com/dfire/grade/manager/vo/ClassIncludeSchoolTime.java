@@ -1,7 +1,8 @@
 package com.dfire.grade.manager.vo;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.util.Date;
+import java.util.List;
 
 /**
  * User:huangtao
@@ -17,7 +18,9 @@ public class ClassIncludeSchoolTime implements Serializable {
     private double credit;
     private int frequency;//上课频率
     private String frequencyUnit;//频率单位
-    private Map<String, Integer> schoolTimes;
+    private Date endTime;
+    private Date startTime;
+    private List<Schedule> schoolTimes;
 
     public String getTeacherId() {
         return teacherId;
@@ -51,11 +54,11 @@ public class ClassIncludeSchoolTime implements Serializable {
         this.credit = credit;
     }
 
-    public Map<String, Integer> getSchoolTimes() {
+    public List<Schedule> getSchoolTimes() {
         return schoolTimes;
     }
 
-    public void setSchoolTimes(Map<String, Integer> schoolTimes) {
+    public void setSchoolTimes(List<Schedule> schoolTimes) {
         this.schoolTimes = schoolTimes;
     }
 
@@ -73,5 +76,21 @@ public class ClassIncludeSchoolTime implements Serializable {
 
     public void setFrequencyUnit(String frequencyUnit) {
         this.frequencyUnit = frequencyUnit;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 }

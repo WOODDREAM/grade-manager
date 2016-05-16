@@ -2,6 +2,7 @@ package com.dfire.grade.manager.service;
 
 import com.dfire.grade.manager.vo.JsonResult;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Map;
  * description：
  */
 public interface IJobService {
-    JsonResult createJob(String teacherId, String classId, String name, String detail, int type, boolean isAnswer, String jobId) throws Exception;
+    JsonResult createJob(String teacherId, String classId, String name, String detail, int type, boolean isAnswer, String jobId,Date endTime) throws Exception;
 
     JsonResult selectJob(Map<String, Object> map) throws Exception;
 

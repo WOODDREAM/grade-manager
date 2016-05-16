@@ -1,7 +1,6 @@
 package com.dfire.grade.manager.vo.form;
 
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * User:huangtao
@@ -11,19 +10,18 @@ import java.util.Map;
 public class ClassForm implements Serializable {
 
     private static final long serialVersionUID = -4002101529128613338L;
-    private String Name;
+    private String name;
     private double period;
     private double credit;
-    private int frequency;//上课频率
     private String frequencyUnit;//频率单位
-    private Map<String, Integer> schoolTimes;
+    private String schoolTimes;
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public double getPeriod() {
@@ -42,20 +40,12 @@ public class ClassForm implements Serializable {
         this.credit = credit;
     }
 
-    public Map<String, Integer> getSchoolTimes() {
+    public String getSchoolTimes() {
         return schoolTimes;
     }
 
-    public void setSchoolTimes(Map<String, Integer> schoolTimes) {
+    public void setSchoolTimes(String schoolTimes) {
         this.schoolTimes = schoolTimes;
-    }
-
-    public int getFrequency() {
-        return frequency;
-    }
-
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
     }
 
     public String getFrequencyUnit() {

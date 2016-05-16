@@ -11,9 +11,10 @@
         <result column="create_time" property="createTime" jdbcType="DATE"/>
         <result column="type" property="type" jdbcType="SMALLINT"/>
         <result column="valid" property="valid" jdbcType="FLOAT"/>
+        <result column="end_time" property="endTime" jdbcType="DATE"/>
     </resultMap>
     <insert id="createJob" parameterType="com.dfire.grade.manager.bean.Job">
-        INSERT INTO job(job_id,name,detail,tea_id,cla_id,is_need_answer,create_time,type,valid)
+        INSERT INTO job(job_id,name,detail,tea_id,cla_id,is_need_answer,create_time,type,valid,end_time)
         VALUES (
         #{jobId},
         #{name},
@@ -23,11 +24,12 @@
         #{isAnswer},
         #{createTime},
         #{type},
-        #{valid}
+        #{valid},
+        #{endTime}
         )
     </insert>
     <sql id="selectColumn">
-        SELECT job_id,name,detail,tea_id,cla_id,create_time,type,valid
+        SELECT job_id,name,detail,tea_id,cla_id,create_time,type,valid,end_time
         FROM job
     </sql>
     <select id="selectJob" parameterType="java.util.Map" resultMap="jobMapper">
@@ -38,6 +40,7 @@
             <if test="classId !=null">AND cla_id = #{classId}</if>
             <if test="jobId !=null">AND job_id = #{jobId}</if>
             <if test="isAnswer !=null">AND is_need_answer = #{isAnswer}</if>
+            <if test="endTime !=null">AND end_time = #{endTime}</if>
         </where>
     </select>
     <update id="updateJod" parameterType="com.dfire.grade.manager.bean.Job">
@@ -48,6 +51,7 @@
         <if test="classId !=null">,cla_id = #{classId}</if>
         <if test="isAnswer !=null and (isAnswer == 1 || isAnswer == 0)">,is_need_answer = #{isAnswer}</if>
         <if test="type !=null">,type = #{type}</if>
+        <if test="endTime !=null">, end_time = #{endTime}</if>
         WHERE job_id = #{jobId}
     </update>
     <delete id="deleteJod" parameterType="String">

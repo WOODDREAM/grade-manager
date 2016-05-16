@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,7 @@ public class JobServiceImpl implements IJobService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public JsonResult createJob(String teacherId, String classId, String name, String detail, int type, boolean isAnswer, String jobId) throws Exception {
+    public JsonResult createJob(String teacherId, String classId, String name, String detail, int type, boolean isAnswer, String jobId, Date endTime) throws Exception {
         SequenceUtil.isBlank(classId, "classId不能为空");
         SequenceUtil.isBlank(teacherId, "teacherId不能为空");
         SequenceUtil.isBlank(name, "jobName不能为空");
@@ -63,6 +64,7 @@ public class JobServiceImpl implements IJobService {
                             job.setName(name);
                             job.setTeacherId(teacherId);
                             job.setType(type);
+                            job.setEndTime(endTime);
                             jobMapper.updateJod(job);
                         } else {
                             return JsonResult.failedInstance(Contants.Message.ERROR_NO_CLASS);
@@ -77,6 +79,7 @@ public class JobServiceImpl implements IJobService {
                         job.setName(name);
                         job.setTeacherId(teacherId);
                         job.setType(type);
+                        job.setEndTime(endTime);
                         jobMapper.createJob(job);
                     }
                     return JsonResult.jsonSuccessData(job);

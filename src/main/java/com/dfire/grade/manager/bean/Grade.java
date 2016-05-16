@@ -1,6 +1,5 @@
 package com.dfire.grade.manager.bean;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +7,7 @@ import java.util.Date;
  * Date:2016-03-03
  * description：
  */
-public class Grade implements Serializable, Comparable<Grade> {
+public class Grade implements Comparable<Grade> {
     private String gradeId;
     private String studentId;//学生id
     private String classId;//课程id

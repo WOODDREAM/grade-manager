@@ -80,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </p>
 </div>
 <script type="text/javascript" src="/assets/gritter/js/jquery.gritter.js"></script>
-<script src="/js/grade.js"></script>
+<script src="/js/login.js"></script>
 <!--COPY rights end here-->
 </body>
 </html>

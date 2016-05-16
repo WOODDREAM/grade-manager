@@ -4,20 +4,22 @@ import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.SignBean;
 import com.dfire.grade.manager.service.IClassService;
 import com.dfire.grade.manager.service.ITeacherService;
+import com.dfire.grade.manager.utils.DateUtil;
+import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.ClassIncludeSchoolTime;
 import com.dfire.grade.manager.vo.JsonResult;
-import com.dfire.grade.manager.vo.form.ClassForm;
+import com.dfire.grade.manager.vo.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * User:huangtao
@@ -35,30 +37,32 @@ public class ClassController extends BaseController {
     @RequestMapping(value = "/create", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
     public String createClass(HttpServletRequest request, Model model,
-                              @RequestBody(required = false) List<ClassForm> classFormList) throws Exception {
+                              @RequestParam(value = "frequencyUnit", required = false) String frequencyUnit,
+                              @RequestParam(value = "name", required = false) String name,
+                              @RequestParam(value = "period", required = false) Double period,
+                              @RequestParam(value = "credit", required = false) Double credit,
+                              @RequestParam(value = "startTime", required = false) String startTime,
+                              @RequestParam(value = "endTime", required = false) String endTime,
+                              @RequestParam(value = "schoolTimes", required = false) String schoolTimes) throws Exception {
         if (request.getMethod().equals(Contants.Http.METHOD_POST)) {
-            if (null != classFormList) {
-                SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
-                String teacherId = signBean.getId();
-                JsonResult teaRe = teacherService.queryRoleById(teacherId);
-                if (teaRe.isSuccess() && null != teaRe.getData()) {
-                    List<ClassIncludeSchoolTime> classIncludeSchoolTimes = new ArrayList<>();
-                    for (ClassForm classForm : classFormList) {
-                        Map<String, Integer> schoolTimes = classForm.getSchoolTimes();
-                        if (!schoolTimes.isEmpty()) {
-                            ClassIncludeSchoolTime classIncludeSchoolTime = new ClassIncludeSchoolTime();
-                            classIncludeSchoolTime.setCredit(classForm.getCredit());
-                            classIncludeSchoolTime.setName(classForm.getName());
-                            classIncludeSchoolTime.setPeriod(classForm.getPeriod());
-                            classIncludeSchoolTime.setTeacherId(teacherId);
-                            classIncludeSchoolTime.setSchoolTimes(classForm.getSchoolTimes());
-                            classIncludeSchoolTime.setFrequency(schoolTimes.size());
-                            classIncludeSchoolTime.setFrequencyUnit(classForm.getFrequencyUnit());
-                            classIncludeSchoolTimes.add(classIncludeSchoolTime);
-                        } else {
-                            model.addAttribute("message", "没有上课时间，放弃创建");
-                        }
-                    }
+            SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
+            String teacherId = signBean.getId();
+            JsonResult teaRe = teacherService.queryRoleById(teacherId);
+            if (teaRe.isSuccess() && null != teaRe.getData()) {
+                List<ClassIncludeSchoolTime> classIncludeSchoolTimes = new ArrayList<>();
+                List<Schedule> sch = SequenceUtil.stringToSchedule(schoolTimes);
+                if (!CollectionUtils.isEmpty(sch)) {
+                    ClassIncludeSchoolTime classIncludeSchoolTime = new ClassIncludeSchoolTime();
+                    classIncludeSchoolTime.setCredit(credit);
+                    classIncludeSchoolTime.setName(name);
+                    classIncludeSchoolTime.setPeriod(period);
+                    classIncludeSchoolTime.setTeacherId(teacherId);
+                    classIncludeSchoolTime.setSchoolTimes(sch);
+                    classIncludeSchoolTime.setFrequency(sch.size());
+                    classIncludeSchoolTime.setFrequencyUnit(frequencyUnit);
+                    classIncludeSchoolTime.setEndTime(DateUtil.parseDate(endTime, DateUtil.DEFAULT_MOUTH_DAY_YEAR));
+                    classIncludeSchoolTime.setStartTime(DateUtil.parseDate(startTime, DateUtil.DEFAULT_MOUTH_DAY_YEAR));
+                    classIncludeSchoolTimes.add(classIncludeSchoolTime);
                     JsonResult result = classService.insertClass(classIncludeSchoolTimes);
                     if (result.isSuccess()) {
                         JsonResult classRe = classService.selectAllClassByTeacherIdAndPage(teacherId, 0, 10, null, null);
@@ -69,10 +73,10 @@ public class ClassController extends BaseController {
                         model.addAttribute("message", "创建失败！");
                     }
                 } else {
-                    model.addAttribute("message", "没有权限！");
+                    model.addAttribute("message", "没有上课时间，放弃创建");
                 }
             } else {
-                model.addAttribute("message", "参数为空！");
+                model.addAttribute("message", "没有权限！");
             }
         }
         return "class/create_class";
@@ -111,6 +115,7 @@ public class ClassController extends BaseController {
         } else {
             model.addAttribute("message", "没有查出数据");
         }
+        model.addAttribute("roleType", 2);
         return "class/class_list";
     }
 
@@ -135,6 +140,7 @@ public class ClassController extends BaseController {
         } else {
             model.addAttribute("message", "没有查出数据");
         }
+        model.addAttribute("roleType", 1);
         return "class/class_list";
     }
 

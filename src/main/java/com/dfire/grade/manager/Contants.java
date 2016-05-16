@@ -28,7 +28,7 @@ public class Contants {
         public static final int VERIFY_CODE_EXPIRE_TIME = 30;
         public static final int USERINFO_EXPIRE_TIME = 24 * 60 * 60;
         public static final String STUDENT_SIGN_CACHE_BY_ID = "student:sign:id:";
-        //        public static final String STUDENT_CACHE_BY_ID = "student:id:";
+        public static final String STUDENT_CACHE_BY_ID = "student:id:";
         public static final String STUDENT_SIGN_CACHE_BY_MOBILE = "student:sign:mobile:";
         public static final String TEACHER_CACHE_BY_ID = "teacher:id:";
         public static final String TEACHER_SIGN_CACHE_BY_ID = "teacher:sign:id:";

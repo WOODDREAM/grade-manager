@@ -110,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//scrolling js-->
 <script src="/js/bootstrap.js"></script>
 <script type="text/javascript" src="/assets/gritter/js/jquery.gritter.js"></script>
-<script src="/js/grade.js"></script>
+<script src="/js/login.js"></script>
 <!-- mother grid end here-->
 </body>
 </html>

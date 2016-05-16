@@ -16,6 +16,8 @@ import java.util.Map;
  * description：
  */
 public class DateUtil {
+
+    public static final String DEFAULT_MOUTH_DAY_YEAR = "MM/dd/yyyy";
     public static final String DEFAULT_YEAR_MOUTH = "yyyy-MM";
     /**
      * 缺省日期格式
@@ -465,9 +467,9 @@ public class DateUtil {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             if (null == endTime) {
                 if (month <= 7) {
-                    endTime = sdf.parse(String.valueOf(year) + "-01-01 00:00:00");
-                } else {
                     endTime = sdf.parse(String.valueOf(year) + "-07-01 00:00:00");
+                } else {
+                    endTime = sdf.parse(String.valueOf(year) + "-12-31 24:00:00");
                 }
             }
         } catch (Exception ex) {
@@ -479,7 +481,9 @@ public class DateUtil {
     public static void main(String[] args) throws ParseException {
         Date date = new Date(1459496063194L);
 //        date.setTime(1459403182547L);
-        System.out.println(date.toString());
+        Date a = DateUtil.parseDate("05/27/2016", "MM/dd/yyyy");
+
+        System.out.println(a.toString());
         System.out.println(DateUtil.currentTime(DateUtil.DEFAULT_YEAR_MOUTH));
     }
 }

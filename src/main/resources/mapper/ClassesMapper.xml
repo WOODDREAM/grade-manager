@@ -8,6 +8,8 @@
         <result column="period" property="period" jdbcType="VARCHAR"/>
         <result column="credit" property="credit" jdbcType="DOUBLE"/>
         <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="start_time" property="startTime" jdbcType="DATE"/>
+        <result column="end_time" property="endTime" jdbcType="DATE"/>
         <result column="isValid" property="valid" jdbcType="BOOLEAN"/>
         <result column="frequency" property="frequency" jdbcType="SMALLINT"/>
         <result column="fre_unit" property="frequencyUnit" jdbcType="VARCHAR"/>
@@ -24,18 +26,18 @@
     </resultMap>
 
     <sql id="selectColumn">
-        SELECT cla_id,name,tea_Id,period,credit,frequency,fre_unit FROM class
+        SELECT cla_id,name,tea_Id,period,credit,frequency,fre_unit,start_time,end_time,create_time FROM class
     </sql>
     <sql id="selectClassDetailColumn">
         SELECT class_detail_id,week_day,part,term FROM class_detail
     </sql>
     <sql id="selectBothColumn">
-        SELECT cla_id,name,tea_Id,period,credit,frequency,fre_unit,class_detail_id,class_id,week_day,part,term
+        SELECT cla_id,name,tea_Id,start_time,end_time,period,credit,frequency,fre_unit,class_detail_id,class_id,week_day,part,term,class.create_time
         FROM class,class_detail
         WHERE class.cla_id = class_detail.class_id
     </sql>
     <insert id="addClass" parameterType="com.dfire.grade.manager.bean.Classes">
-        INSERT INTO class (cla_id,name,tea_id,period,credit,create_time,isvalid,frequency,fre_unit)
+        INSERT INTO class (cla_id,name,tea_id,period,credit,create_time,isvalid,frequency,fre_unit,start_time,end_time)
         VALUES(
             #{classId,jdbcType=VARCHAR},
             #{name,jdbcType=VARCHAR},
@@ -45,7 +47,9 @@
             #{createTime,jdbcType=DATE},
             #{valid,jdbcType=TINYINT},
             #{frequency,jdbcType=SMALLINT},
-            #{frequencyUnit,jdbcType=VARCHAR}
+            #{frequencyUnit,jdbcType=VARCHAR},
+            #{startTime,jdbcType=DATE},
+            #{endTime,jdbcType=DATE}
             )
     </insert>
     <insert id="addClassDetailsBath" parameterType="java.util.List">
