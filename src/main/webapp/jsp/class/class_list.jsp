@@ -23,21 +23,27 @@
 
         <tbody>
         <c:forEach var="item" items="${classList}">
-            <tr>
-                <td><a href="#"></a>${item.classId}</td>
-                <td>${item.name}</td>
+            <tr class="items">
+                <td class="classItemId">${item.classId}</td>
+                <td class="classItemName">${item.name}</td>
                 <td>${item.period}</td>
                 <td>${item.credit}</td>
                 <td>${item.frequency}</td>
                 <td>${item.createTime}</td>
                 <td>
-                    <button class="btn btn-success btn-xs" name="find_btn" onclick="findClass(this)"><i class=" icon-zoom-out"></i></button>
-                    <button class="btn btn-primary btn-xs" name="update_btn" onclick="updateClass(this)"><i class="icon-pencil"></i></button>
-                    <button class="btn btn-danger btn-xs" name="delete_btn" onclick="deleteClass(this)"><i class="icon-trash "></i></button>
+                    <button class="btn btn-success btn-xs find_btn" name="find_btn"><i class="icon-zoom-out"></i>
+                    </button>
+                    <c:if test="${roleType ==2}">
+                        <button class="btn btn-primary btn-xs update_btn" name="update_btn"><i class="icon-pencil"></i>
+                        </button>
+                        <button class="btn btn-danger btn-xs delete_btn" name="delete_btn"><i class="icon-trash "></i>
+                        </button>
+                    </c:if>
                 </td>
                 <c:if test="${roleType ==2}">
                     <td>
-                        <button class="btn btn-success btn-xs"><i class="  icon-edit-sign"></i></button>
+                        <button class="btn btn-success btn-xs create_job_btn"><i class="icon-edit-sign"></i>
+                        </button>
                     </td>
                 </c:if>
             </tr>
@@ -45,11 +51,19 @@
         </tbody>
     </table>
 </section>
+<div class="row">
+    <div class="col-lg-1">
+    </div>
+    <div class="col-lg-9" id="myContainer2">
+    </div>
+</div>
 
 <!--main content end-->
+<script type="text/javascript" src="/assets/gritter/js/jquery.gritter.js"></script>
 
 <!-- js placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="/assets/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="/assets/data-tables/DT_bootstrap.js"></script>
 <!--script for this page only-->
-<script src="js/dynamic-table.js"></script>
+<script src="/js/dynamic-table.js"></script>
+<script src="/js/class.js"/>

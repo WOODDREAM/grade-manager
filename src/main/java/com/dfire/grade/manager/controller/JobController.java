@@ -6,6 +6,7 @@ import com.dfire.grade.manager.service.IJobService;
 import com.dfire.grade.manager.service.IStudentService;
 import com.dfire.grade.manager.service.ITeacherService;
 import com.dfire.grade.manager.utils.DateUtil;
+import com.dfire.grade.manager.vo.JobVo;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,31 +43,114 @@ public class JobController extends BaseController {
     @RequestMapping(value = "/create", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
     public String createJob(HttpServletRequest request, Model model,
-                            @RequestParam(value = "jobId", required = false, defaultValue = "") String jobId,
                             @RequestParam(value = "name", required = false) String name,
+                            @RequestParam(value = "className", required = false) String className,
                             @RequestParam(value = "classId", required = false) String classId,
                             @RequestParam(value = "isNeedAnswer", required = false) Boolean isAnswer,
                             @RequestParam(value = "type", required = false) Integer type,
                             @RequestParam(value = "endTime", required = false) String endTime,
-                            @RequestParam(value = "detail", required = true, defaultValue = "") String detail) throws Exception {
+                            @RequestParam(value = "detail", required = false) String detail) throws Exception {
+
+        if (request.getMethod().equals(Contants.Http.METHOD_GET)) {
+            if (!StringUtils.isEmpty(classId)) {
+                model.addAttribute("classId", classId);
+                model.addAttribute("className", className);
+                return "job/usual_create";
+            }
+            return "job/create";
+        }
         if (request.getMethod().equals(Contants.Http.METHOD_POST)) {
             SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
             String teacherId = signBean.getId();
             JsonResult teaRe = teacherService.queryRoleById(teacherId);
             if (teaRe.isSuccess() && null != teaRe.getData()) {
-                Date date = DateUtil.parseDate(endTime, DateUtil.DEFAULT_MOUTH_DAY_YEAR);
-                JsonResult jobResult = jobService.createJob(teacherId, classId, name, detail, type, isAnswer, jobId, date);
-                if (jobResult.isSuccess()) {
-                    model.addAttribute("jobDetail", jobResult.getData());
-                    return "job/detail";
+                if (null != type) {
+                    if (type == 1 && StringUtils.isEmpty(classId)) {
+                        model.addAttribute("message", "请选择课程！");
+                    } else {
+                        Date date = DateUtil.parseDate(endTime, DateUtil.DEFAULT_MOUTH_DAY_YEAR);
+                        JsonResult jobResult = jobService.createJob(teacherId, classId, name, detail, type, isAnswer, date);
+                        if (jobResult.isSuccess()) {
+                            model.addAttribute("jobDetail", jobResult.getData());
+                            return "job/detail";
+                        } else {
+                            model.addAttribute("message", jobResult.getMessage());
+                        }
+                    }
                 } else {
-                    model.addAttribute("message", jobResult.getMessage());
+                    model.addAttribute("message", "没有作业类型！");
                 }
             } else {
                 model.addAttribute("message", Contants.Message.NOT_PERMISSION);
             }
         }
-        return "job/create";
+        if (type == Contants.Type.TERM_JOB) {
+            return "job/create";
+        } else {
+            model.addAttribute("classId", classId);
+            model.addAttribute("className", name);
+            return "job/usual_create";
+        }
+    }
+
+    @RequestMapping(value = "/update", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseStatus(HttpStatus.OK)
+    public String updateJob(HttpServletRequest request, Model model,
+                            @RequestParam(value = "jobId", required = true) String jobId,
+                            @RequestParam(value = "name", required = false) String name,
+                            @RequestParam(value = "className", required = false) String className,
+                            @RequestParam(value = "classId", required = false) String classId,
+                            @RequestParam(value = "isNeedAnswer", required = false) Boolean isAnswer,
+                            @RequestParam(value = "endTime", required = false) String endTime,
+                            @RequestParam(value = "detail", required = false) String detail) throws Exception {
+        JobVo jobvo = new JobVo();
+        jobvo.setJobId(jobId);
+        jobvo.setDetail(detail);
+        jobvo.setAnswer(isAnswer);
+        jobvo.setName(name);
+        jobvo.setEndTime(endTime);
+        jobvo.setClassId(classId);
+        jobvo.setClassName(className);
+        model.addAttribute("jobDetail", jobvo);
+        if (request.getMethod().equals(Contants.Http.METHOD_GET)) {
+            if (!StringUtils.isEmpty(jobId)) {
+                JsonResult result = jobService.selectJobById(jobId);
+                if (result.isSuccess() && null != result.getData()) {
+                    model.addAttribute("jobDetail", result.getData());
+                } else {
+                    model.addAttribute("message", "没有查到此作业！");
+                }
+            } else {
+                model.addAttribute("message", "参数为空！");
+            }
+        }
+        if (request.getMethod().equals(Contants.Http.METHOD_POST)) {
+            JobVo job = new JobVo();
+            job.setJobId(jobId);
+            job.setDetail(detail);
+            job.setAnswer(isAnswer);
+            job.setName(name);
+            job.setEndTime(endTime);
+            job.setClassId(classId);
+            job.setClassName(className);
+            model.addAttribute("jobDetail", job);
+            SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
+            String teacherId = signBean.getId();
+            JsonResult teaRe = teacherService.queryRoleById(teacherId);
+            if (teaRe.isSuccess() && null != teaRe.getData()) {
+                Date date = DateUtil.parseDate(endTime, DateUtil.DEFAULT_MOUTH_DAY_YEAR);
+                JsonResult result = jobService.updateJob(teacherId, name, detail, isAnswer, jobId, date);
+                if (result.isSuccess() && null != result.getData()) {
+                    model.addAttribute("jobDetail", result.getData());
+                    return "job/detail";
+                } else {
+                    model.addAttribute("message", "创建失败！");
+                }
+            } else {
+                model.addAttribute("message", Contants.Message.NOT_PERMISSION);
+            }
+        }
+        return "job/update";
     }
 
     @RequestMapping(value = "/find", method = {RequestMethod.POST, RequestMethod.GET})
@@ -89,7 +173,7 @@ public class JobController extends BaseController {
                 teacherId = id;
             }
         }
-        if (result.isSuccess() && null == result.getData()) {
+        if (result.isSuccess() && null != result.getData()) {
             Map<String, Object> map = new HashMap<>();
             if (!StringUtils.isEmpty(studentId)) {
                 map.put("studentId", studentId);
@@ -107,8 +191,9 @@ public class JobController extends BaseController {
             if (rs.isSuccess()) {
                 if (null != rs.getData() && !CollectionUtils.isEmpty((Collection<?>) rs.getData())) {
                     model.addAttribute("jobList", rs.getData());
+                } else {
+                    model.addAttribute("message", rs.getMessage());
                 }
-                model.addAttribute("message", rs.getMessage());
             } else {
                 model.addAttribute("message", Contants.Message.ERROR_REQUEST);
             }

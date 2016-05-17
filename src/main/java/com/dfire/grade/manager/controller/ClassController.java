@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -68,6 +69,7 @@ public class ClassController extends BaseController {
                         JsonResult classRe = classService.selectAllClassByTeacherIdAndPage(teacherId, 0, 10, null, null);
                         if (classRe.isSuccess() && null != classRe.getData()) {
                             model.addAttribute("classList", classRe.getData());
+                            model.addAttribute("roleType", 2);
                             return "class/class_list";
                         }
                         model.addAttribute("message", "创建失败！");
@@ -84,7 +86,7 @@ public class ClassController extends BaseController {
 
     @RequestMapping(value = "/detail", method = {RequestMethod.POST})
     @ResponseStatus(HttpStatus.OK)
-    public String getClassIncludeDetail(Model model, @RequestParam(value = "class_id", required = true) String classId) throws Exception {
+    public String getClassIncludeDetail(Model model, @RequestParam(value = "classId", required = true) String classId) throws Exception {
         JsonResult classes = classService.selectClassIncludeDetailById(classId);
         if (classes.isSuccess() && null != classes.getData()) {
             model.addAttribute("classDetail", classes.getData());
@@ -124,8 +126,8 @@ public class ClassController extends BaseController {
     public String getStudentClass(HttpServletRequest request, Model model,
                                   @RequestParam(value = "start_time", required = false) Date startTime,
                                   @RequestParam(value = "end_time", required = false) Date endTime,
-                                  @RequestParam(value = "index", required = true) Integer index,
-                                  @RequestParam(value = "page_size", required = true) Integer pageSize) throws Exception {
+                                  @RequestParam(value = "index", required = false) Integer index,
+                                  @RequestParam(value = "page_size", required = false) Integer pageSize) throws Exception {
         if (null == index) {
             index = 0;
         }
@@ -147,7 +149,7 @@ public class ClassController extends BaseController {
     @RequestMapping(value = "/delete", method = {RequestMethod.POST})
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public JsonResult deleteClass(HttpServletRequest request, Model model, @RequestParam(value = "class_id", required = false) String classId) throws Exception {
+    public JsonResult deleteClass(HttpServletRequest request, Model model, @RequestParam(value = "classId", required = true) String classId) throws Exception {
         SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
         String teacherId = signBean.getId();
         JsonResult teaRe = teacherService.queryRoleById(teacherId);
@@ -156,5 +158,70 @@ public class ClassController extends BaseController {
             return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_REQUEST);
         }
         return JsonResult.failedInstance(Contants.Message.NOT_PERMISSION);
+    }
+
+    @RequestMapping(value = "/update", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseStatus(HttpStatus.OK)
+    public String updateClass(HttpServletRequest request, Model model,
+                              @RequestParam(value = "classId", required = true) String classId,
+                              @RequestParam(value = "name", required = false) String name,
+                              @RequestParam(value = "period", required = false) Double period,
+                              @RequestParam(value = "credit", required = false) Double credit,
+                              @RequestParam(value = "startTime", required = false) String startTime,
+                              @RequestParam(value = "endTime", required = false) String endTime,
+                              @RequestParam(value = "schoolTimes", required = false) String schoolTimes) throws Exception {
+        if (!StringUtils.isEmpty(classId)) {
+            if (request.getMethod().equals(Contants.Http.METHOD_POST)) {
+                SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
+                String teacherId = signBean.getId();
+                JsonResult teaRe = teacherService.queryRoleById(teacherId);
+                if (teaRe.isSuccess() && null != teaRe.getData()) {
+                    List<ClassIncludeSchoolTime> classIncludeSchoolTimes = new ArrayList<>();
+                    List<Schedule> sch = SequenceUtil.stringToSchedule(schoolTimes);
+                    if (!CollectionUtils.isEmpty(sch) && !StringUtils.isEmpty(classId)) {
+                        ClassIncludeSchoolTime classIncludeSchoolTime = new ClassIncludeSchoolTime();
+                        classIncludeSchoolTime.setCredit(credit);
+                        classIncludeSchoolTime.setName(name);
+                        classIncludeSchoolTime.setPeriod(period);
+                        classIncludeSchoolTime.setTeacherId(teacherId);
+                        classIncludeSchoolTime.setSchoolTimes(sch);
+                        classIncludeSchoolTime.setClassId(classId);
+                        classIncludeSchoolTime.setFrequency(sch.size());
+                        if (endTime.contains("/")) {
+                            classIncludeSchoolTime.setEndTime(DateUtil.parseDate(endTime, DateUtil.DEFAULT_MOUTH_DAY_YEAR));
+                        } else {
+                            classIncludeSchoolTime.setEndTime(DateUtil.parseDate(endTime, DateUtil.DEFAULT_DATE_FORMAT));
+                        }
+                        if (startTime.contains("/")) {
+                            classIncludeSchoolTime.setStartTime(DateUtil.parseDate(startTime, DateUtil.DEFAULT_MOUTH_DAY_YEAR));
+                        } else {
+                            classIncludeSchoolTime.setStartTime(DateUtil.parseDate(startTime, DateUtil.DEFAULT_DATE_FORMAT));
+                        }
+                        classIncludeSchoolTimes.add(classIncludeSchoolTime);
+                        JsonResult result = classService.upDateClassByClassId(classIncludeSchoolTimes);
+                        if (result.isSuccess()) {
+                            JsonResult classRe = classService.selectAllClassByTeacherIdAndPage(teacherId, 0, 10, null, null);
+                            if (classRe.isSuccess() && null != classRe.getData()) {
+                                model.addAttribute("classList", classRe.getData());
+                                model.addAttribute("roleType", 2);
+                                return "class/class_list";
+                            }
+                            model.addAttribute("message", "创建失败！");
+                        }
+                    } else {
+                        model.addAttribute("message", "没有上课时间，放弃更新！");
+                    }
+                } else {
+                    model.addAttribute("message", "没有权限！");
+                }
+            }
+            JsonResult result = classService.selectClassIncludeDetailById(classId);
+            if (result.isSuccess() && null != result.getData()) {
+                model.addAttribute("classDetail", result.getData());
+            }
+        } else {
+            model.addAttribute("message", "参数错误 classId不能为空！");
+        }
+        return "class/update";
     }
 }

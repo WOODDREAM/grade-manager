@@ -1,5 +1,6 @@
 package com.dfire.grade.manager.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,12 +8,14 @@ import java.util.Date;
  * Date:2016-03-24
  * description：课程上课表（每天每节作为一条信息存储）
  */
-public class ClassDetail {
+public class ClassDetail implements Serializable {
+
+    private static final long serialVersionUID = 8872121149677806886L;
     private String classDetailId;
     private int weekDay;//周
     private int part;//节
     private Date createTime;//课程开课时间
-    private boolean isValid;//是否有效
+    private boolean valid;//是否有效
     private Date term;//学期
     private String classId;//对应的课程id
 
@@ -58,11 +61,11 @@ public class ClassDetail {
     }
 
     public boolean isValid() {
-        return isValid;
+        return valid;
     }
 
-    public void setValid(boolean isValid) {
-        this.isValid = isValid;
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 
     public String getClassId() {

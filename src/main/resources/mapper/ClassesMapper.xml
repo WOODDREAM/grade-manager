@@ -21,7 +21,7 @@
         <result column="week_day" property="weekDay" jdbcType="SMALLINT"/>
         <result column="part" property="part" jdbcType="SMALLINT"/>
         <result column="create_time" property="createTime" jdbcType="DATE"/>
-        <result column="isValid" property="isValid" jdbcType="BOOLEAN"/>
+        <result column="isValid" property="valid" jdbcType="BOOLEAN"/>
         <result column="term" property="term" jdbcType="DATE"/>
     </resultMap>
 
@@ -62,7 +62,7 @@
             #{classDetail.part},
             #{classDetail.classId},
             #{classDetail.createTime},
-            #{classDetail.isValid},
+            #{classDetail.valid},
             #{classDetail.term}
             )
         </foreach>
@@ -73,8 +73,8 @@
         AND isvalid='1'
     </select>
     <select id="selectClassByTeacherId" resultMap="classesMapper" parameterType="com.dfire.grade.manager.bean.Page">
-        <include refid="selectBothColumn"/>
-        AND tea_id=#{id}
+        <include refid="selectColumn"/>
+        WHERE tea_id=#{id}
         AND class.isvalid='1'
         <if test="startTime != null">AND class.create_time &gt; #{startTime}</if>
         <if test="endTime != null">AND class.create_time &lt; #{endTime}</if>
@@ -82,8 +82,8 @@
         LIMIT #{startIndex},#{pageSize}
     </select>
     <select id="selectClassByStudentId" resultMap="classesMapper" parameterType="com.dfire.grade.manager.bean.Page">
-        <include refid="selectBothColumn"/>
-        AND cla_id IN (
+        <include refid="selectColumn"/>
+        WHERE cla_id IN (
         SELECT cla_id FROM student_class WHERE stu_id = #{id}
         <if test="startTime != null">AND class.create_time &gt; #{startTime}</if>
         <if test="endTime != null">AND class.create_time &lt; #{endTime}</if>
@@ -95,6 +95,8 @@
     <select id="selectClassIncludeDetailById" parameterType="String" resultMap="classesMapper">
         <include refid="selectBothColumn"/>
         AND class.cla_id = #{classId}
+        AND class_detail.isvalid='1'
+        AND class.isvalid='1'
     </select>
     <!--不能用-->
     <delete id="deleteClassByID" parameterType="String">
@@ -114,5 +116,20 @@
         set isValid = '0'
         where cla_id = #{classId}
     </delete>
+    <update id="deleteClassDetail" parameterType="String">
+        UPDATE class_detail
+        SET isvalid = '0'
+        WHERE class_id=#{classId}
+    </update>
+    <update id="updateClass" parameterType="com.dfire.grade.manager.bean.Classes">
+        UPDATE class
+        SET
+        <if test="name != null">name=#{name}</if>
+        <if test="period != null">,period=#{period}</if>
+        <if test="credit != null">,credit=#{credit}</if>
+        <if test="endTime != null">,end_time=#{endTime}</if>
+        <if test="startTime != null">,start_time=#{startTime}</if>
+        WHERE cla_id=#{classId}
+    </update>
 
 </mapper>

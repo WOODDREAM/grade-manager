@@ -1,5 +1,6 @@
 package com.dfire.grade.manager.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -8,8 +9,9 @@ import java.util.List;
  * Date:2016-03-03
  * description：
  */
-public class Classes{
+public class Classes implements Serializable {
 
+    private static final long serialVersionUID = -2069387647305740038L;
     private String classId;//主键
     private String name;//课程名称
     private String teacherId;//任课教师id

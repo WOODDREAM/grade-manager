@@ -1,6 +1,7 @@
 package com.dfire.grade.manager.service.impl;
 
 import com.dfire.grade.manager.Contants;
+import com.dfire.grade.manager.bean.Classes;
 import com.dfire.grade.manager.bean.Job;
 import com.dfire.grade.manager.exception.ParameterException;
 import com.dfire.grade.manager.mapper.JobMapper;
@@ -9,17 +10,16 @@ import com.dfire.grade.manager.service.IJobService;
 import com.dfire.grade.manager.service.ITeacherService;
 import com.dfire.grade.manager.utils.DateUtil;
 import com.dfire.grade.manager.utils.SequenceUtil;
+import com.dfire.grade.manager.vo.JobVo;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * User:huangtao
@@ -36,57 +36,66 @@ public class JobServiceImpl implements IJobService {
     @Autowired
     private ITeacherService teacherService;
 
+
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public JsonResult createJob(String teacherId, String classId, String name, String detail, int type, boolean isAnswer, String jobId, Date endTime) throws Exception {
-        SequenceUtil.isBlank(classId, "classId不能为空");
-        SequenceUtil.isBlank(teacherId, "teacherId不能为空");
-        SequenceUtil.isBlank(name, "jobName不能为空");
+    public JsonResult createJob(String teacherId, String classId, String name, String detail, int type, boolean isAnswer, Date endTime) throws Exception {
+
         //1作业 2考试
-        if (type == 1 || type == 2) {
-            JsonResult classResult = classService.selectClassById(classId);
-            if (classResult.isSuccess() && null != classResult.getData()) {
-                JsonResult teacherResult = teacherService.queryRoleById(teacherId);
-                if (null != teacherResult && null != teacherResult.getData()) {
-                    Job job = new Job();
-                    if (null != jobId && !jobId.isEmpty()) {
-                        Assert.hasLength(jobId, "jobId不能为空");
-                        Map<String, Object> paramMap = new HashMap<>();
-                        paramMap.put("jobId", jobId);
-                        List<Job> jobs = jobMapper.selectJob(paramMap);
-                        if (!CollectionUtils.isEmpty(jobs)) {
-                            job.setCreateTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));
-                            job.setValid(true);
-                            job.setJobId(jobId);
-                            job.setClassId(classId);
-                            job.setDetail(detail);
-                            job.setAnswer(isAnswer);
-                            job.setName(name);
-                            job.setTeacherId(teacherId);
-                            job.setType(type);
-                            job.setEndTime(endTime);
-                            jobMapper.updateJod(job);
-                        } else {
-                            return JsonResult.failedInstance(Contants.Message.ERROR_NO_CLASS);
-                        }
-                    } else {
+        if (type == Contants.Type.USUALLY_JOB || type == Contants.Type.TERM_JOB) {
+            //考试类型
+            if (type == Contants.Type.TERM_JOB) {
+                SequenceUtil.isBlank(teacherId, "teacherId不能为空");
+                SequenceUtil.isBlank(name, "jobName不能为空");
+                SequenceUtil.isBlank(detail, "jobDetail不能为空");
+                Assert.notNull(endTime, "结束时间不能为空！");
+                Job job = new Job();
+                job.setCreateTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));
+                job.setValid(true);
+                job.setJobId(SequenceUtil.getSequence());
+                job.setDetail(detail);
+                job.setAnswer(isAnswer);
+                job.setName(name);
+                job.setTeacherId(teacherId);
+                job.setType(type);
+                job.setEndTime(endTime);
+                jobMapper.createJob(job);
+                Job job1 = jobMapper.selectJobById(job.getJobId());
+                JobVo jobVo = new JobVo();
+                copyJobVo(job1, jobVo);
+                return JsonResult.jsonSuccessData(jobVo);
+            }
+            if (type == Contants.Type.USUALLY_JOB) {
+                SequenceUtil.isBlank(teacherId, "teacherId不能为空");
+                SequenceUtil.isBlank(name, "jobName不能为空");
+                SequenceUtil.isBlank(classId, "classId不能为空");
+                SequenceUtil.isBlank(detail, "jobDetail不能为空");
+                Assert.notNull(endTime, "结束时间不能为空！");
+                JsonResult classResult = classService.selectClassById(classId);
+                if (classResult.isSuccess() && null != classResult.getData()) {
+                    JsonResult teacherResult = teacherService.queryRoleById(teacherId);
+                    if (null != teacherResult && null != teacherResult.getData()) {
+                        Job job = new Job();
                         job.setCreateTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));
                         job.setValid(true);
                         job.setJobId(SequenceUtil.getSequence());
-                        job.setClassId(classId);
                         job.setDetail(detail);
                         job.setAnswer(isAnswer);
                         job.setName(name);
                         job.setTeacherId(teacherId);
                         job.setType(type);
                         job.setEndTime(endTime);
+                        job.setClassId(classId);
                         jobMapper.createJob(job);
+                        Job job1 = jobMapper.selectJobById(job.getJobId());
+                        JobVo jobVo = new JobVo();
+                        copyJobVo(job1, jobVo);
+                        return JsonResult.jsonSuccessData(jobVo);
                     }
-                    return JsonResult.jsonSuccessData(job);
+                } else {
+                    return JsonResult.failedInstance(Contants.Message.ERROR_NO_CLASS);
                 }
-                return JsonResult.failedInstance(Contants.Message.ERROR_NO_TEACHER);
             }
-            return JsonResult.failedInstance(Contants.Message.ERROR_NO_CLASS);
         }
         return JsonResult.failedInstance(Contants.Message.ERROR_NO_CLASS_TYPE);
     }
@@ -112,9 +121,65 @@ public class JobServiceImpl implements IJobService {
             paramMap.put("isAnswer", map.get("isAnswer"));
         }
         List<Job> jobs = jobMapper.selectJob(paramMap);
-        return JsonResult.jsonSuccessData(jobs);
+        List<JobVo> jobVos = new ArrayList<>();
+        for (Job job : jobs) {
+            JobVo jobVo = new JobVo();
+            copyJobVo(job, jobVo);
+            jobVos.add(jobVo);
+        }
+        return JsonResult.jsonSuccessData(jobVos);
     }
 
+    @Override
+    public JsonResult selectJobById(String jobId) throws Exception {
+        SequenceUtil.isBlank(jobId, "jobId不能为空");
+        Job job = jobMapper.selectJobById(jobId);
+        JobVo jobVo = new JobVo();
+        copyJobVo(job, jobVo);
+        return JsonResult.jsonSuccessData(jobVo);
+    }
+
+    @Override
+    public JsonResult updateJob(String teacherId, String name, String detail, boolean isAnswer, String jobId, Date endTime) throws Exception {
+        SequenceUtil.isBlank(teacherId, "teacherId不能为空");
+        SequenceUtil.isBlank(jobId, "jobId不能为空");
+        SequenceUtil.isBlank(name, "name不能为空");
+        SequenceUtil.isBlank(detail, "detail不能为空");
+        Assert.notNull(endTime, "endTime不能为空！");
+        JsonResult re = teacherService.queryRoleById(teacherId);
+        if (re.isSuccess() && null != re.getData()) {
+            Job job = new Job();
+            job.setDetail(detail);
+            job.setAnswer(isAnswer);
+            job.setName(name);
+            job.setEndTime(endTime);
+            job.setJobId(jobId);
+            jobMapper.updateJod(job);
+            Job j = jobMapper.selectJobById(jobId);
+            JobVo jobVo = new JobVo();
+            copyJobVo(j, jobVo);
+            return JsonResult.jsonSuccessData(jobVo);
+        } else {
+            return JsonResult.failedInstance(Contants.Message.NOT_PERMISSION);
+        }
+    }
+
+    private void copyJobVo(Job job, JobVo jobVo) throws Exception {
+        jobVo.setAnswer(job.isAnswer());
+        jobVo.setClassId(job.getClassId());
+        jobVo.setType(job.getType());
+        if (!StringUtils.isEmpty(job.getClassId())) {
+            JsonResult classes = classService.selectClassById(job.getClassId());
+            if (classes.isSuccess() && null != classes.getData()) {
+                Classes c = (Classes) classes.getData();
+                jobVo.setClassName(c.getName());
+            }
+        }
+        jobVo.setDetail(job.getDetail());
+        jobVo.setEndTime(DateUtil.toString(job.getEndTime()));
+        jobVo.setJobId(job.getJobId());
+        jobVo.setName(job.getName());
+    }
 
     @Override
     public JsonResult deleteJod(String jobId) throws Exception {

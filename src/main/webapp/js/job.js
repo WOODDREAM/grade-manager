@@ -1,18 +1,91 @@
 var Script = function () {
-    var jobType = 0;
     $('#createJobBtn').on('click', function () {
-        var classId = $('#createJodForClassId').val();
         var name = $('#createJodName').val();
         var detail = $('#createJodDetail').val();
         var endTime = $('#dp2').val();
         var isNeedAnswer = 0;
-        if (document.getElementById("isNeedAnswer").checked == true || document.getElementById("isNeedAnswer").checked == "checked") {
+        var jobType = 2;
+        if (name == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: "名称不能为空！",
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        if (name == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: "名称不能为空！",
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        if (detail == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: "详情不能为空！",
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        if (endTime == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: "请选择结束日期！",
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        var str = {
+            name: name,
+            detail: detail,
+            isNeedAnswer: isNeedAnswer,
+            type: jobType,
+            endTime: endTime
+        }
+        $.post("/job/create.do", str, function (data) {
+            $('#myContainer').html(data);
+        });
+
+    });
+
+    $('#createUsualJobBtn').on('click', function () {
+        var classId = $('#createUsualJodForClassId').val();
+        var name = $('#createUsualJodName').val();
+        var detail = $('#createUsualJodDetail').val();
+        var endTime = $('#dp3').val();
+        var isNeedAnswer = 0;
+        var jobType = 1;
+        if (document.getElementById("isNeedAnswerUsual").checked == true || document.getElementById("isNeedAnswer").checked == "checked") {
             isNeedAnswer = 1;
         }
-        if (jobType == 0) {
+        if (name == "") {
             $.gritter.add({
-                title: '请选择!',
-                text: '请选择作业类型！',
+                title: '警告!',
+                text: "名称不能为空！",
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        if (detail == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: "详情不能为空！",
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        if (endTime == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: "请选择结束日期！",
                 sticky: false,
                 time: ''
             });
@@ -29,24 +102,7 @@ var Script = function () {
         $.post("/job/create.do", str, function (data) {
             $('#myContainer').html(data);
         });
-
-    });
-
-
-    $('#usuallyJobType').on('click', function () {
-        jobType = $("#usuallyJobType").val();
-        var usually = document.getElementById("usuallyJobType");
-        usually.checked = true;
-        var student = document.getElementById("termJobType");
-        student.checked = false;
-    });
-    $('#termJobType').on('click', function () {
-        jobType = $("#termJobType").val();
-        var term = document.getElementById("usuallyJobType");
-        term.checked = false;
-        var student = document.getElementById("termJobType");
-        student.checked = this;
-    });
+    })
 }();
 $().ready(function () {
     var message = $('#message').val();

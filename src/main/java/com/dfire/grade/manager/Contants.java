@@ -82,5 +82,11 @@ public class Contants {
 
     public class Http {
         public static final String METHOD_POST = "POST";
+        public static final String METHOD_GET = "GET";
+    }
+
+    public class Type {
+        public static final int USUALLY_JOB = 1;//平时作业
+        public static final int TERM_JOB = 2;//考试作业
     }
 }

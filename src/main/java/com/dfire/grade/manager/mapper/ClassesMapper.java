@@ -71,4 +71,20 @@ public interface ClassesMapper {
      */
     void deleteClassByID(String classId) throws Exception;
 
+    /**
+     * 根据课程id删除课程表
+     *
+     * @param classId
+     * @throws Exception
+     */
+    void deleteClassDetail(String classId) throws Exception;
+
+    /**
+     * 更新课程表
+     *
+     * @param classes
+     * @throws Exception
+     */
+    void updateClass(Classes classes) throws Exception;
+
 }

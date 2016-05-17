@@ -20,4 +20,6 @@ public interface JobMapper {
     void updateJod(Job job) throws Exception;
 
     void deleteJod(String jobId) throws Exception;
+
+    Job selectJobById(String jobId) throws Exception;
 }

@@ -63,11 +63,13 @@ D:\job\grade-manager\src\main\java\com\dfire\grade\manager\utils\RedisUtil.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\logger\LoggerMarker.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\controller\GradeController.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\bean\Page.java
+D:\job\grade-manager\src\main\java\com\dfire\grade\manager\vo\JobVo.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\service\IClassService.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\bean\Grade.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\intercepter\SecurityIntercept.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\service\impl\StudentClassServiceImpl.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\Contants.java
+D:\job\grade-manager\src\main\java\com\dfire\grade\manager\vo\Schedule.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\controller\ClassController.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\annotation\Check.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\bean\Job.java

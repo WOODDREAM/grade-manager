@@ -7,7 +7,7 @@
         <result column="detail" property="detail" jdbcType="VARCHAR"/>
         <result column="tea_id" property="teacherId" jdbcType="VARCHAR"/>
         <result column="cla_id" property="classId" jdbcType="VARCHAR"/>
-        <result column="answer" property="answer" jdbcType="VARCHAR"/>
+        <result column="is_need_answer" property="answer" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="DATE"/>
         <result column="type" property="type" jdbcType="SMALLINT"/>
         <result column="valid" property="valid" jdbcType="FLOAT"/>
@@ -21,7 +21,7 @@
         #{detail},
         #{teacherId},
         #{classId},
-        #{isAnswer},
+        #{answer},
         #{createTime},
         #{type},
         #{valid},
@@ -29,9 +29,15 @@
         )
     </insert>
     <sql id="selectColumn">
-        SELECT job_id,name,detail,tea_id,cla_id,create_time,type,valid,end_time
+        SELECT job_id,name,detail,tea_id,cla_id,create_time,type,valid,end_time,is_need_answer
         FROM job
     </sql>
+
+    <select id="selectJobById" parameterType="String" resultMap="jobMapper">
+        <include refid="selectColumn"/>
+        WHERE valid = 1
+        AND job_id = #{jobId}
+    </select>
     <select id="selectJob" parameterType="java.util.Map" resultMap="jobMapper">
         <include refid="selectColumn"/>
         <where>
@@ -48,9 +54,7 @@
         SET
         <if test="name !=null">name = #{name}</if>
         <if test="detail !=null">,detail = #{detail}</if>
-        <if test="classId !=null">,cla_id = #{classId}</if>
-        <if test="isAnswer !=null and (isAnswer == 1 || isAnswer == 0)">,is_need_answer = #{isAnswer}</if>
-        <if test="type !=null">,type = #{type}</if>
+        <if test="isAnswer !=null">,is_need_answer = #{isAnswer}</if>
         <if test="endTime !=null">, end_time = #{endTime}</if>
         WHERE job_id = #{jobId}
     </update>

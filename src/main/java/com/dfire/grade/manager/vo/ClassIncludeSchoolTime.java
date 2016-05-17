@@ -12,6 +12,8 @@ import java.util.List;
 public class ClassIncludeSchoolTime implements Serializable {
 
     private static final long serialVersionUID = 3187124056377637751L;
+
+    private String classId;
     private String teacherId;
     private String Name;
     private double period;
@@ -92,5 +94,13 @@ public class ClassIncludeSchoolTime implements Serializable {
 
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
+    }
+
+    public String getClassId() {
+        return classId;
+    }
+
+    public void setClassId(String classId) {
+        this.classId = classId;
     }
 }

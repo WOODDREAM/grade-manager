@@ -478,11 +478,20 @@ public class DateUtil {
         return endTime;
     }
 
+
+    public static int getWeekCount(Date startDate, Date endDate) {
+        long from = startDate.getTime();
+        long to = endDate.getTime();
+        int count = (int) ((to - from) / (1000 * 3600 * 24 * 7));
+        return count;
+    }
+
     public static void main(String[] args) throws ParseException {
         Date date = new Date(1459496063194L);
 //        date.setTime(1459403182547L);
         Date a = DateUtil.parseDate("05/27/2016", "MM/dd/yyyy");
-
+        Date b = DateUtil.parseDate("06/27/2016", "MM/dd/yyyy");
+        DateUtil.getWeekCount(a, b);
         System.out.println(a.toString());
         System.out.println(DateUtil.currentTime(DateUtil.DEFAULT_YEAR_MOUTH));
     }

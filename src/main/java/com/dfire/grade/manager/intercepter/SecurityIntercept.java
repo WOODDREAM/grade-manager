@@ -44,7 +44,7 @@ public class SecurityIntercept implements HandlerInterceptor {
                 //在响应头设置session状态
                 response.setHeader("sessionstatus", "sessionOut");
                 response.getWriter().write("登录已失效，将调用JS自动跳转至登录页...");
-                response.getWriter().write("<script>$(function (){window.location.replace('user/login.do');});</script>");
+                response.getWriter().write("<script>$(function (){window.location.replace('/user/login.do');});</script>");
                 return false;
             }
             response.sendRedirect("/user/login.do");

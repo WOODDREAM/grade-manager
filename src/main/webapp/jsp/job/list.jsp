@@ -10,7 +10,7 @@
         <tr>
             <th><i class="icon-bullhorn"></i> ID</th>
             <th><i class="icon-bookmark"></i> 名称</th>
-            <th class="hidden-phone"><i class="icon-question-sign"></i> 详情</th>
+            <th><i class="icon-bookmark"></i> 截止日期</th>
             <th><i class="icon-bookmark"></i> 是否需要作答</th>
             <th><i class="icon-bookmark"></i> 作业类型</th>
             <th><i class=" icon-edit"></i>编辑</th>
@@ -21,24 +21,20 @@
         <tbody>
         <c:forEach var="item" items="${jobList}">
             <tr>
-                <td><a href="#"></a>${item.classId}</td>
                 <td>${item.jobId}</td>
                 <td>${item.name}</td>
-                <td>${item.detail}</td>
-                <c:if test="${item.isAnswer}==1">
+                <td>${item.endTime}</td>
+                <c:if test="${item.answer ==true}">
                     <td>是</td>
                 </c:if>
-                <c:if test="${item.isAnswer}==0">
+                <c:if test="${item.answer ==false}">
                     <td>否</td>
                 </c:if>
-                <c:if test="${item.type}==1">
+                <c:if test="${item.type ==1}">
                     <td>平时</td>
                 </c:if>
-                <c:if test="${item.type}==2">
-                    <td>期中</td>
-                </c:if>
-                <c:if test="${item.type}==3">
-                    <td>期末</td>
+                <c:if test="${item.type ==2}">
+                    <td>考试</td>
                 </c:if>
                 <td>
                     <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
@@ -50,11 +46,20 @@
         </tbody>
     </table>
 </section>
+<div class="row">
+    <div class="col-lg-1">
+    </div>
+    <div class="col-lg-9" id="jobDetail">
+    </div>
+</div>
 
 <!--main content end-->
+<script type="text/javascript" src="/assets/gritter/js/jquery.gritter.js"></script>
 
 <!-- js placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="/assets/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="/assets/data-tables/DT_bootstrap.js"></script>
+<script type="text/javascript" src="/assets/gritter/js/jquery.gritter.js"></script>
+
 <!--script for this page only-->
 <script src="js/dynamic-table.js"></script>

@@ -14,7 +14,7 @@ public class Job{
     private String detail;//作业详细信息
     private String teacherId;//教师id
     private String classId;//课程id
-    private boolean isAnswer;//答案
+    private boolean answer;//答案
     private Date createTime;//创建类型
     private int type;//作业类型
     private boolean valid;//是否有效
@@ -62,11 +62,11 @@ public class Job{
     }
 
     public boolean isAnswer() {
-        return isAnswer;
+        return answer;
     }
 
-    public void setAnswer(boolean isAnswer) {
-        this.isAnswer = isAnswer;
+    public void setAnswer(boolean answer) {
+        this.answer = answer;
     }
 
     public Date getCreateTime() {
