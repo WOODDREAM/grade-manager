@@ -39,7 +39,7 @@
 
                                                 <div class="col-lg-10">
                                                     <input class=" form-control" id="className" name="className"
-                                                           type="text" value="${classDetail.name}"/>
+                                                           type="text" value="${classDetail.name}" autofocus=""/>
                                                 </div>
                                             </div>
                                             <div class="form-group ">

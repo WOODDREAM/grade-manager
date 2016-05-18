@@ -5,7 +5,7 @@
     <header class="panel-heading">
         我的课程
     </header>
-    <table class="table table-striped table-advance table-hover" id="cla_table">
+    <table class="table table-striped border-top" id="sample_1">
         <thead>
         <tr>
             <th><i class="icon-bullhorn"></i> ID</th>
@@ -13,9 +13,10 @@
             <th><i class="icon-bookmark"></i> 学时</th>
             <th><i class="icon-bookmark"></i> 学分</th>
             <th><i class="icon-bookmark"></i> 每周节数</th>
-            <th><i class=" icon-time"></i> 创建时间</th>
-            <th><i class="  icon-edit-sign"></i>编辑</th>
+            <th><i class="icon-time"></i> 创建时间</th>
+            <th><i class="icon-zoom-out"></i>查看</th>
             <c:if test="${roleType ==2}">
+                <th><i class="icon-edit"></i>编辑</th>
                 <th><i class=" icon-edit"></i>创建作业</th>
             </c:if>
         </tr>
@@ -33,14 +34,15 @@
                 <td>
                     <button class="btn btn-success btn-xs find_btn" name="find_btn"><i class="icon-zoom-out"></i>
                     </button>
-                    <c:if test="${roleType ==2}">
+                </td>
+
+                <c:if test="${roleType ==2}">
+                    <td>
                         <button class="btn btn-primary btn-xs update_btn" name="update_btn"><i class="icon-pencil"></i>
                         </button>
                         <button class="btn btn-danger btn-xs delete_btn" name="delete_btn"><i class="icon-trash "></i>
                         </button>
-                    </c:if>
-                </td>
-                <c:if test="${roleType ==2}">
+                    </td>
                     <td>
                         <button class="btn btn-success btn-xs create_job_btn"><i class="icon-edit-sign"></i>
                         </button>
@@ -59,11 +61,13 @@
 </div>
 
 <!--main content end-->
-<script type="text/javascript" src="/assets/gritter/js/jquery.gritter.js"></script>
-
-<!-- js placed at the end of the document so the pages load faster -->
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.scrollTo.min.js"></script>
+<script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
 <script type="text/javascript" src="/assets/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="/assets/data-tables/DT_bootstrap.js"></script>
+
 <!--script for this page only-->
 <script src="/js/dynamic-table.js"></script>
 <script src="/js/class.js"/>

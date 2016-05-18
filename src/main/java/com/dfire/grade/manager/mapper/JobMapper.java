@@ -22,4 +22,6 @@ public interface JobMapper {
     void deleteJod(String jobId) throws Exception;
 
     Job selectJobById(String jobId) throws Exception;
+
+    Integer selectCount(Map<String, Object> map) throws Exception;
 }

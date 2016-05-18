@@ -103,15 +103,6 @@ public class JobController extends BaseController {
                             @RequestParam(value = "isNeedAnswer", required = false) Boolean isAnswer,
                             @RequestParam(value = "endTime", required = false) String endTime,
                             @RequestParam(value = "detail", required = false) String detail) throws Exception {
-        JobVo jobvo = new JobVo();
-        jobvo.setJobId(jobId);
-        jobvo.setDetail(detail);
-        jobvo.setAnswer(isAnswer);
-        jobvo.setName(name);
-        jobvo.setEndTime(endTime);
-        jobvo.setClassId(classId);
-        jobvo.setClassName(className);
-        model.addAttribute("jobDetail", jobvo);
         if (request.getMethod().equals(Contants.Http.METHOD_GET)) {
             if (!StringUtils.isEmpty(jobId)) {
                 JsonResult result = jobService.selectJobById(jobId);
@@ -138,7 +129,12 @@ public class JobController extends BaseController {
             String teacherId = signBean.getId();
             JsonResult teaRe = teacherService.queryRoleById(teacherId);
             if (teaRe.isSuccess() && null != teaRe.getData()) {
-                Date date = DateUtil.parseDate(endTime, DateUtil.DEFAULT_MOUTH_DAY_YEAR);
+                Date date = new Date();
+                if (endTime.contains("/")) {
+                    date = DateUtil.parseDate(endTime, DateUtil.DEFAULT_MOUTH_DAY_YEAR);
+                } else {
+                    date = DateUtil.parseDate(endTime, DateUtil.DEFAULT_DATE_FORMAT);
+                }
                 JsonResult result = jobService.updateJob(teacherId, name, detail, isAnswer, jobId, date);
                 if (result.isSuccess() && null != result.getData()) {
                     model.addAttribute("jobDetail", result.getData());
@@ -156,6 +152,8 @@ public class JobController extends BaseController {
     @RequestMapping(value = "/find", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
     public String findAnswer(HttpServletRequest request, Model model,
+                             @RequestParam(value = "pageSize", required = false, defaultValue = "1000") Integer pageSize,
+                             @RequestParam(value = "pageIndex", required = false, defaultValue = "1") Integer pageIndex,
                              @RequestParam(value = "studentId", required = false) String studentId,
                              @RequestParam(value = "teacherId", required = false) String teacherId,
                              @RequestParam(value = "classId", required = false) String classId,
@@ -167,10 +165,12 @@ public class JobController extends BaseController {
             result = studentService.queryRoleById(id);
             if (StringUtils.isEmpty(studentId)) {
                 studentId = id;
+                model.addAttribute("type", 1);
             }
         } else {
             if (StringUtils.isEmpty(teacherId)) {
                 teacherId = id;
+                model.addAttribute("type", 2);
             }
         }
         if (result.isSuccess() && null != result.getData()) {
@@ -187,6 +187,15 @@ public class JobController extends BaseController {
             if (!StringUtils.isEmpty(classId)) {
                 map.put("classId", classId);
             }
+            if (null == pageSize) {
+                pageSize = 1000;
+            }
+            map.put("pageSize", pageSize);
+            if (null == pageIndex) {
+                pageIndex = 1;
+            }
+            int index = (pageIndex - 1) * 10 - 1;
+            map.put("index", index == -1 ? 0 : index);
             JsonResult rs = jobService.selectJob(map);
             if (rs.isSuccess()) {
                 if (null != rs.getData() && !CollectionUtils.isEmpty((Collection<?>) rs.getData())) {
@@ -200,5 +209,22 @@ public class JobController extends BaseController {
         }
 
         return "job/list";
+    }
+
+    @RequestMapping(value = "/detail", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseStatus(HttpStatus.OK)
+    public String findJobById(HttpServletRequest request, Model model,
+                              @RequestParam(value = "jobId", required = true) String jobId) throws Exception {
+        if (!StringUtils.isEmpty(jobId)) {
+            JsonResult rs = jobService.selectJobById(jobId);
+            if (rs.isSuccess() && null != rs.getData()) {
+                model.addAttribute("jobDetail", rs.getData());
+            } else {
+                model.addAttribute("message", rs.getMessage());
+            }
+        } else {
+            model.addAttribute("message", "jobId为空！");
+        }
+        return "job/detail";
     }
 }

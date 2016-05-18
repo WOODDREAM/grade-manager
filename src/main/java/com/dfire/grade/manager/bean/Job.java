@@ -69,6 +69,7 @@ public class Job{
         this.answer = answer;
     }
 
+
     public Date getCreateTime() {
         return createTime;
     }

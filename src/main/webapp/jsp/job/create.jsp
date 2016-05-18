@@ -10,7 +10,7 @@
                     <label for="createJodName" class="control-label col-lg-2">名称</label>
 
                     <div class="col-lg-10">
-                        <input class=" form-control" id="createJodName" name="createJodName" type="text"/>
+                        <input class=" form-control" id="createJodName" name="createJodName" type="text" autofocus=""/>
                     </div>
                 </div>
                 <div class="form-group ">

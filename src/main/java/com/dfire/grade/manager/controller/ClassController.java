@@ -99,15 +99,19 @@ public class ClassController extends BaseController {
     @RequestMapping(value = "/teacher", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
     public String getTeacherClass(HttpServletRequest request, Model model,
-                                  @RequestParam(value = "start_time", required = false) Date startTime,
-                                  @RequestParam(value = "end_time", required = false) Date endTime,
-                                  @RequestParam(value = "index", required = false) Integer index,
-                                  @RequestParam(value = "page_size", required = false) Integer pageSize) throws Exception {
-        if (null == index) {
-            index = 0;
+                                  @RequestParam(value = "startTime", required = false) Date startTime,
+                                  @RequestParam(value = "endTime", required = false) Date endTime,
+                                  @RequestParam(value = "pageIndex", required = false) Integer pageIndex,
+                                  @RequestParam(value = "pageSize", required = false) Integer pageSize) throws Exception {
+        if (null == pageIndex) {
+            pageIndex = 1;
         }
         if (null == pageSize) {
-            pageSize = 10;
+            pageSize = 1000;
+        }
+        int index = ((pageIndex - 1) * 10) - 1;
+        if (-1 == index) {
+            index = 0;
         }
         SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
         String teacherId = signBean.getId();
@@ -124,18 +128,22 @@ public class ClassController extends BaseController {
     @RequestMapping(value = "/student", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
     public String getStudentClass(HttpServletRequest request, Model model,
-                                  @RequestParam(value = "start_time", required = false) Date startTime,
+                                  @RequestParam(value = "startTime", required = false) Date startTime,
                                   @RequestParam(value = "end_time", required = false) Date endTime,
-                                  @RequestParam(value = "index", required = false) Integer index,
-                                  @RequestParam(value = "page_size", required = false) Integer pageSize) throws Exception {
-        if (null == index) {
-            index = 0;
+                                  @RequestParam(value = "pageIndex", required = false) Integer pageIndex,
+                                  @RequestParam(value = "pageSize", required = false) Integer pageSize) throws Exception {
+        if (null == pageIndex) {
+            pageIndex = 1;
         }
         if (null == pageSize) {
-            pageSize = 10;
+            pageSize = 1000;
         }
         SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
         String student = signBean.getId();
+        int index = ((pageIndex - 1) * 10) - 1;
+        if (-1 == index) {
+            index = 0;
+        }
         JsonResult classes = classService.selectAllClassByStudentIDAndPage(student, index, pageSize, startTime, endTime);
         if (classes.isSuccess() && null != classes.getData()) {
             model.addAttribute("classList", classes.getData());

@@ -30,37 +30,48 @@
     </insert>
     <sql id="selectColumn">
         SELECT job_id,name,detail,tea_id,cla_id,create_time,type,valid,end_time,is_need_answer
-        FROM job
+        FROM job1
     </sql>
 
     <select id="selectJobById" parameterType="String" resultMap="jobMapper">
         <include refid="selectColumn"/>
-        WHERE valid = 1
+        WHERE valid = '1'
         AND job_id = #{jobId}
     </select>
     <select id="selectJob" parameterType="java.util.Map" resultMap="jobMapper">
         <include refid="selectColumn"/>
         <where>
-            valid = 1
+            valid = '1'
             <if test="teacherId !=null">AND tea_id = #{teacherId}</if>
             <if test="classId !=null">AND cla_id = #{classId}</if>
             <if test="jobId !=null">AND job_id = #{jobId}</if>
-            <if test="isAnswer !=null">AND is_need_answer = #{isAnswer}</if>
+            <if test="answer !=null">AND is_need_answer = #{answer}</if>
             <if test="endTime !=null">AND end_time = #{endTime}</if>
         </where>
+    </select>
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT (*) FROM job
+        <!--<where>-->
+            <!--valid = 1-->
+            <!--<if test="teacherId !=null">AND tea_id = #{teacherId}</if>-->
+            <!--<if test="classId !=null">AND cla_id = #{classId}</if>-->
+            <!--<if test="jobId !=null">AND job_id = #{jobId}</if>-->
+            <!--<if test="isAnswer !=null">AND is_need_answer = #{isAnswer}</if>-->
+            <!--<if test="endTime !=null">AND end_time = #{endTime}</if>-->
+        <!--</where>-->
     </select>
     <update id="updateJod" parameterType="com.dfire.grade.manager.bean.Job">
         UPDATE job
         SET
         <if test="name !=null">name = #{name}</if>
         <if test="detail !=null">,detail = #{detail}</if>
-        <if test="isAnswer !=null">,is_need_answer = #{isAnswer}</if>
+        <if test="answer !=null">,is_need_answer = #{answer}</if>
         <if test="endTime !=null">, end_time = #{endTime}</if>
         WHERE job_id = #{jobId}
     </update>
     <delete id="deleteJod" parameterType="String">
         UPDATE FROM job
-        set valid = 0
+        set valid = '0'
         WHERE job_id = #{jobId}
     </delete>
 </mapper>

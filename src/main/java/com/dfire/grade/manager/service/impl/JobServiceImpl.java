@@ -120,6 +120,20 @@ public class JobServiceImpl implements IJobService {
         if (map.containsKey("isAnswer")) {
             paramMap.put("isAnswer", map.get("isAnswer"));
         }
+        if (map.containsKey("studentId")) {
+            paramMap.put("studentId", map.get("studentId"));
+        }
+        if (map.containsKey("pageSize")) {
+            paramMap.put("pageSize", map.get("pageSize"));
+        } else {
+            paramMap.put("pageSize", 10);
+        }
+        if (map.containsKey("index")) {
+            paramMap.put("index", map.get("index"));
+        } else {
+            paramMap.put("index", 0);
+        }
+//        Integer count = jobMapper.selectCount(paramMap);
         List<Job> jobs = jobMapper.selectJob(paramMap);
         List<JobVo> jobVos = new ArrayList<>();
         for (Job job : jobs) {

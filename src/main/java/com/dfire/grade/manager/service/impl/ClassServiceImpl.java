@@ -89,9 +89,9 @@ public class ClassServiceImpl implements IClassService {
     @Override
     public JsonResult selectAllClassByTeacherIdAndPage(String teacherId, int index, int pageSize, Date startTime, Date endTime) throws Exception {
         SequenceUtil.isBlank(teacherId, "teacherId不能为空！");
-        //最低一次取10条记录
+        //最低一次取1000条记录
         if (0 == pageSize) {
-            pageSize = 10;
+            pageSize = 1000;
         }
         if (null == startTime) {
             startTime = DateUtil.getFirstHalfYear();

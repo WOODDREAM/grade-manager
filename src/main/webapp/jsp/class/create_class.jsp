@@ -24,8 +24,7 @@
 
                                     <div class="col-lg-10">
                                         <input class="form-control " id="classCreatePeriod" name="classPeriod"
-                                               value="0.0625"
-                                               type="text"/>
+                                               value="0.0625" type="text" autofocus=""/>
                                     </div>
                                 </div>
                                 <div class="form-group ">

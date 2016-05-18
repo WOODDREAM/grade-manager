@@ -1,6 +1,7 @@
 package com.dfire.grade.manager.controller;
 
 import com.dfire.grade.manager.logger.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
@@ -13,6 +14,7 @@ public class BaseController {
     /**
      * 基于@ExceptionHandler异常处理
      */
+    @Async
     @ExceptionHandler
     public void exp(Exception ex) throws Exception {
 //        Map<String, Object> map = new HashMap<>();
