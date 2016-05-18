@@ -24,7 +24,7 @@ import java.util.List;
  * ==============================================================================
  */
 
-public class ClassInDetailVo extends ClassVo implements Serializable {
+public class ClassInDetailVo extends ClassVo2 implements Serializable {
 
     private static final long serialVersionUID = 4602069510838753427L;
     private List<ClassDetailVo> classDetailVos;

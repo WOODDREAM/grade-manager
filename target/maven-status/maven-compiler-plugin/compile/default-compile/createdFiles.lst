@@ -10,14 +10,15 @@ com\dfire\grade\manager\mapper\GradeMapper.class
 com\dfire\grade\manager\mapper\StudentMapper.class
 com\dfire\grade\manager\exception\ParameterException.class
 com\dfire\grade\manager\bean\StudentClass.class
+com\dfire\grade\manager\vo\ClassVo2.class
 com\dfire\grade\manager\mapper\JobMapper.class
 com\dfire\grade\manager\controller\UserController.class
 com\dfire\grade\manager\service\ITeacherService.class
 com\dfire\grade\manager\Contants$Type.class
 com\dfire\grade\manager\Contants$SMSMessage.class
+com\dfire\grade\manager\vo\Page.class
 com\dfire\grade\manager\service\impl\TeacherServiceImpl.class
 com\dfire\grade\manager\service\impl\JobServiceImpl.class
-com\dfire\grade\manager\vo\ClassVo.class
 com\dfire\grade\manager\utils\MailUtil.class
 com\dfire\grade\manager\service\impl\StudentClassServiceImpl.class
 com\dfire\grade\manager\controller\SMSController.class
@@ -31,9 +32,9 @@ com\dfire\grade\manager\vo\JsonResult.class
 com\dfire\grade\manager\mapper\ClassesMapper.class
 com\dfire\grade\manager\service\IAnswerService.class
 com\dfire\grade\manager\logger\LoggerMarker.class
+com\dfire\grade\manager\vo\JobVoInPage.class
 com\dfire\grade\manager\exception\BusinessException.class
 com\dfire\grade\manager\utils\DateUtil.class
-com\dfire\grade\manager\service\redis\ICacheService.class
 com\dfire\grade\manager\annotation\Validator.class
 com\dfire\grade\manager\controller\AnswerController.class
 com\dfire\grade\manager\service\IJobService.class
@@ -52,7 +53,6 @@ com\dfire\grade\manager\service\impl\ClassServiceImpl.class
 com\dfire\grade\manager\utils\SequenceUtil.class
 com\dfire\grade\manager\vo\ClassIncludeSchoolTime.class
 com\dfire\grade\manager\logger\LoggerFactory.class
-com\dfire\grade\manager\service\studen.class
 com\dfire\grade\manager\bean\Student.class
 com\dfire\grade\manager\service\impl\GradeServiceImpl.class
 com\dfire\grade\manager\mapper\AnswerMapper.class
@@ -63,7 +63,6 @@ com\dfire\grade\manager\bean\Grade.class
 com\dfire\grade\manager\utils\MailUtil$1.class
 com\dfire\grade\manager\Contants$Message.class
 com\dfire\grade\manager\service\impl\AnswerServiceImpl.class
-com\dfire\grade\manager\service\redis\RedisService.class
 com\dfire\grade\manager\service\IStudentService.class
 com\dfire\grade\manager\utils\MessageDigestUtil.class
 com\dfire\grade\manager\service\IGradeService.class

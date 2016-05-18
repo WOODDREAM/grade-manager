@@ -3,8 +3,6 @@ D:\job\grade-manager\src\main\java\com\dfire\grade\manager\service\impl\GradeSer
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\controller\AnswerController.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\bean\Student.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\vo\JsonResult.java
-D:\job\grade-manager\src\main\java\com\dfire\grade\manager\service\studen.java
-D:\job\grade-manager\src\main\java\com\dfire\grade\manager\service\redis\ICacheService.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\service\IAnswerService.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\mapper\JobMapper.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\service\IStudentService.java
@@ -21,8 +19,10 @@ D:\job\grade-manager\src\main\java\com\dfire\grade\manager\bean\Teacher.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\controller\BaseController.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\controller\WeixinAck.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\mapper\GradeMapper.java
+D:\job\grade-manager\src\main\java\com\dfire\grade\manager\vo\ClassVo2.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\configInfo\MailConfiguration.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\bean\StudentClass.java
+D:\job\grade-manager\src\main\java\com\dfire\grade\manager\vo\JobVoInPage.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\vo\form\ClassForm.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\service\IGradeService.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\mapper\StudentClassMapper.java
@@ -32,6 +32,7 @@ D:\job\grade-manager\src\main\java\com\dfire\grade\manager\utils\SmsUtil.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\intercepter\AccessIntercept.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\logger\LoggerFactory.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\service\IStudentClassService.java
+D:\job\grade-manager\src\main\java\com\dfire\grade\manager\vo\Page.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\vo\ClassDetailVo.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\utils\DateUtil.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\bean\Classes.java
@@ -52,13 +53,11 @@ D:\job\grade-manager\src\main\java\com\dfire\grade\manager\controller\JobControl
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\mapper\AnswerMapper.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\bean\SignBean.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\service\IJobService.java
-D:\job\grade-manager\src\main\java\com\dfire\grade\manager\vo\ClassVo.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\controller\TeacherController.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\mapper\StudentMapper.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\vo\ClassIncludeSchoolTime.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\controller\MailController.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\configInfo\SMSConfiguration.java
-D:\job\grade-manager\src\main\java\com\dfire\grade\manager\service\redis\RedisService.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\utils\RedisUtil.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\logger\LoggerMarker.java
 D:\job\grade-manager\src\main\java\com\dfire\grade\manager\controller\GradeController.java

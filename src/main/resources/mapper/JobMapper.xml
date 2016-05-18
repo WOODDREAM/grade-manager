@@ -30,7 +30,7 @@
     </insert>
     <sql id="selectColumn">
         SELECT job_id,name,detail,tea_id,cla_id,create_time,type,valid,end_time,is_need_answer
-        FROM job1
+        FROM job
     </sql>
 
     <select id="selectJobById" parameterType="String" resultMap="jobMapper">

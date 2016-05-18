@@ -112,10 +112,10 @@ public class ClassServiceImpl implements IClassService {
 //                redisUtil.setValuePre(Contants.RedisContent.TEACHER_CLASS_CACHE_BY_ID + teacherId, classesList, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
             }
         }
-        List<ClassVo> classVos = new ArrayList<>();
+        List<ClassVo2> classVos = new ArrayList<>();
         for (int i = 0; i < classesList.size(); i++) {
             Classes classes = classesList.get(i);
-            ClassVo classVo = new ClassVo();
+            ClassVo2 classVo = new ClassVo2();
             copyClass(classes, classVo);
             classVos.add(classVo);
         }
@@ -148,9 +148,9 @@ public class ClassServiceImpl implements IClassService {
 //                redisUtil.setValuePre(Contants.RedisContent.STUDENT_CLASS_CACHE_BY_ID + studentId, classesList, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
             }
         }
-        List<ClassVo> classVos = new ArrayList<>();
+        List<ClassVo2> classVos = new ArrayList<>();
         for (Classes classes : classesList) {
-            ClassVo classVo = new ClassVo();
+            ClassVo2 classVo = new ClassVo2();
             copyClass(classes, classVo);
             classVos.add(classVo);
         }
@@ -167,7 +167,7 @@ public class ClassServiceImpl implements IClassService {
 //                redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, classes, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
             }
         }
-        ClassVo classVo = new ClassVo();
+        ClassVo2 classVo = new ClassVo2();
         copyClass(classes, classVo);
         return JsonResult.jsonSuccessData(classes);
     }
@@ -239,7 +239,7 @@ public class ClassServiceImpl implements IClassService {
         return JsonResult.jsonSuccessData(classVo);
     }
 
-    private void copyClass(Classes classes, ClassVo classVo) throws Exception {
+    private void copyClass(Classes classes, ClassVo2 classVo) throws Exception {
         classVo.setClassId(classes.getClassId());
         classVo.setCreateTime(classes.getCreateTime());
         classVo.setCredit(classes.getCredit());
