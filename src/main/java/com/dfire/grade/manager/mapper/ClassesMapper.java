@@ -3,6 +3,7 @@ package com.dfire.grade.manager.mapper;
 import com.dfire.grade.manager.bean.ClassDetail;
 import com.dfire.grade.manager.bean.Classes;
 import com.dfire.grade.manager.bean.Page;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -86,5 +87,15 @@ public interface ClassesMapper {
      * @throws Exception
      */
     void updateClass(Classes classes) throws Exception;
+
+    List<Classes> selectBatch(@Param("classIds")List<String> classIds) throws Exception;
+
+    /**
+     * 开课时插入课程码
+     *
+     * @param classes
+     * @throws Exception
+     */
+    void startClass(Classes classes) throws Exception;
 
 }

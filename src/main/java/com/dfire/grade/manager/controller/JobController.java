@@ -3,6 +3,7 @@ package com.dfire.grade.manager.controller;
 import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.SignBean;
 import com.dfire.grade.manager.service.IJobService;
+import com.dfire.grade.manager.service.IStudentClassService;
 import com.dfire.grade.manager.service.IStudentService;
 import com.dfire.grade.manager.service.ITeacherService;
 import com.dfire.grade.manager.utils.DateUtil;
@@ -39,6 +40,8 @@ public class JobController extends BaseController {
     private ITeacherService teacherService;
     @Autowired
     private IStudentService studentService;
+    @Autowired
+    private IStudentClassService studentClassService;
 
     @RequestMapping(value = "/create", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
@@ -151,13 +154,13 @@ public class JobController extends BaseController {
 
     @RequestMapping(value = "/find", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
-    public String findAnswer(HttpServletRequest request, Model model,
-                             @RequestParam(value = "pageSize", required = false, defaultValue = "1000") Integer pageSize,
-                             @RequestParam(value = "pageIndex", required = false, defaultValue = "1") Integer pageIndex,
-                             @RequestParam(value = "studentId", required = false) String studentId,
-                             @RequestParam(value = "teacherId", required = false) String teacherId,
-                             @RequestParam(value = "classId", required = false) String classId,
-                             @RequestParam(value = "jobId", required = false) String jobId) throws Exception {
+    public String findJob(HttpServletRequest request, Model model,
+                          @RequestParam(value = "pageSize", required = false, defaultValue = "1000") Integer pageSize,
+                          @RequestParam(value = "pageIndex", required = false, defaultValue = "1") Integer pageIndex,
+                          @RequestParam(value = "studentId", required = false) String studentId,
+                          @RequestParam(value = "teacherId", required = false) String teacherId,
+                          @RequestParam(value = "classId", required = false) String classId,
+                          @RequestParam(value = "jobId", required = false) String jobId) throws Exception {
         SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.USER_KEY);
         String id = signBean.getId();
         JsonResult result = teacherService.queryRoleById(id);
@@ -226,5 +229,32 @@ public class JobController extends BaseController {
             model.addAttribute("message", "jobId为空！");
         }
         return "job/detail";
+    }
+
+    @RequestMapping(value = "/student", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseStatus(HttpStatus.OK)
+    public String findJobOfStudent(HttpServletRequest request, Model model,
+                                   @RequestParam(value = "startTime", required = false) Date startTime,
+                                   @RequestParam(value = "end_time", required = false) Date endTime,
+                                   @RequestParam(value = "pageSize", required = false, defaultValue = "1000") Integer pageSize,
+                                   @RequestParam(value = "pageIndex", required = false, defaultValue = "1") Integer pageIndex) throws Exception {
+        SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.STUDENT_KEY);
+        String studentId = signBean.getId();
+        JsonResult stuRe = studentService.queryRoleById(studentId);
+        if (stuRe.isSuccess() && null != stuRe.getData()) {
+            int index = ((pageIndex - 1) * 10) - 1;
+            if (-1 == index) {
+                index = 0;
+            }
+            JsonResult result = studentClassService.selectRelationship(null,studentId, index, pageSize, startTime, endTime);
+            if (result.isSuccess() && null != result.getData()) {
+
+            } else {
+                model.addAttribute("message", "您还没有申请加入课程！");
+            }
+        } else {
+            model.addAttribute("message", "jobId为空！");
+        }
+        return "job/list";
     }
 }

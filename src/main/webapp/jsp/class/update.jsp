@@ -56,7 +56,7 @@
 
                                                 <div class="col-lg-10">
                                                     <input class="form-control " id="classCredit" name="classCredit"
-                                                           value="${classDetail.credit}"  type="text"/>
+                                                           value="${classDetail.credit}" type="text"/>
                                                 </div>
                                             </div>
                                             <div class="form-group ">
@@ -77,6 +77,7 @@
                                             </div>
                                             <div class="form-group ">
                                                 <label class="control-label col-sm-4" for="dp3">开始时间</label>
+
                                                 <div class="col-sm-6">
                                                     <input id="dp3" type="text" value="${classDetail.startTime}"
                                                            class="form-control">
@@ -286,6 +287,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div>
+        <input type="hidden" value="${message}" id="message"/>
     </div>
 </section>
 <script src="/js/jquery.js"></script>

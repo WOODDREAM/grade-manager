@@ -286,7 +286,7 @@
                         <li><a href="#"><i class=" icon-suitcase"></i>个人档案</a></li>
                         <li><a href="#"><i class="icon-cog"></i> 修改个人信息</a></li>
                         <li><a href="#"><i class="icon-bell-alt"></i>通知</a></li>
-                        <li><a href="login.html"><i class="icon-key"></i>退出登录</a></li>
+                        <li><a href="#" id="a-login-out"><i class="icon-key"></i>退出登录</a></li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
@@ -301,7 +301,7 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
-                <li class="active" id="li-main">
+                <li id="li-main">
                     <a class="" href="#" id="a-main">
                         <i class="icon-dashboard"></i>
                         <span>综合信息页</span>
@@ -318,6 +318,9 @@
                         <c:if test="${type ==2}">
                             <li id="li-class-create"><a class="" href="#" id="a-class-create">添加课程</a></li>
                         </c:if>
+                        <c:if test="${type ==1}">
+                            <li id="li-class-join"><a class="" href="#" id="a-class-join">加入课程</a></li>
+                        </c:if>
                         <li><a class="" href="charts.html">数据统计</a></li>
                     </ul>
                 </li>
@@ -332,7 +335,7 @@
                         <c:if test="${type ==2}">
                             <li id="li-job-create"><a class="" href="#" id="a-job-create">添加作业</a></li>
                         </c:if>
-                        <li><a class="" href="charts.html">数据统计</a></li>
+                        <li><a class="" href="#">数据统计</a></li>
                     </ul>
                 </li>
 

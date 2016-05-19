@@ -11,8 +11,12 @@
             <th><i class="icon-bullhorn"></i> ID</th>
             <th><i class="icon-bookmark"></i> 名称</th>
             <th><i class="icon-time"></i> 截止日期</th>
-            <th><i class="icon-bookmark"></i> 是否需要作答</th>
+            <th><i class="icon-star"></i> 是否需要作答</th>
             <th><i class="icon-bookmark"></i> 作业类型</th>
+            <th><i class="icon-bookmark"></i>所属课程</th>
+            <c:if test="${type ==1}">
+                <th><i class=" icon-edit"></i>教师姓名</th>
+            </c:if>
             <th><i class="icon-zoom-out"></i>查看</th>
             <c:if test="${type ==2}">
                 <th><i class=" icon-edit"></i>编辑</th>
@@ -33,10 +37,17 @@
                     <td>否</td>
                 </c:if>
                 <c:if test="${item.type ==1}">
-                    <td>平时</td>
+                    <td>平时作业</td>
                 </c:if>
                 <c:if test="${item.type ==2}">
-                    <td>考试</td>
+                    <td>考试记录</td>
+                </c:if>
+                <c:if test="${item.type ==3}">
+                    <td>课堂记录</td>
+                </c:if>
+                <td>${item.className}</td>
+                <c:if test="${type ==1}">
+                    <td>${item.teacherName}</td>
                 </c:if>
                 <td>
                     <button class="btn btn-success btn-xs jobFindBtn"><i class="icon-zoom-out"></i></button>
@@ -47,6 +58,13 @@
                         <button class="btn btn-danger btn-xs jobDeleteBtn"><i class="icon-trash "></i></button>
                     </td>
                 </c:if>
+                <c:if test="${item.answer ==true}">
+                    <c:if test="${type ==1}">
+                        <td>
+                            <button class="btn btn-success btn-xs jobCreateAnswer"><i class=" icon-external-link-sign"></i></button>
+                        </td>
+                    </c:if>
+                </c:if>
             </tr>
         </c:forEach>
         </tbody>
@@ -56,6 +74,9 @@
     <div class="col-lg-1">
     </div>
     <div class="col-lg-9" id="jobDetail">
+        <div>
+            <input type="hidden" value="${message}" id="message"/>
+        </div>
     </div>
 </div>
 
@@ -63,6 +84,7 @@
 <script src="/js/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="/assets/gritter/js/jquery.gritter.js"></script>
 <script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
 <script type="text/javascript" src="/assets/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="/assets/data-tables/DT_bootstrap.js"></script>

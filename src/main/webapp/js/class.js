@@ -103,6 +103,30 @@ var Script = function () {
         });
     })
 
+    $(".student_class_btn").click(function () {
+        var classItemId = $(this).parents().siblings(".classItemId").text();
+        var str = {
+            classId: classItemId
+        }
+        alert("student");
+    })
+    $(".end_class_btn").click(function () {
+        var classItemId = $(this).parents().siblings(".classItemId").text();
+        var classItemNo = $(this).parents().siblings(".classItemNo").text();
+        var str = {
+            classId: classItemId,
+            classNo:classItemNo
+        }
+        $.post("/class/end.do", str, function (data) {
+            $.gritter.add({
+                title: '!',
+                text: data.message,
+                sticky: false,
+                time: ''
+            });
+        });
+    })
+
     $(".update_btn").click(function () {
         var classItemId = $(this).parents().siblings(".classItemId").text();
         var str = {
@@ -118,8 +142,32 @@ var Script = function () {
         var str = {
             classId: classItemId
         }
-        $.post("/class/delete.do", str, function (data) {
-            $('#myContainer').html(data);
+        //$.post("/class/delete.do", str, function (data) {
+        //    if (!!data && data.code == 1) {
+        //        $.get("/class/teacher.do", function (data) {
+        //            $('#myContainer').html(data);
+        //        })
+        //    }
+        //});
+    });
+    $(".delete_class_btn").click(function () {
+        var classItemId = $(this).parents().siblings(".classItemId").text();
+        var str = {
+            classId: classItemId
+        }
+        $.post("/relationship/out.do", str, function (data) {
+            if (!!data && data.code == 1) {
+                $.get("/class/student.do", function (data) {
+                    $('#myContainer').html(data);
+                })
+            }else{
+                $.gritter.add({
+                    title: '警告!',
+                    text: data.message,
+                    sticky: false,
+                    time: ''
+                });
+            }
         });
     });
     $(".create_job_btn").click(function () {
@@ -131,6 +179,32 @@ var Script = function () {
         }
         $.get("/job/create.do", str, function (data) {
             $('#myContainer').html(data);
+        });
+    });
+    $(".start_class_btn").click(function () {
+        var classItemId = $(this).parents().siblings(".classItemId").text();
+        var str = {
+            classId: classItemId
+        }
+        $.post("/class/start.do", str, function (data) {
+            if (!!data && data.code == 1) {
+                $.gritter.add({
+                    title: '开课成功!',
+                    text: data.message,
+                    sticky: false,
+                    time: ''
+                });
+                $.get("/class/teacher.do", function (data) {
+                    $('#myContainer').html(data);
+                })
+            } else {
+                $.gritter.add({
+                    title: '开课失败!',
+                    text: data.message,
+                    sticky: false,
+                    time: ''
+                });
+            }
         });
     });
 
@@ -213,7 +287,7 @@ var Script = function () {
         }
         schedule = schedule + "}";
         var str = {
-            classId:classId,
+            classId: classId,
             name: name,
             period: period,
             credit: credit,

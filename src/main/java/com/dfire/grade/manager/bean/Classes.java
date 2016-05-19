@@ -23,6 +23,7 @@ public class Classes implements Serializable {
     private String frequencyUnit;//频率单位
     private Date endTime;
     private Date startTime;
+    private String classNo;
     private List<ClassDetail> classDetails;
 
     public String getClassId() {
@@ -119,5 +120,13 @@ public class Classes implements Serializable {
 
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
+    }
+
+    public String getClassNo() {
+        return classNo;
+    }
+
+    public void setClassNo(String classNo) {
+        this.classNo = classNo;
     }
 }

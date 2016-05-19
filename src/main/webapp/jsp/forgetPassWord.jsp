@@ -41,7 +41,7 @@ function hideURLbar() {
         <h2 class="form-signin-heading">验证码登录</h2>
 
         <div class="login-wrap">
-            <input type="number" class="form-control" placeholder="mobile" id="forgetMobile" name="mobile"
+            <input type="number" class="form-control" placeholder="手机号码" id="forgetMobile" name="mobile"
                    autofocus>
         </div>
         <div class="login-wrap">

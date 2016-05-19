@@ -33,6 +33,7 @@ public class JobVo implements Serializable {
     private boolean answer;//答案
     private String endTime;
     private String className;
+    private String teacherName;
     private int type;
 
     public String getJobId() {

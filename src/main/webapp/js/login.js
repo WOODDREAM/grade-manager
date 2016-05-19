@@ -39,7 +39,7 @@ var Script = function () {
         var teacher = document.getElementById("loginTeacher");
         teacher.checked = false;
         var student = document.getElementById("loginStudent");
-        student.checked = this;
+        student.checked = true;
     });
 
     $('#signBoy').on('click', function () {
@@ -54,10 +54,69 @@ var Script = function () {
         var signBoy = document.getElementById("signBoy");
         signBoy.checked = false;
         var signGirl = document.getElementById("signGirl");
-        signGirl.checked = this;
+        signGirl.checked = true;
+    });
+    $('#signCode').blur(function () {
+        var mobile = $('#signupMobile').val();
+        var code = $('#signCode').val();
+        if (code == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: '请填写验证码！',
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        var srt = {
+            mobile: mobile,
+            code: code
+        }
+        $.post(http + "/sms/verify", srt, function (data) {
+            if (!!data) {
+                if (data.code == "1") {
+                    $('#btn-signup').removeAttr("disabled");
+                }
+            }
+        });
     });
 
-
+    $('#btn-sign-send').on('click', function () {
+        var mobile = $('#mobile').val();
+        if (mobile == "" || !reMobile.test(mobile)) {
+            $.gritter.add({
+                title: '警告!',
+                text: '请填写正确的手机号！',
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        var srt = {
+            mobile: mobile
+        }
+        $.post(http + "/sms/send_code", srt, function (data) {
+            if (!!data) {
+                if (data.code == 1) {
+                    $.gritter.add({
+                        title: '提示!',
+                        text: '发送成功！',
+                        sticky: false,
+                        time: ''
+                    });
+                } else {
+                    var message = data.message;
+                    $.gritter.add({
+                        title: '提示!',
+                        text: message + "  请联系15757115785解决",
+                        sticky: false,
+                        time: ''
+                    });
+                }
+            }
+            console.log(data);
+        });
+    });
     $('#a-signup').on('click', function () {
         window.location.href = "/user/signup.do";
     });

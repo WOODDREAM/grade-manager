@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <section class="panel">
     <header class="panel-heading">
-        创建考试类型作业，不允许作答，只用于帮助教师记录考试成绩。平时作业请从课程列表页创建！
+        创建记录类型作业，不允许作答，只用于帮助教师记录考试或者课堂成绩。平时作业请从课程列表页创建！
     </header>
     <div class="panel-body">
         <div class="form">
@@ -29,11 +29,17 @@
                     </div>
                 </div>
                 <div class="form-group ">
-                    <label for="termJobType" class="control-label col-lg-2 col-sm-3">考试</label>
+                    <label for="termJobType" class="control-label col-lg-2 col-sm-3">考试记录</label>
 
                     <div class="col-lg-10 col-sm-9">
                         <input type="checkbox" style="width: 20px" class="checkbox form-control" id="termJobType"
                                name="type" value="2" checked/>
+                    </div>
+                    <label for="classJobType" class="control-label col-lg-2 col-sm-3">课堂记录</label>
+
+                    <div class="col-lg-10 col-sm-9">
+                        <input type="checkbox" style="width: 20px" class="checkbox form-control" id="classJobType"
+                               name="type" value="3"/>
                     </div>
                 </div>
 
@@ -50,6 +56,9 @@
     <div class="col-lg-1">
     </div>
     <div class="col-lg-9" id="jobCreateDetail">
+        <div>
+            <input type="hidden" value="${message}" id="message"/>
+        </div>
     </div>
 </div>
 <script src="/js/jquery.js"></script>

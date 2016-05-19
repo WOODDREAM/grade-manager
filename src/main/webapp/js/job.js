@@ -1,10 +1,33 @@
 var Script = function () {
+    var jobType = "";
+    $('#termJobType').on('click', function () {
+        jobType = $("#termJobType").val();
+        var term = document.getElementById("termJobType");
+        term.checked = true;
+        var classJob = document.getElementById("classJobType");
+        classJob.checked = false;
+    });
+    $('#classJobType').on('click', function () {
+        jobType = $("#classJobType").val();
+        var term = document.getElementById("termJobType");
+        term.checked = false;
+        var classJob = document.getElementById("classJobType");
+        classJob.checked = this;
+    });
     $('#createJobBtn').on('click', function () {
         var name = $('#createJodName').val();
         var detail = $('#createJodDetail').val();
         var endTime = $('#dp2').val();
         var isNeedAnswer = 0;
-        var jobType = 2;
+        if (jobType == "") {
+            $.gritter.add({
+                title: '请选择!',
+                text: '考试记录或者课堂记录必须选择一个！',
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
         if (name == "") {
             $.gritter.add({
                 title: '警告!',
@@ -124,6 +147,16 @@ var Script = function () {
         });
     });
 
+    $(".jobCreateAnswer").click(function () {
+        var jobId = $(this).parents().siblings(".jobId").text();
+        var str = {
+            jobId: jobId
+        }
+        alert(jobId)
+        //$.post("/job/delete.do", str, function (data) {
+        //    $('#myContainer').html(data);
+        //});
+    });
     $(".jobDeleteBtn").click(function () {
         var jobId = $(this).parents().siblings(".jobId").text();
         var str = {

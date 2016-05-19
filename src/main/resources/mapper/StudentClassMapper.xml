@@ -3,36 +3,50 @@
 <mapper namespace="com.dfire.grade.manager.mapper.StudentClassMapper">
     <resultMap id="relationshipMapper" type="com.dfire.grade.manager.bean.StudentClass">
         <id column="stu_cla_id" property="relationshipId" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="student_no" property="studentNo" jdbcType="VARCHAR"/>
+        <result column="student_name" property="studentName" jdbcType="VARCHAR"/>
+        <result column="class_no" property="classNo" jdbcType="VARCHAR"/>
         <result column="cla_id" property="classId" jdbcType="VARCHAR"/>
         <result column="stu_id" property="studentId" jdbcType="VARCHAR"/>
         <result column="tea_id" property="teacherId" jdbcType="VARCHAR"/>
+        <result column="tea_name" property="teacherName" jdbcType="VARCHAR"/>
         <result column="valid" property="valid" jdbcType="SMALLINT"/>
+        <result column="agree" property="agree" jdbcType="SMALLINT"/>
         <result column="create_time" property="createTime" jdbcType="DATE"/>
     </resultMap>
     <insert id="create" parameterType="com.dfire.grade.manager.bean.StudentClass">
-        INSERT INTO student_class (stu_cla_id,cla_id ,stu_id,tea_id,valid,create_time)
+        INSERT INTO student_class (stu_cla_id,cla_id ,stu_id,tea_id,valid,create_time,mobile,student_no,student_name,class_no,agree,tea_name)
         VALUES (
         #{relationshipId},
         #{classId},
         #{studentId},
         #{teacherId},
         #{valid},
-        #{createTime}
+        #{createTime},
+        #{mobile},
+        #{studentNo},
+        #{studentName},
+        #{classNo},
+        #{agree},
+        #{teacherName}
         )
     </insert>
     <sql id="selectColumn">
-        SELECT stu_cla_id,cla_id ,stu_Id,tea_id,create_time
+        SELECT stu_cla_id,cla_id ,stu_Id,tea_id,create_time,mobile,student_no,student_name,class_no,agree,tea_name
         FROM student_class
     </sql>
-    <select id="selectRelationship" parameterType="com.dfire.grade.manager.bean.StudentClass"
+    <select id="selectRelationship" parameterType="com.dfire.grade.manager.bean.RelationQuery"
             resultMap="relationshipMapper">
         <include refid="selectColumn"/>
         <where>
             valid = 1
-            <if test="classId != null and classId !=''">AND cla_id = #{classId}</if>
-            <if test="studentId != null and studentId != ''">AND stu_id = #{studentId}</if>
-            <if test="teacherId != null and teacherId != ''">AND tea_id = #{teacherId}</if>
-            <if test="createTime !=null and createTime != ''">AND create_time = #{createTime}</if>
+            <if test="classId != null">AND cla_id = #{classId}</if>
+            <if test="studentId != null">AND stu_id = #{studentId}</if>
+            <if test="teacherId != null">AND tea_id = #{teacherId}</if>
+            <if test="startTime != null">AND create_time &gt; #{startTime}</if>
+            <if test="endTime != null">AND create_time &lt; #{endTime}</if>
+            <!--<if test="agree !=null">AND agree = #{agree}</if>-->
         </where>
     </select>
     <delete id="deleteById" parameterType="com.dfire.grade.manager.bean.StudentClass">
@@ -40,18 +54,40 @@
         SET valid = 0
         <where>
             valid = 1
-            <if test="classId != null and classId !=''">AND cla_id = #{classId}</if>
-            <if test="studentId != null and studentId != ''">AND stu_id = #{studentId}</if>
-            <if test="teacherId != null and teacherId != ''">AND tea_id = #{teacherId}</if>
-            <if test="createTime !=null and createTime != ''">AND create_time = #{createTime}</if>
+            <if test="relationshipId != null">AND stu_cla_id = #{relationshipId}</if>
+            <if test="classId != null">AND cla_id = #{classId}</if>
+            <if test="studentId != null">AND stu_id = #{studentId}</if>
+            <if test="teacherId != null">AND tea_id = #{teacherId}</if>
         </where>
     </delete>
-    <select id="selectById" parameterType="com.dfire.grade.manager.bean.StudentClass" resultMap="relationshipMapper">
+    <select id="selectByIdAndMobile" parameterType="com.dfire.grade.manager.bean.StudentClass"
+            resultMap="relationshipMapper">
         <include refid="selectColumn"/>
         <where>
             valid = 1
-            <if test="classId != null and classId !=''">AND cla_id = #{classId}</if>
-            <if test="studentId != null and studentId != ''">AND stu_id = #{studentId}</if>
+            <if test="classId != null">AND cla_id = #{classId}</if>
+            <if test="mobile != null">AND mobile = #{mobile}</if>
+            <if test="studentId != null">AND stu_id = #{studentId}</if>
+        </where>
+    </select>
+    <select id="selectByShipId" parameterType="String" resultMap="relationshipMapper">
+        <include refid="selectColumn"/>
+        WHERE
+        valid = 1
+        AND stu_cla_id=#{relationshipId}
+    </select>
+    <update id="updateAgree" parameterType="String">
+        UPDATE student_class
+        set agree=1
+        WHERE stu_cla_id=#{relationshipId}
+    </update>
+    <select id="selectBatch" parameterType="java.util.List" resultMap="relationshipMapper">
+        <include refid="selectColumn"/>
+        <where>
+            cla_id in
+            <foreach collection="classIds" item="item" index="index"
+                     open="(" separator="," close=")">#{item}
+            </foreach>
         </where>
     </select>
 </mapper>

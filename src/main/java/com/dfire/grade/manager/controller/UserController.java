@@ -2,13 +2,18 @@ package com.dfire.grade.manager.controller;
 
 import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.SignBean;
+import com.dfire.grade.manager.bean.Teacher;
 import com.dfire.grade.manager.logger.LoggerFactory;
 import com.dfire.grade.manager.logger.LoggerMarker;
+import com.dfire.grade.manager.service.IClassService;
+import com.dfire.grade.manager.service.IStudentClassService;
 import com.dfire.grade.manager.service.IStudentService;
 import com.dfire.grade.manager.service.ITeacherService;
 import com.dfire.grade.manager.utils.MessageDigestUtil;
 import com.dfire.grade.manager.utils.RedisUtil;
 import com.dfire.grade.manager.utils.SequenceUtil;
+import com.dfire.grade.manager.utils.SmsUtil;
+import com.dfire.grade.manager.vo.ClassVo2;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +44,13 @@ public class UserController extends BaseController {
     private IStudentService studentService;
     @Autowired
     private RedisUtil redisUtil;
-
+    @Autowired
+    private IStudentClassService studentClassService;
+    @Autowired
+    private IClassService classService;
+    @Autowired
+    private SmsUtil smsUtil;
+    private String TEACHER_MESSAGE = "\n+课程码：%s。课程名： %s.\n学生：姓名： %s,学号：%s 申请加入课程";
     //    private final String METHOD_GET = "get";
 
 
@@ -191,7 +203,7 @@ public class UserController extends BaseController {
         return "forgetPassWord";
     }
 
-    @RequestMapping(value = "/main", method = { RequestMethod.POST})
+    @RequestMapping(value = "/main", method = {RequestMethod.POST})
     @ResponseStatus(HttpStatus.OK)
     public String forMainContainer(HttpServletRequest request, Model model) throws Exception {
 
@@ -200,12 +212,71 @@ public class UserController extends BaseController {
 
     @RequestMapping("/login_out")
     @ResponseStatus(HttpStatus.OK)
-    public String loginOut(HttpServletRequest request) throws Exception {
+    @ResponseBody
+    public JsonResult loginOut(HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession(false);
         if (null != session) {
             session.removeAttribute(Contants.STUDENT_KEY);
             session.removeAttribute(Contants.TEACHER_KEY);
+            session.removeAttribute(Contants.USER_KEY);
         }
-        return "login";
+        return JsonResult.success();
+    }
+
+    @RequestMapping(value = "/join_class", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public JsonResult joinClass(String mobile, String code, String classNo, String studentNo, String studentName) throws Exception {
+        if (!StringUtils.isEmpty(mobile) && !StringUtils.isEmpty(code) && !StringUtils.isEmpty(classNo)
+                && !StringUtils.isEmpty(studentNo) && !StringUtils.isEmpty(studentName)) {
+            String cacheCode = (String) redisUtil.getValue(Contants.RedisContent.VERIFY_CODE_PREFIX + mobile, String.class);
+            if (null == cacheCode) {
+                return JsonResult.failedInstance("验证码过期！");
+            }
+            if (!cacheCode.equals(code)) {
+                return JsonResult.failedInstance("验证码错误！");
+            }
+            String classId = (String) redisUtil.getValue(Contants.RedisContent.CLASS_CODE_PREFIX + classNo, String.class);
+            if (!StringUtils.isEmpty(classId)) {
+                JsonResult claRe = classService.selectClassById(classId);
+                if (claRe.isSuccess() && null != claRe.getData()) {
+                    JsonResult joinRe = studentClassService.selectIfJoinedById(mobile, classId);
+                    if (joinRe.isSuccess() && null == joinRe.getData()) {
+                        ClassVo2 classVo = (ClassVo2) claRe.getData();
+                        String teacherId = classVo.getTeacherId();
+                        String teacherName = classVo.getTeacherName();
+                        String className = classVo.getName();
+                        JsonResult shipRe = studentClassService.createRelationship(teacherId, null, classId, mobile, studentNo, studentName, classNo, teacherName);
+                        if (shipRe.isSuccess()) {
+                            JsonResult teaRe = teacherService.queryRoleById(teacherId);
+                            //短信提醒
+                            if (teaRe.isSuccess() && null != teaRe.getData()) {
+                                Teacher teacher = (Teacher) teaRe.getData();
+                                String message = String.format(TEACHER_MESSAGE, classNo, className, studentName, studentNo);
+                                try {
+                                    smsUtil.sendSMS(teacher.getMobile(), message);
+                                } catch (Exception e) {
+                                }
+                            }
+                            redisUtil.del(Contants.RedisContent.VERIFY_CODE_PREFIX + mobile);
+                            return JsonResult.jsonSuccessMes("申请成功");
+                        } else {
+                            return JsonResult.failedInstance(shipRe.getMessage());
+                        }
+                    } else {
+                        return JsonResult.failedInstance("已申请加入此课程，请联系教师解决！");
+                    }
+                }
+            }
+            return JsonResult.failedInstance("无此课程！");
+        } else {
+            return JsonResult.failedInstance("参数为空！");
+        }
+    }
+
+    @RequestMapping(value = "/join", method = {RequestMethod.GET})
+    @ResponseStatus(HttpStatus.OK)
+    public String joinClassForGet() throws Exception {
+        return "class/join";
     }
 }

@@ -3,6 +3,7 @@ package com.dfire.grade.manager.service;
 import com.dfire.grade.manager.bean.StudentClass;
 import com.dfire.grade.manager.vo.JsonResult;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,9 +12,15 @@ import java.util.List;
  * description：
  */
 public interface IStudentClassService {
-    JsonResult createRelationship(String studentId,String classesId,String teacherId) throws Exception;
+    JsonResult createRelationship(String teacherId, String studentId, String classesId, String mobile, String studentNo, String studentName, String classNo, String teacherName) throws Exception;
 
-    List<StudentClass> selectRelationship(StudentClass studentClass) throws Exception;
+    JsonResult selectRelationship(String teacherId, String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception;
 
-    void deleteById(StudentClass studentClass) throws Exception;
+    JsonResult deleteById(StudentClass studentClass) throws Exception;
+
+    JsonResult updateAgree(String relationshipId) throws Exception;
+
+    JsonResult selectIfJoinedById(String mobile, String classId) throws Exception;
+
+    JsonResult selectBatch(List<String> classIds) throws Exception;
 }

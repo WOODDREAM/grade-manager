@@ -25,7 +25,9 @@ public class Contants {
 
     public static class RedisContent {
         public static final String VERIFY_CODE_PREFIX = "verify:code:";
+        public static final String CLASS_CODE_PREFIX = "class:code:";
         public static final int VERIFY_CODE_EXPIRE_TIME = 30;
+        public static final int CLASS_CODE_EXPIRE_TIME = 24 * 21;//三周，单位为hours
         public static final int USERINFO_EXPIRE_TIME = 24 * 60 * 60;
         public static final String STUDENT_SIGN_CACHE_BY_ID = "student:sign:id:";
         public static final String STUDENT_CACHE_BY_ID = "student:id:";
@@ -87,6 +89,13 @@ public class Contants {
 
     public class Type {
         public static final int USUALLY_JOB = 1;//平时作业
-        public static final int TERM_JOB = 2;//考试作业
+        public static final int TERM_JOB = 2;//考试记录
+        public static final int CLASS_JOB = 2;//课堂记录
+    }
+
+    public class ClassState {
+        public static final int STARTING = 1;//开课中
+        public static final int STARTED = 2;//开课结束
+        public static final int NOSTART = 3;//未开课
     }
 }

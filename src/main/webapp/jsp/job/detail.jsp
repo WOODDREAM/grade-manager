@@ -65,6 +65,8 @@
             </form>
         </div>
     </div>
-    <%--</c:if>--%>
+    <div>
+        <input type="hidden" value="${message}" id="message"/>
+    </div>
 </section>
 <script type="text/javascript" src="/assets/gritter/js/jquery.gritter.js"></script>

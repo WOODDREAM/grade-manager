@@ -1,14 +1,18 @@
 package com.dfire.grade.manager.controller;
 
 import com.dfire.grade.manager.Contants;
+import com.dfire.grade.manager.bean.ClassStart;
 import com.dfire.grade.manager.bean.SignBean;
+import com.dfire.grade.manager.bean.Teacher;
 import com.dfire.grade.manager.service.IClassService;
+import com.dfire.grade.manager.service.IClassStartService;
+import com.dfire.grade.manager.service.IStudentClassService;
 import com.dfire.grade.manager.service.ITeacherService;
 import com.dfire.grade.manager.utils.DateUtil;
+import com.dfire.grade.manager.utils.RedisUtil;
 import com.dfire.grade.manager.utils.SequenceUtil;
-import com.dfire.grade.manager.vo.ClassIncludeSchoolTime;
-import com.dfire.grade.manager.vo.JsonResult;
-import com.dfire.grade.manager.vo.Schedule;
+import com.dfire.grade.manager.utils.SmsUtil;
+import com.dfire.grade.manager.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -21,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * User:huangtao
@@ -34,6 +39,15 @@ public class ClassController extends BaseController {
     private IClassService classService;
     @Autowired
     private ITeacherService teacherService;
+    @Autowired
+    private IClassStartService classStartService;
+    @Autowired
+    private IStudentClassService studentClassService;
+    @Autowired
+    private RedisUtil redisUtil;
+    @Autowired
+    private SmsUtil smsUtil;
+    private String CONTENT = "课程码：%s，课程名： %s。此码用于学生加入课程\n" + "课程码有效时间为两周，如果无效，请重新开课";
 
     @RequestMapping(value = "/create", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
@@ -66,12 +80,29 @@ public class ClassController extends BaseController {
                     classIncludeSchoolTimes.add(classIncludeSchoolTime);
                     JsonResult result = classService.insertClass(classIncludeSchoolTimes);
                     if (result.isSuccess()) {
-                        JsonResult classRe = classService.selectAllClassByTeacherIdAndPage(teacherId, 0, 10, null, null);
-                        if (classRe.isSuccess() && null != classRe.getData()) {
-                            model.addAttribute("classList", classRe.getData());
-                            model.addAttribute("roleType", 2);
-                            return "class/class_list";
+                        JsonResult classes = classService.selectAllClassByTeacherIdAndPage(teacherId, 0, 1000, null, null);
+                        if (classes.isSuccess() && null != classes.getData()) {
+                            //所有课程
+                            List<ClassVo2> classVos = (List<ClassVo2>) classes.getData();
+                            JsonResult jsonResult = classStartService.selectByTeacher(teacherId);
+                            if (jsonResult.isSuccess() && null != jsonResult.getData()) {
+                                //开课中的课程
+                                List<ClassStart> classStarts = (List<ClassStart>) jsonResult.getData();
+                                for (int i = 0; i < classVos.size(); i++) {
+                                    for (ClassStart classStart : classStarts) {
+                                        if (classStart.getClassId().equals(classVos.get(i).getClassId())) {
+                                            classVos.get(i).setState(Contants.ClassState.STARTING);
+                                        }
+                                    }
+                                }
+                            }
+                            model.addAttribute("classList", classVos);
+                        } else {
+                            model.addAttribute("message", "没有查出数据");
                         }
+                        model.addAttribute("roleType", 2);
+                        return "class/class_list";
+                    } else {
                         model.addAttribute("message", "创建失败！");
                     }
                 } else {
@@ -117,7 +148,21 @@ public class ClassController extends BaseController {
         String teacherId = signBean.getId();
         JsonResult classes = classService.selectAllClassByTeacherIdAndPage(teacherId, index, pageSize, startTime, endTime);
         if (classes.isSuccess() && null != classes.getData()) {
-            model.addAttribute("classList", classes.getData());
+            //所有课程
+            List<ClassVo2> classVos = (List<ClassVo2>) classes.getData();
+            JsonResult jsonResult = classStartService.selectByTeacher(teacherId);
+            if (jsonResult.isSuccess() && null != jsonResult.getData()) {
+                //开课中的课程
+                List<ClassStart> classStarts = (List<ClassStart>) jsonResult.getData();
+                for (int i = 0; i < classVos.size(); i++) {
+                    for (ClassStart classStart : classStarts) {
+                        if (classStart.getClassId().equals(classVos.get(i).getClassId())) {
+                            classVos.get(i).setState(Contants.ClassState.STARTING);
+                        }
+                    }
+                }
+            }
+            model.addAttribute("classList", classVos);
         } else {
             model.addAttribute("message", "没有查出数据");
         }
@@ -129,7 +174,7 @@ public class ClassController extends BaseController {
     @ResponseStatus(HttpStatus.OK)
     public String getStudentClass(HttpServletRequest request, Model model,
                                   @RequestParam(value = "startTime", required = false) Date startTime,
-                                  @RequestParam(value = "end_time", required = false) Date endTime,
+                                  @RequestParam(value = "endTime", required = false) Date endTime,
                                   @RequestParam(value = "pageIndex", required = false) Integer pageIndex,
                                   @RequestParam(value = "pageSize", required = false) Integer pageSize) throws Exception {
         if (null == pageIndex) {
@@ -138,17 +183,71 @@ public class ClassController extends BaseController {
         if (null == pageSize) {
             pageSize = 1000;
         }
-        SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
+        SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.STUDENT_KEY);
         String student = signBean.getId();
         int index = ((pageIndex - 1) * 10) - 1;
         if (-1 == index) {
             index = 0;
         }
-        JsonResult classes = classService.selectAllClassByStudentIDAndPage(student, index, pageSize, startTime, endTime);
+        JsonResult classes = studentClassService.selectRelationship(null, student, index, pageSize, startTime, endTime);
         if (classes.isSuccess() && null != classes.getData()) {
-            model.addAttribute("classList", classes.getData());
+            //学生所有的课程
+            RelationshipVo relationshipVo = (RelationshipVo) classes.getData();
+            List<Reliation> agreeClass = relationshipVo.getAgreeClass();
+            List<Reliation> notAgreeClass = relationshipVo.getNotAgreeClass();
+            List<String> classIds = new ArrayList<>();
+            if (!CollectionUtils.isEmpty(agreeClass)) {
+                for (Reliation reliation : agreeClass) {
+                    classIds.add(reliation.getClassId());
+                }
+            }
+            if (!CollectionUtils.isEmpty(notAgreeClass)) {
+                for (Reliation reliation : notAgreeClass) {
+                    classIds.add(reliation.getClassId());
+                }
+            }
+            List<ClassStart> classStartList = null;
+            if (!CollectionUtils.isEmpty(classIds)) {
+                //开课中的课程
+                JsonResult result = classStartService.selectClassBatch(classIds);
+                if (result.isSuccess() && null != result.getData()) {
+                    classStartList = (List<ClassStart>) result.getData();
+                }
+            }
+            //
+            JsonResult result = classService.selectClassBatch(classIds);
+            if (result.isSuccess() && null != result.getData()) {
+                //所有课程
+                List<ClassVo2> classVo2List = (List<ClassVo2>) result.getData();
+                for (int i = 0; i < classVo2List.size(); i++) {
+                    if (!CollectionUtils.isEmpty(agreeClass)) {
+                        for (Reliation r : agreeClass) {
+                            if (classVo2List.get(i).getClassId().equals(r.getClassId())) {
+                                classVo2List.get(i).setAgree(r.isAgree());
+                            }
+                        }
+                    }
+                    if (!CollectionUtils.isEmpty(notAgreeClass)) {
+                        for (Reliation r : notAgreeClass) {
+                            if (classVo2List.get(i).getClassId().equals(r.getClassId())) {
+                                classVo2List.get(i).setAgree(r.isAgree());
+                            }
+                        }
+                    }
+                    if (!CollectionUtils.isEmpty(classStartList)) {
+                        for (ClassStart r : classStartList) {
+                            if (classVo2List.get(i).getClassId().equals(r.getClassId())) {
+                                classVo2List.get(i).setState(Contants.ClassState.STARTING);
+                            }
+                        }
+                    }
+                }
+                model.addAttribute("classList", classVo2List);
+            } else {
+                model.addAttribute("message", "您没有加入任何课程");
+            }
         } else {
-            model.addAttribute("message", "没有查出数据");
+            model.addAttribute("message", "您没有加入任何课程");
         }
         model.addAttribute("roleType", 1);
         return "class/class_list";
@@ -231,5 +330,76 @@ public class ClassController extends BaseController {
             model.addAttribute("message", "参数错误 classId不能为空！");
         }
         return "class/update";
+    }
+
+    @RequestMapping(value = "/start", method = {RequestMethod.POST})
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public JsonResult startClass(HttpServletRequest request, @RequestParam(value = "classId", required = true) String classId) throws Exception {
+        if (!StringUtils.isEmpty(classId)) {
+            SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
+            String teacherId = signBean.getId();
+            JsonResult teaRe = teacherService.queryRoleById(teacherId);
+            if (teaRe.isSuccess() && null != teaRe.getData()) {
+                Teacher teacher = (Teacher) teaRe.getData();
+                JsonResult result = classService.selectClassById(classId);
+                if (result.isSuccess() && null != result.getData()) {
+                    Random rand = new Random();
+                    String classNo = String.valueOf(rand.nextInt(9000) + 1000);
+                    String code = (String) redisUtil.getValue(Contants.RedisContent.CLASS_CODE_PREFIX + classNo, String.class);
+                    boolean flag = true;
+                    while (flag) {
+                        if (classNo.equals(code)) {
+                            classNo = String.valueOf(rand.nextInt(9000) + 1000);
+                        } else {
+                            flag = false;
+                        }
+                    }
+                    ClassVo2 classVo = (ClassVo2) result.getData();
+                    String className = classVo.getName();
+                    classService.startClass(classId, classNo, teacherId, className);
+                    redisUtil.setValuePre(Contants.RedisContent.CLASS_CODE_PREFIX + classNo, classId, Contants.RedisContent.CLASS_CODE_EXPIRE_TIME, Contants.RedisContent.HOURS_UNIT);
+                    String message = String.format(CONTENT, classNo, className);
+                    try {
+                        smsUtil.sendSMS(teacher.getMobile(), message);
+                    } catch (Exception e) {
+                    }
+                    return JsonResult.jsonSuccessMes("开课成功！课程码为：" + classNo + "详情见短信\n短信可能会延迟发送");
+                } else {
+                    return JsonResult.failedInstance("没有此课程");
+                }
+            } else {
+                return JsonResult.failedInstance("没有权限");
+            }
+        } else {
+            return JsonResult.failedInstance("classId为空");
+        }
+    }
+
+    /**
+     * 结束选课
+     *
+     * @param request
+     * @param classId
+     * @param classNo
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/end", method = {RequestMethod.POST})
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public JsonResult endClass(HttpServletRequest request, @RequestParam(value = "classId", required = true) String classId,
+                               @RequestParam(value = "classNo", required = false) String classNo) throws Exception {
+        if (!StringUtils.isEmpty(classId)) {
+            SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
+            String teacherId = signBean.getId();
+            JsonResult teaRe = teacherService.queryRoleById(teacherId);
+            if (teaRe.isSuccess() && null != teaRe.getData()) {
+                return classStartService.endClass(classId, classNo);
+            }
+            return JsonResult.failedInstance(Contants.Message.NOT_PERMISSION);
+        } else {
+            return JsonResult.failedInstance("classId不能为空！");
+        }
     }
 }
