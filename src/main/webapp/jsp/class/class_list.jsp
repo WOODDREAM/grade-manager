@@ -43,6 +43,7 @@
                 <th><i class="icon-play-sign"></i>是否被同意</th>
             </c:if>
             <th><i class="icon-zoom-out"></i>查看</th>
+            <th><i class="icon-zoom-out"></i>查看作业</th>
             <c:if test="${roleType ==2}">
                 <th><i class="icon-edit"></i>编辑</th>
                 <th><i class=" icon-edit"></i>创建作业</th>
@@ -85,7 +86,10 @@
                     <button class="btn btn-success btn-xs find_btn" name="find_btn"><i class="icon-zoom-out"></i>
                     </button>
                 </td>
-
+                <td>
+                    <button class="btn btn-success btn-xs find_btn" name="find_job_btn"><i class="icon-zoom-out"></i>
+                    </button>
+                </td>
                 <c:if test="${roleType ==2}">
                     <td>
                         <button class="btn btn-primary btn-xs update_btn" name="update_btn"><i class="icon-pencil"></i>

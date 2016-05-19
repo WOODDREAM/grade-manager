@@ -189,7 +189,7 @@ public class ClassController extends BaseController {
         if (-1 == index) {
             index = 0;
         }
-        JsonResult classes = studentClassService.selectRelationship(null, student, index, pageSize, startTime, endTime);
+        JsonResult classes = studentClassService.selectRelationship(null, null, student, index, pageSize, startTime, endTime);
         if (classes.isSuccess() && null != classes.getData()) {
             //学生所有的课程
             RelationshipVo relationshipVo = (RelationshipVo) classes.getData();

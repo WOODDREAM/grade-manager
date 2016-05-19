@@ -196,6 +196,7 @@ public class StudentClassController extends BaseController {
     @RequestMapping(value = "/main", method = {RequestMethod.POST})
     @ResponseStatus(HttpStatus.OK)
     public String shipByStudent(HttpServletRequest request, Model model,
+                                @RequestParam(value = "classId", required = false) String classId,
                                 @RequestParam(value = "startTime", required = false) Date startTime,
                                 @RequestParam(value = "end_time", required = false) Date endTime,
                                 @RequestParam(value = "pageSize", required = false, defaultValue = "1000") Integer pageSize,
@@ -220,7 +221,7 @@ public class StudentClassController extends BaseController {
             if (-1 == index) {
                 index = 0;
             }
-            JsonResult resultS = studentClassService.selectRelationship(teacherId, studentId, index, pageSize, startTime, endTime);
+            JsonResult resultS = studentClassService.selectRelationship(classId, teacherId, studentId, index, pageSize, startTime, endTime);
             if (resultS.isSuccess() && null != resultS.getData()) {
                 RelationshipVo relationshipVo = (RelationshipVo) resultS.getData();
                 List<Reliation> agreeClass = relationshipVo.getAgreeClass();

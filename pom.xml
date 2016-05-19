@@ -32,12 +32,19 @@
         <spring-data-redis>1.5.0.RELEASE</spring-data-redis>
         <org.aspectj-version>1.6.10</org.aspectj-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <quartz>1.8.5</quartz>
+        <cglib>3.1</cglib>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.geronimo.bundles</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2_1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz}</version>
         </dependency>
         <!--<dependency>-->
             <!--<groupId>org.apache.karaf.assemblies.features</groupId>-->

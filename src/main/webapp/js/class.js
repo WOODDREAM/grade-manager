@@ -102,20 +102,31 @@ var Script = function () {
             $('#myContainer2').html(data);
         });
     })
+    $(".find_job_btn").click(function () {
+        var classItemId = $(this).parents().siblings(".classItemId").text();
+        var str = {
+            classId: classItemId
+        }
+        $.post("/job/find.do", str, function (data) {
+            $('#myContainer').html(data);
+        });
+    })
 
     $(".student_class_btn").click(function () {
         var classItemId = $(this).parents().siblings(".classItemId").text();
         var str = {
             classId: classItemId
         }
-        alert("student");
+        $.post("/relationship/main.do", str, function (data) {
+            $('#myContainer').html(data);
+        });
     })
     $(".end_class_btn").click(function () {
         var classItemId = $(this).parents().siblings(".classItemId").text();
         var classItemNo = $(this).parents().siblings(".classItemNo").text();
         var str = {
             classId: classItemId,
-            classNo:classItemNo
+            classNo: classItemNo
         }
         $.post("/class/end.do", str, function (data) {
             $.gritter.add({
@@ -160,7 +171,7 @@ var Script = function () {
                 $.get("/class/student.do", function (data) {
                     $('#myContainer').html(data);
                 })
-            }else{
+            } else {
                 $.gritter.add({
                     title: '警告!',
                     text: data.message,

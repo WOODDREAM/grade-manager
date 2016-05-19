@@ -103,7 +103,7 @@ public class StudentClassServiceImpl implements IStudentClassService {
      * @throws Exception
      */
     @Override
-    public JsonResult selectRelationship(String teacherId, String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception {
+    public JsonResult selectRelationship(String claId, String teacherId, String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception {
         //最低一次取1000条记录
         if (0 == pageSize) {
             pageSize = 1000;
@@ -121,6 +121,7 @@ public class StudentClassServiceImpl implements IStudentClassService {
         page.setStartIndex(index);
         page.setStartTime(startTime);
         page.setTeacherId(teacherId);
+        page.setClassId(claId);
         List<StudentClass> studentClasses = studentClassMapper.selectRelationship(page);
         RelationshipVo relationshipVo = null;
         if (!CollectionUtils.isEmpty(studentClasses)) {

@@ -246,7 +246,7 @@ public class JobController extends BaseController {
             if (-1 == index) {
                 index = 0;
             }
-            JsonResult result = studentClassService.selectRelationship(null,studentId, index, pageSize, startTime, endTime);
+            JsonResult result = studentClassService.selectRelationship(null, null, studentId, index, pageSize, startTime, endTime);
             if (result.isSuccess() && null != result.getData()) {
 
             } else {

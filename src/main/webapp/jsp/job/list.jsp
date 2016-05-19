@@ -15,11 +15,11 @@
             <th><i class="icon-bookmark"></i> 作业类型</th>
             <th><i class="icon-bookmark"></i>所属课程</th>
             <c:if test="${type ==1}">
-                <th><i class=" icon-edit"></i>教师姓名</th>
+                <th><i class="icon-edit"></i>教师姓名</th>
             </c:if>
             <th><i class="icon-zoom-out"></i>查看</th>
             <c:if test="${type ==2}">
-                <th><i class=" icon-edit"></i>编辑</th>
+                <th><i class="icon-bookmark"></i>编辑</th>
             </c:if>
         </tr>
         </thead>

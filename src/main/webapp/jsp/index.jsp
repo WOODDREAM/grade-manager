@@ -445,10 +445,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-1">
-                    <input type="hidden" value="${type}" id="type"/>
-                </div>
-                <div class="col-lg-9" id="myContainer">
+                <div><input type="hidden" value="${type}" id="type"/></div>
+                <div class="col-lg-12" id="myContainer">
                 </div>
             </div>
 

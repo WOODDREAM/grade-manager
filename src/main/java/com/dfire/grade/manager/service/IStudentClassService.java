@@ -14,7 +14,7 @@ import java.util.List;
 public interface IStudentClassService {
     JsonResult createRelationship(String teacherId, String studentId, String classesId, String mobile, String studentNo, String studentName, String classNo, String teacherName) throws Exception;
 
-    JsonResult selectRelationship(String teacherId, String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception;
+    JsonResult selectRelationship(String classId,String teacherId, String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception;
 
     JsonResult deleteById(StudentClass studentClass) throws Exception;
 
