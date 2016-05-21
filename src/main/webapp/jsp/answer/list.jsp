@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- page start-->
 <section class="panel">
-    <input type="text" value="${roleType}"/>
     <table class="table table-striped border-top" id="sample_1">
         <thead>
         <tr>
@@ -17,7 +16,7 @@
             </c:if>
             <th><i class="icon-bookmark"></i> 所属课程</th>
             <th><i class="icon-bookmark"></i>课程号</th>
-            <th><i class="icon-pencil"></i>下载答案</th>
+            <th><i class="icon-arrow-down"></i>下载答案</th>
             <c:if test="${roleType ==1}">
                 <th><i class="icon-bookmark"></i>教师姓名</th>
                 <th><i class="icon-bookmark"></i>已作答?</th>
@@ -49,12 +48,12 @@
                 <td>
                     <c:if test="${item.answered ==true}">
                         <button class="btn btn-info btn-xs downAnswerbtn" name="downAnswerbtn"><i
-                                class="icon-pencil"></i>
+                                class="icon-arrow-down"></i>
                         </button>
                     </c:if>
                     <c:if test="${item.answered ==false}">
                         <button class="btn btn-info btn-xs downAnswerbtn" name="downAnswerbtn" disabled><i
-                                class="icon-pencil"></i>
+                                class="icon-arrow-down"></i>
                         </button>
                     </c:if>
                 </td>
@@ -69,9 +68,7 @@
                 </c:if>
                 <c:if test="${roleType ==2}">
                     <td>
-                        <button class="btn btn-info btn-xs createGrade" name="createGradebtn" id="createGradebtn"><i
-                                class="icon-pencil"></i>
-                        </button>
+                        <a class="btn btn-info createGradebtn" data-toggle="modal" href="#myModal2"><i class="icon-pencil"/></a>
                     </td>
 
                 </c:if>
@@ -141,7 +138,7 @@
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
                                  <span class="btn green fileinput-button">
-                                     <input type="text" class="form-control" name="answerIdmm" id="answerIdForGrade">
+                                     <input type="hidden" class="form-control" name="answerIdmm" id="answerIdForGrade">
                                  </span>
                                 <span class="btn green fileinput-button">
                                     <input type="text" multiple="" name="grade" id="grade">

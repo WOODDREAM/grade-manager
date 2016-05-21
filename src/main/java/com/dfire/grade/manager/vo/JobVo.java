@@ -39,6 +39,7 @@ public class JobVo implements Serializable {
     private boolean timeEnded = false;
     private boolean answered = false;//是否作答
     private double grade;
+    private String answerContent;
 
     public String getJobId() {
         return jobId;
@@ -143,5 +144,13 @@ public class JobVo implements Serializable {
 
     public void setGrade(double grade) {
         this.grade = grade;
+    }
+
+    public String getAnswerContent() {
+        return answerContent;
+    }
+
+    public void setAnswerContent(String answerContent) {
+        this.answerContent = answerContent;
     }
 }

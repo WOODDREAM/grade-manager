@@ -121,7 +121,7 @@ var Script = function () {
             $('#myContainer').html(data);
         });
     })
-    $(".btn-make-join-class").click(function () {
+    $("#btn-make-join-class").click(function () {
         var classId = $('#classId').val();
         var mobile = $('#mobile').val();
         var studentNO = $('#studentNO').val();

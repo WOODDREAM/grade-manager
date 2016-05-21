@@ -51,31 +51,41 @@ public class AnswerServiceImpl implements IAnswerService {
                 JsonResult rs = jobService.selectJob(paramMap);
                 if (rs.isSuccess() && null != rs.getData()) {
                     List<JobVo> jobVos = (List<JobVo>) rs.getData();
-                    if (CollectionUtils.isEmpty(jobVos)) {
+                    if (!CollectionUtils.isEmpty(jobVos) && jobVos.size() > 0) {
                         Answer answer1 = new Answer();
-                        answer1.setAnswerId(id);
+                        answer1.setJobId(id);
                         answer1.setStudentId(studentId);
                         List<Answer> answerList = answerMapper.selectAnswerByCondition(answer1);
                         if (!CollectionUtils.isEmpty(answerList)) {
                             answer1.setAnswer(answer);
+                            answer1.setAnswerId(answerList.get(0).getAnswerId());
                             answerMapper.updateAnswer(answer1);
-                            return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_REQUEST);
                         } else {
-                            return JsonResult.jsonSuccessMes(Contants.Message.NO_ANSWER);
+                            JobVo jobVo = jobVos.get(0);
+                            Answer newAnswer = new Answer();
+                            newAnswer.setAnswer(answer);
+                            newAnswer.setAnswerId(SequenceUtil.getSequence());
+                            newAnswer.setCreateTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));
+                            newAnswer.setJobId(jobVo.getJobId());
+                            newAnswer.setStudentId(studentId);
+                            newAnswer.setValid(true);
+                            newAnswer.setTeacherId(jobVo.getTeacherId());
+                            newAnswer.setClassId(jobVo.getClassId());
+                            answerMapper.createAnswer(newAnswer);
                         }
+                        return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_SUBMIT);
+                    }
+                } else {
+                    Answer answer1 = new Answer();
+                    answer1.setAnswerId(id);
+                    answer1.setStudentId(studentId);
+                    List<Answer> answerList = answerMapper.selectAnswerByCondition(answer1);
+                    if (!CollectionUtils.isEmpty(answerList)) {
+                        answer1.setAnswer(answer);
+                        answerMapper.updateAnswer(answer1);
+                        return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_SUBMIT);
                     } else {
-                        JobVo jobVo = jobVos.get(0);
-                        Answer newAnswer = new Answer();
-                        newAnswer.setAnswer(answer);
-                        newAnswer.setAnswerId(SequenceUtil.getSequence());
-                        newAnswer.setCreateTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));
-                        newAnswer.setJobId(id);
-                        newAnswer.setStudentId(studentId);
-                        newAnswer.setValid(true);
-                        newAnswer.setTeacherId(jobVo.getTeacherId());
-                        newAnswer.setClassId(jobVo.getClassId());
-                        answerMapper.createAnswer(newAnswer);
-                        return JsonResult.jsonSuccessMes(Contants.Message.SUCCESS_REQUEST);
+                        return JsonResult.jsonSuccessMes(Contants.Message.NO_ANSWER);
                     }
                 }
             }

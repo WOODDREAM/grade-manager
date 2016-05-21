@@ -33,13 +33,15 @@ var Script = function () {
         document.getElementById("fileForm").action = url;
         $('#fileForm').submit();
     });
+    var gradeAnswer = "";
     $(".createGradebtn").click(function () {
         var answerId = $(this).parents().siblings(".answerId").text();
         var hh = document.getElementById("answerIdForGrade");
         hh.value = answerId;
+         gradeAnswer = $(this).parents().siblings(".grade-answer");
     });
     $(".submitGrade").click(function () {
-        var gradeAnswer = $(this).parents().siblings(".grade-answer");
+
         var answerId = $('#answerIdForGrade').val();
         var grade = $('#grade').val();
         if (grade == "" || !(reDouble.test(grade))) {
@@ -50,10 +52,12 @@ var Script = function () {
                 time: ''
             });
         }
+        alert(answerId);
         var str = {
             grade: grade,
             answerId: answerId
         }
+        alert(str);
         $.post("/grade/create.do", str, function (data) {
             if (data.code == 1) {
                 gradeAnswer = data.data;
@@ -69,7 +73,6 @@ var Script = function () {
     });
     $(".downAnswerbtn").click(function () {
         var answer = $(this).parents().siblings(".answerContent").text();
-        alert(answer)
         window.location.href = "/downLoad?filename=" + answer;
     })
 

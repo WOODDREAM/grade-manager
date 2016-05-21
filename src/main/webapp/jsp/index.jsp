@@ -304,7 +304,7 @@
                 <li id="li-main">
                     <a class="" href="#" id="a-main">
                         <i class="icon-dashboard"></i>
-                        <span>综合信息页</span>
+                        <span>待处理</span>
                     </a>
                 </li>
                 <li class="sub-menu" id="li-class-info">
@@ -448,6 +448,45 @@
                 <div><input type="hidden" value="${type}" id="type"/></div>
                 <div class="col-lg-12" id="myContainer">
                     <div><input type="hidden" value="${message}" id="message"/></div>
+                    <div class="row col-lg-2"></div>
+                    <div class="row col-lg-8">
+                        <aside class="profile-nav col-lg-3">
+                            <section class="panel">
+                                <div class="user-heading round">
+                                    <a href="#">
+                                        <%--<img src="/img/profile-avatar.jpg" alt="">--%>
+                                    </a>
+
+                                    <h1>${person.name}</h1>
+
+                                    <p>${person.email}</p>
+                                </div>
+                            </section>
+                        </aside>
+                        <aside class="profile-info col-lg-9">
+                            <section class="panel">
+                                <div class="panel-body bio-graph-info">
+                                    <h1>个人档案</h1>
+
+                                    <div class="row">
+                                        <div class="bio-row">
+                                            <p><span>姓名 </span>: ${person.name}</p>
+                                        </div>
+                                        <div class="bio-row">
+                                            <p><span>邮箱 </span>: ${person.email}</p>
+                                        </div>
+                                        <div class="bio-row">
+                                            <p><span>手机号码 </span>: ${person.mobile}</p>
+                                        </div>
+                                        <div class="bio-row">
+                                            <p><span>所在学校 </span>: ${person.school}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </aside>
+                    </div>
+
                 </div>
             </div>
 

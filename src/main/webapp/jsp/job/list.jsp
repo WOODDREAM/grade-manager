@@ -15,6 +15,7 @@
             <th><i class="icon-bookmark"></i> 作业类型</th>
             <th><i class="icon-bookmark"></i>所属课程</th>
             <c:if test="${roleType ==1}">
+                <th hidden="hidden"></th>
                 <th><i class="icon-bookmark"></i>教师姓名</th>
                 <th><i class="icon-bookmark"></i>成绩</th>
                 <th><i class="icon-bookmark"></i>已作答?</th>
@@ -27,7 +28,8 @@
                 <th><i class="icon-legal"></i>成绩</th>
             </c:if>
             <c:if test="${roleType ==1}">
-                <th><i class=" icon-edit-sign"></i>作答</th>
+                <th><i class="icon-edit-sign"></i>作答</th>
+                <th><i class="icon-arrow-down"></i>下载</th>
             </c:if>
         </tr>
         </thead>
@@ -55,6 +57,7 @@
                 </c:if>
                 <td>${item.className}</td>
                 <c:if test="${roleType ==1}">
+                    <td hidden="hidden" class="">${item.answerContent}</td>
                     <td>${item.teacherName}</td>
                     <td>${item.grade}</td>
                     <c:if test="${item.answered ==true}">
@@ -96,6 +99,23 @@
                             <button class="btn btn-success btn-xs jobCreateAnswer" disabled>作答</button>
                         </c:if>
                     </td>
+
+                    <td>
+                        <c:if test="${item.answer ==true or item.answered == true}">
+                            <c:if test="${item.answered ==true}">
+                                <button class="btn btn-success btn-xs downLoadAnswer"><i class=" icon-arrow-down">下载</i>
+                                </button>
+                            </c:if>
+                            <c:if test="${item.answered ==false}">
+                                <button class="btn btn-success btn-xs" disabled><i class=" icon-arrow-down">下载</i>
+                                </button>
+                            </c:if>
+                        </c:if>
+                        <c:if test="${item.answer ==false}">
+                            <button class="btn btn-success btn-xs" disabled>作答</button>
+                        </c:if>
+                    </td>
+
                 </c:if>
             </tr>
         </c:forEach>
@@ -117,7 +137,7 @@
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
                                  <span class="btn green fileinput-button">
-                                     <input type="text" class="form-control" name="jobId" id="jobIdmm">
+                                     <input type="hidden" class="form-control" name="jobId" id="jobIdmm">
                                  </span>
                                 <span class="btn green fileinput-button">
                                     <input type="file" multiple="" name="files[]" id="myFile">

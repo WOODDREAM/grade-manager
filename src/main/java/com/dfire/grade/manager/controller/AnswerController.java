@@ -53,12 +53,12 @@ public class AnswerController {
         JsonResult result = studentService.queryRoleById(studentId);
         Answer answer = new Answer();
         if (result.isSuccess() && null != result.getData()) {
-            model.addAttribute("roleTye", 1);
+            model.addAttribute("roleType", 1);
             answer.setStudentId(studentId);
         } else {
             result = teacherService.queryRoleById(studentId);
             if (result.isSuccess() && null != result.getData()) {
-                model.addAttribute("roleTye", 2);
+                model.addAttribute("roleType", 2);
                 answer.setTeacherId(studentId);
             } else {
                 model.addAttribute("message", "没有权限，请登录");

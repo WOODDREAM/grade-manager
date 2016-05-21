@@ -186,13 +186,16 @@ var Script = function () {
             return false;
         }
         var url = "/upload?jobId=" + jobId2;
-        alert(url);
         document.getElementById("fileForm").action = url;
         $('#fileForm').submit();
         //window.location.href = "/upload.do?filename=" + fileName + "&jobId=" + jobId;
         //$.post("/upload", str, function () {
         //
         //});
+    });
+    $(".downLoadAnswer").click(function () {
+        var answer = $(this).parents().siblings(".answerContent").text();
+        window.location.href = "/downLoad?filename=" + answer;
     });
     $(".jobDeleteBtn").click(function () {
         var jobId = $(this).parents().siblings(".jobId").text();

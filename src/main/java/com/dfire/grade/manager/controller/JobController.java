@@ -213,6 +213,7 @@ public class JobController extends BaseController {
                                     if (jobVos.get(i).getJobId().equals(answerVo.getJobId())) {
                                         if (answerVo.isAnswered()) {
                                             jobVos.get(i).setAnswered(true);
+                                            jobVos.get(i).setAnswerContent(answerVo.getAnswer());
                                         }
                                     }
                                 }

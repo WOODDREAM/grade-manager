@@ -129,6 +129,7 @@ public class UserController extends BaseController {
                         request.getSession().setAttribute(Contants.USER_KEY, signBean);
                         LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
                         model.addAttribute("type", type);
+                        model.addAttribute("person", signBean);
                         return "index";
                     } else {
                         map.put("message", "用户登录失败，密码错误！");
