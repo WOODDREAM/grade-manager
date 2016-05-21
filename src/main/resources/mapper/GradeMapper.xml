@@ -4,19 +4,19 @@
     <resultMap id="gradeMapper" type="com.dfire.grade.manager.bean.Grade">
         <id column="gra_id" property="gradeId" jdbcType="VARCHAR"/>
         <result column="stu_id" property="studentId" jdbcType="VARCHAR"/>
+        <result column="answer_id" property="answerId" jdbcType="VARCHAR"/>
         <result column="cla_id" property="classId" jdbcType="VARCHAR"/>
         <result column="tea_id" property="teacherId" jdbcType="VARCHAR"/>
         <result column="grade" property="grade" jdbcType="DOUBLE"/>
         <result column="job_id" property="jobId" jdbcType="VARCHAR"/>
-        <result column="type" property="type" jdbcType="SMALLINT"/>
         <result column="create_time" property="createTime" jdbcType="DATE"/>
     </resultMap>
     <sql id="selectColumn">
-        SELECT gra_id,stu_id,cla_id,tea_id,grade,job_id,type
+        SELECT gra_id,stu_id,cla_id,tea_id,grade,job_id,answer_id
         FROM grade
     </sql>
     <insert id="insertGrade" parameterType="com.dfire.grade.manager.bean.Grade">
-        INSERT INTO grade(gra_id,stu_id,cla_id,tea_id,grade,job_id,type,create_time,valid)
+        INSERT INTO grade(gra_id,stu_id,cla_id,tea_id,grade,job_id,type,create_time,valid,answer_id)
         VALUES (
         #{gradeId},
         #{studentId},
@@ -24,19 +24,26 @@
         #{teacherId},
         #{grade},
         #{jobId},
-        #{type},
         #{createTime},
-        #{valid}
+        #{valid},
+        #{answerId}
         )
     </insert>
-    <select id="selectGradeById" parameterType="String" resultMap="gradeMapper">
+    <select id="selectGradeByCondition" parameterType="com.dfire.grade.manager.bean.Grade" resultMap="gradeMapper">
         <include refid="selectColumn"/>
-        WHERE gra_id = #{gradeId}
-        AND valid = '1'
+        <where>
+            valid = '1'
+            <if test="gradeId !=null">AND gra_id = #{gradeId}</if>
+            <if test="studentId !=null">AND stu_id = #{studentId}</if>
+            <if test="teacherId !=null">AND tea_id = #{teacherId}</if>
+            <if test="classId !=null">AND cla_id = #{classId}</if>
+            <if test="jobId !=null">AND job_id = #{jobId}</if>
+            <if test="answer !=null">AND is_need_answer = #{answer}</if>
+            <if test="endTime !=null">AND end_time = #{createTime}</if>
+        </where>
     </select>
-
     <insert id="insertBatch" parameterType="java.util.List">
-        INSERT INTO grade(gra_id,stu_id,cla_id,tea_id,grade,job_id,type,create_time,valid)
+        INSERT INTO grade(gra_id,stu_id,cla_id,tea_id,grade,job_id,create_time,valid,answer_id)
         VALUES
         <foreach collection="list" item="grade" separator=",">
             (
@@ -46,9 +53,9 @@
             #{teacherId},
             #{grade},
             #{jobId},
-            #{type},
             #{createTime},
-            #{valid}
+            #{valid},
+            #{answerId}
             )
         </foreach>
     </insert>

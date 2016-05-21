@@ -9,12 +9,12 @@ import java.util.Date;
  */
 public class Grade implements Comparable<Grade> {
     private String gradeId;
+    private String answerId;
     private String studentId;//学生id
     private String classId;//课程id
     private String teacherId;//任课教师id
     private double grade;//成绩
     private String jobId;//作业id
-    private int type;//成绩类型
     private Date createTime;//创建时间
     private boolean valid;
 
@@ -66,14 +66,6 @@ public class Grade implements Comparable<Grade> {
         this.jobId = jobId;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -88,6 +80,14 @@ public class Grade implements Comparable<Grade> {
 
     public void setValid(boolean valid) {
         this.valid = valid;
+    }
+
+    public String getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(String answerId) {
+        this.answerId = answerId;
     }
 
     /**

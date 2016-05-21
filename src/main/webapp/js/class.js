@@ -1,5 +1,6 @@
 var Script = function () {
     var reNumber = /\d*/i;
+    var reMobile = /^1[0-9]{10}/;
     var reDouble = /^[-\+]?\d+(\.\d+)?$/;
     $('#btn-class-create').on('click', function () {
         var name = $('#classCreateName').val();
@@ -108,6 +109,57 @@ var Script = function () {
             classId: classItemId
         }
         $.post("/job/find.do", str, function (data) {
+            $('#myContainer').html(data);
+        });
+    })
+    $(".make_student_join_class_btn").click(function () {
+        var classItemId = $(this).parents().siblings(".classItemId").text();
+        var str = {
+            classId: classItemId
+        }
+        $.post("/class/make_join.do", str, function (data) {
+            $('#myContainer').html(data);
+        });
+    })
+    $(".btn-make-join-class").click(function () {
+        var classId = $('#classId').val();
+        var mobile = $('#mobile').val();
+        var studentNO = $('#studentNO').val();
+        var studentName = $('#studentName').val();
+        if (studentNO == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: '请填写学号！',
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        if (mobile == "" || !reMobile.test(mobile)) {
+            $.gritter.add({
+                title: '警告!',
+                text: '请填写正确的手机号！',
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        if (studentName == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: '请填写姓名！',
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        var str = {
+            classId: classId,
+            mobile: mobile,
+            studentNo: studentNO,
+            studentName: studentName
+        }
+        $.post("/class/make_join.do", str, function (data) {
             $('#myContainer').html(data);
         });
     })

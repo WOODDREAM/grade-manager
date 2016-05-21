@@ -34,7 +34,11 @@ public class JobVo implements Serializable {
     private String endTime;
     private String className;
     private String teacherName;
+    private String teacherId;
     private int type;
+    private boolean timeEnded = false;
+    private boolean answered = false;//是否作答
+    private double grade;
 
     public String getJobId() {
         return jobId;
@@ -98,5 +102,46 @@ public class JobVo implements Serializable {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    public boolean isTimeEnded() {
+
+        return timeEnded;
+    }
+
+    public void setTimeEnded(boolean timeEnded) {
+        this.timeEnded = timeEnded;
+    }
+
+    public String getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    public boolean isAnswered() {
+        return answered;
+    }
+
+    public void setAnswered(boolean answered) {
+        this.answered = answered;
+    }
+
+    public double getGrade() {
+        return grade;
+    }
+
+    public void setGrade(double grade) {
+        this.grade = grade;
     }
 }

@@ -20,11 +20,11 @@
                                 </div>
                                 <div class="form-group ">
                                     <label for="classCreatePeriod"
-                                           class="control-label col-lg-2">每节课学时</label>
+                                           class="control-label col-lg-2">学时</label>
 
                                     <div class="col-lg-10">
                                         <input class="form-control " id="classCreatePeriod" name="classPeriod"
-                                               value="0.0625" type="text" autofocus=""/>
+                                               value="1.0" type="text"/>
                                     </div>
                                 </div>
                                 <div class="form-group ">

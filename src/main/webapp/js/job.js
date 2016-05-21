@@ -146,15 +146,52 @@ var Script = function () {
             $('#myContainer').html(data);
         });
     });
-
-    $(".jobCreateAnswer").click(function () {
+    $(".jobFindGradeBtn").click(function () {
         var jobId = $(this).parents().siblings(".jobId").text();
         var str = {
             jobId: jobId
         }
-        alert(jobId)
+        $.get("/answer/find.do", str, function (data) {
+            $('#myContainer').html(data);
+        });
+    });
+    var jobId2 = "";
+    $(".jobCreateAnswer").click(function () {
+        jobId2 = $(this).parents().siblings(".jobId").text();
+        var hh = document.getElementById("jobIdmm");
+        hh.value = jobId2;
         //$.post("/job/delete.do", str, function (data) {
         //    $('#myContainer').html(data);
+        //});
+    });
+    $('#submitFile').on('click', function () {
+        var fileName = $('#myFile').val();
+
+        if (jobId2 == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: "请选择作业！",
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        if (fileName == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: "请选择上传文件！",
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        var url = "/upload?jobId=" + jobId2;
+        alert(url);
+        document.getElementById("fileForm").action = url;
+        $('#fileForm').submit();
+        //window.location.href = "/upload.do?filename=" + fileName + "&jobId=" + jobId;
+        //$.post("/upload", str, function () {
+        //
         //});
     });
     $(".jobDeleteBtn").click(function () {
@@ -162,10 +199,6 @@ var Script = function () {
         var str = {
             jobId: jobId
         }
-        alert(jobId)
-        //$.post("/job/delete.do", str, function (data) {
-        //    $('#myContainer').html(data);
-        //});
     });
 
     $('#updateJobBtn').on("click", function () {

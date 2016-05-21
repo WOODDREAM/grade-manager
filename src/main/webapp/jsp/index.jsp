@@ -447,6 +447,7 @@
             <div class="row">
                 <div><input type="hidden" value="${type}" id="type"/></div>
                 <div class="col-lg-12" id="myContainer">
+                    <div><input type="hidden" value="${message}" id="message"/></div>
                 </div>
             </div>
 

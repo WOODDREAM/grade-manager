@@ -24,15 +24,43 @@
         <filter-name>cors</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <servlet>
+        <description/>
+        <display-name>UploadServlet</display-name>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>com.dfire.grade.manager.servlet.UploadHandleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+    <!--<servlet>-->
+        <!--<servlet-name>ListFileServlet</servlet-name>-->
+        <!--<servlet-class>com.dfire.grade.manager.servlet.ListFileServlet</servlet-class>-->
+    <!--</servlet>-->
+
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>ListFileServlet</servlet-name>-->
+        <!--<url-pattern>/list</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <servlet>
+        <servlet-name>DownLoadServlet</servlet-name>
+        <servlet-class>com.dfire.grade.manager.servlet.DownLoadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DownLoadServlet</servlet-name>
+        <url-pattern>/downLoad</url-pattern>
+    </servlet-mapping>
     <!--<filter>-->
-        <!--<filter-name>urlRewritFilter</filter-name>-->
-        <!--<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>-->
+    <!--<filter-name>urlRewritFilter</filter-name>-->
+    <!--<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>-->
     <!--</filter>-->
     <!--<filter-mapping>-->
-        <!--<filter-name>urlRewritFilter</filter-name>-->
-        <!--<url-pattern>/</url-pattern>-->
-        <!--<dispatcher>REQUEST</dispatcher>-->
-        <!--<dispatcher>FORWARD</dispatcher>-->
+    <!--<filter-name>urlRewritFilter</filter-name>-->
+    <!--<url-pattern>/</url-pattern>-->
+    <!--<dispatcher>REQUEST</dispatcher>-->
+    <!--<dispatcher>FORWARD</dispatcher>-->
     <!--</filter-mapping>-->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>

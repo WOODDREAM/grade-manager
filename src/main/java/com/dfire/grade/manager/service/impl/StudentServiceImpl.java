@@ -62,9 +62,11 @@ public class StudentServiceImpl implements IStudentService {
         Student student = (Student) redisUtil.getValue(Contants.RedisContent.STUDENT_CACHE_BY_ID + id, Student.class);
         if (null == student) {
             student = studentMapper.queryStudentById(id);
-            redisUtil.setValuePre(Contants.RedisContent.STUDENT_CACHE_BY_ID + student.getStudentId(), student, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            if (null !=student) {
+                redisUtil.setValuePre(Contants.RedisContent.STUDENT_CACHE_BY_ID + student.getStudentId(), student, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            }
         }
-        if (null == student){
+        if (null == student) {
             return JsonResult.failedInstance(Contants.Message.ERROR_NOT_FIND);
         }
         return JsonResult.jsonSuccessData(student);

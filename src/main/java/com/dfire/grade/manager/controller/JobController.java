@@ -1,12 +1,11 @@
 package com.dfire.grade.manager.controller;
 
 import com.dfire.grade.manager.Contants;
+import com.dfire.grade.manager.bean.Answer;
 import com.dfire.grade.manager.bean.SignBean;
-import com.dfire.grade.manager.service.IJobService;
-import com.dfire.grade.manager.service.IStudentClassService;
-import com.dfire.grade.manager.service.IStudentService;
-import com.dfire.grade.manager.service.ITeacherService;
+import com.dfire.grade.manager.service.*;
 import com.dfire.grade.manager.utils.DateUtil;
+import com.dfire.grade.manager.vo.AnswerVo;
 import com.dfire.grade.manager.vo.JobVo;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * User:huangtao
@@ -42,6 +38,8 @@ public class JobController extends BaseController {
     private IStudentService studentService;
     @Autowired
     private IStudentClassService studentClassService;
+    @Autowired
+    private IAnswerService answerService;
 
     @RequestMapping(value = "/create", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
@@ -160,6 +158,7 @@ public class JobController extends BaseController {
                           @RequestParam(value = "studentId", required = false) String studentId,
                           @RequestParam(value = "teacherId", required = false) String teacherId,
                           @RequestParam(value = "classId", required = false) String classId,
+                          @RequestParam(value = "message", required = false) String message,
                           @RequestParam(value = "jobId", required = false) String jobId) throws Exception {
         SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.USER_KEY);
         String id = signBean.getId();
@@ -168,12 +167,12 @@ public class JobController extends BaseController {
             result = studentService.queryRoleById(id);
             if (StringUtils.isEmpty(studentId)) {
                 studentId = id;
-                model.addAttribute("type", 1);
+                model.addAttribute("roleType", 1);
             }
         } else {
             if (StringUtils.isEmpty(teacherId)) {
                 teacherId = id;
-                model.addAttribute("type", 2);
+                model.addAttribute("roleType", 2);
             }
         }
         if (result.isSuccess() && null != result.getData()) {
@@ -202,7 +201,26 @@ public class JobController extends BaseController {
             JsonResult rs = jobService.selectJob(map);
             if (rs.isSuccess()) {
                 if (null != rs.getData() && !CollectionUtils.isEmpty((Collection<?>) rs.getData())) {
-                    model.addAttribute("jobList", rs.getData());
+                    List<JobVo> jobVos = (List<JobVo>) rs.getData();
+                    if (!StringUtils.isEmpty(studentId)) {
+                        Answer answer = new Answer();
+                        answer.setStudentId(studentId);
+                        JsonResult ansRe = answerService.selectAnswerByCondition(answer);
+                        if (ansRe.isSuccess() && null != ansRe.getData()) {
+                            List<AnswerVo> answerVoList = (List<AnswerVo>) ansRe.getData();
+                            for (int i = 0; i < jobVos.size(); i++) {
+                                for (AnswerVo answerVo : answerVoList) {
+                                    if (jobVos.get(i).getJobId().equals(answerVo.getJobId())) {
+                                        if (answerVo.isAnswered()) {
+                                            jobVos.get(i).setAnswered(true);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    model.addAttribute("jobList", jobVos);
+                    model.addAttribute("message", message);
                 } else {
                     model.addAttribute("message", rs.getMessage());
                 }
@@ -210,7 +228,6 @@ public class JobController extends BaseController {
                 model.addAttribute("message", Contants.Message.ERROR_REQUEST);
             }
         }
-
         return "job/list";
     }
 

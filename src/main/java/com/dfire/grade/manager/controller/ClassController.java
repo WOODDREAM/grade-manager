@@ -3,6 +3,7 @@ package com.dfire.grade.manager.controller;
 import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.ClassStart;
 import com.dfire.grade.manager.bean.SignBean;
+import com.dfire.grade.manager.bean.StudentClass;
 import com.dfire.grade.manager.bean.Teacher;
 import com.dfire.grade.manager.service.IClassService;
 import com.dfire.grade.manager.service.IClassStartService;
@@ -401,5 +402,71 @@ public class ClassController extends BaseController {
         } else {
             return JsonResult.failedInstance("classId不能为空！");
         }
+    }
+
+    @RequestMapping(value = "/make_join", method = {RequestMethod.POST})
+    @ResponseStatus(HttpStatus.OK)
+    public String makeStudentJoinClass(HttpServletRequest request, Model model,
+                                       @RequestParam(value = "classId", required = true) String classId,
+                                       @RequestParam(value = "mobile", required = false) String mobile,
+                                       @RequestParam(value = "studentNo", required = false) String studentNo,
+                                       @RequestParam(value = "studentName", required = false) String studentName) throws Exception {
+        if (!StringUtils.isEmpty(classId)) {
+            SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
+            String teacherId = signBean.getId();
+            JsonResult teaRe = teacherService.queryRoleById(teacherId);
+            if (teaRe.isSuccess() && null != teaRe.getData()) {
+                Teacher teacher = (Teacher) teaRe.getData();
+                JsonResult classes = classService.selectClassIncludeDetailById(classId);
+                if (classes.isSuccess() && null != classes.getData()) {
+                    model.addAttribute("classDetail", classes.getData());
+                    if (!StringUtils.isEmpty(mobile)) {
+                        if (!StringUtils.isEmpty(studentNo) && !StringUtils.isEmpty(studentName)) {
+                            JsonResult joinRe = studentClassService.selectIfJoinedById(mobile, classId);
+                            if (joinRe.isSuccess() && null == joinRe.getData()) {
+                                JsonResult result = studentClassService.createRelationship(teacherId, null, classId, mobile, studentNo, studentName, Contants.Message.STUDENT_JOINED_BY_TEACHER, teacher.getName());
+                                if (result.isSuccess()) {
+                                    return returnResult(classId, teacherId, model);
+                                } else {
+                                    model.addAttribute("message", result.getMessage());
+                                }
+                            } else {
+                                StudentClass studentClass = (StudentClass) joinRe.getData();
+                                studentClassService.updateAgree(studentClass.getRelationshipId());
+                                return returnResult(classId, teacherId, model);
+                            }
+                        } else {
+                            model.addAttribute("message", "请填写完整学生信息！");
+                        }
+                    }
+                } else {
+                    model.addAttribute("message", Contants.Message.ERROR_NO_CLASS);
+                }
+            } else {
+                model.addAttribute("message", Contants.Message.NOT_PERMISSION);
+            }
+        } else {
+            model.addAttribute("message", "没有选择课程");
+        }
+        return "class/make_join";
+    }
+
+    private String returnResult(String classId, String teacherId, Model model) throws Exception {
+        int index = ((0 - 1) * 10) - 1;
+        if (-1 == index) {
+            index = 0;
+        }
+        JsonResult resultS = studentClassService.selectRelationship(classId, teacherId, null, index, 1000, null, null);
+        if (resultS.isSuccess() && null != resultS.getData()) {
+            RelationshipVo relationshipVo = (RelationshipVo) resultS.getData();
+            List<Reliation> agreeClass = relationshipVo.getAgreeClass();
+            List<Reliation> notAgreeClass = relationshipVo.getNotAgreeClass();
+            model.addAttribute("agreeClass", agreeClass);
+            model.addAttribute("notAgreeClass", notAgreeClass);
+            model.addAttribute("roleType", 2);
+        } else {
+            model.addAttribute("message", resultS.getMessage());
+        }
+        return "ship/list";
     }
 }

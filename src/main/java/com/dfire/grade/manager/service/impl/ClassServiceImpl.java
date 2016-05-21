@@ -50,8 +50,8 @@ public class ClassServiceImpl implements IClassService {
             String classId = SequenceUtil.getSequence();
             myClass.setClassId(classId);
             myClass.setName(schoolTime.getName());
-            double p = schoolTime.getFrequency() * schoolTime.getPeriod() * DateUtil.getWeekCount(schoolTime.getStartTime(), schoolTime.getEndTime());
-            myClass.setPeriod(p);
+//            double p = schoolTime.getFrequency() * schoolTime.getPeriod() * DateUtil.getWeekCount(schoolTime.getStartTime(), schoolTime.getEndTime());
+            myClass.setPeriod(schoolTime.getPeriod());
             myClass.setTeacherId(schoolTime.getTeacherId());
             myClass.setCreateTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));
             myClass.setCredit(schoolTime.getCredit());

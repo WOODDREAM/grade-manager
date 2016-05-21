@@ -76,10 +76,12 @@ public class Contants {
         public static final String ERROR_NO_STUDENT = "没有找到此学生";
         public static final String ERROR_NO_TEACHER = "没有找到此教师";
         public static final String ERROR_NO_JOB = "没有找到此作业";
-        public static final String NO_ANSWER = "没有作答";
+        public static final String NO_ANSWER = "没有作答记录";
         public static final String ERROR_NO_CLASS = "没有找到课程";
         public static final String NOT_FIND_JOB = "没有找到作业";
         public static final String NOT_PERMISSION = "没有权限，请切换身份登陆";
+
+        public static final String STUDENT_JOINED_BY_TEACHER = "0000000000";
     }
 
     public class Http {

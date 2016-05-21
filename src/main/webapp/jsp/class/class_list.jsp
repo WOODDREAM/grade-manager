@@ -25,6 +25,11 @@
                     <label for="4" class="control-label col-lg-2 col-sm-3">查看课程下的学生</label>
                     <button class="btn btn-success btn-xs" id="4" disabled><i class="icon-group"></i></button>
                 </div>
+                <div class="col-lg-10 col-sm-9">
+                    <label for="5" class="control-label col-lg-2 col-sm-3">加入学生</label>
+                    <button class="btn btn-success btn-xs" id="5" disabled><i class="icon-user"></i></button>
+                </div>
+
             </div>
         </c:if>
     </div>
@@ -42,7 +47,7 @@
             <c:if test="${roleType ==1}">
                 <th><i class="icon-play-sign"></i>是否被同意</th>
             </c:if>
-            <th><i class="icon-zoom-out"></i>查看</th>
+            <th><i class="icon-zoom-out"></i>查看详情</th>
             <th><i class="icon-zoom-out"></i>查看作业</th>
             <c:if test="${roleType ==2}">
                 <th><i class="icon-edit"></i>编辑</th>
@@ -83,11 +88,12 @@
                     </c:if>
                 </c:if>
                 <td>
-                    <button class="btn btn-success btn-xs find_btn" name="find_btn"><i class="icon-zoom-out"></i>
+                    <button class="btn btn-success btn-xs find_btn" name="find_btn"><i class="icon-eye-open"></i>
                     </button>
                 </td>
                 <td>
-                    <button class="btn btn-success btn-xs find_btn" name="find_job_btn"><i class="icon-zoom-out"></i>
+                    <button class="btn btn-success btn-xs find_job_btn" name="find_job_btn"><i
+                            class="icon-zoom-out"></i>
                     </button>
                 </td>
                 <c:if test="${roleType ==2}">
@@ -116,6 +122,8 @@
                             <button class="btn btn-success btn-xs start_class_btn"><i class="icon-undo"></i></button>
                             <button class="btn btn-success btn-xs end_class_btn"><i class="icon-off"></i></button>
                         </c:if>
+                        <button class="btn btn-success btn-xs make_student_join_class_btn"><i class="icon-user"></i>
+                        </button>
                     </td>
                 </c:if>
                 <c:if test="${roleType ==1}">

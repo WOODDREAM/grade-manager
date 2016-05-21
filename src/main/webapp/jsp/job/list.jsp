@@ -8,18 +8,26 @@
     <table class="table table-striped border-top" id="job_list_table">
         <thead>
         <tr>
-            <th><i class="icon-bullhorn"></i> ID</th>
-            <th><i class="icon-bookmark"></i> 名称</th>
+            <th hidden="hidden"></th>
+            <th><i class="icon-tags"></i> 名称</th>
             <th><i class="icon-time"></i> 截止日期</th>
-            <th><i class="icon-star"></i> 是否需要作答</th>
+            <th><i class="icon-star"></i> 需作答否</th>
             <th><i class="icon-bookmark"></i> 作业类型</th>
             <th><i class="icon-bookmark"></i>所属课程</th>
-            <c:if test="${type ==1}">
-                <th><i class="icon-edit"></i>教师姓名</th>
+            <c:if test="${roleType ==1}">
+                <th><i class="icon-bookmark"></i>教师姓名</th>
+                <th><i class="icon-bookmark"></i>成绩</th>
+                <th><i class="icon-bookmark"></i>已作答?</th>
             </c:if>
             <th><i class="icon-zoom-out"></i>查看</th>
-            <c:if test="${type ==2}">
-                <th><i class="icon-bookmark"></i>编辑</th>
+            <c:if test="${roleType ==2}">
+                <th><i class="icon-pencil"></i>编辑</th>
+            </c:if>
+            <c:if test="${roleType ==2}">
+                <th><i class="icon-legal"></i>成绩</th>
+            </c:if>
+            <c:if test="${roleType ==1}">
+                <th><i class=" icon-edit-sign"></i>作答</th>
             </c:if>
         </tr>
         </thead>
@@ -27,7 +35,7 @@
         <tbody>
         <c:forEach var="item" items="${jobList}">
             <tr class="items">
-                <td class="jobId">${item.jobId}</td>
+                <td hidden="hidden" class="jobId">${item.jobId}</td>
                 <td>${item.name}</td>
                 <td>${item.endTime}</td>
                 <c:if test="${item.answer ==true}">
@@ -46,29 +54,84 @@
                     <td>课堂记录</td>
                 </c:if>
                 <td>${item.className}</td>
-                <c:if test="${type ==1}">
+                <c:if test="${roleType ==1}">
                     <td>${item.teacherName}</td>
+                    <td>${item.grade}</td>
+                    <c:if test="${item.answered ==true}">
+                        <td>是</td>
+                    </c:if>
+                    <c:if test="${item.answered ==false}">
+                        <td>否</td>
+                    </c:if>
                 </c:if>
                 <td>
-                    <button class="btn btn-success btn-xs jobFindBtn"><i class="icon-zoom-out"></i></button>
+                    <button class="btn btn-success btn-xs jobFindBtn"><i class="icon-eye-open"></i></button>
                 </td>
-                <c:if test="${type ==2}">
+                <c:if test="${roleType ==2}">
                     <td>
                         <button class="btn btn-primary btn-xs jobUpdateBtn"><i class="icon-pencil"></i></button>
                         <button class="btn btn-danger btn-xs jobDeleteBtn"><i class="icon-trash "></i></button>
                     </td>
                 </c:if>
-                <c:if test="${item.answer ==true}">
-                    <c:if test="${type ==1}">
-                        <td>
-                            <button class="btn btn-success btn-xs jobCreateAnswer"><i class=" icon-external-link-sign"></i></button>
-                        </td>
-                    </c:if>
+                <c:if test="${roleType ==2}">
+                    <td>
+                        <button class="btn btn-danger btn-xs jobFindGradeBtn"><i class="icon-legal"></i></button>
+                    </td>
+                </c:if>
+                <c:if test="${roleType ==1}">
+                    <td>
+                        <c:if test="${item.answer ==true and item.timeEnded == false}">
+                            <c:if test="${item.answered ==true}">
+                                <a class="btn btn-info jobCreateAnswer" data-toggle="modal" href="#myModal">重答</a>
+                                <%--<button class="btn btn-success btn-xs jobCreateAnswer"><i--%>
+                                <%--class=" icon-eraser"></i></button>--%>
+                            </c:if>
+                            <c:if test="${item.answered ==false}">
+                                <a class="btn btn-info jobCreateAnswer" data-toggle="modal" href="#myModal">作答</a>
+                                <%--<button class="btn btn-info btn-xs jobCreateAnswer"><i--%>
+                                <%--class=" icon-edit-sign"></i></button>--%>
+                            </c:if>
+                        </c:if>
+                        <c:if test="${item.answer ==false or item.timeEnded == true}">
+                            <button class="btn btn-success btn-xs jobCreateAnswer" disabled>作答</button>
+                        </c:if>
+                    </td>
                 </c:if>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">提交</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="fileForm" action=""
+                          enctype="multipart/form-data" method="post">
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                 <span class="btn green fileinput-button">
+                                     <input type="text" class="form-control" name="jobId" id="jobIdmm">
+                                 </span>
+                                <span class="btn green fileinput-button">
+                                    <input type="file" multiple="" name="files[]" id="myFile">
+                                </span>
+                                <button type="button" class="btn btn-send" id="submitFile">上传</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 </section>
 <div class="row">
     <div class="col-lg-1">

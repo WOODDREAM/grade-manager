@@ -5,31 +5,40 @@
         <id column="ans_id" property="answerId" jdbcType="VARCHAR"/>
         <result column="stu_id" property="studentId" jdbcType="VARCHAR"/>
         <result column="job_id" property="jobId" jdbcType="VARCHAR"/>
+        <result column="class_id" property="classId" jdbcType="VARCHAR"/>
+        <result column="teacher_id" property="teacherId" jdbcType="VARCHAR"/>
         <result column="answer" property="answer" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="DATE"/>
     </resultMap>
     <insert id="createAnswer" parameterType="com.dfire.grade.manager.bean.Answer">
-        INSERT INTO answer(ans_id,stu_id,job_id,answer,create_time,valid)
+        INSERT INTO answer(ans_id,stu_id,job_id,answer,create_time,valid,class_id,teacher_id)
         VALUES (
         #{answerId},
         #{studentId},
         #{jobId},
         #{answer},
         #{createTime},
-        #{valid}
+        #{valid},
+        #{classId},
+        #{teacherId}
         )
     </insert>
     <sql id="selectColumn">
-        SELECT ans_id,stu_id,job_id,answer
+        SELECT ans_id,stu_id,job_id,answer,teacher_id,class_id,create_time
         FROM answer
     </sql>
     <select id="selectAnswerByCondition" parameterType="com.dfire.grade.manager.bean.Answer" resultMap="answerMapper">
         <include refid="selectColumn"/>
         <where>
             valid ='1'
-            <if test="answerId != null and answerId != ''"> AND ans_id = #{answerId}</if>
-            <if test="studentId != null and studentId != ''">AND stu_id = #{studentId}</if>
-            <if test="jobId != null and jobId != ''">AND job_id = #{jobId}</if>
+            <if test="answerId != null ">AND ans_id = #{answerId}</if>
+            <if test="studentId != null ">AND stu_id = #{studentId}</if>
+            <if test="jobId != null">AND job_id = #{jobId}</if>
         </where>
     </select>
+    <update id="updateAnswer" parameterType="com.dfire.grade.manager.bean.Answer">
+        UPDATE answer
+        SET answer = #{answer}
+        WHERE ans_id= #{answerId}
+    </update>
 </mapper>

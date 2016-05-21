@@ -2,7 +2,9 @@ package com.dfire.grade.manager.service.impl;
 
 import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.Job;
+import com.dfire.grade.manager.bean.Teacher;
 import com.dfire.grade.manager.exception.ParameterException;
+import com.dfire.grade.manager.mapper.AnswerMapper;
 import com.dfire.grade.manager.mapper.JobMapper;
 import com.dfire.grade.manager.service.IClassService;
 import com.dfire.grade.manager.service.IJobService;
@@ -35,7 +37,8 @@ public class JobServiceImpl implements IJobService {
     private IClassService classService;
     @Autowired
     private ITeacherService teacherService;
-
+    @Autowired
+    private AnswerMapper answerMapper;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -181,6 +184,7 @@ public class JobServiceImpl implements IJobService {
         jobVo.setAnswer(job.isAnswer());
         jobVo.setClassId(job.getClassId());
         jobVo.setType(job.getType());
+        jobVo.setTeacherId(job.getTeacherId());
         if (!StringUtils.isEmpty(job.getClassId())) {
             JsonResult classes = classService.selectClassById(job.getClassId());
             if (classes.isSuccess() && null != classes.getData()) {
@@ -188,10 +192,21 @@ public class JobServiceImpl implements IJobService {
                 jobVo.setClassName(c.getName());
             }
         }
+        if (!StringUtils.isEmpty(job.getTeacherId())) {
+            JsonResult result = teacherService.queryRoleById(job.getTeacherId());
+            if (result.isSuccess() && null != result.getData()) {
+                Teacher c = (Teacher) result.getData();
+                jobVo.setTeacherName(c.getName());
+            }
+        }
         jobVo.setDetail(job.getDetail());
         jobVo.setEndTime(DateUtil.toString(job.getEndTime()));
         jobVo.setJobId(job.getJobId());
         jobVo.setName(job.getName());
+        Date date = new Date();
+        if (date.getTime() > job.getEndTime().getTime()) {
+            jobVo.setTimeEnded(true);
+        }
     }
 
     @Override

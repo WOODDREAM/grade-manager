@@ -59,7 +59,9 @@ public class TeacherServiceImpl implements ITeacherService {
         Teacher teacher = (Teacher) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + id, Teacher.class);
         if (null == teacher) {
             teacher = teacherMapper.selectById(id);
-            redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_ID + id, teacher, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            if (null != teacher) {
+                redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_ID + id, teacher, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            }
         }
         return JsonResult.jsonSuccessData(teacher);
     }

@@ -5,10 +5,7 @@ import com.dfire.grade.manager.bean.SignBean;
 import com.dfire.grade.manager.bean.Teacher;
 import com.dfire.grade.manager.logger.LoggerFactory;
 import com.dfire.grade.manager.logger.LoggerMarker;
-import com.dfire.grade.manager.service.IClassService;
-import com.dfire.grade.manager.service.IStudentClassService;
-import com.dfire.grade.manager.service.IStudentService;
-import com.dfire.grade.manager.service.ITeacherService;
+import com.dfire.grade.manager.service.*;
 import com.dfire.grade.manager.utils.MessageDigestUtil;
 import com.dfire.grade.manager.utils.RedisUtil;
 import com.dfire.grade.manager.utils.SequenceUtil;
@@ -20,10 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -48,6 +42,10 @@ public class UserController extends BaseController {
     private IStudentClassService studentClassService;
     @Autowired
     private IClassService classService;
+    @Autowired
+    private IAnswerService answerService;
+    @Autowired
+    private IJobService jobService;
     @Autowired
     private SmsUtil smsUtil;
     private String TEACHER_MESSAGE = "\n+课程码：%s。课程名： %s.\n学生：姓名： %s,学号：%s 申请加入课程";
@@ -206,7 +204,6 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/main", method = {RequestMethod.POST})
     @ResponseStatus(HttpStatus.OK)
     public String forMainContainer(HttpServletRequest request, Model model) throws Exception {
-
         return "main";
     }
 
@@ -278,5 +275,75 @@ public class UserController extends BaseController {
     @ResponseStatus(HttpStatus.OK)
     public String joinClassForGet() throws Exception {
         return "class/join";
+    }
+
+    @RequestMapping(value = "/return", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseStatus(HttpStatus.OK)
+    public String returnHome(HttpServletRequest request, Model model) throws Exception {
+
+        SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.STUDENT_KEY);
+        model.addAttribute("type", 1);
+        String message = "";
+        if (null != signBean) {
+            String student = signBean.getId();
+            String id = (String) request.getSession().getAttribute("id");
+            String fileName = (String) request.getSession().getAttribute("fileName");
+            if (!StringUtils.isEmpty(id) && !StringUtils.isEmpty(fileName) && !fileName.equals("null")) {
+                JsonResult jsonResult = answerService.createAnswer(student, id, fileName);
+                message = jsonResult.getMessage();
+                request.getSession().removeAttribute("id");
+                request.getSession().removeAttribute("fileName");
+            } else {
+                message = "提交失败！";
+            }
+        } else {
+            model.addAttribute("type", 2);
+        }
+        model.addAttribute("message", message);
+        return "index";
+//        String studentId = signBean.getId();
+//        JsonResult result = studentService.queryRoleById(id);
+//
+//        if (result.isSuccess() && null != result.getData()) {
+//            Map<String, Object> map = new HashMap<>();
+//            if (!StringUtils.isEmpty(studentId)) {
+//                map.put("studentId", studentId);
+//            }
+//            int pageSize = 1000;
+//            map.put("pageSize", pageSize);
+//            int pageIndex = 1;
+//            int index = (pageIndex - 1) * 10 - 1;
+//            map.put("index", index == -1 ? 0 : index);
+//            JsonResult rs = jobService.selectJob(map);
+//            if (rs.isSuccess()) {
+//                if (null != rs.getData() && !CollectionUtils.isEmpty((Collection<?>) rs.getData())) {
+//                    List<JobVo> jobVos = (List<JobVo>) rs.getData();
+//                    if (!StringUtils.isEmpty(studentId)) {
+//                        Answer answer = new Answer();
+//                        answer.setStudentId(studentId);
+//                        JsonResult ansRe = answerService.selectAnswerByCondition(answer);
+//                        if (ansRe.isSuccess() && null != ansRe.getData()) {
+//                            List<AnswerVo> answerVoList = (List<AnswerVo>) ansRe.getData();
+//                            for (int i = 0; i < jobVos.size(); i++) {
+//                                for (AnswerVo answerVo : answerVoList) {
+//                                    if (jobVos.get(i).getJobId().equals(answerVo.getJobId())) {
+//                                        if (answerVo.isAnswered()) {
+//                                            jobVos.get(i).setAnswered(true);
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                    model.addAttribute("jobList", jobVos);
+//                } else {
+//                    message = rs.getMessage();
+//                }
+//            } else {
+//                message = Contants.Message.ERROR_REQUEST;
+//            }
+//        }
+//        model.addAttribute("message", message);
+//        return "job/list";
     }
 }
