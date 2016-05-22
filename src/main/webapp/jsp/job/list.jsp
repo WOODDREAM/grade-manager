@@ -136,9 +136,7 @@
                           enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
-                                 <span class="btn green fileinput-button">
-                                     <input type="hidden" class="form-control" name="jobId" id="jobIdmm">
-                                 </span>
+                                <input type="hidden" class="form-control" name="jobId" id="jobIdmm">
                                 <span class="btn green fileinput-button">
                                     <input type="file" multiple="" name="files[]" id="myFile">
                                 </span>

@@ -41,7 +41,7 @@ var Script = function () {
          gradeAnswer = $(this).parents().siblings(".grade-answer");
     });
     $(".submitGrade").click(function () {
-
+        alert("gradeAnswer" + gradeAnswer);
         var answerId = $('#answerIdForGrade').val();
         var grade = $('#grade').val();
         if (grade == "" || !(reDouble.test(grade))) {

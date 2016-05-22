@@ -68,7 +68,7 @@
                 </c:if>
                 <c:if test="${roleType ==2}">
                     <td>
-                        <a class="btn btn-info createGradebtn" data-toggle="modal" href="#myModal2"><i class="icon-pencil"/></a>
+                        <a class="btn btn-info createGradebtn" data-toggle="modal" href="#myModal2"><i</a>
                     </td>
 
                 </c:if>
