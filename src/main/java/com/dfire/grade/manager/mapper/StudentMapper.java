@@ -35,23 +35,23 @@ public interface StudentMapper {
     /**
      * 修改密码
      *
-     * @param map passWord studentId(id,passWord)
+     * @param student passWord studentId(id,passWord)
      */
-    void modifyPassword(Map<String, String> map) throws Exception;
+    void modifyPassword(Student student) throws Exception;
 
     /**
      * 修改手机号
      *
-     * @param map mobile studentId(id,mobile)
+     * @param student mobile studentId(id,mobile)
      */
-    void modifyMobile(Map<String, String> map) throws Exception;
+    void modifyMobile(Student student) throws Exception;
 
     /**
      * 修改email
      *
-     * @param map email studentId(id,email)
+     * @param student email studentId(id,email)
      */
-    void modifyEmail(Map<String, String> map) throws Exception;
+    void modifyInfo(Student student) throws Exception;
 
     /**
      * 查询课程内所有的学时

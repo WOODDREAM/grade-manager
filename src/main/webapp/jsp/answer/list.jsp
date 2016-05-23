@@ -68,7 +68,7 @@
                 </c:if>
                 <c:if test="${roleType ==2}">
                     <td>
-                        <a class="btn btn-info createGradebtn" data-toggle="modal" href="#myModal2"><i</a>
+                        <a class="btn btn-info createGradebtn" data-toggle="modal" href="#myModal2"><i class="icon-edit"></i></a>
                     </td>
 
                 </c:if>
@@ -108,10 +108,8 @@
                           enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
-                                 <span class="btn green fileinput-button">
-                                     <input type="hidden" id="answerIdmm">
-                                 </span>
                                 <span class="btn green fileinput-button">
+                                    <input type="hidden" id="answerIdmm">
                                     <input type="file" multiple="" name="files[]" id="myFile">
                                 </span>
                                 <button type="submit" class="btn btn-send" id="submitFile">上传</button>
@@ -137,9 +135,7 @@
                     <form class="form-horizontal" role="form" id="gradeForm">
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
-                                 <span class="btn green fileinput-button">
-                                     <input type="hidden" class="form-control" name="answerIdmm" id="answerIdForGrade">
-                                 </span>
+                                <input type="hidden" class="form-control" name="answerIdmm" id="answerIdForGrade">
                                 <span class="btn green fileinput-button">
                                     <input type="text" multiple="" name="grade" id="grade">
                                 </span>

@@ -45,9 +45,15 @@ public class UploadHandleServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //消息提示
         String message = "";
+        String subject = request.getParameter("emailSubject");
         String id = request.getParameter("jobId");
+        int fileType = 1;
         if (StringUtils.isEmpty(id)) {
             id = request.getParameter("answerId");
+        }
+        if (StringUtils.isEmpty(id)) {
+            id = request.getParameter("emailToManId");
+            fileType = 2;
         }
         String answer = null;
         //得到上传文件的保存目录，将上传的文件存放于WEB-INF目录下，不允许外界直接访问，保证上传文件的安全
@@ -93,7 +99,7 @@ public class UploadHandleServlet extends HttpServlet {
             //设置上传单个文件的大小的最大值，目前是设置为1024*1024字节，也就是1MB
             upload.setFileSizeMax(1024 * 1024 * 500);
             //设置上传文件总量的最大值，最大值=同时上传的多个文件的大小的最大值的和，目前设置为10MB
-            upload.setSizeMax(1024 * 1024 * 500 *10);
+            upload.setSizeMax(1024 * 1024 * 500 * 10);
             //4、使用ServletFileUpload解析器解析上传数据，解析结果返回的是一个List<FileItem>集合，每一个FileItem对应一个Form表单的输入项
             List<FileItem> list = upload.parseRequest(request);
             for (FileItem item : list) {
@@ -163,10 +169,18 @@ public class UploadHandleServlet extends HttpServlet {
 //        response.addHeader("s", id);
 //        response.addHeader("f", answer);
 //        response.sendRedirect("http://localhost:8888/user/return?s=" + id + "&f=" + answer);
-        request.getSession().setAttribute("id", id);
-        request.getSession().setAttribute("fileName", answer);
-        request.getRequestDispatcher("/user/return").forward(request, response);
+        if (fileType == 1) {
+            request.getSession().setAttribute("id", id);
+            request.getSession().setAttribute("fileName", answer);
+            request.getRequestDispatcher("/user/return").forward(request, response);
 //        request.getRequestDispatcher("/job/find");
+        }else {
+            request.getSession().setAttribute("emailToManId", id);
+            request.getSession().setAttribute("fileName", answer);
+            request.getSession().setAttribute("subject", subject);
+            request.getRequestDispatcher("/email/message").forward(request, response);
+        }
+
     }
 
     private String makeFileName(String filename) {  //2.jpg

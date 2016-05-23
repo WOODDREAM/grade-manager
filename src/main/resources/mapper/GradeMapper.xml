@@ -16,7 +16,7 @@
         FROM grade
     </sql>
     <insert id="insertGrade" parameterType="com.dfire.grade.manager.bean.Grade">
-        INSERT INTO grade(gra_id,stu_id,cla_id,tea_id,grade,job_id,type,create_time,valid,answer_id)
+        INSERT INTO grade(gra_id,stu_id,cla_id,tea_id,grade,job_id,create_time,valid,answer_id)
         VALUES (
         #{gradeId},
         #{studentId},
@@ -38,8 +38,8 @@
             <if test="teacherId !=null">AND tea_id = #{teacherId}</if>
             <if test="classId !=null">AND cla_id = #{classId}</if>
             <if test="jobId !=null">AND job_id = #{jobId}</if>
-            <if test="answer !=null">AND is_need_answer = #{answer}</if>
-            <if test="endTime !=null">AND end_time = #{createTime}</if>
+            <if test="answerId !=null">AND answer_id = #{answerId}</if>
+            <if test="createTime !=null">AND create_time = #{createTime}</if>
         </where>
     </select>
     <insert id="insertBatch" parameterType="java.util.List">
@@ -59,4 +59,10 @@
             )
         </foreach>
     </insert>
+    <update id="updateByAnswerId" parameterType="com.dfire.grade.manager.bean.Grade">
+        UPDATE grade
+        set grade = #{grade}
+        WHERE answer_id = #{answerId}
+        AND valid = 1
+    </update>
 </mapper>

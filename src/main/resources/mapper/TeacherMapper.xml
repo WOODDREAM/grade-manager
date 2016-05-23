@@ -43,19 +43,35 @@
       #{sex}
       )
     </insert>
-    <update id="modifyPassword" parameterType="java.util.Map">
+    <update id="modifyPassword" parameterType="com.dfire.grade.manager.bean.Teacher">
         UPDATE  teacher
         SET pass_word=#{passWord}
-        WHERE tea_id=#{id}
+        WHERE tea_id=#{teacherId}
+         AND valid='1'
     </update>
-    <update id="modifyMobile" parameterType="java.util.Map">
+    <update id="modifyMobile" parameterType="com.dfire.grade.manager.bean.Teacher">
         UPDATE  teacher
         SET mobile=#{mobile}
-        WHERE tea_id=#{id}
+        WHERE tea_id=#{teacherId}
+         AND valid='1'
     </update>
-    <update id="modifyEmail" parameterType="java.util.Map">
-        UPDATE  teacher
-        SET email=#{email}
-        WHERE tea_id=#{id}
+    <update id="modifyInfo" parameterType="com.dfire.grade.manager.bean.Teacher">
+        UPDATE teacher
+        SET
+        valid = 1
+        <if test="email != null">,email=#{email}</if>
+        <if test="school != null">,school=#{school}</if>
+        <if test="name != null">,name=#{name}</if>
+        WHERE tea_id=#{teacherId}
+        AND valid = 1
     </update>
+    <select id="selectTeacherUnderStudent" parameterType="String" resultMap="teacherMapper">
+        SELECT teacher.tea_id,teacher.name,teacher.mobile,teacher.email,teacher.school
+        FROM teacher
+        INNER JOIN student_class sc
+        ON teacher.tea_id = sc.tea_id
+        WHERE sc.stu_id = #{studentId}
+        AND teacher.valid='1'
+        GROUP BY teacher.tea_id
+    </select>
 </mapper>

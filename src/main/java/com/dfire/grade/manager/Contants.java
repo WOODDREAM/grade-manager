@@ -96,6 +96,14 @@ public class Contants {
         public static final int CLASS_JOB = 2;//课堂记录
     }
 
+    public class Email{
+        public static final int EMAIL_RECEIVED_TYPE = 2;
+        public static final int EMAIL_SEND_TYPE = 2;
+        public static final boolean EMAIL_IMPORTANT = true;
+        public static final boolean EMAIL_NOT_IMPORTANT = false;
+
+    }
+
     public class ClassState {
         public static final int STARTING = 1;//开课中
         public static final int STARTED = 2;//开课结束

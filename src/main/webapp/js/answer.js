@@ -1,5 +1,4 @@
 var Script = function () {
-    var answerId2 = "";
     var reDouble = /^[-\+]?\d+(\.\d+)?$/;
     $(".jobCreateAnswer").click(function () {
         var answerId = $(this).parents().siblings(".answerId").text();
@@ -9,8 +8,8 @@ var Script = function () {
 
     $('#submitFile').on('click', function () {
         var fileName = $('#myFile').val();
-        var answerId = $(this).parents().siblings(".answerId").text();
-        if (answerId2 == "") {
+        var answerId = $("#answerIdmm").val();
+        if (answerId == "") {
             $.gritter.add({
                 title: '警告!',
                 text: "请选择作业！",
@@ -28,8 +27,7 @@ var Script = function () {
             });
             return false;
         }
-        var url = "/upload?answerId=" + answerId2;
-        alert(url);
+        var url = "/upload?answerId=" + answerId;
         document.getElementById("fileForm").action = url;
         $('#fileForm').submit();
     });
@@ -38,10 +36,9 @@ var Script = function () {
         var answerId = $(this).parents().siblings(".answerId").text();
         var hh = document.getElementById("answerIdForGrade");
         hh.value = answerId;
-         gradeAnswer = $(this).parents().siblings(".grade-answer");
+        gradeAnswer = $(this).parents().siblings(".grade-answer");
     });
-    $(".submitGrade").click(function () {
-        alert("gradeAnswer" + gradeAnswer);
+    $("#submitGrade").click(function () {
         var answerId = $('#answerIdForGrade').val();
         var grade = $('#grade').val();
         if (grade == "" || !(reDouble.test(grade))) {
@@ -52,15 +49,15 @@ var Script = function () {
                 time: ''
             });
         }
-        alert(answerId);
         var str = {
             grade: grade,
             answerId: answerId
         }
-        alert(str);
         $.post("/grade/create.do", str, function (data) {
             if (data.code == 1) {
-                gradeAnswer = data.data;
+                gradeAnswer.text(data.data);
+                var g = document.getElementById("grade");
+                g.value = "";
             } else {
                 $.gritter.add({
                     title: '警告!',

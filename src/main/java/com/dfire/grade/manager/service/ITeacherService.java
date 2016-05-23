@@ -19,6 +19,8 @@ public interface ITeacherService {
 
     JsonResult modifyMobile(String id, String mobile) throws Exception;
 
-    JsonResult modifyEmail(String id, String email) throws Exception;
+    JsonResult modifyInfo(String id, String email,String school,String name) throws Exception;
+
+    JsonResult selectTeacherUnderStudent(String studentId) throws Exception;
 
 }

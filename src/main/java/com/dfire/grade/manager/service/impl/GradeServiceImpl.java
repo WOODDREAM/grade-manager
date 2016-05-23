@@ -13,6 +13,7 @@ import com.dfire.grade.manager.vo.JsonResult;
 import com.dfire.grade.manager.vo.form.GradeForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
@@ -52,9 +53,8 @@ public class GradeServiceImpl implements IGradeService {
             AnswerVo answerVo = answerVoList.get(0);
             JsonResult createRe = createGrade(answerId, answerVo.getStudentId(), answerVo.getClassId(), teacherId, grade, answerVo.getJobId());
             if (createRe.isSuccess() && null != createRe.getData()) {
-                Grade newGrade = (Grade) createRe.getData();
-                gradeMapper.insertGrade(newGrade);
-                return JsonResult.jsonSuccessData(newGrade.getGrade());
+                double newGrade = (double) createRe.getData();
+                return JsonResult.jsonSuccessData(newGrade);
             } else {
                 return createRe;
             }
@@ -90,9 +90,15 @@ public class GradeServiceImpl implements IGradeService {
         return null;
     }
 
+
     @Override
-    public JsonResult selectByAnswerId(String answerId) throws Exception {
-        return null;
+    public JsonResult selectGradeByCondition(Grade grade) throws Exception {
+        Assert.notNull(grade, "条件为空！");
+        List<Grade> gradeList = gradeMapper.selectGradeByCondition(grade);
+        if (CollectionUtils.isEmpty(gradeList)) {
+            gradeList = null;
+        }
+        return JsonResult.jsonSuccessData(gradeList);
     }
 
     private JsonResult createGrade(String answerId, String studentId, String classId, String teacherId, double grade, String jobId) throws Exception {
@@ -113,16 +119,28 @@ public class GradeServiceImpl implements IGradeService {
                         JsonResult jobResult = jobService.selectJob(map);
                         if (jobResult.isSuccess()) {
                             if (null != jobResult.getData() && !CollectionUtils.isEmpty((Collection<?>) jobResult.getData())) {
-                                Grade newGrade = new Grade();
-                                newGrade.setClassId(classId);
-                                newGrade.setCreateTime(DateUtil.getCurDate());
-                                newGrade.setGrade(grade);
-                                newGrade.setGradeId(SequenceUtil.getSequence());
-                                newGrade.setJobId(jobId);
-                                newGrade.setStudentId(studentId);
-                                newGrade.setTeacherId(teacherId);
-                                newGrade.setValid(true);
-                                return JsonResult.jsonSuccessData(newGrade);
+                                Grade g = new Grade();
+                                g.setAnswerId(answerId);
+                                List<Grade> gradeList = gradeMapper.selectGradeByCondition(g);
+                                if (!CollectionUtils.isEmpty(gradeList)) {
+                                    Grade grade1 = new Grade();
+                                    grade1.setGrade(grade);
+                                    grade1.setAnswerId(answerId);
+                                    gradeMapper.updateByAnswerId(grade1);
+                                } else {
+                                    Grade newGrade = new Grade();
+                                    newGrade.setClassId(classId);
+                                    newGrade.setCreateTime(DateUtil.getCurDate());
+                                    newGrade.setGrade(grade);
+                                    newGrade.setGradeId(SequenceUtil.getSequence());
+                                    newGrade.setJobId(jobId);
+                                    newGrade.setStudentId(studentId);
+                                    newGrade.setTeacherId(teacherId);
+                                    newGrade.setValid(true);
+                                    newGrade.setAnswerId(answerId);
+                                    gradeMapper.insertGrade(newGrade);
+                                }
+                                return JsonResult.jsonSuccessData(grade);
                             } else {
                                 return JsonResult.failedInstance(Contants.Message.NOT_FIND_JOB);
                             }

@@ -4,6 +4,7 @@ import com.dfire.grade.manager.exception.ParameterException;
 import com.dfire.grade.manager.vo.Schedule;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -89,14 +90,13 @@ public class SequenceUtil {
         throw new ParameterException(message);
     }
 
-    public static boolean isOrBlank(String[][] str) throws ParameterException {
+    public static boolean isOrBlank(String str,String... str2) throws ParameterException {
         String message = "参数为空！";
         if (null != str) {
-            for (int i = 0; i < str.length; i++) {
-                if (!str[i][0].isEmpty()) {
+            for (int i = 0; i < str2.length; i++) {
+                if (!StringUtils.isEmpty(str2[i])) {
                     return true;
                 }
-                message = str[i][1];
                 break;
             }
         }

@@ -17,7 +17,15 @@ public class Student {
     private Date joinTime;//进入系统时间
     private int sex;//性别
     private String passWord;
+    private String studentNo;
 
+    public String getStudentNo() {
+        return studentNo;
+    }
+
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
+    }
 
     public String getStudentId() {
         return studentId;

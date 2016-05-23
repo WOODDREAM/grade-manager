@@ -18,4 +18,8 @@ public interface GradeMapper {
 
     void insertBatch(List<Grade> list) throws Exception;
 
+    List<Grade> selectGradeByCondition(Grade grade) throws Exception;
+
+    void updateByAnswerId(Grade grade) throws Exception;
+
 }

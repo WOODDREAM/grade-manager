@@ -56,7 +56,7 @@ public class Hello {
 
     @RequestMapping(value = "/mail", method = RequestMethod.GET)
     public String sendMail() throws MessagingException, UnsupportedEncodingException {
-        mailUtil.sendMail("殷茹梦的信息", "没事发个邮件给你O(∩_∩)O哈哈~", "F:\\学习资料\\半年计划\\Git\\Pro Git.pdf", "huangtao@2dfire.com");
+        mailUtil.sendMail("殷茹梦的信息", "没事发个邮件给你O(∩_∩)O哈哈~", "F:\\学习资料\\半年计划\\Git\\Pro Git.pdf", null, "huangtao@2dfire.com");
         return "hello";
     }
 }

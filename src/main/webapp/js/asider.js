@@ -59,6 +59,21 @@ var Script = function () {
             $('#myContainer').html(data);
         })
     });
+    $('#a-email-list').on('click', function () {
+        makeLiactive($('#li-email-list'), "4")
+        $.get("/email/find.do", function (data) {
+            $('#myContainer').html(data);
+        })
+    });
+
+    $('#a-person-info').on('click', function () {
+        makeLiactive($('#li-person-info'), "5")
+        $.get("/user/info.do", function (data) {
+            $('#myContainer').html(data);
+        })
+    });
+
+
     //type=1综合页  2 课程   3 作业  4 邮件   5 个人信信息  6 聊天
     function makeLiactive(v, type) {
         $('#li-main').removeClass('active');

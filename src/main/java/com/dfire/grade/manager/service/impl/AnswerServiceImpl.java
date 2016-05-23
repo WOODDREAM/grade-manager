@@ -2,6 +2,7 @@ package com.dfire.grade.manager.service.impl;
 
 import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.bean.Answer;
+import com.dfire.grade.manager.bean.Grade;
 import com.dfire.grade.manager.exception.ParameterException;
 import com.dfire.grade.manager.mapper.AnswerMapper;
 import com.dfire.grade.manager.service.*;
@@ -36,6 +37,8 @@ public class AnswerServiceImpl implements IAnswerService {
     private IClassService classService;
     @Autowired
     private IStudentClassService studentClassService;
+    @Autowired
+    private IGradeService gradeService;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -142,6 +145,16 @@ public class AnswerServiceImpl implements IAnswerService {
             answerVo.setStudentId(studentId);
             answerVo.setStudentName(agreeClass.get(0).getStudentName());
             answerVo.setStudentNo(agreeClass.get(0).getStudentNo());
+        }
+        Grade grade = new Grade();
+        grade.setAnswerId(answer.getAnswerId());
+        grade.setStudentId(studentId);
+        grade.setJobId(jobId);
+        JsonResult gradeRe = gradeService.selectGradeByCondition(grade);
+        List<Grade> gradeList = (List<Grade>) gradeRe.getData();
+        if (!CollectionUtils.isEmpty(gradeList)) {
+            Grade g = gradeList.get(0);
+            answerVo.setGrade(g.getGrade());
         }
         answerVo.setAnswer(answer.getAnswer());
         answerVo.setAnswerId(answer.getAnswerId());

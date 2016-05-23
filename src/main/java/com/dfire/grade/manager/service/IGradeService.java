@@ -1,5 +1,6 @@
 package com.dfire.grade.manager.service;
 
+import com.dfire.grade.manager.bean.Grade;
 import com.dfire.grade.manager.vo.JsonResult;
 import com.dfire.grade.manager.vo.form.GradeForm;
 
@@ -17,5 +18,5 @@ public interface IGradeService {
 
     JsonResult insertBatch(String teacherId, List<GradeForm> gradeForms) throws Exception;
 
-    JsonResult selectByAnswerId(String answerId) throws Exception;
+    JsonResult selectGradeByCondition(Grade grade) throws Exception;
 }

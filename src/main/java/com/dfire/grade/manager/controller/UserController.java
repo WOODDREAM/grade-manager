@@ -1,7 +1,9 @@
 package com.dfire.grade.manager.controller;
 
 import com.dfire.grade.manager.Contants;
+import com.dfire.grade.manager.bean.Email;
 import com.dfire.grade.manager.bean.SignBean;
+import com.dfire.grade.manager.bean.Student;
 import com.dfire.grade.manager.bean.Teacher;
 import com.dfire.grade.manager.logger.LoggerFactory;
 import com.dfire.grade.manager.logger.LoggerMarker;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,6 +50,8 @@ public class UserController extends BaseController {
     @Autowired
     private IJobService jobService;
     @Autowired
+    private IEmailService emailService;
+    @Autowired
     private SmsUtil smsUtil;
     private String TEACHER_MESSAGE = "\n+课程码：%s。课程名： %s.\n学生：姓名： %s,学号：%s 申请加入课程";
     //    private final String METHOD_GET = "get";
@@ -68,10 +73,21 @@ public class UserController extends BaseController {
         if (request.getMethod().endsWith(Contants.Http.METHOD_POST)) {
             JsonResult result = null;
             if (type == 1) {
+                JsonResult re = teacherService.queryRoleByMobile(mobile);
+                if (re.isSuccess() && null != re.getData()) {
+                    model.addAttribute("message", "此号码有教师注册过！");
+                } else {
+                    result = teacherService.insertTeacher(name, school, passWord, mobile, email, sex);
+                }
                 result = studentService.insertStudent(name, school, passWord, mobile, email, sex);
             } else {
                 if (type == 2) {
-                    result = teacherService.insertTeacher(name, school, passWord, mobile, email, sex);
+                    JsonResult re = studentService.queryRoleByMobile(mobile);
+                    if (re.isSuccess() && null != re.getData()) {
+                        model.addAttribute("message", "此号码有学生注册过！");
+                    } else {
+                        result = teacherService.insertTeacher(name, school, passWord, mobile, email, sex);
+                    }
                 } else {
                     model.addAttribute("message", "角色错误！");
                 }
@@ -130,6 +146,17 @@ public class UserController extends BaseController {
                         LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
                         model.addAttribute("type", type);
                         model.addAttribute("person", signBean);
+                        Email email = new Email();
+                        if (type == 1) {
+                            email.setStudentId(signBean.getId());
+                        } else {
+                            email.setTeacherId(signBean.getId());
+                        }
+                        JsonResult emailResult = emailService.selectUnreadCount(email);
+                        if (emailResult.isSuccess() && null != emailResult.getData()) {
+                            model.addAttribute("unreadEmailCount", emailResult.getData());
+                        }
+                        model.addAttribute("person", signBean);
                         return "index";
                     } else {
                         map.put("message", "用户登录失败，密码错误！");
@@ -168,11 +195,11 @@ public class UserController extends BaseController {
         }
         redisUtil.del(Contants.RedisContent.VERIFY_CODE_PREFIX + mobile);
         JsonResult result = null;
-        int type = 2;
+        int type = 1;
         String key = Contants.STUDENT_KEY;
         result = studentService.queryRoleByMobile(mobile);
         if (null == result || !result.isSuccess() || null == result.getData()) {
-            type = 1;
+            type = 2;
             key = Contants.TEACHER_KEY;
             result = teacherService.queryRoleByMobile(mobile);
         }
@@ -192,6 +219,17 @@ public class UserController extends BaseController {
                 }
                 redisUtil.setValuePre(keyId, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
                 redisUtil.setValuePre(keyMobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+                Email email = new Email();
+                if (type == 1) {
+                    email.setStudentId(signBean.getId());
+                } else {
+                    email.setTeacherId(signBean.getId());
+                }
+                JsonResult emailResult = emailService.selectUnreadCount(email);
+                if (emailResult.isSuccess() && null != emailResult.getData()) {
+                    model.addAttribute("unreadEmailCount", emailResult.getData());
+                }
+                model.addAttribute("person", signBean);
                 map.put("message", "用户登录成功！");
                 request.getSession().setAttribute(key, signBean);
                 LoggerFactory.USER_FACTORY.info(LoggerMarker.USER_SIGN, SequenceUtil.mapToJson(map));
@@ -283,6 +321,7 @@ public class UserController extends BaseController {
     public String returnHome(HttpServletRequest request, Model model) throws Exception {
 
         SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.STUDENT_KEY);
+        int type = 1;
         model.addAttribute("type", 1);
         String message = "";
         if (null != signBean) {
@@ -298,53 +337,141 @@ public class UserController extends BaseController {
                 message = "提交失败！";
             }
         } else {
+            type = 2;
             model.addAttribute("type", 2);
         }
         model.addAttribute("message", message);
+        Email email = new Email();
+        if (type == 1) {
+            email.setStudentId(signBean.getId());
+        } else {
+            email.setTeacherId(signBean.getId());
+        }
+        JsonResult emailResult = emailService.selectUnreadCount(email);
+        if (emailResult.isSuccess() && null != emailResult.getData()) {
+            model.addAttribute("unreadEmailCount", emailResult.getData());
+        }
+        model.addAttribute("person", signBean);
         return "index";
-//        String studentId = signBean.getId();
-//        JsonResult result = studentService.queryRoleById(id);
-//
-//        if (result.isSuccess() && null != result.getData()) {
-//            Map<String, Object> map = new HashMap<>();
-//            if (!StringUtils.isEmpty(studentId)) {
-//                map.put("studentId", studentId);
-//            }
-//            int pageSize = 1000;
-//            map.put("pageSize", pageSize);
-//            int pageIndex = 1;
-//            int index = (pageIndex - 1) * 10 - 1;
-//            map.put("index", index == -1 ? 0 : index);
-//            JsonResult rs = jobService.selectJob(map);
-//            if (rs.isSuccess()) {
-//                if (null != rs.getData() && !CollectionUtils.isEmpty((Collection<?>) rs.getData())) {
-//                    List<JobVo> jobVos = (List<JobVo>) rs.getData();
-//                    if (!StringUtils.isEmpty(studentId)) {
-//                        Answer answer = new Answer();
-//                        answer.setStudentId(studentId);
-//                        JsonResult ansRe = answerService.selectAnswerByCondition(answer);
-//                        if (ansRe.isSuccess() && null != ansRe.getData()) {
-//                            List<AnswerVo> answerVoList = (List<AnswerVo>) ansRe.getData();
-//                            for (int i = 0; i < jobVos.size(); i++) {
-//                                for (AnswerVo answerVo : answerVoList) {
-//                                    if (jobVos.get(i).getJobId().equals(answerVo.getJobId())) {
-//                                        if (answerVo.isAnswered()) {
-//                                            jobVos.get(i).setAnswered(true);
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                    model.addAttribute("jobList", jobVos);
-//                } else {
-//                    message = rs.getMessage();
-//                }
-//            } else {
-//                message = Contants.Message.ERROR_REQUEST;
-//            }
-//        }
-//        model.addAttribute("message", message);
-//        return "job/list";
+    }
+
+    @RequestMapping("/email")
+    @ResponseStatus(HttpStatus.OK)
+    public String findPeopleForEmail(HttpServletRequest request, Model model) throws Exception {
+        SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.STUDENT_KEY);
+        JsonResult result = null;
+        if (null == signBean) {
+            signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
+            result = studentService.selectStudentUnderTeacher(signBean.getId());
+            if (result.isSuccess() && null != result.getData()) {
+                List<Student> students = (List<Student>) result.getData();
+                model.addAttribute("students", students);
+            } else {
+                model.addAttribute("message", "没有数据");
+            }
+            model.addAttribute("roleType", 2);
+        } else {
+            model.addAttribute("roleType", 1);
+            result = teacherService.selectTeacherUnderStudent(signBean.getId());
+            if (result.isSuccess() && null != result.getData()) {
+                List<Teacher> teachers = (List<Teacher>) result.getData();
+                model.addAttribute("teachers", teachers);
+            } else {
+                model.addAttribute("message", "没有数据");
+            }
+        }
+        return "email/write";
+    }
+
+    @RequestMapping("/updateInfo")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public JsonResult updateInfo(HttpServletRequest request,
+                                 @RequestParam(value = "name", required = false) String name,
+                                 @RequestParam(value = "school", required = false) String school,
+                                 @RequestParam(value = "email", required = false) String email) throws Exception {
+        if (StringUtils.isEmpty(name)) {
+            name = null;
+        }
+        if (StringUtils.isEmpty(school)) {
+            school = null;
+        }
+        if (StringUtils.isEmpty(email)) {
+            email = null;
+        }
+        SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.STUDENT_KEY);
+        if (null == signBean) {
+            signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
+            return teacherService.modifyInfo(signBean.getId(), email, school, name);
+        } else {
+            return studentService.modifyInfo(signBean.getId(), email, school, name);
+        }
+    }
+
+    @RequestMapping("/updatePassword")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public JsonResult updatePassword(HttpServletRequest request,
+                                     @RequestParam(value = "password", required = true) String password) throws Exception {
+        if (!StringUtils.isEmpty(password)) {
+            SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.STUDENT_KEY);
+            JsonResult result = null;
+            if (null == signBean) {
+                signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
+                return teacherService.modifyPassword(signBean.getId(), password);
+            } else {
+                return studentService.modifyPassword(signBean.getId(), password);
+            }
+        } else {
+            return JsonResult.failedInstance("密码为空！");
+        }
+    }
+
+    @RequestMapping("/updateMobile")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public JsonResult updateMobile(HttpServletRequest request, @RequestParam(value = "mobile", required = true) String mobile,
+                                   @RequestParam(value = "code", required = true) String code) throws Exception {
+
+        if (!StringUtils.isEmpty(mobile)) {
+            String cacheCode = (String) redisUtil.getValue(Contants.RedisContent.VERIFY_CODE_PREFIX + mobile, String.class);
+            if (null == code || StringUtils.isEmpty(code)) {
+                return JsonResult.failedInstance("验证码不能为空");
+            }
+            if (null == cacheCode) {
+                return JsonResult.failedInstance("验证码过期");
+            }
+            if (!cacheCode.equals(code)) {
+                return JsonResult.failedInstance("验证码错误！");
+            }
+            SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.STUDENT_KEY);
+            if (null == signBean) {
+                signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
+                return teacherService.modifyMobile(signBean.getId(), mobile);
+            } else {
+                return studentService.modifyMobile(signBean.getId(), mobile);
+            }
+        } else {
+            return JsonResult.failedInstance("手机号为空！");
+        }
+    }
+
+    @RequestMapping("/info")
+    @ResponseStatus(HttpStatus.OK)
+    public String info(HttpServletRequest request, Model model) throws Exception {
+        SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.STUDENT_KEY);
+        if (null == signBean) {
+            signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
+            JsonResult result = teacherService.queryRoleById(signBean.getId());
+            if (result.isSuccess() && null != result.getData()) {
+                model.addAttribute("person", result.getData());
+            }
+        } else {
+            JsonResult result = studentService.queryRoleById(signBean.getId());
+            if (result.isSuccess() && null != result.getData()) {
+                model.addAttribute("person", result.getData());
+            }
+        }
+        return "person/info";
     }
 }

@@ -57,7 +57,7 @@
                 </c:if>
                 <td>${item.className}</td>
                 <c:if test="${roleType ==1}">
-                    <td hidden="hidden" class="">${item.answerContent}</td>
+                    <td hidden="hidden" class="answerContent">${item.answerContent}</td>
                     <td>${item.teacherName}</td>
                     <td>${item.grade}</td>
                     <c:if test="${item.answered ==true}">

@@ -22,7 +22,7 @@ import java.util.Random;
  */
 @Controller
 @RequestMapping(value = "/sms")
-public class SMSController {
+public class SMSController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(SMSController.class);
 
@@ -66,4 +66,6 @@ public class SMSController {
         }
         return JsonResult.jsonSuccessMes("验证成功！");
     }
+
+
 }

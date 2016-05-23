@@ -33,7 +33,7 @@
 
                     <div class="col-lg-10 col-sm-9">
                         <input type="checkbox" style="width: 20px" class="checkbox form-control" id="termJobType"
-                               name="type" value="2" checked/>
+                               name="type" value="2"/>
                     </div>
                     <label for="classJobType" class="control-label col-lg-2 col-sm-3">课堂记录</label>
 

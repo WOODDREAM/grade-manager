@@ -515,5 +515,11 @@
                 <env>pre</env>
             </properties>
         </profile>
+        <profile>
+            <id>publish</id>
+            <properties>
+                <env>publish</env>
+            </properties>
+        </profile>
     </profiles>
 </project>
