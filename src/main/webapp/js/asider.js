@@ -54,6 +54,7 @@ var Script = function () {
     });
 
     $('#a-main').on('click', function () {
+        makeLiactive($('#li-main'), "1")
         var http = "/relationship/main.do";
         $.post(http, function (data) {
             $('#myContainer').html(data);

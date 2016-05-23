@@ -2,6 +2,7 @@ package com.dfire.grade.manager.service;
 
 import com.dfire.grade.manager.vo.JsonResult;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,4 +30,5 @@ public interface IClassStartService {
     JsonResult selectByTeacher(String teacherId) throws Exception;
     JsonResult endClass(String classId,String classNo) throws Exception;
     JsonResult selectClassBatch(List<String> classIds) throws Exception;
+    JsonResult selectByTime(Date date) throws Exception;
 }

@@ -45,5 +45,7 @@ public interface ClassStartMapper {
      */
     void deleteByClassNo(String classNo) throws Exception;
 
-    List<ClassStart> selectBatch(@Param("classIds")List<String> classIds) throws Exception;
+    List<ClassStart> selectBatch(@Param("classIds") List<String> classIds) throws Exception;
+
+    List<ClassStart> selectByDate(Date date) throws Exception;
 }

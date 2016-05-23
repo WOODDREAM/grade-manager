@@ -63,11 +63,20 @@
                 <%--<input type="text" class="form-control search" placeholder="Search">--%>
                 <%--</li>--%>
                 <!-- user login dropdown start-->
-
-                <img alt="" src="/img/avatar1_small.jpg">
-                <span class="username" id="indexUserName">${person.name}</span>
-                <a href="#" id="a-login-out"><i class="icon-key"></i>退出登录
-                </a>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <img alt="" src="/img/avatar1_small.jpg">
+                        <span class="username">${person.name}</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <div class="log-arrow-up"></div>
+                        <li><a href="#"><i class=" icon-suitcase"></i>个人档案</a></li>
+                        <li><a href="#"><i class="icon-cog"></i> 修改个人信息</a></li>
+                        <li><a href="#"><i class="icon-bell-alt"></i>通知</a></li>
+                        <li><a href="#" id="a-login-out"><i class="icon-key"></i>退出登录</a></li>
+                    </ul>
+                </li>
                 <!-- user login dropdown end -->
             </ul>
             <!--search & user info end-->
@@ -143,86 +152,6 @@
     </aside>
     <section id="main-content">
         <section class="wrapper">
-            <div class="row">
-                <div class="col-lg-1">
-                </div>
-                <div class="col-lg-4">
-                    <h4>今天</h4>
-                    <section class="panel">
-                        <div class="weather-bg">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <i class="icon-tint"></i>
-                                        雨
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <div class="degree">
-                                            24°
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <footer class="weather-category">
-                            <ul>
-                                <li class="active">
-                                    <h5>湿度</h5>
-                                    56%
-                                </li>
-                                <li>
-                                    <h5>降雨量</h5>
-                                    1.50 in
-                                </li>
-                                <li>
-                                    <h5>风速</h5>
-                                    10 mph
-                                </li>
-                            </ul>
-                        </footer>
-                    </section>
-                </div>
-                <div class="col-lg-1">
-                </div>
-                <div class="col-lg-4">
-                    <h4>明天</h4>
-                    <section class="panel">
-                        <div class="weather-bg">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <i class="icon-cloud"></i>
-                                        阴
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <div class="degree">
-                                            14°
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <footer class="weather-category">
-                            <ul>
-                                <li class="active">
-                                    <h5>湿度</h5>
-                                    56%
-                                </li>
-                                <li>
-                                    <h5>降雨量</h5>
-                                    1.50 in
-                                </li>
-                                <li>
-                                    <h5>风速</h5>
-                                    10 mph
-                                </li>
-                            </ul>
-                        </footer>
-                    </section>
-                </div>
-            </div>
             <div class="row">
                 <div><input type="hidden" value="${type}" id="type"/></div>
                 <div class="col-lg-12" id="myContainer">

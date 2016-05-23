@@ -101,6 +101,9 @@
     </select>
     <!--不能用-->
     <delete id="deleteClassByID" parameterType="String">
+        update answer
+        set valid = '0'
+        where cla_id = #{classId}
         UPDATE job
         set valid ='0'
         where class_id = #{classId}
@@ -143,7 +146,7 @@
         </where>
     </select>
 
-    <update id="startClass" parameterType="com.dfire.grade.manager.bean.Classes" >
+    <update id="startClass" parameterType="com.dfire.grade.manager.bean.Classes">
         UPDATE class
         SET class_no = #{classNo}
         WHERE cla_id = #{classId}

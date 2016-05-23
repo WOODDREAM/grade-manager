@@ -192,9 +192,9 @@ public class ClassServiceImpl implements IClassService {
     @Override
     public JsonResult deleteClassByClassId(String classesId) throws Exception {
 //        redisUtil.del(Contants.RedisContent.CLASS_CACHE_BY_ID + classesId);
-//        classStartMapper.deleteByClassId(classesId);
-//        classesMapper.deleteClassByID(classesId);
-        return null;
+        classStartMapper.deleteByClassId(classesId);
+        classesMapper.deleteClassByID(classesId);
+        return JsonResult.success();
     }
 
     @Override

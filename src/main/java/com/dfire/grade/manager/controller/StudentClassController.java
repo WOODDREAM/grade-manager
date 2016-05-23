@@ -226,8 +226,37 @@ public class StudentClassController extends BaseController {
                 RelationshipVo relationshipVo = (RelationshipVo) resultS.getData();
                 List<Reliation> agreeClass = relationshipVo.getAgreeClass();
                 List<Reliation> notAgreeClass = relationshipVo.getNotAgreeClass();
-                model.addAttribute("agreeClass", agreeClass);
-                model.addAttribute("notAgreeClass", notAgreeClass);
+                List<Reliation> newAgreeClass = new ArrayList<>();
+                List<Reliation> newNotAgreeClass = new ArrayList<>();
+                List<String> classIds = new ArrayList<>();
+                if (!CollectionUtils.isEmpty(agreeClass)) {
+                    for (Reliation r : agreeClass) {
+                        classIds.add(r.getClassId());
+                    }
+                }
+                if (!CollectionUtils.isEmpty(notAgreeClass)) {
+                    for (Reliation r : notAgreeClass) {
+                        classIds.add(r.getClassId());
+                    }
+                }
+                JsonResult rs = classStartService.selectClassBatch(classIds);
+                if (rs.isSuccess() && null != rs.getData()) {
+                    List<ClassStart> classStarts = (List<ClassStart>) rs.getData();
+                    for (ClassStart classStart : classStarts) {
+                        for(Reliation r : agreeClass){
+                            if(r.getClassId().equals(classStart.getClassId())){
+                                newAgreeClass.add(r);
+                            }
+                        }
+                        for(Reliation r : notAgreeClass){
+                            if(r.getClassId().equals(classStart.getClassId())){
+                                newNotAgreeClass.add(r);
+                            }
+                        }
+                    }
+                }
+                model.addAttribute("agreeClass", newAgreeClass);
+                model.addAttribute("notAgreeClass", newNotAgreeClass);
             }
         } else {
             model.addAttribute("message", "非学生！请切换身份登录。");

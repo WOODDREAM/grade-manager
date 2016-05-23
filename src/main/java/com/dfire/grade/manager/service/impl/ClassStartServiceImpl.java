@@ -14,6 +14,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -71,6 +72,15 @@ public class ClassStartServiceImpl implements IClassStartService {
         List<ClassStart> classStarts = classStartMapper.selectBatch(classIds);
         if (CollectionUtils.isEmpty(classStarts)) {
             return JsonResult.jsonSuccessData(null);
+        }
+        return JsonResult.jsonSuccessData(classStarts);
+    }
+
+    @Override
+    public JsonResult selectByTime(Date date) throws Exception {
+        List<ClassStart> classStarts = classStartMapper.selectByDate(date);
+        if (CollectionUtils.isEmpty(classStarts)) {
+            classStarts = null;
         }
         return JsonResult.jsonSuccessData(classStarts);
     }

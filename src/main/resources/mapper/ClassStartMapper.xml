@@ -19,7 +19,7 @@
         )
     </insert>
     <sql id="selectColumn">
-        SELECT class_id,class_no,teacher_id,class_name
+        SELECT class_id,class_no,teacher_id,class_name,create_time
         FROM class_start
     </sql>
     <select id="selectClassByTeacherId" parameterType="String" resultMap="ClassStartMapper">
@@ -44,5 +44,9 @@
                      open="(" separator="," close=")">#{item}
             </foreach>
         </where>
+    </select>
+    <select id="selectByDate" parameterType="java.util.Date" resultMap="ClassStartMapper">
+        <include refid="selectColumn"/>
+        WHERE create_time &lt; #{date}
     </select>
 </mapper>
