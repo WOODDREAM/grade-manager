@@ -6,7 +6,7 @@ import com.dfire.grade.manager.vo.JsonResult;
 /**
  * Created by Yin on 2016/5/22.
  */
-public interface IEmailService {
+public interface IInboxService {
     JsonResult insertEmail(String body, String subject, String teacherId, String studentId, String address, String fileName) throws Exception;
 
     JsonResult makeReaded(String id) throws Exception;

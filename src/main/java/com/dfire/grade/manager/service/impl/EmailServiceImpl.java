@@ -6,7 +6,7 @@ import com.dfire.grade.manager.bean.Student;
 import com.dfire.grade.manager.bean.StudentClass;
 import com.dfire.grade.manager.bean.Teacher;
 import com.dfire.grade.manager.mapper.EmailMapper;
-import com.dfire.grade.manager.service.IEmailService;
+import com.dfire.grade.manager.service.IInboxService;
 import com.dfire.grade.manager.service.IStudentClassService;
 import com.dfire.grade.manager.service.IStudentService;
 import com.dfire.grade.manager.service.ITeacherService;
@@ -28,7 +28,7 @@ import java.util.List;
  * Created by Yin on 2016/5/22.
  */
 @Service
-public class EmailServiceImpl implements IEmailService {
+public class EmailServiceImpl implements IInboxService {
     @Autowired
     private ITeacherService teacherService;
     @Autowired

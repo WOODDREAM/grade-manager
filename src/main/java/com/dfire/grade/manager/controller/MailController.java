@@ -5,7 +5,7 @@ import com.dfire.grade.manager.bean.Email;
 import com.dfire.grade.manager.bean.SignBean;
 import com.dfire.grade.manager.bean.Student;
 import com.dfire.grade.manager.bean.Teacher;
-import com.dfire.grade.manager.service.IEmailService;
+import com.dfire.grade.manager.service.IInboxService;
 import com.dfire.grade.manager.service.IStudentService;
 import com.dfire.grade.manager.service.ITeacherService;
 import com.dfire.grade.manager.utils.MailUtil;
@@ -43,7 +43,7 @@ public class MailController extends BaseController {
     @Autowired
     private ITeacherService teacherService;
     @Autowired
-    private IEmailService emailService;
+    private IInboxService emailService;
 
 
     @RequestMapping(value = "/mail", method = RequestMethod.GET)

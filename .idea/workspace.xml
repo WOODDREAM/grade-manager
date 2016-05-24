@@ -2,20 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84d455d6-ec88-497c-b960-739feb6481f0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/task/ScheduleTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/spring/application-quartz.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/StudentClassController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/StudentClassController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/mapper/ClassStartMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/mapper/ClassStartMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IClassStartService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IClassStartService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/ClassServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/ClassServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/ClassStartServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/ClassStartServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/ClassStartMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ClassStartMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/ClassesMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ClassesMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/JobMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/JobMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring/applicationContext.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/js/asider.js" afterPath="$PROJECT_DIR$/src/main/webapp/js/asider.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/jsp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/MailController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/MailController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/EmailServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/EmailServiceImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IemailService.java" afterPath="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IInboxService.java" />
     </list>
     <list id="96646e44-7261-436d-9bc5-09471fa305ee" name="Failed commit: Default" comment="连通redis和数据库" />
     <ignored path="grade-manager.iws" />
@@ -60,28 +51,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="63" column="31" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/ClassController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="246" column="20" selection-start-line="246" selection-start-column="20" selection-end-line="246" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.08438061">
-              <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+            <state vertical-scroll-proportion="-7.769231">
+              <caret line="103" column="36" selection-start-line="103" selection-start-column="36" selection-end-line="103" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -97,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.34991422">
+              <caret line="45" column="14" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -122,16 +101,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IStudentService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IStudentService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -174,7 +143,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/job/create.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/job/list.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/SMSController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/AnswerMapper.xml" />
@@ -190,9 +158,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/js/answer.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IEmailService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/utils/MailUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/EmailServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/servlet/UploadHandleServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/MailController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/Hello.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/person-edit.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/person.js.jsp" />
@@ -209,7 +175,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/info.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/studentMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/person.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/TeacherServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/StudentServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IClassStartService.java" />
@@ -224,6 +189,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/task/ScheduleTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/StudentClassController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/asider.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IInboxService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/EmailServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/MailController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/index.jsp" />
       </list>
     </option>
@@ -397,6 +366,21 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Failed commit: Default" />
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="grade-manager">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -635,23 +619,106 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
+              <option name="myItemId" value="service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Failed commit: Default" />
-        <subPane subId="Project Files">
           <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="grade-manager">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IInboxService" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ClassTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grade-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -720,7 +787,7 @@
       <recent name="D:\job\grade-manager\src\main\webapp\WEB-INF" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Unnamed">
+  <component name="RunManager" selected="Tomcat Server.index.jsp">
     <configuration default="false" name="DateUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -746,6 +813,45 @@
       </RunnerSettings>
       <ConfigurationWrapper RunnerId="Debug" />
       <method />
+    </configuration>
+    <configuration default="false" name="index.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 6.0.321" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/jsp/index.jsp" />
+      <deployment>
+        <artifact name="grade-manager:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="index_jsp_grade-manager" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="grade-manager:war" />
+        </option>
+      </method>
     </configuration>
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
       <deployment />
@@ -1281,14 +1387,16 @@
         </option>
       </method>
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Remote.Unnamed" />
       <item index="1" class="java.lang.String" itemvalue="Tomcat Server.Unnamed" />
       <item index="2" class="java.lang.String" itemvalue="Application.DateUtil" />
+      <item index="3" class="java.lang.String" itemvalue="Tomcat Server.index.jsp" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.DateUtil" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Tomcat Server.index.jsp" />
+        <item index="1" class="java.lang.String" itemvalue="Application.DateUtil" />
       </list>
     </recent_temporary>
   </component>
@@ -1390,6 +1498,7 @@
       <workItem from="1463883395512" duration="33000" />
       <workItem from="1463899289247" duration="83011000" />
       <workItem from="1464019084472" duration="611000" />
+      <workItem from="1464050500762" duration="2336000" />
     </task>
     <task id="LOCAL-00003" summary="进一步实现dao层">
       <created>1457012777008</created>
@@ -1689,7 +1798,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="822587000" />
+    <option name="totallyTimeSpent" value="824923000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1813,29 +1922,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/MailController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/mapper/EmailMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23327616">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/bean/Email.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/email/list.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.461538">
@@ -1861,18 +1947,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.3846154">
           <caret line="50" column="62" selection-start-line="50" selection-start-column="62" selection-end-line="50" selection-end-column="62" />
-          <folding>
-            <marker date="1464001713139" expanded="true" signature="1213:1276" placeholder="SELECT id,bo..." />
-            <marker date="1464001713139" expanded="true" signature="1213:1289" placeholder="SELECT id,bo..." />
-            <marker date="1464001713139" expanded="true" signature="1213:1299" placeholder="SELECT id,bo..." />
-            <marker date="1464001713139" expanded="true" signature="1213:1309" placeholder="SELECT id,bo..." />
-            <marker date="1464001713139" expanded="true" signature="1213:1320" placeholder="SELECT id,bo..email..." />
-            <marker date="1464001713139" expanded="true" signature="1421:1798" placeholder="INSERT INTO email..." />
-            <marker date="1464001713139" expanded="true" signature="1875:1951" placeholder="UPDATE email..." />
-            <marker date="1464001713139" expanded="true" signature="2567:2625" placeholder="UPDATE email..." />
-            <marker date="1464001713139" expanded="true" signature="2752:2971" placeholder="SELECT COUNT..email..." />
-            <marker date="1464001713139" expanded="true" signature="2752:2977" placeholder="SELECT COUNT..email..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1968,18 +2043,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.384615">
           <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
-          <folding>
-            <marker date="1464010042286" expanded="true" signature="1615:1736" placeholder="select stu_i..student..." />
-            <marker date="1464010042286" expanded="true" signature="1849:1975" placeholder="select stu_i..student..." />
-            <marker date="1464010042286" expanded="true" signature="2089:2435" placeholder="INSERT INTO student..." />
-            <marker date="1464010042286" expanded="true" signature="2547:2645" placeholder="UPDATE stude..." />
-            <marker date="1464010042286" expanded="true" signature="2752:2845" placeholder="UPDATE stude..." />
-            <marker date="1464010042286" expanded="true" signature="2950:3203" placeholder="UPDATE stude..." />
-            <marker date="1464010042286" expanded="true" signature="2950:3204" placeholder="UPDATE stude..." />
-            <marker date="1464010042286" expanded="true" signature="3296:3359" placeholder="UPDATE stude..." />
-            <marker date="1464010042286" expanded="true" signature="3479:3649" placeholder="SELECT stu_i..student..." />
-            <marker date="1464010042286" expanded="true" signature="3773:3945" placeholder="SELECT stu_i..student..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1987,19 +2051,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.192308">
           <caret line="74" column="31" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
-          <folding>
-            <marker date="1464007783920" expanded="true" signature="1476:1588" placeholder="SELECT tea_i..teacher..." />
-            <marker date="1464007783920" expanded="true" signature="1690:1806" placeholder="SELECT tea_i..teacher..." />
-            <marker date="1464007783920" expanded="true" signature="1912:2169" placeholder="INSERT INTO teacher..." />
-            <marker date="1464007783920" expanded="true" signature="2278:2361" placeholder="UPDATE teach..." />
-            <marker date="1464007783920" expanded="true" signature="2278:2384" placeholder="UPDATE teach..." />
-            <marker date="1464007783920" expanded="true" signature="2491:2569" placeholder="UPDATE teach..." />
-            <marker date="1464007783920" expanded="true" signature="2491:2592" placeholder="UPDATE teach..." />
-            <marker date="1464007783920" expanded="true" signature="2697:2937" placeholder="UPDATE teach..." />
-            <marker date="1464007783920" expanded="true" signature="2697:2959" placeholder="UPDATE teach..." />
-            <marker date="1464007783920" expanded="true" signature="3075:3349" placeholder="SELECT teach..teacher..." />
-            <marker date="1464007783920" expanded="true" signature="3075:3350" placeholder="SELECT teach..teacher..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2053,13 +2105,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.5020081">
           <caret line="2" column="59" selection-start-line="2" selection-start-column="59" selection-end-line="2" selection-end-column="59" />
-          <folding>
-            <marker date="1464012755244" expanded="true" signature="793:1003" placeholder="INSERT INTO class_start..." />
-            <marker date="1464012755244" expanded="true" signature="1054:1137" placeholder="SELECT class..class_start..." />
-            <marker date="1464012755244" expanded="true" signature="1406:1460" placeholder="DELETE FROM ..." />
-            <marker date="1464012755244" expanded="true" signature="1540:1590" placeholder="DELETE FROM ..." />
-            <marker date="1464012755244" expanded="true" signature="1670:1720" placeholder="DELETE FROM ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2091,21 +2137,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.153846">
           <caret line="111" column="33" selection-start-line="109" selection-start-column="7" selection-end-line="111" selection-end-column="33" />
-          <folding>
-            <marker date="1464014673182" expanded="true" signature="1959:2069" placeholder="SELECT cla_i..class..." />
-            <marker date="1464014673182" expanded="true" signature="2128:2187" placeholder="SELECT class..class_detail..." />
-            <marker date="1464014673182" expanded="true" signature="2239:2471" placeholder="SELECT cla_i..class..." />
-            <marker date="1464014673182" expanded="true" signature="2571:3160" placeholder="INSERT INTO class..." />
-            <marker date="1464014673182" expanded="true" signature="5273:5344" placeholder="update answe..." />
-            <marker date="1464014673182" expanded="true" signature="5353:5422" placeholder="UPDATE job s..." />
-            <marker date="1464014673182" expanded="true" signature="5431:5500" placeholder="UPDATE grade..." />
-            <marker date="1464014673182" expanded="true" signature="5509:5586" placeholder="UPDATE stude..." />
-            <marker date="1464014673182" expanded="true" signature="5595:5676" placeholder="update class..." />
-            <marker date="1464014673182" expanded="true" signature="5685:5757" placeholder="update class..." />
-            <marker date="1464014673182" expanded="true" signature="5839:5918" placeholder="UPDATE class..." />
-            <marker date="1464014673182" expanded="true" signature="6024:6372" placeholder="UPDATE class..." />
-            <marker date="1464014673182" expanded="true" signature="6829:6909" placeholder="UPDATE class..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2113,15 +2145,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.038462">
           <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="8" />
-          <folding>
-            <marker date="1464014852253" expanded="true" signature="1094:1409" placeholder="INSERT INTO job..." />
-            <marker date="1464014852253" expanded="true" signature="1460:1563" placeholder="SELECT job_i..job..." />
-            <marker date="1464014852253" expanded="true" signature="2356:2381" placeholder="SELECT COUNT..job..." />
-            <marker date="1464014852253" expanded="true" signature="2939:3231" placeholder="UPDATE job S..." />
-            <marker date="1464014852253" expanded="true" signature="3305:3374" placeholder="UPDATE answe..." />
-            <marker date="1464014852253" expanded="true" signature="3383:3450" placeholder="UPDATE grade..." />
-            <marker date="1464014852253" expanded="true" signature="3459:3530" placeholder="UPDATE FROM ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2239,17 +2263,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="63" column="31" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/IInboxService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/MailController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="12" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2261,10 +2293,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/service/impl/EmailServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23327616">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08438061">
-          <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+        <state vertical-scroll-proportion="-7.769231">
+          <caret line="103" column="36" selection-start-line="103" selection-start-column="36" selection-end-line="103" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dfire/grade/manager/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34991422">
+          <caret line="45" column="14" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
           <folding />
         </state>
       </provider>

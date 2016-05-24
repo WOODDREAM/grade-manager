@@ -50,7 +50,7 @@ public class UserController extends BaseController {
     @Autowired
     private IJobService jobService;
     @Autowired
-    private IEmailService emailService;
+    private IInboxService emailService;
     @Autowired
     private SmsUtil smsUtil;
     private String TEACHER_MESSAGE = "\n+课程码：%s。课程名： %s.\n学生：姓名： %s,学号：%s 申请加入课程";
