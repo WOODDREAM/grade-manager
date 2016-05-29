@@ -34,6 +34,7 @@ import java.net.URLEncoder;
 public class DownLoadServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        request.setCharacterEncoding("UTF-8");
         //得到要下载的文件名
             String fileName = request.getParameter("filename");
 //        fileName = new String(fileName.getBytes("UTF-8"), "UTF-8");

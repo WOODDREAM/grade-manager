@@ -243,14 +243,18 @@ public class StudentClassController extends BaseController {
                 if (rs.isSuccess() && null != rs.getData()) {
                     List<ClassStart> classStarts = (List<ClassStart>) rs.getData();
                     for (ClassStart classStart : classStarts) {
-                        for(Reliation r : agreeClass){
-                            if(r.getClassId().equals(classStart.getClassId())){
-                                newAgreeClass.add(r);
+                        if (!CollectionUtils.isEmpty(agreeClass)) {
+                            for (Reliation r : agreeClass) {
+                                if (r.getClassId().equals(classStart.getClassId())) {
+                                    newAgreeClass.add(r);
+                                }
                             }
                         }
-                        for(Reliation r : notAgreeClass){
-                            if(r.getClassId().equals(classStart.getClassId())){
-                                newNotAgreeClass.add(r);
+                        if (!CollectionUtils.isEmpty(notAgreeClass)) {
+                            for (Reliation r : notAgreeClass) {
+                                if (r.getClassId().equals(classStart.getClassId())) {
+                                    newNotAgreeClass.add(r);
+                                }
                             }
                         }
                     }

@@ -71,8 +71,8 @@ var Script = function () {
         var srt = {
             mobile: mobile,
             code: code
-        }
-        $.post(http + "/sms/verify", srt, function (data) {
+        };
+        $.post("/sms/verify", srt, function (data) {
             if (!!data) {
                 if (data.code == "1") {
                     $('#btn-signup').removeAttr("disabled");
@@ -82,7 +82,7 @@ var Script = function () {
     });
 
     $('#btn-sign-send').on('click', function () {
-        var mobile = $('#mobile').val();
+        var mobile = $('#signupMobile').val();
         if (mobile == "" || !reMobile.test(mobile)) {
             $.gritter.add({
                 title: '警告!',
@@ -94,8 +94,8 @@ var Script = function () {
         }
         var srt = {
             mobile: mobile
-        }
-        $.post(http + "/sms/send_code", srt, function (data) {
+        };
+        $.post("/sms/send_code", srt, function (data) {
             if (!!data) {
                 if (data.code == 1) {
                     $.gritter.add({

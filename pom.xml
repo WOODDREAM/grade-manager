@@ -289,7 +289,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>grade-manager</finalName>
+        <finalName>manager</finalName>
         <!--插件编译-->
         <plugins>
             <plugin>

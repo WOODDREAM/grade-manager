@@ -59,7 +59,7 @@ var Script = function () {
             classNo: classNO,
             studentNo: studentNO,
             studentName: studentName
-        }
+        };
         $.post("/user/join_class.do", str, function (data) {
             $.gritter.add({
                 title: '!',

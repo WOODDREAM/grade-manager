@@ -33,42 +33,42 @@ var Script = function () {
         })
     });
     $('#a-class-join').on('click', function () {
-        makeLiactive($('#li-class-join'), "2")
+        makeLiactive($('#li-class-join'), "2");
         $.get("/user/join.do", function (data) {
             $('#myContainer').html(data);
         })
     });
 
     $('#a-job-list').on('click', function () {
-            makeLiactive($('#li-job-list'), "3")
+            makeLiactive($('#li-job-list'), "3");
             $.get("/job/find.do", function (data) {
                 $('#myContainer').html(data);
             })
         }
     );
     $('#a-job-create').on('click', function () {
-        makeLiactive($('#li-job-create'), "3")
+        makeLiactive($('#li-job-create'), "3");
         $.get("/job/create.do", function (data) {
             $('#myContainer').html(data);
         })
     });
 
     $('#a-main').on('click', function () {
-        makeLiactive($('#li-main'), "1")
+        makeLiactive($('#li-main'), "1");
         var http = "/relationship/main.do";
         $.post(http, function (data) {
             $('#myContainer').html(data);
         })
     });
     $('#a-email-list').on('click', function () {
-        makeLiactive($('#li-email-list'), "4")
+        makeLiactive($('#li-email-list'), "4");
         $.get("/email/find.do", function (data) {
             $('#myContainer').html(data);
         })
     });
 
     $('#a-person-info').on('click', function () {
-        makeLiactive($('#li-person-info'), "5")
+        makeLiactive($('#li-person-info'), "5");
         $.get("/user/info.do", function (data) {
             $('#myContainer').html(data);
         })

@@ -40,15 +40,15 @@
             <th><i class="icon-tags"></i> 名称</th>
             <th><i class="icon-bookmark"></i> 学时</th>
             <th><i class="icon-bookmark"></i> 学分</th>
-            <th><i class="icon-bookmark"></i> 每周节数</th>
+            <%--<th><i class="icon-bookmark"></i> 每周节数</th>--%>
             <th><i class="icon-time"></i> 创建时间</th>
             <th><i class="icon-ambulance"></i>开课码</th>
             <th><i class="icon-bookmark"></i>状态</th>
             <c:if test="${roleType ==1}">
                 <th><i class="icon-play-sign"></i>是否被同意</th>
             </c:if>
-            <th><i class="icon-zoom-out"></i>查看详情</th>
-            <th><i class="icon-zoom-out"></i>查看作业</th>
+            <th><i class="icon-zoom-out"></i>详情</th>
+            <th><i class="icon-zoom-out"></i>作业</th>
             <c:if test="${roleType ==2}">
                 <th><i class="icon-edit"></i>编辑</th>
                 <th><i class=" icon-edit"></i>创建作业</th>
@@ -67,7 +67,7 @@
                 <td class="classItemName">${item.name}</td>
                 <td>${item.period}</td>
                 <td>${item.credit}</td>
-                <td>${item.frequency}</td>
+                <%--<td>${item.frequency}</td>--%>
                 <td>${item.createTime}</td>
                 <td class="classItemNo">${item.classNo}</td>
                 <c:if test="${item.state == 1}">

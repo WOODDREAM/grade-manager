@@ -64,18 +64,18 @@
                 <%--</li>--%>
                 <!-- user login dropdown start-->
                 <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <%--<a data-toggle="dropdown" class="dropdown-toggle" href="#">--%>
                         <img alt="" src="/img/avatar1_small.jpg">
                         <span class="username">${person.name}</span>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu extended logout">
-                        <div class="log-arrow-up"></div>
-                        <li><a href="#"><i class=" icon-suitcase"></i>个人档案</a></li>
-                        <li><a href="#"><i class="icon-cog"></i> 修改个人信息</a></li>
-                        <li><a href="#"><i class="icon-bell-alt"></i>通知</a></li>
-                        <li><a href="#" id="a-login-out"><i class="icon-key"></i>退出登录</a></li>
-                    </ul>
+                    <li><a href="#" id="a-login-out"><i class="icon-key"></i>退出登录</a></li>
+                    <%--</a>--%>
+                    <%--<ul class="dropdown-menu extended logout">--%>
+                        <%--<div class="log-arrow-up"></div>--%>
+                        <%--<li><a href="#"><i class=" icon-suitcase"></i>个人档案</a></li>--%>
+                        <%--<li><a href="#"><i class="icon-cog"></i> 修改个人信息</a></li>--%>
+                        <%--<li><a href="#"><i class="icon-bell-alt"></i>通知</a></li>--%>
+                        <%--<li><a href="#" id="a-login-out"><i class="icon-key"></i>退出登录</a></li>--%>
+                    <%--</ul>--%>
                 </li>
                 <!-- user login dropdown end -->
             </ul>
@@ -215,7 +215,7 @@
 <script src="/js/jquery.customSelect.min.js"></script>
 
 <!--common script for all pages-->
-<%--<script src="/js/common-scripts.js"></script>--%>
+<script src="/js/common-scripts.js"></script>
 
 <!--script for this page-->
 <script src="/js/sparkline-chart.js"></script>

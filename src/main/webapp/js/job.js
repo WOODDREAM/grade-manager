@@ -195,7 +195,6 @@ var Script = function () {
     });
     $(".downLoadAnswer").click(function () {
         var answer = $(this).parents().siblings(".answerContent").text();
-        alert(answer);
         window.location.href = "/downLoad?filename=" + answer;
     });
     $(".jobDeleteBtn").click(function () {
