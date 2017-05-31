@@ -25,7 +25,7 @@ public class AnswerControllerTest extends BaseControllerTestHelper {
 
     @Test
     public void testCreateAnswer() throws Exception {
-        String jsonStr = "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈";
+        String jsonStr = "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈";
         mockMvc.perform(post("/answer/create").param("job_id", jobId)
                 .content(jsonStr)
                 .header("UID", studentUid)
