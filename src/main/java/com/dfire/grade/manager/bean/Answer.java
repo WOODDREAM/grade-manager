@@ -12,6 +12,8 @@ public class Answer {
     private String studentId;
     private String jobId;
     private String answer;
+    private String classId;
+    private String teacherId;
     private Date createTime;
     private boolean valid;
 
@@ -61,5 +63,21 @@ public class Answer {
 
     public void setValid(boolean valid) {
         this.valid = valid;
+    }
+
+    public String getClassId() {
+        return classId;
+    }
+
+    public void setClassId(String classId) {
+        this.classId = classId;
+    }
+
+    public String getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
     }
 }

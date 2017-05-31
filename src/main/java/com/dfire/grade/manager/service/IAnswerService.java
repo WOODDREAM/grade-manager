@@ -9,7 +9,9 @@ import com.dfire.grade.manager.vo.JsonResult;
  * description：
  */
 public interface IAnswerService {
-    JsonResult createAnswer(String studentId,String jobId,String answer) throws Exception;
+    JsonResult createAnswer(String studentId, String jobId, String answer) throws Exception;
 
     JsonResult selectAnswerByCondition(Answer answer) throws Exception;
+
+    JsonResult updateAnswer(String answer, String answerId) throws Exception;
 }

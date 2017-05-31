@@ -1,15 +1,17 @@
 package com.dfire.grade.manager.service.impl;
 
 import com.dfire.grade.manager.Contants;
-import com.dfire.grade.manager.bean.Classes;
 import com.dfire.grade.manager.bean.Job;
+import com.dfire.grade.manager.bean.Teacher;
 import com.dfire.grade.manager.exception.ParameterException;
+import com.dfire.grade.manager.mapper.AnswerMapper;
 import com.dfire.grade.manager.mapper.JobMapper;
 import com.dfire.grade.manager.service.IClassService;
 import com.dfire.grade.manager.service.IJobService;
 import com.dfire.grade.manager.service.ITeacherService;
 import com.dfire.grade.manager.utils.DateUtil;
 import com.dfire.grade.manager.utils.SequenceUtil;
+import com.dfire.grade.manager.vo.ClassVo2;
 import com.dfire.grade.manager.vo.JobVo;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,20 +37,20 @@ public class JobServiceImpl implements IJobService {
     private IClassService classService;
     @Autowired
     private ITeacherService teacherService;
-
+    @Autowired
+    private AnswerMapper answerMapper;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public JsonResult createJob(String teacherId, String classId, String name, String detail, int type, boolean isAnswer, Date endTime) throws Exception {
 
         //1作业 2考试
-        if (type == Contants.Type.USUALLY_JOB || type == Contants.Type.TERM_JOB) {
+        if (type == Contants.Type.USUALLY_JOB || type == Contants.Type.TERM_JOB || type == Contants.Type.CLASS_JOB) {
             //考试类型
-            if (type == Contants.Type.TERM_JOB) {
+            if (type == Contants.Type.TERM_JOB || type == Contants.Type.CLASS_JOB) {
                 SequenceUtil.isBlank(teacherId, "teacherId不能为空");
                 SequenceUtil.isBlank(name, "jobName不能为空");
                 SequenceUtil.isBlank(detail, "jobDetail不能为空");
-                Assert.notNull(endTime, "结束时间不能为空！");
                 Job job = new Job();
                 job.setCreateTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));
                 job.setValid(true);
@@ -58,7 +60,7 @@ public class JobServiceImpl implements IJobService {
                 job.setName(name);
                 job.setTeacherId(teacherId);
                 job.setType(type);
-                job.setEndTime(endTime);
+                job.setEndTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));
                 jobMapper.createJob(job);
                 Job job1 = jobMapper.selectJobById(job.getJobId());
                 JobVo jobVo = new JobVo();
@@ -182,17 +184,29 @@ public class JobServiceImpl implements IJobService {
         jobVo.setAnswer(job.isAnswer());
         jobVo.setClassId(job.getClassId());
         jobVo.setType(job.getType());
+        jobVo.setTeacherId(job.getTeacherId());
         if (!StringUtils.isEmpty(job.getClassId())) {
             JsonResult classes = classService.selectClassById(job.getClassId());
             if (classes.isSuccess() && null != classes.getData()) {
-                Classes c = (Classes) classes.getData();
+                ClassVo2 c = (ClassVo2) classes.getData();
                 jobVo.setClassName(c.getName());
+            }
+        }
+        if (!StringUtils.isEmpty(job.getTeacherId())) {
+            JsonResult result = teacherService.queryRoleById(job.getTeacherId());
+            if (result.isSuccess() && null != result.getData()) {
+                Teacher c = (Teacher) result.getData();
+                jobVo.setTeacherName(c.getName());
             }
         }
         jobVo.setDetail(job.getDetail());
         jobVo.setEndTime(DateUtil.toString(job.getEndTime()));
         jobVo.setJobId(job.getJobId());
         jobVo.setName(job.getName());
+        Date date = new Date();
+        if (date.getTime() > job.getEndTime().getTime()) {
+            jobVo.setTimeEnded(true);
+        }
     }
 
     @Override

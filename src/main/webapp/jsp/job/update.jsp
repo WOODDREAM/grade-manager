@@ -76,7 +76,9 @@
             </form>
         </div>
     </div>
-    <%--</c:if>--%>
+    <div>
+        <input type="hidden" value="${message}" id="message"/>
+    </div>
 </section>
 <script src="/js/jquery.js"></script>
 <script src="/js/bootstrap-switch.js"></script>

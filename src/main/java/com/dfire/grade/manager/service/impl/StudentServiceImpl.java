@@ -12,6 +12,7 @@ import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -62,9 +63,11 @@ public class StudentServiceImpl implements IStudentService {
         Student student = (Student) redisUtil.getValue(Contants.RedisContent.STUDENT_CACHE_BY_ID + id, Student.class);
         if (null == student) {
             student = studentMapper.queryStudentById(id);
-            redisUtil.setValuePre(Contants.RedisContent.STUDENT_CACHE_BY_ID + student.getStudentId(), student, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            if (null != student) {
+                redisUtil.setValuePre(Contants.RedisContent.STUDENT_CACHE_BY_ID + student.getStudentId(), student, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            }
         }
-        if (null == student){
+        if (null == student) {
             return JsonResult.failedInstance(Contants.Message.ERROR_NOT_FIND);
         }
         return JsonResult.jsonSuccessData(student);
@@ -90,33 +93,53 @@ public class StudentServiceImpl implements IStudentService {
     public JsonResult modifyPassword(String id, String passWord) throws Exception {
         SequenceUtil.isBlank(id, "studentId不可以为空");
         SequenceUtil.isBlank(passWord, "passWord不可以为空");
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id);
-        map.put("passWord", passWord);
-        studentMapper.modifyPassword(map);
-        return JsonResult.jsonSuccessMes("修改成功");
+        String pasStr = MessageDigestUtil.getStrCode(passWord);
+        Student student = new Student();
+        student.setPassWord(pasStr);
+        student.setStudentId(id);
+        studentMapper.modifyPassword(student);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.STUDENT_SIGN_CACHE_BY_ID + id, SignBean.class);
+        signBean.setPassWord(pasStr);
+        redisUtil.setValuePre(Contants.RedisContent.STUDENT_SIGN_CACHE_BY_MOBILE + signBean.getMobile(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+        redisUtil.setValuePre(Contants.RedisContent.STUDENT_SIGN_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+        redisUtil.del(Contants.RedisContent.STUDENT_CACHE_BY_ID + id);
+        return JsonResult.jsonSuccessData(signBean);
     }
 
     @Override
     public JsonResult modifyMobile(String id, String mobile) throws Exception {
         SequenceUtil.isBlank(id, "studentId不可以为空");
         SequenceUtil.isBlank(mobile, "mobile不可以为空");
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id);
-        map.put("mobile", mobile);
-        studentMapper.modifyMobile(map);
-        return JsonResult.jsonSuccessMes("修改成功");
+        Student student = new Student();
+        student.setMobile(mobile);
+        student.setStudentId(id);
+        studentMapper.modifyMobile(student);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.STUDENT_SIGN_CACHE_BY_ID + id, SignBean.class);
+        signBean.setMobile(mobile);
+        redisUtil.setValuePre(Contants.RedisContent.STUDENT_SIGN_CACHE_BY_MOBILE + mobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+        redisUtil.setValuePre(Contants.RedisContent.STUDENT_SIGN_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+        redisUtil.del(Contants.RedisContent.STUDENT_CACHE_BY_ID + id);
+        return JsonResult.jsonSuccessData(signBean);
     }
 
     @Override
-    public JsonResult modifyEmail(String id, String email) throws Exception {
+    public JsonResult modifyInfo(String id, String email, String school, String name) throws Exception {
         SequenceUtil.isBlank(id, "studentId不可以为空");
-        SequenceUtil.isBlank(email, "email不可以为空");
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id);
-        map.put("email", email);
-        studentMapper.modifyEmail(map);
-        return JsonResult.jsonSuccessMes("修改成功");
+        Student student = new Student();
+        student.setEmail(email);
+        student.setSchool(school);
+        student.setName(name);
+        student.setStudentId(id);
+        studentMapper.modifyInfo(student);
+        Student s = studentMapper.queryStudentById(id);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.STUDENT_SIGN_CACHE_BY_ID + id, SignBean.class);
+        signBean.setEmail(s.getEmail());
+        signBean.setName(s.getName());
+        signBean.setSchool(s.getSchool());
+        redisUtil.setValuePre(Contants.RedisContent.STUDENT_SIGN_CACHE_BY_MOBILE + signBean.getMobile(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+        redisUtil.setValuePre(Contants.RedisContent.STUDENT_SIGN_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+        redisUtil.del(Contants.RedisContent.STUDENT_CACHE_BY_ID + id);
+        return JsonResult.jsonSuccessData(signBean);
     }
 
     @Override
@@ -130,6 +153,9 @@ public class StudentServiceImpl implements IStudentService {
     public JsonResult selectStudentUnderTeacher(String teacherId) throws Exception {
         SequenceUtil.isBlank(teacherId, "teacherId不能为空");
         List<Student> students = studentMapper.selectStudentUnderTeacher(teacherId);
+        if (CollectionUtils.isEmpty(students)) {
+            students = null;
+        }
         return JsonResult.jsonSuccessData(students);
     }
 }

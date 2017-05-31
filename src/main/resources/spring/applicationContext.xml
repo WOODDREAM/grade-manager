@@ -10,4 +10,5 @@
     <import resource="applicationContext-redis.xml"/>
     <import resource="application-sms.xml"/>
     <import resource="application-mail.xml"/>
+    <import resource="application-quartz.xml"/>
 </beans>

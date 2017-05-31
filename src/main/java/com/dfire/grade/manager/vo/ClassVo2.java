@@ -1,6 +1,8 @@
 package com.dfire.grade.manager.vo;
 
+import com.dfire.grade.manager.Contants;
 import com.dfire.grade.manager.utils.DateUtil;
+import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -38,6 +40,10 @@ public class ClassVo2 implements Serializable {
     private String endTime;
     private String startTime;
     private int frequency;//上课频率
+    private String teacherId;
+    private int state = 3;//课程状态，1，上课中，2，开课中 ，3,未开课
+    private String classNo;//课程码
+    private boolean agree;//是否被同意加入课程
 
     public String getClassId() {
         return classId;
@@ -127,6 +133,41 @@ public class ClassVo2 implements Serializable {
 
     public void setFrequency(int frequency) {
         this.frequency = frequency;
+    }
+
+    public String getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    public int getState() {
+        if (!StringUtils.isEmpty(this.classNo) && this.state == 3) {
+            return Contants.ClassState.STARTED;
+        }
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public String getClassNo() {
+        return classNo;
+    }
+
+    public void setClassNo(String classNo) {
+        this.classNo = classNo;
+    }
+
+    public boolean isAgree() {
+        return agree;
+    }
+
+    public void setAgree(boolean agree) {
+        this.agree = agree;
     }
 }
 

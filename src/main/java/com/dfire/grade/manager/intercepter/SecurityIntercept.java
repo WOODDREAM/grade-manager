@@ -43,8 +43,8 @@ public class SecurityIntercept implements HandlerInterceptor {
             if (httpServletRequest.getHeader("x-requested-with") != null && httpServletRequest.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) {
                 //在响应头设置session状态
                 response.setHeader("sessionstatus", "sessionOut");
-                response.getWriter().write("登录已失效，将调用JS自动跳转至登录页...");
-                response.getWriter().write("<script>$(function (){window.location.replace('/user/login.do');});</script>");
+                response.getWriter().write("登录已失效，请退出重新登录...");
+                response.getWriter().write("<script>$(function (){window.location.href('/user/login.do');});</script>");
                 return false;
             }
             response.sendRedirect("/user/login.do");

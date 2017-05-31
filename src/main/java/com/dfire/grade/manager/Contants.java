@@ -25,7 +25,9 @@ public class Contants {
 
     public static class RedisContent {
         public static final String VERIFY_CODE_PREFIX = "verify:code:";
+        public static final String CLASS_CODE_PREFIX = "class:code:";
         public static final int VERIFY_CODE_EXPIRE_TIME = 30;
+        public static final int CLASS_CODE_EXPIRE_TIME = 24 * 21;//三周，单位为hours
         public static final int USERINFO_EXPIRE_TIME = 24 * 60 * 60;
         public static final String STUDENT_SIGN_CACHE_BY_ID = "student:sign:id:";
         public static final String STUDENT_CACHE_BY_ID = "student:id:";
@@ -62,6 +64,7 @@ public class Contants {
         public static final String ERROR_PARAM = "参数出错";
         public static final String ERROR_REQUEST = "请求失败";
         public static final String SUCCESS_REQUEST = "请求成功";
+        public static final String SUCCESS_SUBMIT = "提交成功";
         public static final String ERROR_EXSITING_USER = "此号码已经被注册";
         public static final String ERROR_ILLEGAL_SCHOOLTIME = "不合法时间表";
         public static final String ERROR_NO_USER_TYPE = "无此类型用户";
@@ -74,10 +77,12 @@ public class Contants {
         public static final String ERROR_NO_STUDENT = "没有找到此学生";
         public static final String ERROR_NO_TEACHER = "没有找到此教师";
         public static final String ERROR_NO_JOB = "没有找到此作业";
-        public static final String NO_ANSWER = "没有作答";
+        public static final String NO_ANSWER = "没有作答记录";
         public static final String ERROR_NO_CLASS = "没有找到课程";
         public static final String NOT_FIND_JOB = "没有找到作业";
         public static final String NOT_PERMISSION = "没有权限，请切换身份登陆";
+
+        public static final String STUDENT_JOINED_BY_TEACHER = "0000000000";
     }
 
     public class Http {
@@ -87,6 +92,21 @@ public class Contants {
 
     public class Type {
         public static final int USUALLY_JOB = 1;//平时作业
-        public static final int TERM_JOB = 2;//考试作业
+        public static final int TERM_JOB = 2;//考试记录
+        public static final int CLASS_JOB = 2;//课堂记录
+    }
+
+    public class Email{
+        public static final int EMAIL_RECEIVED_TYPE = 2;
+        public static final int EMAIL_SEND_TYPE = 2;
+        public static final boolean EMAIL_IMPORTANT = true;
+        public static final boolean EMAIL_NOT_IMPORTANT = false;
+
+    }
+
+    public class ClassState {
+        public static final int STARTING = 1;//开课中
+        public static final int STARTED = 2;//开课结束
+        public static final int NOSTART = 3;//未开课
     }
 }

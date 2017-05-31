@@ -68,6 +68,9 @@
     <div class="col-lg-1">
     </div>
     <div class="col-lg-9" id="usuallyJobCreateDetail">
+        <div>
+            <input type="hidden" value="${message}" id="message"/>
+        </div>
     </div>
 </div>
 <script src="/js/jquery.js"></script>

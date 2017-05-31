@@ -4,6 +4,7 @@
     <resultMap id="studentMapper" type="com.dfire.grade.manager.bean.Student">
         <id column="stu_id" property="studentId" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="student_no" property="studentNo" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
         <result column="school" property="school" jdbcType="VARCHAR"/>
@@ -44,20 +45,24 @@
               #{sex}
               )
        </insert>
-    <update id="modifyPassword" parameterType="java.util.Map">
+    <update id="modifyPassword" parameterType="com.dfire.grade.manager.bean.Student">
         UPDATE student
         SET pass_word=#{passWord}
-        WHERE stu_id=#{id} AND valid = '1'
+        WHERE stu_id=#{studentId} AND valid = '1'
     </update>
-    <update id="modifyMobile" parameterType="java.util.Map">
+    <update id="modifyMobile" parameterType="com.dfire.grade.manager.bean.Student">
         UPDATE student
         SET mobile=#{mobile}
-        WHERE stu_id=#{id} AND valid = '1'
+        WHERE stu_id=#{studentId} AND valid = '1'
     </update>
-    <update id="modifyEmail" parameterType="java.util.Map">
+    <update id="modifyInfo" parameterType="com.dfire.grade.manager.bean.Student">
         UPDATE student
-        SET email=#{email}
-        WHERE stu_id=#{id} AND valid = '1'
+        SET
+        valid = 1
+        <if test="email != null">,email=#{email}</if>
+        <if test="school != null">,school=#{school}</if>
+        <if test="name != null">,name=#{name}</if>
+        WHERE stu_id=#{studentId} AND valid = 1
     </update>
     <delete id="deleteStudentById" parameterType="java.lang.String">
         UPDATE student
@@ -65,26 +70,26 @@
         WHERE stu_id=#{id}
     </delete>
     <select id="selectStudentsInClass" resultMap="studentMapper" parameterType="java.lang.String">
-      SELECT stu_id,name,email,school
+      SELECT st.stu_id,name,email,school,student_no
       FROM student st,student_class sc
       WHERE sc.cla_id=#{classId}
       AND st.stu_id=sc.stu_id
-      AND valid='1'
+      AND st.valid='1'
     </select>
     <select id="selectStudentUnderTeacher" resultMap="studentMapper" parameterType="java.lang.String">
-      SELECT stu_id,name,email,school
+      SELECT st.stu_id,name,email,school,student_no
       FROM student st,student_class sc
       WHERE sc.tea_id=#{teacherId}
       AND st.stu_id=sc.stu_id
-      AND valid='1'
+      AND st.valid='1'
     </select>
     <select id="selectStudentByCondition" resultMap="studentMapper" parameterType="java.util.Map">
-        SELECT stu_id,name,email,school
+        SELECT st.stu_id,name,email,school,student_no
         FORM student st
         LEFT JOIN student_class sc on st.stu_id=sc.stu_id
         <where>
             sc.tea_id=#{teacherId}
-            AND valid='1'
+            AND st.valid='1'
             <if test="student.name != null and student.name!=''">AND name LIKE '%#{student.name}%'</if>
             <if test="student.mobile != null and student.mobile!=''">AND mobile LIKE '%#{student.mobile}%'</if>
             <if test="student.email != null and student.email !=''">AND email LIKE '%#{student.email}%'</if>

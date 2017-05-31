@@ -44,13 +44,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="signup-block">
             <form id="signupForm" action="/user/signup" method="post">
-                <input type="text" name="name" id="signName" placeholder="Name" autofocus>
-                <input type="text" name="mobile" id="signupMobile" class="lock" placeholder="Mobile">
-                <input type="text" name="email" id="signEmail" class="lock" placeholder="Email">
-                <input type="text" name="school" id="signSchool" class="lock" placeholder="School">
-                <input type="password" name="passWord" id="signPassword" class="lock" placeholder="Password">
+                <input type="text" name="name" id="signName" placeholder="注册名" autofocus>
+                <input type="text" name="mobile" id="signupMobile" class="lock" placeholder="手机号">
+                <input type="text" name="code" id="signCode" class="lock" placeholder="验证码">
+                <input type="text" name="email" id="signEmail" class="lock" placeholder="邮箱">
+                <input type="text" name="school" id="signSchool" class="lock" placeholder="学校">
+                <input type="password" name="passWord" id="signPassword" class="lock" placeholder="密码">
                 <input type="password" name="signConfirmPassword" id="signConfirmPassword" class="lock"
-                       placeholder="Confirm password">
+                       placeholder="确认密码">
 
                 <div class="row">
                     <div class="forgot-grid col-lg-4">
@@ -88,7 +89,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </ul>
                     </div>
                 </div>
-                <button type="button" class="btn btn-info btn-lg btn-block" id="btn-signup">注册</button>
+                <button class="btn btn-sm btn-login btn-block" id="btn-sign-send" type="button">发送验证码</button>
+                <button type="button" class="btn btn-info btn-lg btn-block" id="btn-signup" disabled="disabled">注册</button>
             </form>
             <div class="sign-down">
                 <input type="hidden" id="message" value=${message}>

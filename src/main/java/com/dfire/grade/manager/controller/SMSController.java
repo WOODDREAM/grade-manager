@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +22,7 @@ import java.util.Random;
  */
 @Controller
 @RequestMapping(value = "/sms")
-public class SMSController {
+public class SMSController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(SMSController.class);
 
@@ -42,7 +41,7 @@ public class SMSController {
         if (null == code) {
             code = String.valueOf(rand.nextInt(9000) + 1000);
             redisUtil.setValuePre(Contants.RedisContent.VERIFY_CODE_PREFIX + mobile, code,
-                    Contants.RedisContent.VERIFY_CODE_EXPIRE_TIME, Contants.RedisContent.SECOND_UNIT);
+                    Contants.RedisContent.VERIFY_CODE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
         }
         String message = String.format(CONTENT, code, Contants.RedisContent.VERIFY_CODE_EXPIRE_TIME);
         JsonResult result = smsUtil.sendSMS(mobile, message);
@@ -51,23 +50,22 @@ public class SMSController {
 
     @RequestMapping(value = "/verify", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public String verifyCode(Model model,
-                             @RequestParam(value = "mobile", required = true) String mobile,
-                             @RequestParam(value = "code", required = true) String code) throws IOException {
+    @ResponseBody
+    public JsonResult verifyCode(@RequestParam(value = "mobile", required = true) String mobile,
+                                 @RequestParam(value = "code", required = true) String code) throws IOException {
 
         String cacheCode = (String) redisUtil.getValue(Contants.RedisContent.VERIFY_CODE_PREFIX + mobile, String.class);
         if (null == code || StringUtils.isEmpty(code)) {
-            model.addAttribute("message", "验证码不能为空");
-            return "forgetPassWord";
+            return JsonResult.failedInstance("验证码不能为空");
         }
         if (null == cacheCode) {
-            model.addAttribute("message", "验证码过期");
-            return "forgetPassWord";
+            return JsonResult.failedInstance("验证码过期");
         }
         if (!cacheCode.equals(code)) {
-            model.addAttribute("message", "错误的验证码");
-            return "forgetPassWord";
+            return JsonResult.failedInstance("验证码错误！");
         }
-        return null;
+        return JsonResult.jsonSuccessMes("验证成功！");
     }
+
+
 }

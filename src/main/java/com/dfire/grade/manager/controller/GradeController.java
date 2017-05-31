@@ -35,16 +35,13 @@ public class GradeController extends BaseController {
     @ResponseStatus(HttpStatus.OK)
     public JsonResult addGrade(HttpServletRequest request,
                                @RequestParam(value = "grade", required = true) Double grade,
-                               @RequestParam(value = "student_id", required = true) String studentId,
-                               @RequestParam(value = "class_id", required = true) String classId,
-                               @RequestParam(value = "job_id", required = true) String jobId,
-                               @RequestParam(value = "type", required = true) Integer type) throws Exception {
+                               @RequestParam(value = "answerId", required = true) String answerId) throws Exception {
         SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.TEACHER_KEY);
         if (null != signBean) {
             String teacherId = signBean.getId();
             JsonResult teaRe = teacherService.queryRoleById(teacherId);
             if (teaRe.isSuccess() && null != teaRe.getData()) {
-                return gradeService.addGrade(studentId, classId, teacherId, grade, jobId, type);
+                return gradeService.addGrade(teacherId,grade,answerId);
             }
         }
         return JsonResult.failedInstance(Contants.Message.NOT_PERMISSION);

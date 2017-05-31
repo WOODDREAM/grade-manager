@@ -8,6 +8,7 @@ import com.dfire.grade.manager.vo.JsonResult;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.springframework.scheduling.annotation.Async;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -31,6 +32,7 @@ public class SmsUtil {
      * @return
      * @throws IOException
      */
+    @Async
     public JsonResult sendSMS(String mobile, String content) throws IOException {
         HttpClient client = new HttpClient();
         PostMethod postMethod = new PostMethod(smsConfiguration.getSmsGbkUrl());

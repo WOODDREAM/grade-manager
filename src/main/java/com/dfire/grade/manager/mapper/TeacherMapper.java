@@ -4,6 +4,7 @@ import com.dfire.grade.manager.bean.SignBean;
 import com.dfire.grade.manager.bean.Teacher;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,10 +20,12 @@ public interface TeacherMapper {
 
     SignBean selectByMobile(String mobile) throws Exception;
 
-    void modifyMobile(Map<String, String> map) throws Exception;
+    void modifyMobile(Teacher teacher) throws Exception;
 
-    void modifyPassword(Map<String, String> map) throws Exception;
+    void modifyPassword(Teacher teacher) throws Exception;
 
-    void modifyEmail(Map<String, String> map) throws Exception;
+    void modifyInfo(Teacher teacher) throws Exception;
+
+    List<Teacher> selectTeacherUnderStudent(String studentId) throws Exception;
 
 }

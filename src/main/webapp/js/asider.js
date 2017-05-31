@@ -21,35 +21,63 @@ var Script = function () {
             })
         }
     );
+    $('#a-login-out').on('click', function () {
+        $.get("/user/login_out.do", function (data) {
+            window.location.href = "/user/login.do"
+        })
+    });
     $('#a-class-create').on('click', function () {
         makeLiactive($('#li-class-create'), "2");
         $.get("/class/create.do", function (data) {
             $('#myContainer').html(data);
         })
     });
+    $('#a-class-join').on('click', function () {
+        makeLiactive($('#li-class-join'), "2");
+        $.get("/user/join.do", function (data) {
+            $('#myContainer').html(data);
+        })
+    });
+
     $('#a-job-list').on('click', function () {
-            makeLiactive($('#li-job-list'), "3")
+            makeLiactive($('#li-job-list'), "3");
             $.get("/job/find.do", function (data) {
                 $('#myContainer').html(data);
             })
         }
     );
     $('#a-job-create').on('click', function () {
-        makeLiactive($('#li-job-create'), "3")
+        makeLiactive($('#li-job-create'), "3");
         $.get("/job/create.do", function (data) {
             $('#myContainer').html(data);
         })
     });
 
-    //$('#a-main').on('click', function () {
-    //    makeLiactive($('#li-main'), "1")
-    //    $.post("/user/main", function (data) {
-    //        $('#myContainer').html(data);
-    //    })
-    //});
+    $('#a-main').on('click', function () {
+        makeLiactive($('#li-main'), "1");
+        var http = "/relationship/main.do";
+        $.post(http, function (data) {
+            $('#myContainer').html(data);
+        })
+    });
+    $('#a-email-list').on('click', function () {
+        makeLiactive($('#li-email-list'), "4");
+        $.get("/email/find.do", function (data) {
+            $('#myContainer').html(data);
+        })
+    });
+
+    $('#a-person-info').on('click', function () {
+        makeLiactive($('#li-person-info'), "5");
+        $.get("/user/info.do", function (data) {
+            $('#myContainer').html(data);
+        })
+    });
+
+
     //type=1综合页  2 课程   3 作业  4 邮件   5 个人信信息  6 聊天
     function makeLiactive(v, type) {
-        //$('#li-main').removeClass('active');
+        $('#li-main').removeClass('active');
         $('#li-class-info').removeClass('active');
         $('#li-class-info-child').removeClass('active');
         $('#li-class-list').removeClass('active');

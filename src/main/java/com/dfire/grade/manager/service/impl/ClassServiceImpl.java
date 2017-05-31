@@ -1,11 +1,10 @@
 package com.dfire.grade.manager.service.impl;
 
 import com.dfire.grade.manager.Contants;
-import com.dfire.grade.manager.bean.ClassDetail;
-import com.dfire.grade.manager.bean.Classes;
+import com.dfire.grade.manager.bean.*;
 import com.dfire.grade.manager.bean.Page;
-import com.dfire.grade.manager.bean.Teacher;
 import com.dfire.grade.manager.exception.SchoolTimeException;
+import com.dfire.grade.manager.mapper.ClassStartMapper;
 import com.dfire.grade.manager.mapper.ClassesMapper;
 import com.dfire.grade.manager.mapper.TeacherMapper;
 import com.dfire.grade.manager.service.IClassService;
@@ -16,6 +15,7 @@ import com.dfire.grade.manager.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
@@ -31,6 +31,8 @@ public class ClassServiceImpl implements IClassService {
     private ClassesMapper classesMapper;
     @Autowired
     private TeacherMapper teacherMapper;
+    @Autowired
+    private ClassStartMapper classStartMapper;
     @Autowired
     private RedisUtil redisUtil;
 
@@ -48,8 +50,8 @@ public class ClassServiceImpl implements IClassService {
             String classId = SequenceUtil.getSequence();
             myClass.setClassId(classId);
             myClass.setName(schoolTime.getName());
-            double p = schoolTime.getFrequency() * schoolTime.getPeriod() * DateUtil.getWeekCount(schoolTime.getStartTime(), schoolTime.getEndTime());
-            myClass.setPeriod(p);
+//            double p = schoolTime.getFrequency() * schoolTime.getPeriod() * DateUtil.getWeekCount(schoolTime.getStartTime(), schoolTime.getEndTime());
+            myClass.setPeriod(schoolTime.getPeriod());
             myClass.setTeacherId(schoolTime.getTeacherId());
             myClass.setCreateTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));
             myClass.setCredit(schoolTime.getCredit());
@@ -112,47 +114,15 @@ public class ClassServiceImpl implements IClassService {
 //                redisUtil.setValuePre(Contants.RedisContent.TEACHER_CLASS_CACHE_BY_ID + teacherId, classesList, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
             }
         }
-        List<ClassVo2> classVos = new ArrayList<>();
-        for (int i = 0; i < classesList.size(); i++) {
-            Classes classes = classesList.get(i);
-            ClassVo2 classVo = new ClassVo2();
-            copyClass(classes, classVo);
-            classVos.add(classVo);
-        }
-        return JsonResult.jsonSuccessData(classVos);
-    }
-
-    @Override
-    public JsonResult selectAllClassByStudentIDAndPage(String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception {
-        SequenceUtil.isBlank(studentId, "studentId不能为空！");
-        //最低一次取10条记录
-        if (0 == pageSize) {
-            pageSize = 10;
-        }
-        if (null == startTime) {
-            startTime = DateUtil.getFirstHalfYear();
-        }
-        if (null == endTime) {
-            endTime = DateUtil.getSecondHalfYear();
-        }
-        List<Classes> classesList = (List<Classes>) redisUtil.getValue(Contants.RedisContent.STUDENT_CLASS_CACHE_BY_ID + studentId, List.class);
-        if (null == classesList) {
-            Page page = new Page();
-            page.setId(studentId);
-            page.setStartIndex(index);
-            page.setPageSize(pageSize);
-            page.setStartTime(startTime);
-            page.setEndTime(endTime);
-            classesList = classesMapper.selectClassByStudentId(page);
-            if (!CollectionUtils.isEmpty(classesList)) {
-//                redisUtil.setValuePre(Contants.RedisContent.STUDENT_CLASS_CACHE_BY_ID + studentId, classesList, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+        List<ClassVo2> classVos = null;
+        if (!CollectionUtils.isEmpty(classesList)) {
+            classVos = new ArrayList<>();
+            for (int i = 0; i < classesList.size(); i++) {
+                Classes classes = classesList.get(i);
+                ClassVo2 classVo = new ClassVo2();
+                copyClass(classes, classVo);
+                classVos.add(classVo);
             }
-        }
-        List<ClassVo2> classVos = new ArrayList<>();
-        for (Classes classes : classesList) {
-            ClassVo2 classVo = new ClassVo2();
-            copyClass(classes, classVo);
-            classVos.add(classVo);
         }
         return JsonResult.jsonSuccessData(classVos);
     }
@@ -167,9 +137,12 @@ public class ClassServiceImpl implements IClassService {
 //                redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, classes, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
             }
         }
-        ClassVo2 classVo = new ClassVo2();
-        copyClass(classes, classVo);
-        return JsonResult.jsonSuccessData(classes);
+        ClassVo2 classVo = null;
+        if (null != classes) {
+            classVo = new ClassVo2();
+            copyClass(classes, classVo);
+        }
+        return JsonResult.jsonSuccessData(classVo);
     }
 
     @Override
@@ -219,8 +192,49 @@ public class ClassServiceImpl implements IClassService {
     @Override
     public JsonResult deleteClassByClassId(String classesId) throws Exception {
 //        redisUtil.del(Contants.RedisContent.CLASS_CACHE_BY_ID + classesId);
-//        classesMapper.deleteClassByID(classesId);
-        return null;
+        classStartMapper.deleteByClassId(classesId);
+        classesMapper.deleteClassByID(classesId);
+        return JsonResult.success();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public JsonResult startClass(String classId, String classNo, String teacherId, String className) throws Exception {
+        SequenceUtil.isBlank(classId, "classId不能为空！");
+        SequenceUtil.isBlank(classNo, "classNo不能为空！");
+        SequenceUtil.isBlank(teacherId, "teacherId不能为空！");
+        SequenceUtil.isBlank(className, "className不能为空！");
+        //记录开课记录
+        ClassStart classStart = new ClassStart();
+        classStart.setClassId(classId);
+        classStart.setClassNo(classNo);
+        classStart.setTeacherId(teacherId);
+        classStart.setClassName(className);
+        classStart.setCreateTime(DateUtil.getCurDate(DateUtil.DEFAULT_DATETIME_FORMAT_SEC));
+        classStartMapper.deleteByClassId(classId);
+        classStartMapper.deleteByClassNo(classNo);
+        Classes classes = new Classes();
+        classes.setClassId(classId);
+        classes.setClassNo(classNo);
+        classesMapper.startClass(classes);
+        classStartMapper.insertStart(classStart);
+        return JsonResult.success();
+    }
+
+    @Override
+    public JsonResult selectClassBatch(List<String> classIds) throws Exception {
+        Assert.notEmpty(classIds);
+        List<Classes> classesList = classesMapper.selectBatch(classIds);
+        List<ClassVo2> classVo2s = null;
+        if (!CollectionUtils.isEmpty(classesList)) {
+            classVo2s = new ArrayList<>();
+            for (Classes c : classesList) {
+                ClassVo2 classVo = new ClassVo2();
+                copyClass(c, classVo);
+                classVo2s.add(classVo);
+            }
+        }
+        return JsonResult.jsonSuccessData(classVo2s);
     }
 
     @Override
@@ -234,8 +248,11 @@ public class ClassServiceImpl implements IClassService {
 //                redisUtil.setValuePre(Contants.RedisContent.CLASS_CACHE_BY_ID + classId, classes, Contants.RedisContent.CLASS_CACHE_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
             }
         }
-        ClassInDetailVo classVo = new ClassInDetailVo();
-        copyClassInDetail(classes, classVo);
+        ClassInDetailVo classVo = null;
+        if (null != classes) {
+            classVo = new ClassInDetailVo();
+            copyClassInDetail(classes, classVo);
+        }
         return JsonResult.jsonSuccessData(classVo);
     }
 
@@ -248,11 +265,13 @@ public class ClassServiceImpl implements IClassService {
         classVo.setStartTime(classes.getStartTime());
         classVo.setEndTime(classes.getEndTime());
         classVo.setFrequency(classes.getFrequency());
+        classVo.setClassNo(classes.getClassNo());
         String teacherId = classes.getTeacherId();
         Teacher teacher = (Teacher) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + teacherId, Teacher.class);
         if (null == teacher) {
             teacher = teacherMapper.selectById(teacherId);
         }
+        classVo.setTeacherId(teacherId);
         classVo.setTeacherName(teacher.getName());
     }
 
@@ -266,10 +285,12 @@ public class ClassServiceImpl implements IClassService {
         classVo.setStartTime(classes.getStartTime());
         classVo.setEndTime(classes.getEndTime());
         classVo.setFrequency(classes.getFrequency());
+        classVo.setClassNo(classes.getClassNo());
         Teacher teacher = (Teacher) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + teacherId, Teacher.class);
         if (null == teacher) {
             teacher = teacherMapper.selectById(teacherId);
         }
+        classVo.setTeacherId(teacherId);
         classVo.setTeacherName(teacher.getName());
         if (!CollectionUtils.isEmpty(classes.getClassDetails())) {
             List<ClassDetailVo> classDetailVos = new ArrayList<>();

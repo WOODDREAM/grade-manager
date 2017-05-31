@@ -1,11 +1,11 @@
 package com.dfire.grade.manager.controller;
 
 import com.dfire.grade.manager.Contants;
+import com.dfire.grade.manager.bean.Answer;
 import com.dfire.grade.manager.bean.SignBean;
-import com.dfire.grade.manager.service.IJobService;
-import com.dfire.grade.manager.service.IStudentService;
-import com.dfire.grade.manager.service.ITeacherService;
+import com.dfire.grade.manager.service.*;
 import com.dfire.grade.manager.utils.DateUtil;
+import com.dfire.grade.manager.vo.AnswerVo;
 import com.dfire.grade.manager.vo.JobVo;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * User:huangtao
@@ -39,6 +36,10 @@ public class JobController extends BaseController {
     private ITeacherService teacherService;
     @Autowired
     private IStudentService studentService;
+    @Autowired
+    private IStudentClassService studentClassService;
+    @Autowired
+    private IAnswerService answerService;
 
     @RequestMapping(value = "/create", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
@@ -151,13 +152,14 @@ public class JobController extends BaseController {
 
     @RequestMapping(value = "/find", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
-    public String findAnswer(HttpServletRequest request, Model model,
-                             @RequestParam(value = "pageSize", required = false, defaultValue = "1000") Integer pageSize,
-                             @RequestParam(value = "pageIndex", required = false, defaultValue = "1") Integer pageIndex,
-                             @RequestParam(value = "studentId", required = false) String studentId,
-                             @RequestParam(value = "teacherId", required = false) String teacherId,
-                             @RequestParam(value = "classId", required = false) String classId,
-                             @RequestParam(value = "jobId", required = false) String jobId) throws Exception {
+    public String findJob(HttpServletRequest request, Model model,
+                          @RequestParam(value = "pageSize", required = false, defaultValue = "1000") Integer pageSize,
+                          @RequestParam(value = "pageIndex", required = false, defaultValue = "1") Integer pageIndex,
+                          @RequestParam(value = "studentId", required = false) String studentId,
+                          @RequestParam(value = "teacherId", required = false) String teacherId,
+                          @RequestParam(value = "classId", required = false) String classId,
+                          @RequestParam(value = "message", required = false) String message,
+                          @RequestParam(value = "jobId", required = false) String jobId) throws Exception {
         SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.USER_KEY);
         String id = signBean.getId();
         JsonResult result = teacherService.queryRoleById(id);
@@ -165,12 +167,12 @@ public class JobController extends BaseController {
             result = studentService.queryRoleById(id);
             if (StringUtils.isEmpty(studentId)) {
                 studentId = id;
-                model.addAttribute("type", 1);
+                model.addAttribute("roleType", 1);
             }
         } else {
             if (StringUtils.isEmpty(teacherId)) {
                 teacherId = id;
-                model.addAttribute("type", 2);
+                model.addAttribute("roleType", 2);
             }
         }
         if (result.isSuccess() && null != result.getData()) {
@@ -199,7 +201,27 @@ public class JobController extends BaseController {
             JsonResult rs = jobService.selectJob(map);
             if (rs.isSuccess()) {
                 if (null != rs.getData() && !CollectionUtils.isEmpty((Collection<?>) rs.getData())) {
-                    model.addAttribute("jobList", rs.getData());
+                    List<JobVo> jobVos = (List<JobVo>) rs.getData();
+                    if (!StringUtils.isEmpty(studentId)) {
+                        Answer answer = new Answer();
+                        answer.setStudentId(studentId);
+                        JsonResult ansRe = answerService.selectAnswerByCondition(answer);
+                        if (ansRe.isSuccess() && null != ansRe.getData()) {
+                            List<AnswerVo> answerVoList = (List<AnswerVo>) ansRe.getData();
+                            for (int i = 0; i < jobVos.size(); i++) {
+                                for (AnswerVo answerVo : answerVoList) {
+                                    if (jobVos.get(i).getJobId().equals(answerVo.getJobId())) {
+                                        if (answerVo.isAnswered()) {
+                                            jobVos.get(i).setAnswered(true);
+                                            jobVos.get(i).setAnswerContent(answerVo.getAnswer());
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    model.addAttribute("jobList", jobVos);
+                    model.addAttribute("message", message);
                 } else {
                     model.addAttribute("message", rs.getMessage());
                 }
@@ -207,7 +229,6 @@ public class JobController extends BaseController {
                 model.addAttribute("message", Contants.Message.ERROR_REQUEST);
             }
         }
-
         return "job/list";
     }
 
@@ -226,5 +247,32 @@ public class JobController extends BaseController {
             model.addAttribute("message", "jobId为空！");
         }
         return "job/detail";
+    }
+
+    @RequestMapping(value = "/student", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseStatus(HttpStatus.OK)
+    public String findJobOfStudent(HttpServletRequest request, Model model,
+                                   @RequestParam(value = "startTime", required = false) Date startTime,
+                                   @RequestParam(value = "end_time", required = false) Date endTime,
+                                   @RequestParam(value = "pageSize", required = false, defaultValue = "1000") Integer pageSize,
+                                   @RequestParam(value = "pageIndex", required = false, defaultValue = "1") Integer pageIndex) throws Exception {
+        SignBean signBean = (SignBean) request.getSession().getAttribute(Contants.STUDENT_KEY);
+        String studentId = signBean.getId();
+        JsonResult stuRe = studentService.queryRoleById(studentId);
+        if (stuRe.isSuccess() && null != stuRe.getData()) {
+            int index = ((pageIndex - 1) * 10) - 1;
+            if (-1 == index) {
+                index = 0;
+            }
+            JsonResult result = studentClassService.selectRelationship(null, null, studentId, index, pageSize, startTime, endTime);
+            if (result.isSuccess() && null != result.getData()) {
+
+            } else {
+                model.addAttribute("message", "您还没有申请加入课程！");
+            }
+        } else {
+            model.addAttribute("message", "jobId为空！");
+        }
+        return "job/list";
     }
 }

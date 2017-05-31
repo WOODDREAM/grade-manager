@@ -11,9 +11,11 @@ import com.dfire.grade.manager.utils.RedisUtil;
 import com.dfire.grade.manager.utils.SequenceUtil;
 import com.dfire.grade.manager.vo.JsonResult;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -59,7 +61,9 @@ public class TeacherServiceImpl implements ITeacherService {
         Teacher teacher = (Teacher) redisUtil.getValue(Contants.RedisContent.TEACHER_CACHE_BY_ID + id, Teacher.class);
         if (null == teacher) {
             teacher = teacherMapper.selectById(id);
-            redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_ID + id, teacher, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            if (null != teacher) {
+                redisUtil.setValuePre(Contants.RedisContent.TEACHER_CACHE_BY_ID + id, teacher, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
+            }
         }
         return JsonResult.jsonSuccessData(teacher);
     }
@@ -83,44 +87,61 @@ public class TeacherServiceImpl implements ITeacherService {
         SequenceUtil.isBlank(id, "teacherId不能为空");
         SequenceUtil.isBlank(passWord, "passWord不能为空");
         String pasStr = MessageDigestUtil.getStrCode(passWord);
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id);
-        map.put("passWord", pasStr);
-        teacherMapper.modifyPassword(map);
-        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + id, SignBean.class);
-        signBean.setPassWord(passWord);
+        Teacher teacher = new Teacher();
+        teacher.setTeacherId(id);
+        teacher.setPassWord(pasStr);
+        teacherMapper.modifyPassword(teacher);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + id, SignBean.class);
+        signBean.setPassWord(pasStr);
         redisUtil.setValuePre(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + signBean.getMobile(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
         redisUtil.setValuePre(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
-        return JsonResult.jsonSuccessMes("修改成功");
+        redisUtil.del(Contants.RedisContent.TEACHER_CACHE_BY_ID + id);
+        return JsonResult.jsonSuccessData(signBean);
     }
 
     @Override
     public JsonResult modifyMobile(String id, String mobile) throws Exception {
         SequenceUtil.isBlank(id, "teacherId不能为空");
         SequenceUtil.isBlank(mobile, "mobile不能为空");
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id);
-        map.put("mobile", mobile);
-        teacherMapper.modifyMobile(map);
-        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + id, SignBean.class);
+        Teacher teacher = new Teacher();
+        teacher.setTeacherId(id);
+        teacher.setMobile(mobile);
+        teacherMapper.modifyMobile(teacher);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + id, SignBean.class);
         signBean.setMobile(mobile);
         redisUtil.setValuePre(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + mobile, signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
         redisUtil.setValuePre(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
-        return JsonResult.jsonSuccessMes("修改成功");
+        redisUtil.del(Contants.RedisContent.TEACHER_CACHE_BY_ID + id);
+        return JsonResult.jsonSuccessData(signBean);
     }
 
     @Override
-    public JsonResult modifyEmail(String id, String email) throws Exception {
+    public JsonResult modifyInfo(String id, String email, String school, String name) throws Exception {
         SequenceUtil.isBlank(id, "teacherId不能为空");
-        SequenceUtil.isBlank(email, "email不能为空");
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id);
-        map.put("email", email);
-        teacherMapper.modifyEmail(map);
-        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + id, SignBean.class);
-        signBean.setEmail(email);
+        Teacher teacher = new Teacher();
+        teacher.setTeacherId(id);
+        teacher.setSchool(school);
+        teacher.setName(name);
+        teacher.setEmail(email);
+        teacherMapper.modifyInfo(teacher);
+        SignBean signBean = (SignBean) redisUtil.getValue(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + id, SignBean.class);
+        Teacher teacher1 = teacherMapper.selectById(id);
+        signBean.setName(teacher1.getName());
+        signBean.setSchool(teacher1.getSchool());
+        signBean.setEmail(teacher1.getEmail());
         redisUtil.setValuePre(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_MOBILE + signBean.getMobile(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
         redisUtil.setValuePre(Contants.RedisContent.TEACHER_SIGN_CACHE_BY_ID + signBean.getId(), signBean, Contants.RedisContent.USERINFO_EXPIRE_TIME, Contants.RedisContent.MINUTES_UNIT);
-        return JsonResult.jsonSuccessMes("修改成功");
+        redisUtil.del(Contants.RedisContent.TEACHER_CACHE_BY_ID + id);
+        return JsonResult.jsonSuccessData(signBean);
+    }
+
+    @Override
+    public JsonResult selectTeacherUnderStudent(String studentId) throws Exception {
+        SequenceUtil.isBlank(studentId, "studentId 不能为空！");
+        List<Teacher> teacherList = teacherMapper.selectTeacherUnderStudent(studentId);
+        if (CollectionUtils.isEmpty(teacherList)) {
+            teacherList = null;
+        }
+        return JsonResult.jsonSuccessData(teacherList);
     }
 }

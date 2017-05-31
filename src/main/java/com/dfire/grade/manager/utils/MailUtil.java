@@ -12,6 +12,9 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +37,7 @@ public class MailUtil {
      * @param address  收录地址
      * @throws MessagingException 必须解决超时问题,发送邮件返回消息特别慢导致无法第二次发送消息
      */
-    public void sendMail(String subject, String body, String fileName, String... address) throws MessagingException, UnsupportedEncodingException {
+    public void sendMail(String subject, String body, String fileName, HttpServlet servlet, String... address) throws MessagingException, UnsupportedEncodingException {
         //需自定义annotation解决参数验证问题
         if (address.length < 1) {
             LoggerFactory.MAILFACTORY.info(LoggerMarker.MAIL_SEND, "空地址！");
@@ -82,6 +85,7 @@ public class MailUtil {
             if (null != fileName && !StringUtils.isEmptyOrWhitespaceOnly(fileName)) {
                 //附件部分
                 messageBody = new MimeBodyPart();
+                fileName = getFile(fileName, servlet);
                 DataSource dataSource = new FileDataSource(fileName);
                 messageBody.setDataHandler(new DataHandler(dataSource));
 //                sun.misc.BASE64Encoder enc = new sun.misc.BASE64Encoder();
@@ -100,5 +104,26 @@ public class MailUtil {
             LoggerFactory.MAILFACTORY.error(LoggerMarker.MAIL_SEND, str, "发送邮件失败！", e);
             throw e;
         }
+    }
+
+    private String getFile(String fileName, HttpServlet request) {
+        String fileSaveRootPath = request.getServletContext().getRealPath("/WEB-INF/upload");
+        //通过文件名找出文件的所在目录
+        String path = findFileSavePathByFileName(fileName, fileSaveRootPath);
+        fileName = path + "\\" + fileName;
+        return fileName;
+    }
+
+    private String findFileSavePathByFileName(String filename, String saveRootPath) {
+        int hashcode = filename.hashCode();
+        int dir1 = hashcode & 0xf;  //0--15
+        int dir2 = (hashcode & 0xf0) >> 4;  //0-15
+        String dir = saveRootPath + "\\" + dir1 + "\\" + dir2;  //upload\2\3  upload\3\5
+        File file = new File(dir);
+        if (!file.exists()) {
+            //创建目录
+            file.mkdirs();
+        }
+        return dir;
     }
 }

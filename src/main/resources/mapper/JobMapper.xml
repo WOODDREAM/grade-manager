@@ -70,6 +70,12 @@
         WHERE job_id = #{jobId}
     </update>
     <delete id="deleteJod" parameterType="String">
+        UPDATE answer
+        set valid = '0'
+        where job_id = #{jobId}
+        UPDATE grade
+        set valid ='0'
+        where job_id = #{jobId}
         UPDATE FROM job
         set valid = '0'
         WHERE job_id = #{jobId}

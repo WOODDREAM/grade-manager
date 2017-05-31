@@ -1,6 +1,8 @@
 package com.dfire.grade.manager.mapper;
 
+import com.dfire.grade.manager.bean.Page;
 import com.dfire.grade.manager.bean.StudentClass;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,11 +25,11 @@ public interface StudentClassMapper {
     /**
      * 根据相应id查找课程关系
      *
-     * @param studentClass
+     * @param page
      * @return
      * @throws Exception
      */
-    List<StudentClass> selectRelationship(StudentClass studentClass) throws Exception;
+    List<StudentClass> selectRelationship(Page page) throws Exception;
 
     /**
      * 根据相应Id删除课程关系
@@ -44,5 +46,18 @@ public interface StudentClassMapper {
      * @return
      * @throws Exception
      */
-    StudentClass selectById(StudentClass studentClass) throws Exception;
+    StudentClass selectByIdAndMobile(StudentClass studentClass) throws Exception;
+
+    /**
+     * 根据关系id查
+     *
+     * @param relationshipId
+     * @return
+     * @throws Exception
+     */
+    StudentClass selectByShipId(String relationshipId) throws Exception;
+
+    void updateAgree(String relationshipId) throws Exception;
+
+    List<StudentClass> selectBatch(@Param("classIds")List<String> classIds) throws Exception;
 }

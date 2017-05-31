@@ -15,4 +15,6 @@ public interface AnswerMapper {
     void createAnswer(Answer answer) throws Exception;
 
     List<Answer> selectAnswerByCondition(Answer answer) throws Exception;
+
+    void updateAnswer(Answer answer) throws Exception;
 }

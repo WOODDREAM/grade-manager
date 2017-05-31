@@ -13,6 +13,7 @@
         <result column="isValid" property="valid" jdbcType="BOOLEAN"/>
         <result column="frequency" property="frequency" jdbcType="SMALLINT"/>
         <result column="fre_unit" property="frequencyUnit" jdbcType="VARCHAR"/>
+        <result column="class_no" property="classNo" jdbcType="VARCHAR"/>
         <association property="classDetails" column="class_id" javaType="java.util.List" resultMap="classDetailMapper"/>
     </resultMap>
     <resultMap id="classDetailMapper" type="com.dfire.grade.manager.bean.ClassDetail">
@@ -26,13 +27,13 @@
     </resultMap>
 
     <sql id="selectColumn">
-        SELECT cla_id,name,tea_Id,period,credit,frequency,fre_unit,start_time,end_time,create_time FROM class
+        SELECT cla_id,name,tea_Id,period,credit,frequency,fre_unit,start_time,end_time,create_time,class_no FROM class
     </sql>
     <sql id="selectClassDetailColumn">
         SELECT class_detail_id,week_day,part,term FROM class_detail
     </sql>
     <sql id="selectBothColumn">
-        SELECT cla_id,name,tea_Id,start_time,end_time,period,credit,frequency,fre_unit,class_detail_id,class_id,week_day,part,term,class.create_time
+        SELECT cla_id,name,tea_Id,start_time,end_time,period,credit,frequency,fre_unit,class_no,class_detail_id,class_id,week_day,part,term,class.create_time
         FROM class,class_detail
         WHERE class.cla_id = class_detail.class_id
     </sql>
@@ -100,6 +101,9 @@
     </select>
     <!--不能用-->
     <delete id="deleteClassByID" parameterType="String">
+        update answer
+        set valid = '0'
+        where cla_id = #{classId}
         UPDATE job
         set valid ='0'
         where class_id = #{classId}
@@ -132,4 +136,19 @@
         WHERE cla_id=#{classId}
     </update>
 
+    <select id="selectBatch" parameterType="java.util.List" resultMap="classesMapper">
+        <include refid="selectColumn"/>
+        <where>
+            cla_id in
+            <foreach collection="classIds" item="item" index="index"
+                     open="(" separator="," close=")">#{item}
+            </foreach>
+        </where>
+    </select>
+
+    <update id="startClass" parameterType="com.dfire.grade.manager.bean.Classes">
+        UPDATE class
+        SET class_no = #{classNo}
+        WHERE cla_id = #{classId}
+    </update>
 </mapper>

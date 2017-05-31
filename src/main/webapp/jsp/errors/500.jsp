@@ -27,14 +27,9 @@
     <link href="/css/style-responsive.css" rel="stylesheet"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-    <script src="/js/html5shiv.js"></script>
-    <script src="/js/respond.min.js"></script>
-    <![endif]-->
 </head>
 
-<body class="body-500">
-
+<body class="body-500" id="body-container">
 <div class="container">
 
     <section class="error-wrapper">
@@ -44,11 +39,11 @@
 
         <h2>500 Page Error</h2>
 
-        <p class="page-500">Looks like Something went wrong. <a href="index.html">Return Home</a></p>
+        <p class="page-500">Looks like Something went wrong. <a href="#" id="return-home">重新登录</a></p>
     </section>
 
 </div>
-
-
 </body>
+<script src="/js/jquery-2.1.1.min.js"></script>
+<script src="/js/returen-home.js"></script>
 </html>

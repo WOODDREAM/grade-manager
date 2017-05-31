@@ -1,10 +1,33 @@
 var Script = function () {
+    var jobType = "";
+    $('#termJobType').on('click', function () {
+        jobType = $("#termJobType").val();
+        var term = document.getElementById("termJobType");
+        term.checked = true;
+        var classJob = document.getElementById("classJobType");
+        classJob.checked = false;
+    });
+    $('#classJobType').on('click', function () {
+        jobType = $("#classJobType").val();
+        var term = document.getElementById("termJobType");
+        term.checked = false;
+        var classJob = document.getElementById("classJobType");
+        classJob.checked = this;
+    });
     $('#createJobBtn').on('click', function () {
         var name = $('#createJodName').val();
         var detail = $('#createJodDetail').val();
         var endTime = $('#dp2').val();
         var isNeedAnswer = 0;
-        var jobType = 2;
+        if (jobType == "") {
+            $.gritter.add({
+                title: '请选择!',
+                text: '考试记录或者课堂记录必须选择一个！',
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
         if (name == "") {
             $.gritter.add({
                 title: '警告!',
@@ -123,16 +146,62 @@ var Script = function () {
             $('#myContainer').html(data);
         });
     });
+    $(".jobFindGradeBtn").click(function () {
+        var jobId = $(this).parents().siblings(".jobId").text();
+        var str = {
+            jobId: jobId
+        }
+        $.get("/answer/find.do", str, function (data) {
+            $('#myContainer').html(data);
+        });
+    });
+    var jobId2 = "";
+    $(".jobCreateAnswer").click(function () {
+        jobId2 = $(this).parents().siblings(".jobId").text();
+        var hh = document.getElementById("jobIdmm");
+        hh.value = jobId2;
+        //$.post("/job/delete.do", str, function (data) {
+        //    $('#myContainer').html(data);
+        //});
+    });
+    $('#submitFile').on('click', function () {
+        var fileName = $('#myFile').val();
 
+        if (jobId2 == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: "请选择作业！",
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        if (fileName == "") {
+            $.gritter.add({
+                title: '警告!',
+                text: "请选择上传文件！",
+                sticky: false,
+                time: ''
+            });
+            return false;
+        }
+        var url = "/upload?jobId=" + jobId2;
+        document.getElementById("fileForm").action = url;
+        $('#fileForm').submit();
+        //window.location.href = "/upload.do?filename=" + fileName + "&jobId=" + jobId;
+        //$.post("/upload", str, function () {
+        //
+        //});
+    });
+    $(".downLoadAnswer").click(function () {
+        var answer = $(this).parents().siblings(".answerContent").text();
+        window.location.href = "/downLoad?filename=" + answer;
+    });
     $(".jobDeleteBtn").click(function () {
         var jobId = $(this).parents().siblings(".jobId").text();
         var str = {
             jobId: jobId
         }
-        alert(jobId)
-        //$.post("/job/delete.do", str, function (data) {
-        //    $('#myContainer').html(data);
-        //});
     });
 
     $('#updateJobBtn').on("click", function () {

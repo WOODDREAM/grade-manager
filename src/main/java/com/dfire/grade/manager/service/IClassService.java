@@ -15,6 +15,7 @@ public interface IClassService {
 
     /**
      * 插入一条课程记录
+     *
      * @param schoolTimes
      * @return
      * @throws Exception
@@ -23,6 +24,7 @@ public interface IClassService {
 
     /**
      * 分页查询教师下的课程
+     *
      * @param teacherId
      * @param index
      * @param pageSize
@@ -32,8 +34,6 @@ public interface IClassService {
      * @throws Exception
      */
     public JsonResult selectAllClassByTeacherIdAndPage(String teacherId, int index, int pageSize, Date startTime, Date endTime) throws Exception;
-
-    public JsonResult selectAllClassByStudentIDAndPage(String studentId, int index, int pageSize, Date startTime, Date endTime) throws Exception;
 
     /**
      * 查询课程详情
@@ -71,5 +71,13 @@ public interface IClassService {
      */
     public JsonResult deleteClassByClassId(String classesId) throws Exception;
 
+    /**
+     * 开课记录
+     *
+     * @return
+     * @throws Exception
+     */
+    public JsonResult startClass(String classId, String classNo, String teacherId, String className) throws Exception;
 
+    public JsonResult selectClassBatch(List<String> classIdList) throws Exception;
 }
